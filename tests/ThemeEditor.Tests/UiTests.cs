@@ -8,6 +8,7 @@ using Avalonia.Headless.XUnit;
 using ThemeEditor.App;
 using ThemeEditor.App.Previews;
 using ThemeEditor.App.Themes;
+using ThemeEditor.App.Themes.ColorSets;
 using Xunit;
 
 [assembly: AvaloniaTestApplication(typeof(ThemeEditor.Tests.TestAppBuilder))]
@@ -139,6 +140,47 @@ namespace ThemeEditor.Tests
             Assert.True(vm.Flags.CursorColor);
             var after = ThemeEditor.App.Previews.PreviewExporter.RenderPng(vm, ThemeEditor.App.PreviewKind.Bottom);
             Assert.False(before.SequenceEqual(after));
+        }
+    }
+}
+namespace ThemeEditor.Tests
+{
+    public class AllSetsTests
+    {
+        public static System.Collections.Generic.IEnumerable<object[]> Sets() =>
+            new[] { "TopBackground", "TopCorner", "BottomBackgroundInner", "BottomBackgroundOuter", "BottomCorner", "Open", "Close",
+                    "FolderBackground", "Folder", "FolderArrow", "File", "Cursor", "ArrowButton" }.Select(x => new object[] { x });
+
+        [AvaloniaTheory]
+        [MemberData(nameof(Sets))]
+        public void EditingFirstColorOfSetChangesPreview(string setName)
+        {
+            var win = new MainWindow(); win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            for (var i = 0; i < 100 && win.ViewModel == null; i++) { Avalonia.Threading.Dispatcher.UIThread.RunJobs(); System.Threading.Thread.Sleep(20); }
+            var vm = win.ViewModel;
+            var s = ThemeEditor.App.Properties.Settings.Default;
+            System.Func<byte[]> snap = () =>
+            {
+                var all = new System.Collections.Generic.List<byte>();
+                foreach (var folder in new[] { false, true })
+                foreach (var pressed in new[] { false, true })
+                {
+                    s.Preview_ModeToggle = folder; s.Preview_PressedToggle = pressed;
+                    all.AddRange(ThemeEditor.App.Previews.PreviewExporter.RenderPng(vm, ThemeEditor.App.PreviewKind.Both));
+                }
+                s.Preview_ModeToggle = false; s.Preview_PressedToggle = false;
+                return all.ToArray();
+            };
+            var set = (ViewModelBase)typeof(ColorsViewModel).GetProperty(setName).GetValue(vm.Colors);
+            var before = snap();
+            foreach (var cp in set.GetType().GetProperties().Where(p => p.PropertyType == typeof(Avalonia.Media.Color) && p.CanWrite))
+            {
+                var orig = (Avalonia.Media.Color)cp.GetValue(set);
+                cp.SetValue(set, Avalonia.Media.Color.FromRgb((byte)(orig.R ^ 0x80), (byte)(orig.G ^ 0x40), (byte)(orig.B ^ 0xC0)));
+                break;
+            }
+            Assert.False(before.SequenceEqual(snap()), setName + " did not change the preview");
         }
     }
 }

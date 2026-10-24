@@ -56,8 +56,15 @@ namespace ThemeEditor.App.Themes
             var set = args.ViewModel;
             if (set == Colors.TopBackground) { if (Flags.TopDrawType == Localization.Enums.TopDrawType.None) Flags.TopDrawType = Localization.Enums.TopDrawType.SolidColor; }
             else if (set == Colors.TopCorner) Flags.TopCornerButtonColor = true;
-            else if (set == Colors.BottomBackgroundInner) Flags.BottomBackgroundInnerColor = true;
-            else if (set == Colors.BottomBackgroundOuter) Flags.BottomBackgroundOuterColor = true;
+            else if (set == Colors.BottomBackgroundInner || set == Colors.BottomBackgroundOuter)
+            {
+                // These areas only exist in "solid color" mode, and the outer one also needs the inner one
+                if (Flags.BottomDrawType == Localization.Enums.BottomDrawType.None)
+                    Flags.BottomDrawType = Localization.Enums.BottomDrawType.SolidColor;
+                Flags.BottomBackgroundInnerColor = true;
+                if (set == Colors.BottomBackgroundOuter)
+                    Flags.BottomBackgroundOuterColor = true;
+            }
             else if (set == Colors.BottomCorner) Flags.BottomCornerButtonColor = true;
             else if (set == Colors.Open || set == Colors.Close) Flags.OpenCloseColor = true;
             else if (set == Colors.FolderBackground) Flags.FolderBackgroundColor = true;
