@@ -216,3 +216,7 @@ ModelManifest.xml
 
 # 3D preview meshes are source assets
 !src/ThemeEditor.App/Resources/*.obj
+
+# Packaging output
+/dist/
+/publish/

@@ -21,11 +21,12 @@ All packages are self-contained – nothing else has to be installed.
 | Windows 11 on ARM | `…-win-arm64.zip` |
 | Linux (x86-64) | `…-linux-x64.tar.gz` |
 | Linux (ARM64, e.g. Raspberry Pi 4/5) | `…-linux-arm64.tar.gz` |
-| macOS Intel | `…-osx-x64.zip` |
-| macOS Apple Silicon | `…-osx-arm64.zip` |
+| macOS Intel | `…-osx-x64.dmg` |
+| macOS Apple Silicon | `…-osx-arm64.dmg` |
 
-* **macOS:** the app is not notarized. On first launch right-click the app → *Open*, or run
-  `xattr -dr com.apple.quarantine "Umami 3DS Theme Editor.app"`.
+* **macOS:** open the `.dmg` and drag the app to *Applications*. The app is ad-hoc signed but not notarized (no paid Apple developer account),
+  so macOS may say it is "damaged" or from an unidentified developer. Fix it once with
+  `xattr -dr com.apple.quarantine "/Applications/Umami 3DS Theme Editor.app"` or right-click the app → *Open*.
 * **Linux:** extract, then run `./UmamiThemeEditor`. Needs a desktop with X11 or XWayland (and `libfontconfig`).
   For the *screen* eyedropper one of `grim`, `gnome-screenshot`, `spectacle`, `maim`, `scrot` or ImageMagick `import` should be installed
   (otherwise picking is limited to the editor window).

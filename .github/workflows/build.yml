@@ -32,10 +32,27 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Package every platform
-        run: bash packaging/package.sh "${GITHUB_REF_NAME#v}"
+      - name: Package Windows and Linux
+        run: bash packaging/package.sh "${GITHUB_REF_NAME#v}" "win-x64 win-arm64 linux-x64 linux-arm64"
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
           files: dist/*
           generate_release_notes: true
+
+  publish-macos:
+    needs: publish
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Package macOS (ad-hoc signed .dmg)
+        run: bash packaging/package.sh "${GITHUB_REF_NAME#v}" "osx-x64 osx-arm64"
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
