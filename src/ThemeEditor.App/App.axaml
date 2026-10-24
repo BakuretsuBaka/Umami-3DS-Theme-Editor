@@ -2,6 +2,7 @@
     x:Class="ThemeEditor.App.UmamiApplication"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Name="Umami 3DS Theme Editor"
     RequestedThemeVariant="Default">
     <Application.Styles>
         <FluentTheme />

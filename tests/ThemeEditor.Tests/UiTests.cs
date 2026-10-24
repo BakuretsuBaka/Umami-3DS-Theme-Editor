@@ -121,3 +121,24 @@ namespace ThemeEditor.Tests
         }
     }
 }
+namespace ThemeEditor.Tests
+{
+    public class ColorEditTests
+    {
+        [AvaloniaFact]
+        public void EditingDisabledSetEnablesFlagAndChangesPreview()
+        {
+            var win = new MainWindow();
+            win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            for (var i = 0; i < 100 && win.ViewModel == null; i++) { Avalonia.Threading.Dispatcher.UIThread.RunJobs(); System.Threading.Thread.Sleep(20); }
+            var vm = win.ViewModel;
+            Assert.False(vm.Flags.CursorColor);
+            var before = ThemeEditor.App.Previews.PreviewExporter.RenderPng(vm, ThemeEditor.App.PreviewKind.Bottom);
+            vm.Colors.Cursor.Main = Avalonia.Media.Color.FromRgb(200, 0, 120);
+            Assert.True(vm.Flags.CursorColor);
+            var after = ThemeEditor.App.Previews.PreviewExporter.RenderPng(vm, ThemeEditor.App.PreviewKind.Bottom);
+            Assert.False(before.SequenceEqual(after));
+        }
+    }
+}

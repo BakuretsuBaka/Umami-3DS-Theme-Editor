@@ -38,6 +38,37 @@ namespace ThemeEditor.App.Themes
             Info = new ThemeInfoViewModel(info ?? new SMDH(), Tag);
 
             SetupRules();
+            ViewModelChanged += EnableFlagOnColorEdit;
+        }
+
+        /// <summary>
+        ///     Editing a color of a color set whose "custom colors" flag is off would otherwise change nothing in the
+        ///     preview or the saved theme, so the matching flag is switched on for the user.
+        /// </summary>
+        private void EnableFlagOnColorEdit(ViewModelChangedArgs args)
+        {
+            if (args.ViewModel.Tag != Tag || Rules == null || Rules.Paused || args.ViewModel.Enabled)
+                return;
+            var prop = args.ViewModel.GetType().GetProperty(args.Property);
+            if (prop == null || prop.PropertyType != typeof(Avalonia.Media.Color))
+                return;
+
+            var set = args.ViewModel;
+            if (set == Colors.TopBackground) { if (Flags.TopDrawType == Localization.Enums.TopDrawType.None) Flags.TopDrawType = Localization.Enums.TopDrawType.SolidColor; }
+            else if (set == Colors.TopCorner) Flags.TopCornerButtonColor = true;
+            else if (set == Colors.BottomBackgroundInner) Flags.BottomBackgroundInnerColor = true;
+            else if (set == Colors.BottomBackgroundOuter) Flags.BottomBackgroundOuterColor = true;
+            else if (set == Colors.BottomCorner) Flags.BottomCornerButtonColor = true;
+            else if (set == Colors.Open || set == Colors.Close) Flags.OpenCloseColor = true;
+            else if (set == Colors.FolderBackground) Flags.FolderBackgroundColor = true;
+            else if (set == Colors.Folder) Flags.FolderColor = true;
+            else if (set == Colors.FolderArrow) Flags.FolderArrowColor = true;
+            else if (set == Colors.File) Flags.FileColor = true;
+            else if (set == Colors.Cursor) Flags.CursorColor = true;
+            else if (set == Colors.ArrowButton) Flags.ArrowButtonColor = true;
+            else if (set == Colors.Arrow) Flags.ArrowColor = true;
+            else if (set == Colors.GameText) Flags.GameTextDrawType = Localization.Enums.GameTextDrawType.Colored;
+            else if (set == Colors.DemoText) Flags.DemoTextColor = true;
         }
 
         public void Save(Stream stream)
@@ -47,6 +78,7 @@ namespace ThemeEditor.App.Themes
 
         public override void Dispose()
         {   
+            ViewModelChanged -= EnableFlagOnColorEdit;
 
             Rules.Dispose();
             Flags.Dispose();
