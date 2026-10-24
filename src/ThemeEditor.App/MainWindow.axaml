@@ -1,0 +1,226 @@
+﻿<Window
+    x:Class="ThemeEditor.App.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:ThemeEditor.App.Controls"
+    xmlns:locale="using:ThemeEditor.App.Localization"
+    xmlns:props="using:ThemeEditor.App.Properties"
+    xmlns:local="using:ThemeEditor.App"
+    Title="Umami 3DS Theme Editor"
+    Width="1200"
+    Height="640"
+    MinWidth="1000"
+    MinHeight="620"
+    Icon="avares://UmamiThemeEditor/Assets/umami.png"
+    x:CompileBindings="False">
+    <Window.Styles>
+        <Style Selector="TextBlock.infolabel">
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style Selector="Grid.info TextBox">
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Button.drop">
+            <Setter Property="Width" Value="52" />
+            <Setter Property="Height" Value="52" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="1,0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="Button.drop:pointerover">
+            <Setter Property="Background" Value="#33FFFFFF" />
+        </Style>
+        <Style Selector="ToggleButton.pv, Button.pv">
+            <Setter Property="Margin" Value="0,3" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="500" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Editor side -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,*">
+            <Menu x:Name="MainMenu" Grid.Row="0" />
+
+            <TabControl
+                x:Name="EditorTabs"
+                Grid.Row="1"
+                DragDrop.AllowDrop="True">
+                <TabItem Header="{x:Static locale:MainResources.Tab_Info}">
+                    <ScrollViewer>
+                        <Grid
+                            Classes="info"
+                            Margin="3"
+                            ColumnDefinitions="110,*"
+                            RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
+                            <TextBlock Classes="infolabel" Grid.Row="0" Text="{x:Static locale:ThemeResources.Theme_Info_Author}" />
+                            <TextBox Grid.Row="0" Grid.Column="1" MaxLength="64"
+                                     Text="{Binding ViewModel.Info.Author, Mode=TwoWay}" />
+
+                            <TextBlock Classes="infolabel" Grid.Row="1" Text="{x:Static locale:ThemeResources.Theme_Info_ShortDesc}" />
+                            <TextBox Grid.Row="1" Grid.Column="1" MaxLength="64"
+                                     Text="{Binding ViewModel.Info.ShortDescription, Mode=TwoWay}" />
+
+                            <TextBlock Classes="infolabel" Grid.Row="2" Text="{x:Static locale:ThemeResources.Theme_Info_LongDesc}" />
+                            <TextBox Grid.Row="2" Grid.Column="1" MaxLength="128" AcceptsReturn="True"
+                                     MinLines="4" MaxLines="4" TextWrapping="Wrap"
+                                     Text="{Binding ViewModel.Info.LongDescription, Mode=TwoWay}" />
+
+                            <TextBlock Classes="infolabel" Grid.Row="3" Text="{x:Static locale:ThemeResources.Theme_Info_LargeIcon}" />
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                                <Button x:Name="LargeToSmallButton" Margin="0,3" Content="&#x2193;"
+                                        Click="LargeToSmall_OnClick" VerticalAlignment="Top" />
+                                <controls:IconEyedropper
+                                    x:Name="LargeIconPicker"
+                                    CaptureWidth="48" CaptureHeight="48"
+                                    CaptureCenter="23,23"
+                                    Preview="{Binding ViewModel.Info.LargeIcon.Bitmap}" />
+                            </StackPanel>
+
+                            <TextBlock Classes="infolabel" Grid.Row="4" Text="{x:Static locale:ThemeResources.Theme_Info_SmallIcon}" />
+                            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                                <Button x:Name="SmallToLargeButton" Margin="0,3" Content="&#x2191;"
+                                        Click="SmallToLarge_OnClick" VerticalAlignment="Top" />
+                                <controls:IconEyedropper
+                                    x:Name="SmallIconPicker"
+                                    CaptureWidth="24" CaptureHeight="24"
+                                    CaptureCenter="11,11"
+                                    Preview="{Binding ViewModel.Info.SmallIcon.Bitmap}" />
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="{x:Static locale:MainResources.Tab_Colors}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <ContentControl x:Name="ColorsHost" />
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="{x:Static locale:MainResources.Tab_Flags}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <ContentControl x:Name="FlagsHost" />
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+
+            <!-- Busy overlay -->
+            <Border
+                Grid.Row="1"
+                Background="#99000000"
+                IsVisible="{Binding IsBusy}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+                    <ProgressBar IsIndeterminate="True" Width="220" />
+                    <TextBlock Text="{Binding BusyText}" Foreground="White" HorizontalAlignment="Center" TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Preview side -->
+        <ThemeVariantScope Grid.Column="1" RequestedThemeVariant="Dark">
+        <Grid
+            x:Name="PreviewPanel"
+            RowDefinitions="56,240,8,240,*">
+            <Grid.Background>
+                <ImageBrush
+                    Source="avares://UmamiThemeEditor/Resources/BLACK_NOISE.png"
+                    TileMode="Tile"
+                    Stretch="None"
+                    DestinationRect="0,0,48,48" />
+            </Grid.Background>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="DropTop" Classes="drop" Tag="Top">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_TOP.png"
+                           Opacity="{Binding ViewModel.Textures.Top.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Button x:Name="DropTopAlt" Classes="drop" Tag="TopAlt">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_TOPALT.png"
+                           Opacity="{Binding ViewModel.Textures.TopAlt.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Button x:Name="DropBottom" Classes="drop" Tag="Bottom">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_BOTTOM.png"
+                           Opacity="{Binding ViewModel.Textures.Bottom.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Border Width="1" Height="40" Background="#66FFFFFF" Margin="6,0" />
+                <Button x:Name="DropFileLarge" Classes="drop" Tag="FileLarge">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_FILELARGE.png"
+                           Opacity="{Binding ViewModel.Textures.FileLarge.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Button x:Name="DropFileSmall" Classes="drop" Tag="FileSmall">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_FILESMALL.png"
+                           Opacity="{Binding ViewModel.Textures.FileSmall.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Button x:Name="DropFolderClosed" Classes="drop" Tag="FolderClosed">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_FOLDERCLOSED.png"
+                           Opacity="{Binding ViewModel.Textures.FolderClosed.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+                <Button x:Name="DropFolderOpen" Classes="drop" Tag="FolderOpen">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_FOLDEROPEN.png"
+                           Opacity="{Binding ViewModel.Textures.FolderOpen.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
+                </Button>
+            </StackPanel>
+
+            <Border Grid.Row="1" Width="412" Height="240" HorizontalAlignment="Center" BoxShadow="0 0 6 1 #CC000000">
+                <controls:TopScreenPreview
+                    x:Name="TopPreview"
+                    Theme="{Binding ViewModel}"
+                    Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}" />
+            </Border>
+
+            <Border Grid.Row="3" HorizontalAlignment="Stretch" Height="240">
+                <Grid ColumnDefinitions="*,320,*">
+                    <StackPanel Grid.Column="0" Margin="6,0">
+                        <TextBlock HorizontalAlignment="Center" Foreground="White"
+                                   Text="{x:Static locale:MainResources.Control_Preview_Label}" />
+                        <Button Classes="pv" Command="{Binding PreviewOptionsCommand}"
+                                Content="{x:Static locale:MainResources.Control_Preview_Options}" />
+                        <ToggleButton Classes="pv"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Animate}"
+                                      IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle, Mode=TwoWay}" />
+                        <ToggleButton Classes="pv"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Folder}"
+                                      IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_ModeToggle, Mode=TwoWay}" />
+                        <ToggleButton Classes="pv"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Pressed}"
+                                      IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_PressedToggle, Mode=TwoWay}" />
+                        <ToggleButton Classes="pv"
+                                      Content="{x:Static locale:MainResources.Control_Preview_CloseButton}"
+                                      IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_CloseToggle, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <Border Grid.Column="1" Width="320" Height="240" BoxShadow="0 0 6 1 #CC000000">
+                        <controls:BottomScreenPreview
+                            x:Name="BottomPreview"
+                            Theme="{Binding ViewModel}"
+                            Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}" />
+                    </Border>
+
+                    <StackPanel Grid.Column="2" Margin="6,0">
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="BGM" />
+                        <Button Classes="pv" Command="{Binding ReloadBGMCommand}"
+                                Content="{x:Static locale:MainResources.Control_AudioPlayer_Reload}" />
+                        <Button x:Name="PlayButton" Classes="pv" Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=PlayCommand}"
+                                Content="{x:Static locale:MainResources.Control_AudioPlayer_Play}" />
+                        <Button Classes="pv" Command="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=StopCommand}"
+                                Content="{x:Static locale:MainResources.Control_AudioPlayer_Stop}" />
+                        <Slider Height="90" Margin="0,3" Orientation="Vertical" HorizontalAlignment="Center"
+                                Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1"
+                                Value="{Binding Source={x:Static local:AudioPlayer.Instance}, Path=Volume, Mode=TwoWay}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        </ThemeVariantScope>
+    </Grid>
+</Window>

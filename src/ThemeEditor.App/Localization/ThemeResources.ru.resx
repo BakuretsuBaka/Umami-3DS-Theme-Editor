@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Enum_DrawType_None" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Enum_DrawType_SolidColor" xml:space="preserve">
+    <value>Сплошной цвет</value>
+  </data>
+  <data name="Enum_DrawType_SolidColorTexture" xml:space="preserve">
+    <value>Сплошной цвет и текстура</value>
+  </data>
+  <data name="Enum_DrawType_Texture" xml:space="preserve">
+    <value>Текстура</value>
+  </data>
+  <data name="Enum_FrameType_BounceScroll" xml:space="preserve">
+    <value>Прокрутка туда-обратно (1-2-3-2-1)</value>
+  </data>
+  <data name="Enum_FrameType_FastScroll" xml:space="preserve">
+    <value>Быстрая прокрутка</value>
+  </data>
+  <data name="Enum_FrameType_PageScroll" xml:space="preserve">
+    <value>Постраничная прокрутка (1-2-3-1-2-3)</value>
+  </data>
+  <data name="Enum_FrameType_Single" xml:space="preserve">
+    <value>Один кадр</value>
+  </data>
+  <data name="Enum_FrameType_SlowScroll" xml:space="preserve">
+    <value>Медленная прокрутка</value>
+  </data>
+  <data name="Enum_GameText_Color" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Enum_GameText_Hidden" xml:space="preserve">
+    <value>Скрыто</value>
+  </data>
+  <data name="Enum_GameText_None" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="Theme_Colors_Arrow" xml:space="preserve">
+    <value>Стрелка</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button" xml:space="preserve">
+    <value>Кнопка со стрелкой</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button_Desc" xml:space="preserve">
+    <value>Кнопка листания со стрелкой</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Desc" xml:space="preserve">
+    <value>Стрелка на кнопке листания</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner" xml:space="preserve">
+    <value>Нижний фон (внутренний)</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner_Desc" xml:space="preserve">
+    <value>Внутренняя область фона нижнего экрана</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer" xml:space="preserve">
+    <value>Нижний фон (внешний)</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer_Desc" xml:space="preserve">
+    <value>Внешняя область фона нижнего экрана</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner" xml:space="preserve">
+    <value>Нижние угловые кнопки</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner_Desc" xml:space="preserve">
+    <value>Кнопки настроек и изменения размера нижнего экрана</value>
+  </data>
+  <data name="Theme_Colors_Close" xml:space="preserve">
+    <value>Кнопка «Закрыть»</value>
+  </data>
+  <data name="Theme_Colors_Close_Desc" xml:space="preserve">
+    <value>Кнопка закрытия приложения</value>
+  </data>
+  <data name="Theme_Colors_Cursor" xml:space="preserve">
+    <value>Курсор</value>
+  </data>
+  <data name="Theme_Colors_Cursor_Desc" xml:space="preserve">
+    <value>Курсор выбора на нижнем экране</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text" xml:space="preserve">
+    <value>Текст демо</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text_Desc" xml:space="preserve">
+    <value>Оставшиеся запуски демоверсии</value>
+  </data>
+  <data name="Theme_Colors_File" xml:space="preserve">
+    <value>3D-файл</value>
+  </data>
+  <data name="Theme_Colors_File_Desc" xml:space="preserve">
+    <value>Значок 3D-приложения</value>
+  </data>
+  <data name="Theme_Colors_Folder" xml:space="preserve">
+    <value>3D-папка</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow" xml:space="preserve">
+    <value>Стрелка «назад» в папке</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow_Desc" xml:space="preserve">
+    <value>Кнопка «назад» в режиме папки</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background" xml:space="preserve">
+    <value>Фон папки</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background_Desc" xml:space="preserve">
+    <value>Внутренняя область нижнего экрана в режиме папки</value>
+  </data>
+  <data name="Theme_Colors_Folder_Desc" xml:space="preserve">
+    <value>Значок 3D-папки</value>
+  </data>
+  <data name="Theme_Colors_Game_Text" xml:space="preserve">
+    <value>Текст игры</value>
+  </data>
+  <data name="Theme_Colors_Game_Text_Desc" xml:space="preserve">
+    <value>Описание игры при однострочной раскладке</value>
+  </data>
+  <data name="Theme_Colors_Open" xml:space="preserve">
+    <value>Кнопка запуска</value>
+  </data>
+  <data name="Theme_Colors_Open_Desc" xml:space="preserve">
+    <value>Кнопка запуска приложения / создания папки</value>
+  </data>
+  <data name="Theme_Colors_Top_Background" xml:space="preserve">
+    <value>Верхний фон</value>
+  </data>
+  <data name="Theme_Colors_Top_Background_Desc" xml:space="preserve">
+    <value>Цвета фона верхнего экрана</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner" xml:space="preserve">
+    <value>Верхние угловые кнопки</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner_Desc" xml:space="preserve">
+    <value>Кнопки скриншота и камеры верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color" xml:space="preserve">
+    <value>Цвет кнопки со стрелкой</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color_Desc" xml:space="preserve">
+    <value>Включить свои цвета кнопки листания</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color" xml:space="preserve">
+    <value>Цвет стрелки</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color_Desc" xml:space="preserve">
+    <value>Включить свои цвета стрелки кнопки листания</value>
+  </data>
+  <data name="Theme_Flags_Background_Music" xml:space="preserve">
+    <value>Фоновая музыка</value>
+  </data>
+  <data name="Theme_Flags_Background_Music_Desc" xml:space="preserve">
+    <value>Включает фоновую музыку (BGM.BCSTM)</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color" xml:space="preserve">
+    <value>Цвет нижнего фона (внутренний)</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета внутренней области фона нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color" xml:space="preserve">
+    <value>Цвет нижнего фона (внешний)</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета внешней области фона нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color" xml:space="preserve">
+    <value>Цвет нижних угловых кнопок</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета кнопок настроек и изменения размера</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type" xml:space="preserve">
+    <value>Режим отрисовки нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type_Desc" xml:space="preserve">
+    <value>Выбирает режим отображения нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type" xml:space="preserve">
+    <value>Тип кадра нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type_Desc" xml:space="preserve">
+    <value>Выбирает тип кадра нижнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color" xml:space="preserve">
+    <value>Цвета курсора</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета курсора</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color" xml:space="preserve">
+    <value>Цвет текста демо</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color_Desc" xml:space="preserve">
+    <value>Включает свой цвет текста демо</value>
+  </data>
+  <data name="Theme_Flags_File_Color" xml:space="preserve">
+    <value>Цвет 3D-файла</value>
+  </data>
+  <data name="Theme_Flags_File_Color_Desc" xml:space="preserve">
+    <value>Включает свой цвет 3D-файла</value>
+  </data>
+  <data name="Theme_Flags_File_Texture" xml:space="preserve">
+    <value>Текстура файла</value>
+  </data>
+  <data name="Theme_Flags_File_Texture_Desc" xml:space="preserve">
+    <value>Включает свою текстуру значка файла</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color" xml:space="preserve">
+    <value>Цвет стрелки папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета стрелки «назад» в режиме папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color" xml:space="preserve">
+    <value>Цвет фона папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета фона режима папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color" xml:space="preserve">
+    <value>Цвет 3D-папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета 3D-папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture" xml:space="preserve">
+    <value>Текстура папки</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture_Desc" xml:space="preserve">
+    <value>Включает свою текстуру значка папки</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color" xml:space="preserve">
+    <value>Цвет текста игры</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета текста игры</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color" xml:space="preserve">
+    <value>Цвета «Открыть» / «Закрыть»</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета кнопок запуска и закрытия приложения</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect" xml:space="preserve">
+    <value>Звуковые эффекты</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect_Desc" xml:space="preserve">
+    <value>Включает звуковые эффекты (данные CWAV)</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color" xml:space="preserve">
+    <value>Цвет верхнего фона</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета фона верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color" xml:space="preserve">
+    <value>Цвет верхних угловых кнопок</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Включает свои цвета кнопок камеры верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type" xml:space="preserve">
+    <value>Режим отрисовки верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type_Desc" xml:space="preserve">
+    <value>Выбирает режим отображения верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type" xml:space="preserve">
+    <value>Тип кадра верхнего экрана</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type_Desc" xml:space="preserve">
+    <value>Выбирает тип кадра верхнего экрана</value>
+  </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>Автор темы</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>Большой значок</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>Значок 48 px</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>Полное описание</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>Полное описание</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>Краткое описание</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>Краткое описание</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>Малый значок</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>Значок 24 px</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading" xml:space="preserve">
+    <value>Затенение</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading_Desc" xml:space="preserve">
+    <value>Цвет затенения</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border" xml:space="preserve">
+    <value>Граница</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border_Desc" xml:space="preserve">
+    <value>Цвет границы</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed" xml:space="preserve">
+    <value>Нажато</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed_Desc" xml:space="preserve">
+    <value>Цвет в нажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed" xml:space="preserve">
+    <value>Не нажато</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed_Desc" xml:space="preserve">
+    <value>Цвет в ненажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border" xml:space="preserve">
+    <value>Граница</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border_Desc" xml:space="preserve">
+    <value>Цвет границы</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight_Desc" xml:space="preserve">
+    <value>Цвет блика</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom" xml:space="preserve">
+    <value>Низ значка</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom_Desc" xml:space="preserve">
+    <value>Нижний цвет градиента значка</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop" xml:space="preserve">
+    <value>Верх значка</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop_Desc" xml:space="preserve">
+    <value>Верхний цвет градиента значка</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border" xml:space="preserve">
+    <value>Граница</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border_Desc" xml:space="preserve">
+    <value>Цвет границы</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight_Desc" xml:space="preserve">
+    <value>Цвет блика</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow_Desc" xml:space="preserve">
+    <value>Цвет внешнего свечения</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe" xml:space="preserve">
+    <value>Полосы</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe_Desc" xml:space="preserve">
+    <value>Цвет полос за кнопкой «Открыть/Закрыть»</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading" xml:space="preserve">
+    <value>Затенение</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading_Desc" xml:space="preserve">
+    <value>Цвет затенения</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text" xml:space="preserve">
+    <value>Передний план</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
+    <value>Цвет текста</value>
+  </data>
+  <data name="Theme_Sets_File_Dark" xml:space="preserve">
+    <value>Затенение</value>
+  </data>
+  <data name="Theme_Sets_File_Dark_Desc" xml:space="preserve">
+    <value>Цвет затенения</value>
+  </data>
+  <data name="Theme_Sets_File_Light" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_File_Light_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_File_Main" xml:space="preserve">
+    <value>Основной</value>
+  </data>
+  <data name="Theme_Sets_File_Main_Desc" xml:space="preserve">
+    <value>Основной цвет</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow" xml:space="preserve">
+    <value>Тень</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow_Desc" xml:space="preserve">
+    <value>Тень под значком</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed" xml:space="preserve">
+    <value>Стрелка нажата</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed_Desc" xml:space="preserve">
+    <value>Цвет стрелки в нажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow" xml:space="preserve">
+    <value>Свечение стрелки</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow_Desc" xml:space="preserve">
+    <value>Цвет тени/свечения стрелки</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed" xml:space="preserve">
+    <value>Стрелка не нажата</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed_Desc" xml:space="preserve">
+    <value>Цвет стрелки в ненажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight_Desc" xml:space="preserve">
+    <value>Цвет блика</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading" xml:space="preserve">
+    <value>Затенение</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
+    <value>Цвет затенения</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
+    <value>Затенение</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark_Desc" xml:space="preserve">
+    <value>Цвет затенения</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light_Desc" xml:space="preserve">
+    <value>Блик на лицевой стороне папки</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main" xml:space="preserve">
+    <value>Основной</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main_Desc" xml:space="preserve">
+    <value>Основной цвет</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow" xml:space="preserve">
+    <value>Тень</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow_Desc" xml:space="preserve">
+    <value>Тень под папкой</value>
+  </data>
+  <data name="Theme_Sets_Game_Light" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
+    <value>Блик</value>
+  </data>
+  <data name="Theme_Sets_Game_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_Game_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain" xml:space="preserve">
+    <value>Передний план</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain_Desc" xml:space="preserve">
+    <value>Цвет текста</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
+    <value>Свечение</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
+    <value>Цвет свечения</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
+    <value>Фон нажатой кнопки</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
+    <value>Цвет фона в нажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos" xml:space="preserve">
+    <value>Положение тени</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos_Desc" xml:space="preserve">
+    <value>Положение тени (по вертикали)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
+    <value>Текст нажатой кнопки</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed_Desc" xml:space="preserve">
+    <value>Цвет текста в нажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
+    <value>Свечение текста</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
+    <value>Цвет свечения текста</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed" xml:space="preserve">
+    <value>Текст ненажатой кнопки</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed_Desc" xml:space="preserve">
+    <value>Цвет текста в ненажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed" xml:space="preserve">
+    <value>Фон ненажатой кнопки</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed_Desc" xml:space="preserve">
+    <value>Цвет фона в ненажатом состоянии</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text" xml:space="preserve">
+    <value>Передний план</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
+    <value>Цвет текста</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity" xml:space="preserve">
+    <value>Альт. непрозрачность</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity_Desc" xml:space="preserve">
+    <value>Непрозрачность альтернативной текстуры</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue" xml:space="preserve">
+    <value>Цвет градиента</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue_Desc" xml:space="preserve">
+    <value>Значение, к которому идёт переход</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
+    <value>Градиент</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
+    <value>Доля перехода к цвету</value>
+  </data>
+  <data name="Theme_Sets_Top_Main" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Theme_Sets_Top_Main_Desc" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity" xml:space="preserve">
+    <value>Основная непрозрачность</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity_Desc" xml:space="preserve">
+    <value>Непрозрачность основной текстуры</value>
+  </data>
+</root>

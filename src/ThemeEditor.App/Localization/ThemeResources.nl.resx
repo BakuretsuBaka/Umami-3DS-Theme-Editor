@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Enum_DrawType_None" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="Enum_DrawType_SolidColor" xml:space="preserve">
+    <value>Effen kleur</value>
+  </data>
+  <data name="Enum_DrawType_SolidColorTexture" xml:space="preserve">
+    <value>Effen kleur en textuur</value>
+  </data>
+  <data name="Enum_DrawType_Texture" xml:space="preserve">
+    <value>Textuur</value>
+  </data>
+  <data name="Enum_FrameType_BounceScroll" xml:space="preserve">
+    <value>Heen-en-weer scrollen (1-2-3-2-1)</value>
+  </data>
+  <data name="Enum_FrameType_FastScroll" xml:space="preserve">
+    <value>Snel scrollen</value>
+  </data>
+  <data name="Enum_FrameType_PageScroll" xml:space="preserve">
+    <value>Paginagewijs scrollen (1-2-3-1-2-3)</value>
+  </data>
+  <data name="Enum_FrameType_Single" xml:space="preserve">
+    <value>Enkel</value>
+  </data>
+  <data name="Enum_FrameType_SlowScroll" xml:space="preserve">
+    <value>Langzaam scrollen</value>
+  </data>
+  <data name="Enum_GameText_Color" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="Enum_GameText_Hidden" xml:space="preserve">
+    <value>Verborgen</value>
+  </data>
+  <data name="Enum_GameText_None" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="Theme_Colors_Arrow" xml:space="preserve">
+    <value>Pijl</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button" xml:space="preserve">
+    <value>Pijlknop</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button_Desc" xml:space="preserve">
+    <value>Bladerknop met de pijl</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Desc" xml:space="preserve">
+    <value>Pijl op de bladerknop</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner" xml:space="preserve">
+    <value>Onderste achtergrond binnen</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner_Desc" xml:space="preserve">
+    <value>Binnenste gebied van de onderste schermachtergrond</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer" xml:space="preserve">
+    <value>Onderste achtergrond buiten</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer_Desc" xml:space="preserve">
+    <value>Buitenste gebied van de onderste schermachtergrond</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner" xml:space="preserve">
+    <value>Onderste hoekknoppen</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner_Desc" xml:space="preserve">
+    <value>Instellingen- en formaatknoppen van het onderste scherm</value>
+  </data>
+  <data name="Theme_Colors_Close" xml:space="preserve">
+    <value>Sluitknop</value>
+  </data>
+  <data name="Theme_Colors_Close_Desc" xml:space="preserve">
+    <value>Knop om software te sluiten</value>
+  </data>
+  <data name="Theme_Colors_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Theme_Colors_Cursor_Desc" xml:space="preserve">
+    <value>Selectiecursor van het onderste scherm</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text" xml:space="preserve">
+    <value>Demotekst</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text_Desc" xml:space="preserve">
+    <value>Resterende demostarts</value>
+  </data>
+  <data name="Theme_Colors_File" xml:space="preserve">
+    <value>3D-bestand</value>
+  </data>
+  <data name="Theme_Colors_File_Desc" xml:space="preserve">
+    <value>Pictogram van 3D-titels</value>
+  </data>
+  <data name="Theme_Colors_Folder" xml:space="preserve">
+    <value>3D-map</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow" xml:space="preserve">
+    <value>Terugpijl in map</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow_Desc" xml:space="preserve">
+    <value>Terugknop in de mapweergave</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background" xml:space="preserve">
+    <value>Mapachtergrond</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background_Desc" xml:space="preserve">
+    <value>Binnenste gebied van het onderste scherm in de mapweergave</value>
+  </data>
+  <data name="Theme_Colors_Folder_Desc" xml:space="preserve">
+    <value>Pictogram van de 3D-map</value>
+  </data>
+  <data name="Theme_Colors_Game_Text" xml:space="preserve">
+    <value>Speltekst</value>
+  </data>
+  <data name="Theme_Colors_Game_Text_Desc" xml:space="preserve">
+    <value>Spelbeschrijving bij een indeling met één rij</value>
+  </data>
+  <data name="Theme_Colors_Open" xml:space="preserve">
+    <value>Startknop</value>
+  </data>
+  <data name="Theme_Colors_Open_Desc" xml:space="preserve">
+    <value>Knop om software te starten of een map te maken</value>
+  </data>
+  <data name="Theme_Colors_Top_Background" xml:space="preserve">
+    <value>Bovenste achtergrond</value>
+  </data>
+  <data name="Theme_Colors_Top_Background_Desc" xml:space="preserve">
+    <value>Achtergrondkleuren van het bovenste scherm</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner" xml:space="preserve">
+    <value>Bovenste hoekknoppen</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner_Desc" xml:space="preserve">
+    <value>Screenshot- en cameraknoppen van het bovenste scherm</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color" xml:space="preserve">
+    <value>Kleur van pijlknop</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color_Desc" xml:space="preserve">
+    <value>Eigen kleuren voor de bladerknop inschakelen</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color" xml:space="preserve">
+    <value>Pijlkleur</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color_Desc" xml:space="preserve">
+    <value>Eigen kleuren voor de pijl van de bladerknop inschakelen</value>
+  </data>
+  <data name="Theme_Flags_Background_Music" xml:space="preserve">
+    <value>Achtergrondmuziek</value>
+  </data>
+  <data name="Theme_Flags_Background_Music_Desc" xml:space="preserve">
+    <value>Schakelt achtergrondmuziek in (BGM.BCSTM)</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color" xml:space="preserve">
+    <value>Kleur onderste achtergrond binnen</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor het binnenste gebied van de onderste achtergrond</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color" xml:space="preserve">
+    <value>Kleur onderste achtergrond buiten</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor het buitenste gebied van de onderste achtergrond</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color" xml:space="preserve">
+    <value>Kleur onderste hoekknoppen</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de instellingen- en formaatknoppen</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type" xml:space="preserve">
+    <value>Tekentype onderste scherm</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type_Desc" xml:space="preserve">
+    <value>Kiest de weergavemodus van het onderste scherm</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type" xml:space="preserve">
+    <value>Frametype onderste scherm</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type_Desc" xml:space="preserve">
+    <value>Kiest het frametype van het onderste scherm</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color" xml:space="preserve">
+    <value>Cursorkleuren</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen cursorkleuren in</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color" xml:space="preserve">
+    <value>Kleur demotekst</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color_Desc" xml:space="preserve">
+    <value>Schakelt een eigen kleur voor de demotekst in</value>
+  </data>
+  <data name="Theme_Flags_File_Color" xml:space="preserve">
+    <value>Kleur 3D-bestand</value>
+  </data>
+  <data name="Theme_Flags_File_Color_Desc" xml:space="preserve">
+    <value>Schakelt een eigen kleur voor het 3D-bestand in</value>
+  </data>
+  <data name="Theme_Flags_File_Texture" xml:space="preserve">
+    <value>Bestandstextuur</value>
+  </data>
+  <data name="Theme_Flags_File_Texture_Desc" xml:space="preserve">
+    <value>Schakelt een eigen textuur voor het bestandspictogram in</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color" xml:space="preserve">
+    <value>Kleur mappijl</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de terugpijl in de mapweergave</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color" xml:space="preserve">
+    <value>Kleur mapachtergrond</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de achtergrond van de mapweergave</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color" xml:space="preserve">
+    <value>Kleur 3D-map</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de 3D-map</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture" xml:space="preserve">
+    <value>Maptextuur</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture_Desc" xml:space="preserve">
+    <value>Schakelt een eigen textuur voor het mappictogram in</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color" xml:space="preserve">
+    <value>Kleur speltekst</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de speltekst</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color" xml:space="preserve">
+    <value>Kleuren starten / sluiten</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de knoppen om software te starten en te sluiten</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect" xml:space="preserve">
+    <value>Geluidseffecten</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect_Desc" xml:space="preserve">
+    <value>Schakelt geluidseffecten in (CWAV-gegevens)</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color" xml:space="preserve">
+    <value>Kleur bovenste achtergrond</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de bovenste achtergrond</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color" xml:space="preserve">
+    <value>Kleur bovenste hoekknoppen</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>Schakelt eigen kleuren in voor de cameraknoppen van het bovenste scherm</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type" xml:space="preserve">
+    <value>Tekentype bovenste scherm</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type_Desc" xml:space="preserve">
+    <value>Kiest de weergavemodus van het bovenste scherm</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type" xml:space="preserve">
+    <value>Frametype bovenste scherm</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type_Desc" xml:space="preserve">
+    <value>Kiest het frametype van het bovenste scherm</value>
+  </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>Auteur</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>Maker van het thema</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>Groot pictogram</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>Pictogram van 48 px</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>Lange beschrijving</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>Lange beschrijving</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>Korte beschrijving</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>Korte beschrijving</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>Klein pictogram</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>Pictogram van 24 px</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading" xml:space="preserve">
+    <value>Schaduwering</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading_Desc" xml:space="preserve">
+    <value>Kleur van de schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border" xml:space="preserve">
+    <value>Rand</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border_Desc" xml:space="preserve">
+    <value>Randkleur</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed" xml:space="preserve">
+    <value>Ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed_Desc" xml:space="preserve">
+    <value>Kleur wanneer ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed" xml:space="preserve">
+    <value>Niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed_Desc" xml:space="preserve">
+    <value>Kleur wanneer niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border" xml:space="preserve">
+    <value>Rand</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border_Desc" xml:space="preserve">
+    <value>Randkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight_Desc" xml:space="preserve">
+    <value>Highlightkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom" xml:space="preserve">
+    <value>Pictogram onder</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom_Desc" xml:space="preserve">
+    <value>Onderste verloopkleur van het pictogram</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop" xml:space="preserve">
+    <value>Pictogram boven</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop_Desc" xml:space="preserve">
+    <value>Bovenste verloopkleur van het pictogram</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border" xml:space="preserve">
+    <value>Rand</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border_Desc" xml:space="preserve">
+    <value>Randkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight_Desc" xml:space="preserve">
+    <value>Highlightkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow_Desc" xml:space="preserve">
+    <value>Kleur van de buitenste gloed</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe" xml:space="preserve">
+    <value>Strepen</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe_Desc" xml:space="preserve">
+    <value>Kleur van de strepen achter de start-/sluitknop</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading" xml:space="preserve">
+    <value>Schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading_Desc" xml:space="preserve">
+    <value>Kleur van de schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text" xml:space="preserve">
+    <value>Voorgrond</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
+    <value>Tekstkleur</value>
+  </data>
+  <data name="Theme_Sets_File_Dark" xml:space="preserve">
+    <value>Schaduwering</value>
+  </data>
+  <data name="Theme_Sets_File_Dark_Desc" xml:space="preserve">
+    <value>Kleur van de schaduwering</value>
+  </data>
+  <data name="Theme_Sets_File_Light" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_File_Light_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_File_Main" xml:space="preserve">
+    <value>Hoofdkleur</value>
+  </data>
+  <data name="Theme_Sets_File_Main_Desc" xml:space="preserve">
+    <value>Hoofdkleur</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow" xml:space="preserve">
+    <value>Schaduw</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow_Desc" xml:space="preserve">
+    <value>Schaduw onder het pictogram</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed" xml:space="preserve">
+    <value>Pijl ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed_Desc" xml:space="preserve">
+    <value>Pijlkleur wanneer ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow" xml:space="preserve">
+    <value>Pijlgloed</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow_Desc" xml:space="preserve">
+    <value>Schaduw-/gloedkleur van de pijl</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed" xml:space="preserve">
+    <value>Pijl niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed_Desc" xml:space="preserve">
+    <value>Pijlkleur wanneer niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight_Desc" xml:space="preserve">
+    <value>Highlightkleur</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading" xml:space="preserve">
+    <value>Schaduwering</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
+    <value>Kleur van de schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
+    <value>Schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark_Desc" xml:space="preserve">
+    <value>Kleur van de schaduwering</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light_Desc" xml:space="preserve">
+    <value>Highlight op de voorkant van de map</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main" xml:space="preserve">
+    <value>Hoofdkleur</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main_Desc" xml:space="preserve">
+    <value>Hoofdkleur</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow" xml:space="preserve">
+    <value>Schaduw</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow_Desc" xml:space="preserve">
+    <value>Schaduw onder de map</value>
+  </data>
+  <data name="Theme_Sets_Game_Light" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Theme_Sets_Game_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_Game_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain" xml:space="preserve">
+    <value>Voorgrond</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain_Desc" xml:space="preserve">
+    <value>Tekstkleur</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
+    <value>Gloed</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
+    <value>Gloedkleur</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
+    <value>Achtergrond ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
+    <value>Achtergrondkleur wanneer ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos" xml:space="preserve">
+    <value>Schaduwpositie</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos_Desc" xml:space="preserve">
+    <value>Schaduwpositie (verticaal)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
+    <value>Voorgrond ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed_Desc" xml:space="preserve">
+    <value>Tekstkleur wanneer ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
+    <value>Tekstgloed</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
+    <value>Gloedkleur van de tekst</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed" xml:space="preserve">
+    <value>Voorgrond niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed_Desc" xml:space="preserve">
+    <value>Tekstkleur wanneer niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed" xml:space="preserve">
+    <value>Achtergrond niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed_Desc" xml:space="preserve">
+    <value>Achtergrondkleur wanneer niet ingedrukt</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text" xml:space="preserve">
+    <value>Voorgrond</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
+    <value>Tekstkleur</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity" xml:space="preserve">
+    <value>Alt-ondoorzichtigheid</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity_Desc" xml:space="preserve">
+    <value>Ondoorzichtigheid van de alternatieve textuur</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue" xml:space="preserve">
+    <value>Verloopkleur</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue_Desc" xml:space="preserve">
+    <value>Doelwaarde van de overgang</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
+    <value>Verloop</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
+    <value>Verhouding van de overgang naar de kleur</value>
+  </data>
+  <data name="Theme_Sets_Top_Main" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Theme_Sets_Top_Main_Desc" xml:space="preserve">
+    <value>Achtergrondkleur</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity" xml:space="preserve">
+    <value>Hoofdondoorzichtigheid</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity_Desc" xml:space="preserve">
+    <value>Ondoorzichtigheid van de hoofdtextuur</value>
+  </data>
+</root>

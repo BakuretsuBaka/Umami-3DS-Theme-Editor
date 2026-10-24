@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>Проверять обновления при запуске</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>Проверка обновлений...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Основано на 3DS Theme Editor от Usagirei (MIT). Конвертация BCSTM — на базе VGAudio.</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>Последняя версия: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>Открыть страницу релизов</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>У вас последняя версия.</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>Доступно обновление.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>Кодек</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM (компактно, рекомендуется)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16 бит (без потерь, большой размер)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>Конвертировать</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>Ожидаемый размер</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>Зациклить трек</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>Конец цикла (секунды, 0 = конец трека)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>Начало цикла (секунды)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>Свести в моно</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>Частота дискретизации</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>Оставить исходную</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Гц, каналов: {1}, {2:0.0} с</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>Конвертация аудио в BCSTM</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>Конвертация аудио...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>Экспорт аудио...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>Загрузка фоновой музыки...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>Загрузка темы...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>Загрузка изображения...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>Выбор файла</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>Сохранение изображения...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>Сохранение темы...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Установка соединения...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Ошибка соединения</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Отправка темы...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Играть</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Дополнительно</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Палитра нижнего изображения</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Недавние цвета</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Палитра</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Палитра верхнего изображения</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Анимация</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Закрыть"</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Нажато</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>Что-то пошло не так.
+Приложение будет закрыто, несохранённые изменения будут потеряны.
+Пожалуйста, сообщите приведённый ниже текст на странице проекта:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>Приложение аварийно завершилось</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>Не удалось преобразовать этот аудиофайл в CWAV.</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>Звуковой эффект экспортирован.</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>При разборе данных CWAV возникли ошибки.
+Часть данных могла быть восстановлена, но возможны проблемы.</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>Играть</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} байт)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>Звуковые эффекты CWAV</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>Данные CWAV слишком велики.
+Максимальный размер: {0} байт
+Текущий размер: {1} байт</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>Захват экрана недоступен в этой системе. Выбор цвета ограничен этим окном.</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>Аудиофайлы</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>Аудио BCSTM</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>Аудио CWAV</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>Изображения</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>Файл метаданных</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>Файлы PNG</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>Изображение PNG</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>Поддерживаемые файлы</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>Файл темы 3DS</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>Аудио WAV</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>Перетащите сюда тему (.bin), чтобы открыть её</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Копировать</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>Менеджер _CWAV</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>Э_ксперименты</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_Файл</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>_Выход</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Создать</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Открыть</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>_Недавние</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Сохранить</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>Сохранить _как...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Создать превью</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Оба</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Нижний</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Верхний</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Изображение</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Экспорт</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_Импорт</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Удалить</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Нижнее</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>Файл (_большой)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>Файл (_малый)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Папка (_закрытая)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Папка (_открытая)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Большой значок (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Малый значок (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Верхнее</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Верхнее (_альтернативное)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>_Язык</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>Как в системе</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Метаданные</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Экспорт цветов</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Экспорт параметров</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>_Музыка</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>Экспорт _BGM.BCSTM...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>Экспорт в _WAV...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>_Импорт аудио (конвертация в BCSTM)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>П_ерезагрузить из папки темы</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>_Удалить фоновую музыку</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Вставить</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Отправить на</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>IP-адрес вашей 3DS:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>Параметр «Фоновая музыка» включён:
+ - Убедитесь, что файл BGM.BCSTM находится на устройстве до применения темы, иначе она вызовет сбой!</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>Не удалось прочитать или преобразовать аудиофайл.</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>Фоновая музыка экспортирована.</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>Фоновая музыка импортирована ({0}, {1} КБ).
+Она будет сохранена как BGM.BCSTM рядом с файлом темы.</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>BGM.BCSTM записан рядом с файлом темы.</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>Размер полученного BCSTM — {0} КБ. Меню HOME принимает фоновую музыку не больше {1} КБ.
+Попробуйте кодек DSP-ADPCM, моно, меньшую частоту дискретизации или более короткий трек.</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>Недопустимый размер изображения</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>Допустимые размеры</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>Не удалось прочитать файл как тему 3DS.</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>Язык изменится при следующем запуске редактора.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>Параметр «Фоновая музыка» отключён:
+ - Он был включён, но файл BGM.BCSTM не найден.
+ - Поместите BGM.BCSTM рядом с темой и нажмите «Загрузить», чтобы включить его снова.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>Параметр «Фоновая музыка» включён:
+ - В папке сохранения нет файла BGM.BCSTM
+ - Убедитесь, что файл BGM.BCSTM находится на устройстве до применения темы, иначе она вызовет сбой!</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>Нет фоновой музыки для экспорта.</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>Превью сохранено</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>Тема успешно сохранена</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Тема успешно отправлена</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>Доступна новая версия:
+Подробности в окне «О программе»</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>d.M (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Картридж</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Столбец</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Курсор</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Экран папки</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Главный экран</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Строка</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>Настройки предпросмотра</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>О теме</value>
+  </data>
+</root>

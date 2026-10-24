@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>启动时检查更新</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>正在检查更新...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>基于 Usagirei 的 3DS Theme Editor(MIT)。BCSTM 转换由 VGAudio 提供支持。</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>最新版本: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>打开发布页面</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>已是最新版本。</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>有可用更新。</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>编码</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM(体积小，推荐)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16 位(无损，体积大)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>转换</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>预计大小</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>循环播放</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>循环终点(秒，0 = 曲目结尾)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>循环起点(秒)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>混合为单声道</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>采样率</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>保持原样</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>来源</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz，{1} 声道，{2:0.0} 秒</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>将音频转换为 BCSTM</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>正在转换音频...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>正在导出音频...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>正在加载背景音乐...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>正在加载主题...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>正在加载图像...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>正在选择文件</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>正在保存图像...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>正在保存主题...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>正在建立连接...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>连接错误</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>正在发送主题...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>正在加载...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>加载</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>高级</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>下屏图像调色板</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>最近使用的颜色</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>调色板</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>上屏图像调色板</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>动画</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>“关闭”</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>文件夹</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>按下</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>已启用</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>出现了问题。
+应用程序即将关闭，未保存的更改将丢失。
+请将下面的文本反馈到项目页面:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>应用程序已崩溃</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>无法将该音频文件转换为 CWAV。</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>音效已导出。</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>解析 CWAV 数据时出现错误。
+部分数据可能已恢复，但可能存在问题。</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>播放</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} 字节)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>CWAV 音效</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>CWAV 数据过大。
+最大大小: {0} 字节
+当前大小: {1} 字节</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>此系统不支持屏幕捕获。取色仅限于本窗口。</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>音频文件</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>BCSTM 音频</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>CWAV 音频</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>图像文件</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>元数据文件</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>PNG 文件</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>PNG 图像</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>支持的文件</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>3DS 主题文件</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>WAV 音频</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>将主题(.bin)拖到此处打开</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>复制(_C)</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>CWAV 管理器(_C)</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>实验功能(_X)</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>文件(_F)</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>退出(_X)</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>新建(_N)</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>打开(_O)</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>最近使用(_R)</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>保存(_S)</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>另存为(_A)...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>生成预览</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>两者</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>下屏</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>上屏</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>图像(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>导出(_E)</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>导入(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>移除(_R)</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>下屏(_B)</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>文件(大)(_L)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>文件(小)(_S)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>文件夹(关闭)(_C)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>文件夹(打开)(_O)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>大图标 (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>小图标 (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>上屏(_T)</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>上屏(备用)(_A)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>语言(_L)</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>元数据</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>导出颜色</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>导出标志</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>音乐(_M)</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>导出 BGM.BCSTM(_B)...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>导出为 WAV(_W)...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>导入音频(转换为 BCSTM)(_I)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>从主题文件夹重新加载(_L)</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>移除背景音乐(_R)</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>粘贴(_P)</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>发送到</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>3DS 的 IP 地址:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>“背景音乐”标志已启用:
+ - 请确保在应用主题之前设备上已有 BGM.BCSTM 文件，否则会崩溃!</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>无法读取或转换该音频文件。</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>背景音乐已导出。</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>背景音乐已导入 ({0}, {1} kB)。
+它将以 BGM.BCSTM 的名称保存在主题文件旁边。</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>已将 BGM.BCSTM 写入主题文件旁边。</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>转换后的 BCSTM 大小为 {0} kB。HOME 菜单只接受不超过 {1} kB 的背景音乐。
+请尝试使用 DSP-ADPCM 编码、单声道、较低的采样率或较短的曲目。</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>图像尺寸无效</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>允许的尺寸</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>无法将该文件作为 3DS 主题读取。</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>语言将在下次启动编辑器时生效。</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>“背景音乐”标志已禁用:
+ - 该标志原本已勾选，但未找到 BGM.BCSTM 文件。
+ - 请将 BGM.BCSTM 文件放在主题旁边，然后点击“加载”按钮重新启用。</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>“背景音乐”标志已设置:
+ - 保存路径下没有 BGM.BCSTM 文件
+ - 请确保在应用主题之前设备上已有 BGM.BCSTM 文件，否则会崩溃!</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>没有可导出的背景音乐。</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>预览已保存</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>主题保存成功</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>主题发送成功</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>有可用的新版本:
+详情请查看“关于”窗口</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>M/dd (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>卡带</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>光标</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>文件夹</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>文件夹预览</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>主预览</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>预览选项</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>标志</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>主题信息</value>
+  </data>
+</root>

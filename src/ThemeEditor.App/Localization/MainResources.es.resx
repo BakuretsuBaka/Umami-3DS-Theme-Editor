@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>Buscar actualizaciones al iniciar</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>Buscando actualizaciones...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Basado en el 3DS Theme Editor de Usagirei (MIT). Conversión BCSTM con VGAudio.</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>Última versión: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>Abrir la página de versiones</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>Estás al día.</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>Hay una actualización disponible.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>Códec</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM (pequeño, recomendado)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM de 16 bits (sin pérdidas, grande)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>Convertir</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>Tamaño estimado</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>Repetir la pista en bucle</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>Fin del bucle (segundos, 0 = final de la pista)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>Inicio del bucle (segundos)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>Mezclar a mono</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>Frecuencia de muestreo</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>Mantener original</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz, {1} can., {2:0.0} s</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>Convertir audio a BCSTM</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>Convirtiendo audio...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>Exportando audio...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>Cargando Música de Fondo...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>Cargando Tema...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>Cargando Imagen...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>Seleccionando Archivo</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>Guardando Imagen...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>Guardando Tema...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Estableciendo conexión...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Error de conexión</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Enviando tema...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Cargar</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Detener</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Avanzado</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Paleta de la Imagen Inferior</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Colores Recientes</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Paleta</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Paleta de la Imagen Superior</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Animar</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Cerrar"</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Vista Previa</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Pulsado</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>Algo salió mal.
+La aplicación se cerrará y se perderán los cambios sin guardar.
+Informa del texto siguiente en la página del proyecto:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>La aplicación se ha bloqueado</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>No se pudo convertir ese archivo de audio a CWAV.</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>Efecto de sonido exportado.</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>Se produjeron errores al leer los datos CWAV.
+Puede que se hayan recuperado algunos datos, pero podría haber problemas.</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>Quitar</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} bytes)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>Efectos de sonido CWAV</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>Los datos CWAV son demasiado grandes.
+Tamaño máximo: {0} bytes
+Tamaño actual: {1} bytes</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>La captura de pantalla no está disponible en este sistema. El cuentagotas se limita a esta ventana.</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>Archivos de audio</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>Audio BCSTM</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>Audio CWAV</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>Archivos de imagen</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>Archivo de metadatos</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>Archivos PNG</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>Imagen PNG</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>Archivos compatibles</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>Archivo de tema 3DS</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>Audio WAV</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>Suelta aquí un tema (.bin) para abrirlo</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Copiar</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>Gestor de _CWAV</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>E_xperimental</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_Archivo</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>_Salir</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Nuevo</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Abrir</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>_Recientes</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Guardar</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>Guardar _Como...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Generar Vista Previa</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Ambos</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Inferior</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Superior</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Imagen</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Exportar</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_Importar</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Quitar</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Inferior</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>Archivo (_Grande)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>Archivo (_Pequeño)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Carpeta (_Cerrada)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Carpeta (_Abierta)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Icono grande (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Icono pequeño (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Superior</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Superior (_Alternativo)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>_Idioma</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>Predeterminado del sistema</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Metadatos</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Exportar colores</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Exportar indicadores</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>_Música</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>Exportar _BGM.BCSTM...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>Exportar como _WAV...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>_Importar audio (convertir a BCSTM)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>Re_cargar desde la carpeta del tema</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>_Quitar música de fondo</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Pegar</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Enviar a</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>Dirección IP de tu 3DS:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>La Música de Fondo ha sido Activada:
+ - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>No se pudo leer o convertir el archivo de audio.</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>Música de fondo exportada.</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>Música de fondo importada ({0}, {1} kB).
+Se guardará como BGM.BCSTM junto al archivo del tema.</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>BGM.BCSTM escrito junto al archivo del tema.</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>El BCSTM convertido ocupa {0} kB. El menú HOME solo acepta música de fondo de hasta {1} kB.
+Prueba el códec DSP-ADPCM, mono, una frecuencia de muestreo menor o una pista más corta.</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>Tamaño de Imagen Invalido</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>Tamaños Permitidos</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>No se pudo leer ese archivo como un tema de 3DS.</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>El idioma cambiará la próxima vez que se inicie el editor.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>La Música de Fondo ha sido Desactivada:
+ - La Opción de "Música de fondo" ha sido activada, sin embargo, el archivo BGM.BCSTM no se ha encontrado.
+ - Coloca el archivo BGM.BCSTM junto al Tema, después presiona el botón "Recargar Música de Fondo" para activarlo de nuevo.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>La Música de Fondo ha sido Fijada:
+ - El archivo BGM.BCSTM no esta presente en la ruta guardada.
+ - Asegúrate de que el archivo BGM.BCSTM este presente en tu dispositivo antes de instalar el tema, de lo contrario se congelara!.</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>No hay música de fondo que exportar.</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>Vista Previa Guardada</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>Tema Guardado Exitosamente</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Tema enviado correctamente</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>Hay una actualización disponible:
+Verifica la Ventana "Acerca de" para mas información</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>ddd, dd/MM</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Cartucho</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Columna</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Vista de carpeta</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Vista principal</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Fila</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>Opciones de vista previa</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Colores</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Info del tema</value>
+  </data>
+</root>

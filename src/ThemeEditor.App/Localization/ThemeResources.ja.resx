@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Enum_DrawType_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Enum_DrawType_SolidColor" xml:space="preserve">
+    <value>単色</value>
+  </data>
+  <data name="Enum_DrawType_SolidColorTexture" xml:space="preserve">
+    <value>単色+テクスチャ</value>
+  </data>
+  <data name="Enum_DrawType_Texture" xml:space="preserve">
+    <value>テクスチャ</value>
+  </data>
+  <data name="Enum_FrameType_BounceScroll" xml:space="preserve">
+    <value>往復スクロール (1-2-3-2-1)</value>
+  </data>
+  <data name="Enum_FrameType_FastScroll" xml:space="preserve">
+    <value>高速スクロール</value>
+  </data>
+  <data name="Enum_FrameType_PageScroll" xml:space="preserve">
+    <value>ページスクロール (1-2-3-1-2-3)</value>
+  </data>
+  <data name="Enum_FrameType_Single" xml:space="preserve">
+    <value>単一</value>
+  </data>
+  <data name="Enum_FrameType_SlowScroll" xml:space="preserve">
+    <value>低速スクロール</value>
+  </data>
+  <data name="Enum_GameText_Color" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Enum_GameText_Hidden" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="Enum_GameText_None" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Theme_Colors_Arrow" xml:space="preserve">
+    <value>矢印</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button" xml:space="preserve">
+    <value>矢印ボタン</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Button_Desc" xml:space="preserve">
+    <value>矢印付きのページ送りボタン</value>
+  </data>
+  <data name="Theme_Colors_Arrow_Desc" xml:space="preserve">
+    <value>ページ送りボタンの矢印</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner" xml:space="preserve">
+    <value>下画面背景(内側)</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Inner_Desc" xml:space="preserve">
+    <value>下画面背景の内側の領域</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer" xml:space="preserve">
+    <value>下画面背景(外側)</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Background_Outer_Desc" xml:space="preserve">
+    <value>下画面背景の外側の領域</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner" xml:space="preserve">
+    <value>下画面の角ボタン</value>
+  </data>
+  <data name="Theme_Colors_Bottom_Corner_Desc" xml:space="preserve">
+    <value>下画面の設定ボタンとサイズ変更ボタン</value>
+  </data>
+  <data name="Theme_Colors_Close" xml:space="preserve">
+    <value>閉じるボタン</value>
+  </data>
+  <data name="Theme_Colors_Close_Desc" xml:space="preserve">
+    <value>ソフトを閉じるボタン</value>
+  </data>
+  <data name="Theme_Colors_Cursor" xml:space="preserve">
+    <value>カーソル</value>
+  </data>
+  <data name="Theme_Colors_Cursor_Desc" xml:space="preserve">
+    <value>下画面の選択カーソル</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text" xml:space="preserve">
+    <value>体験版テキスト</value>
+  </data>
+  <data name="Theme_Colors_Demo_Text_Desc" xml:space="preserve">
+    <value>体験版の残り起動回数</value>
+  </data>
+  <data name="Theme_Colors_File" xml:space="preserve">
+    <value>3Dファイル</value>
+  </data>
+  <data name="Theme_Colors_File_Desc" xml:space="preserve">
+    <value>3Dタイトルのアイコン</value>
+  </data>
+  <data name="Theme_Colors_Folder" xml:space="preserve">
+    <value>3Dフォルダ</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow" xml:space="preserve">
+    <value>フォルダの戻る矢印</value>
+  </data>
+  <data name="Theme_Colors_Folder_Arrow_Desc" xml:space="preserve">
+    <value>フォルダ表示の戻るボタン</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background" xml:space="preserve">
+    <value>フォルダ背景</value>
+  </data>
+  <data name="Theme_Colors_Folder_Background_Desc" xml:space="preserve">
+    <value>フォルダ表示時の下画面内側の領域</value>
+  </data>
+  <data name="Theme_Colors_Folder_Desc" xml:space="preserve">
+    <value>3Dフォルダのアイコン</value>
+  </data>
+  <data name="Theme_Colors_Game_Text" xml:space="preserve">
+    <value>ゲームテキスト</value>
+  </data>
+  <data name="Theme_Colors_Game_Text_Desc" xml:space="preserve">
+    <value>1行表示時のゲームの説明</value>
+  </data>
+  <data name="Theme_Colors_Open" xml:space="preserve">
+    <value>起動ボタン</value>
+  </data>
+  <data name="Theme_Colors_Open_Desc" xml:space="preserve">
+    <value>ソフトの起動/フォルダ作成ボタン</value>
+  </data>
+  <data name="Theme_Colors_Top_Background" xml:space="preserve">
+    <value>上画面背景</value>
+  </data>
+  <data name="Theme_Colors_Top_Background_Desc" xml:space="preserve">
+    <value>上画面の背景色</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner" xml:space="preserve">
+    <value>上画面の角ボタン</value>
+  </data>
+  <data name="Theme_Colors_Top_Corner_Desc" xml:space="preserve">
+    <value>上画面のスクリーンショットボタンとカメラボタン</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color" xml:space="preserve">
+    <value>矢印ボタンの色</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Button_Color_Desc" xml:space="preserve">
+    <value>ページ送りボタンのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color" xml:space="preserve">
+    <value>矢印の色</value>
+  </data>
+  <data name="Theme_Flags_Arrow_Color_Desc" xml:space="preserve">
+    <value>ページ送りボタンの矢印のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Background_Music" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Theme_Flags_Background_Music_Desc" xml:space="preserve">
+    <value>BGM(BGM.BCSTM)を有効にします</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color" xml:space="preserve">
+    <value>下画面背景(内側)の色</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Inner_Color_Desc" xml:space="preserve">
+    <value>下画面背景の内側のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color" xml:space="preserve">
+    <value>下画面背景(外側)の色</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Background_Outer_Color_Desc" xml:space="preserve">
+    <value>下画面背景の外側のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color" xml:space="preserve">
+    <value>下画面の角ボタンの色</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>設定ボタンとサイズ変更ボタンのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type" xml:space="preserve">
+    <value>下画面の描画タイプ</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Draw_Type_Desc" xml:space="preserve">
+    <value>下画面の描画モードを選択します</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type" xml:space="preserve">
+    <value>下画面のフレームタイプ</value>
+  </data>
+  <data name="Theme_Flags_Bottom_Frame_Type_Desc" xml:space="preserve">
+    <value>下画面のフレームタイプを選択します</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color" xml:space="preserve">
+    <value>カーソルの色</value>
+  </data>
+  <data name="Theme_Flags_Cursor_Color_Desc" xml:space="preserve">
+    <value>カーソルのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color" xml:space="preserve">
+    <value>体験版テキストの色</value>
+  </data>
+  <data name="Theme_Flags_Demo_Text_Color_Desc" xml:space="preserve">
+    <value>体験版テキストのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_File_Color" xml:space="preserve">
+    <value>3Dファイルの色</value>
+  </data>
+  <data name="Theme_Flags_File_Color_Desc" xml:space="preserve">
+    <value>3Dファイルのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_File_Texture" xml:space="preserve">
+    <value>ファイルのテクスチャ</value>
+  </data>
+  <data name="Theme_Flags_File_Texture_Desc" xml:space="preserve">
+    <value>ファイルアイコンのカスタムテクスチャを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color" xml:space="preserve">
+    <value>フォルダ矢印の色</value>
+  </data>
+  <data name="Theme_Flags_Folder_Arrow_Color_Desc" xml:space="preserve">
+    <value>フォルダ表示の戻る矢印のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color" xml:space="preserve">
+    <value>フォルダ背景の色</value>
+  </data>
+  <data name="Theme_Flags_Folder_Background_Color_Desc" xml:space="preserve">
+    <value>フォルダ表示の背景のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color" xml:space="preserve">
+    <value>3Dフォルダの色</value>
+  </data>
+  <data name="Theme_Flags_Folder_Color_Desc" xml:space="preserve">
+    <value>3Dフォルダのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture" xml:space="preserve">
+    <value>フォルダのテクスチャ</value>
+  </data>
+  <data name="Theme_Flags_Folder_Texture_Desc" xml:space="preserve">
+    <value>フォルダアイコンのカスタムテクスチャを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color" xml:space="preserve">
+    <value>ゲームテキストの色</value>
+  </data>
+  <data name="Theme_Flags_Game_Text_Color_Desc" xml:space="preserve">
+    <value>ゲームテキストのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color" xml:space="preserve">
+    <value>起動/閉じるの色</value>
+  </data>
+  <data name="Theme_Flags_Open_Close_Color_Desc" xml:space="preserve">
+    <value>ソフトの起動/閉じるボタンのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect" xml:space="preserve">
+    <value>効果音</value>
+  </data>
+  <data name="Theme_Flags_Sound_Effect_Desc" xml:space="preserve">
+    <value>効果音(CWAVデータ)を有効にします</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color" xml:space="preserve">
+    <value>上画面背景の色</value>
+  </data>
+  <data name="Theme_Flags_Top_Background_Color_Desc" xml:space="preserve">
+    <value>上画面背景のカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color" xml:space="preserve">
+    <value>上画面の角ボタンの色</value>
+  </data>
+  <data name="Theme_Flags_Top_Corner_Button_Color_Desc" xml:space="preserve">
+    <value>上画面のカメラボタンのカスタムカラーを有効にします</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type" xml:space="preserve">
+    <value>上画面の描画タイプ</value>
+  </data>
+  <data name="Theme_Flags_Top_Draw_Type_Desc" xml:space="preserve">
+    <value>上画面の描画モードを選択します</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type" xml:space="preserve">
+    <value>上画面のフレームタイプ</value>
+  </data>
+  <data name="Theme_Flags_Top_Frame_Type_Desc" xml:space="preserve">
+    <value>上画面のフレームタイプを選択します</value>
+  </data>
+  <data name="Theme_Info_Author" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="Theme_Info_Author_Desc" xml:space="preserve">
+    <value>テーマの作者</value>
+  </data>
+  <data name="Theme_Info_LargeIcon" xml:space="preserve">
+    <value>大アイコン</value>
+  </data>
+  <data name="Theme_Info_LargeIcon_Desc" xml:space="preserve">
+    <value>48pxのアイコン</value>
+  </data>
+  <data name="Theme_Info_LongDesc" xml:space="preserve">
+    <value>詳細な説明</value>
+  </data>
+  <data name="Theme_Info_LongDesc_Desc" xml:space="preserve">
+    <value>詳細な説明</value>
+  </data>
+  <data name="Theme_Info_ShortDesc" xml:space="preserve">
+    <value>短い説明</value>
+  </data>
+  <data name="Theme_Info_ShortDesc_Desc" xml:space="preserve">
+    <value>短い説明</value>
+  </data>
+  <data name="Theme_Info_SmallIcon" xml:space="preserve">
+    <value>小アイコン</value>
+  </data>
+  <data name="Theme_Info_SmallIcon_Desc" xml:space="preserve">
+    <value>24pxのアイコン</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Glow_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading" xml:space="preserve">
+    <value>陰影</value>
+  </data>
+  <data name="Theme_Sets_ArrowButton_Shading_Desc" xml:space="preserve">
+    <value>陰影の色</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border" xml:space="preserve">
+    <value>枠線</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Border_Desc" xml:space="preserve">
+    <value>枠線の色</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed" xml:space="preserve">
+    <value>押下時</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Pressed_Desc" xml:space="preserve">
+    <value>押下時の色</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed" xml:space="preserve">
+    <value>非押下時</value>
+  </data>
+  <data name="Theme_Sets_Arrow_Unpressed_Desc" xml:space="preserve">
+    <value>押していないときの色</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border" xml:space="preserve">
+    <value>枠線</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Border_Desc" xml:space="preserve">
+    <value>枠線の色</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Highlight_Desc" xml:space="preserve">
+    <value>ハイライトの色</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom" xml:space="preserve">
+    <value>アイコン下部</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconBottom_Desc" xml:space="preserve">
+    <value>アイコンのグラデーション下側の色</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop" xml:space="preserve">
+    <value>アイコン上部</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_IconTop_Desc" xml:space="preserve">
+    <value>アイコンのグラデーション上側の色</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_BottomCorner_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border" xml:space="preserve">
+    <value>枠線</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Border_Desc" xml:space="preserve">
+    <value>枠線の色</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Glow_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Highlight_Desc" xml:space="preserve">
+    <value>ハイライトの色</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_BottomInner_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Glow_Desc" xml:space="preserve">
+    <value>外側の発光の色</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe" xml:space="preserve">
+    <value>ストライプ</value>
+  </data>
+  <data name="Theme_Sets_BottomOuter_Stripe_Desc" xml:space="preserve">
+    <value>起動/閉じるボタンの後ろのストライプの色</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Glow_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading" xml:space="preserve">
+    <value>陰影</value>
+  </data>
+  <data name="Theme_Sets_Cursor_Shading_Desc" xml:space="preserve">
+    <value>陰影の色</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_Demo_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text" xml:space="preserve">
+    <value>前景</value>
+  </data>
+  <data name="Theme_Sets_Demo_Text_Desc" xml:space="preserve">
+    <value>文字色</value>
+  </data>
+  <data name="Theme_Sets_File_Dark" xml:space="preserve">
+    <value>陰影</value>
+  </data>
+  <data name="Theme_Sets_File_Dark_Desc" xml:space="preserve">
+    <value>陰影の色</value>
+  </data>
+  <data name="Theme_Sets_File_Light" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_File_Light_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_File_Main" xml:space="preserve">
+    <value>メイン</value>
+  </data>
+  <data name="Theme_Sets_File_Main_Desc" xml:space="preserve">
+    <value>メインカラー</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow" xml:space="preserve">
+    <value>影</value>
+  </data>
+  <data name="Theme_Sets_File_Shadow_Desc" xml:space="preserve">
+    <value>アイコンの下の影</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed" xml:space="preserve">
+    <value>矢印(押下時)</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowPressed_Desc" xml:space="preserve">
+    <value>矢印の押下時の色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow" xml:space="preserve">
+    <value>矢印の発光</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowShadow_Desc" xml:space="preserve">
+    <value>矢印の影/発光の色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed" xml:space="preserve">
+    <value>矢印(非押下時)</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ArrowUnpressed_Desc" xml:space="preserve">
+    <value>矢印の非押下時の色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Glow_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Highlight_Desc" xml:space="preserve">
+    <value>ハイライトの色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading" xml:space="preserve">
+    <value>陰影</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
+    <value>陰影の色</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
+    <value>陰影</value>
+  </data>
+  <data name="Theme_Sets_Folder_Dark_Desc" xml:space="preserve">
+    <value>陰影の色</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_Folder_Light_Desc" xml:space="preserve">
+    <value>フォルダ前面のハイライト</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main" xml:space="preserve">
+    <value>メイン</value>
+  </data>
+  <data name="Theme_Sets_Folder_Main_Desc" xml:space="preserve">
+    <value>メインカラー</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow" xml:space="preserve">
+    <value>影</value>
+  </data>
+  <data name="Theme_Sets_Folder_Shadow_Desc" xml:space="preserve">
+    <value>フォルダの下の影</value>
+  </data>
+  <data name="Theme_Sets_Game_Light" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
+    <value>ハイライト</value>
+  </data>
+  <data name="Theme_Sets_Game_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_Game_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain" xml:space="preserve">
+    <value>前景</value>
+  </data>
+  <data name="Theme_Sets_Game_TextMain_Desc" xml:space="preserve">
+    <value>文字色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Light_Desc" xml:space="preserve">
+    <value>発光の色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed" xml:space="preserve">
+    <value>背景(押下時)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Pressed_Desc" xml:space="preserve">
+    <value>押下時の背景色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos" xml:space="preserve">
+    <value>影の位置</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_ShadowPos_Desc" xml:space="preserve">
+    <value>影の位置(縦方向)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed" xml:space="preserve">
+    <value>前景(押下時)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextPressed_Desc" xml:space="preserve">
+    <value>押下時の文字色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow" xml:space="preserve">
+    <value>文字の発光</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextShadow_Desc" xml:space="preserve">
+    <value>文字の発光の色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed" xml:space="preserve">
+    <value>前景(非押下時)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_TextUnpressed_Desc" xml:space="preserve">
+    <value>非押下時の文字色</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed" xml:space="preserve">
+    <value>背景(非押下時)</value>
+  </data>
+  <data name="Theme_Sets_OpenClose_Unpressed_Desc" xml:space="preserve">
+    <value>非押下時の背景色</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text" xml:space="preserve">
+    <value>前景</value>
+  </data>
+  <data name="Theme_Sets_TopCorner_Text_Desc" xml:space="preserve">
+    <value>文字色</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity" xml:space="preserve">
+    <value>代替の不透明度</value>
+  </data>
+  <data name="Theme_Sets_Top_AltOpacity_Desc" xml:space="preserve">
+    <value>代替テクスチャの不透明度</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue" xml:space="preserve">
+    <value>グラデーションの色</value>
+  </data>
+  <data name="Theme_Sets_Top_FadeToValue_Desc" xml:space="preserve">
+    <value>フェード先の値</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient" xml:space="preserve">
+    <value>グラデーション</value>
+  </data>
+  <data name="Theme_Sets_Top_Gradient_Desc" xml:space="preserve">
+    <value>色へのフェード比率</value>
+  </data>
+  <data name="Theme_Sets_Top_Main" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="Theme_Sets_Top_Main_Desc" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity" xml:space="preserve">
+    <value>メインの不透明度</value>
+  </data>
+  <data name="Theme_Sets_Top_Opacity_Desc" xml:space="preserve">
+    <value>メインテクスチャの不透明度</value>
+  </data>
+</root>

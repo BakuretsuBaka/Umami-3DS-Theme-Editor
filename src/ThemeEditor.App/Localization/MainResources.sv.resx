@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>Sök efter uppdateringar vid start</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>Söker efter uppdateringar...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Baserad på 3DS Theme Editor av Usagirei (MIT). BCSTM-konvertering med hjälp av VGAudio.</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>Senaste version: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>Öppna sidan med versioner</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>Du har den senaste versionen.</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>En uppdatering finns tillgänglig.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>Codec</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM (liten, rekommenderas)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16 bit (förlustfri, stor)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>Konvertera</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>Uppskattad storlek</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>Loopa spåret</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>Loopslut (sekunder, 0 = spårets slut)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>Loopstart (sekunder)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>Mixa ner till mono</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>Samplingsfrekvens</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>Behåll original</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>Källa</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz, {1} kanaler, {2:0.0} s</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>Konvertera ljud till BCSTM</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>Konverterar ljud...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>Exporterar ljud...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>Läser in bakgrundsmusik...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>Läser in tema...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>Läser in bild...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>Väljer fil</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>Sparar bild...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>Sparar tema...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Ansluter...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Anslutningsfel</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Skickar tema...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>Läser in...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Paus</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Spela</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Läs in</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Stoppa</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Avancerat</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Palett för nedre bilden</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Senaste färger</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Palett</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Palett för övre bilden</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Animera</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Stäng"</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Mapp</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Förhandsvisning</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Nedtryckt</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Av</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>På</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>Något gick fel.
+Programmet stängs nu och osparade ändringar går förlorade.
+Rapportera texten nedan på projektsidan:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>Programmet har kraschat</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>Ljudfilen kunde inte konverteras till CWAV.</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>Ljudeffekten har exporterats.</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>Fel uppstod när CWAV-datan lästes.
+Vissa data kan ha återskapats, men problem kan finnas.</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>Spela</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} byte)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>CWAV-ljudeffekter</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>CWAV-datan är för stor.
+Maximal storlek: {0} byte
+Nuvarande storlek: {1} byte</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>Skärmdumpar är inte tillgängliga på det här systemet. Färgväljaren är begränsad till det här fönstret.</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>Ljudfiler</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>BCSTM-ljud</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>CWAV-ljud</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>Bildfiler</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>Metadatafil</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>PNG-filer</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>PNG-bild</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>Filer som stöds</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>3DS-temafil</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>WAV-ljud</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>Släpp ett tema (.bin) här för att öppna det</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Kopiera</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>_CWAV-hanterare</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>E_xperimentellt</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_Arkiv</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>A_vsluta</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Nytt</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Öppna</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>_Senaste</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Spara</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>Spara _som...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Skapa förhandsvisning</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>Båda</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Nedre</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Övre</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Bild</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Exportera</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_Importera</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Ta bort</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Nedre</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>Fil (_stor)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>Fil (_liten)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Mapp (_stängd)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Mapp (_öppen)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Stor ikon (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Liten ikon (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Övre</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Övre (_alternativ)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>_Språk</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>Systemstandard</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Metadata</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Exportera färger</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Exportera flaggor</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>_Musik</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>Exportera _BGM.BCSTM...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>Exportera som _WAV...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>_Importera ljud (konvertera till BCSTM)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>Läs in _igen från temamappen</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>_Ta bort bakgrundsmusik</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Klistra in</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Skicka till</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>IP-adress till din 3DS:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>Flaggan för bakgrundsmusik har aktiverats:
+ - Se till att filen BGM.BCSTM finns på enheten innan du använder temat, annars kraschar det!</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>Ljudfilen kunde inte läsas eller konverteras.</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>Bakgrundsmusiken har exporterats.</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>Bakgrundsmusiken har importerats ({0}, {1} kB).
+Den sparas som BGM.BCSTM bredvid temafilen.</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>BGM.BCSTM har skrivits bredvid temafilen.</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>Den konverterade BCSTM-filen är {0} kB. HOME-menyn accepterar bakgrundsmusik upp till {1} kB.
+Prova codecen DSP-ADPCM, mono, lägre samplingsfrekvens eller ett kortare spår.</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>Ogiltig bildstorlek</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>Tillåtna storlekar</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>Filen kunde inte läsas som ett 3DS-tema.</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>Språket ändras nästa gång redigeraren startas.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>Flaggan för bakgrundsmusik har inaktiverats:
+ - Flaggan var markerad men ingen BGM.BCSTM hittades.
+ - Lägg BGM.BCSTM bredvid temat och tryck på "Läs in" för att aktivera den igen.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>Flaggan för bakgrundsmusik är satt:
+ - Ingen BGM.BCSTM finns på sökvägen där temat sparades
+ - Se till att filen BGM.BCSTM finns på enheten innan du använder temat, annars kraschar det!</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>Det finns ingen bakgrundsmusik att exportera.</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>Förhandsvisningen har sparats</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>Temat har sparats</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Temat har skickats</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>En ny version finns tillgänglig:
+Se fönstret Om för mer information</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>d/M (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Kassett</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Kolumn</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>Markör</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Mapp</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Mappförhandsvisning</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Huvudförhandsvisning</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Rad</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>Förhandsvisningsalternativ</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Färger</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Flaggor</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Temainfo</value>
+  </data>
+</root>

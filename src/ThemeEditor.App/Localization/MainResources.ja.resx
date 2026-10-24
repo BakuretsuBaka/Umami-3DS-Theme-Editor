@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>起動時に更新を確認する</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>更新を確認中...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Usagirei氏の3DS Theme Editor(MIT)をベースにしています。BCSTM変換にはVGAudioを使用しています。</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>最新リリース: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>リリースページを開く</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>バージョン情報</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>最新の状態です。</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>更新があります。</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>コーデック</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM(小サイズ・推奨)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16ビット(可逆・大サイズ)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>変換</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>推定サイズ</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>ループさせる</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>ループ終了位置(秒、0 = 曲の終わり)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>ループ開始位置(秒)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>モノラルにミックスダウン</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>サンプリングレート</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>元のまま</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>ソース</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz、{1} ch、{2:0.0} 秒</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>オーディオをBCSTMに変換</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>オーディオを変換中...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>オーディオをエクスポート中...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>BGMを読み込み中...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>テーマを読み込み中...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>画像を読み込み中...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>ファイルを選択中</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>画像を保存中...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>テーマを保存中...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>接続中...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>接続エラー</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>テーマを送信中...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>読み込み中...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>一時停止</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>読込</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>下画面画像のパレット</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>最近使った色</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>パレット</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>上画面画像のパレット</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>アニメーション</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>「閉じる」</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>フォルダ</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>押下</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>問題が発生しました。
+アプリケーションを終了します。保存していない変更は失われます。
+以下のテキストをプロジェクトページで報告してください:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>アプリケーションがクラッシュしました</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>このオーディオファイルをCWAVに変換できませんでした。</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>エクスポート</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>効果音をエクスポートしました。</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>CWAVデータの解析中にエラーが発生しました。
+一部のデータは復元できた可能性がありますが、問題が残っている場合があります。</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} バイト)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>CWAV効果音</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>CWAVデータが大きすぎます。
+最大サイズ: {0} バイト
+現在のサイズ: {1} バイト</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>この環境では画面キャプチャを利用できません。スポイトはこのウィンドウ内に限られます。</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>オーディオファイル</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>BCSTMオーディオ</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>CWAVオーディオ</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>画像ファイル</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>メタデータファイル</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>PNGファイル</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>PNG画像</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>対応ファイル</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>3DSテーマファイル</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>WAVオーディオ</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>テーマ(.bin)をここにドロップして開く</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>バージョン情報</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>コピー(_C)</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>CWAVマネージャー(_C)</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>試験的機能(_X)</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>ファイル(_F)</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>終了(_X)</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>新規(_N)</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>開く(_O)</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>最近使ったファイル(_R)</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>保存(_S)</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>名前を付けて保存(_A)...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>プレビューを生成</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>両方</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>下画面</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>上画面</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>画像(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>エクスポート(_E)</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>インポート(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>削除(_R)</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>下画面(_B)</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>ファイル(大)(_L)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>ファイル(小)(_S)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>フォルダ(閉)(_C)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>フォルダ(開)(_O)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>大アイコン (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>小アイコン (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>上画面(_T)</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>上画面(代替)(_A)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>言語(_L)</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>システムの設定に従う</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>メタデータ</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>色をエクスポート</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>フラグをエクスポート</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>音楽(_M)</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>BGM.BCSTMをエクスポート(_B)...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>WAVとしてエクスポート(_W)...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>オーディオをインポート(BCSTMに変換)(_I)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>テーマのフォルダから再読み込み(_L)</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>BGMを削除(_R)</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>貼り付け(_P)</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>送信先</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>3DSのIPアドレス:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>「BGM」フラグが有効になりました:
+ - テーマを適用する前に、BGM.BCSTM がデバイス上にあることを確認してください。ない場合はクラッシュします。</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>オーディオファイルを読み込めないか、変換できませんでした。</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>BGMをエクスポートしました。</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>BGMをインポートしました ({0}, {1} kB)。
+テーマファイルと同じ場所に BGM.BCSTM として保存されます。</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>テーマファイルと同じ場所に BGM.BCSTM を書き込みました。</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>変換後のBCSTMは {0} kB です。HOMEメニューが受け付けるBGMは {1} kB までです。
+DSP-ADPCMコーデック、モノラル、低いサンプリングレート、または短い曲をお試しください。</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>画像サイズが正しくありません</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>使用可能なサイズ</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>このファイルは3DSテーマとして読み込めませんでした。</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>言語はエディターを次に起動したときに変更されます。</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>「BGM」フラグが無効になりました:
+ - フラグは有効でしたが、BGM.BCSTM が見つかりませんでした。
+ - BGM.BCSTM をテーマと同じ場所に置き、「読込」ボタンを押すと再び有効にできます。</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>「BGM」フラグが有効です:
+ - 保存先に BGM.BCSTM がありません
+ - テーマを適用する前に、BGM.BCSTM がデバイス上にあることを確認してください。ない場合はクラッシュします。</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>エクスポートするBGMがありません。</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>プレビューを保存しました</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>テーマを保存しました</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>テーマを送信しました</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>新しいバージョンがあります:
+詳細はバージョン情報をご覧ください</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>M/dd (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>カートリッジ</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>カーソル</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>フォルダ</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>フォルダ画面</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>メイン画面</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>プレビューのオプション</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>色</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>フラグ</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>テーマ情報</value>
+  </data>
+</root>

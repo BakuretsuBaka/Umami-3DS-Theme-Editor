@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key><string>Umami 3DS Theme Editor</string>
+  <key>CFBundleDisplayName</key><string>Umami 3DS Theme Editor</string>
+  <key>CFBundleIdentifier</key><string>io.github.bakuretsuBaka.umami3dsthemeeditor</string>
+  <key>CFBundleVersion</key><string>@VERSION@</string>
+  <key>CFBundleShortVersionString</key><string>@VERSION@</string>
+  <key>CFBundleExecutable</key><string>UmamiThemeEditor</string>
+  <key>CFBundleIconFile</key><string>umami</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>NSHighResolutionCapable</key><true/>
+  <key>LSMinimumSystemVersion</key><string>11.0</string>
+  <key>NSPrincipalClass</key><string>NSApplication</string>
+</dict>
+</plist>

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>시작할 때 업데이트 확인</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>업데이트 확인 중...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Usagirei의 3DS Theme Editor(MIT)를 기반으로 합니다. BCSTM 변환은 VGAudio를 사용합니다.</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>최신 릴리스: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>릴리스 페이지 열기</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>최신 버전입니다.</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>업데이트가 있습니다.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>코덱</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM (작음, 권장)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16비트 (무손실, 큼)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>변환</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>예상 크기</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>반복 재생</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>반복 끝 (초, 0 = 곡의 끝)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>반복 시작 (초)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>모노로 합치기</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>샘플링 레이트</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>원본 유지</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>원본</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz, {1}채널, {2:0.0}초</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>오디오를 BCSTM으로 변환</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>오디오 변환 중...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>오디오 내보내는 중...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>BGM 불러오는 중...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>테마 불러오는 중...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>이미지 불러오는 중...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>파일 선택 중</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>이미지 저장 중...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>테마 저장 중...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>연결 중...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>연결 오류</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>테마 전송 중...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>불러오는 중...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>일시정지</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>재생</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>불러오기</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>정지</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>고급</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>아래 화면 이미지 팔레트</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>최근 색상</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>팔레트</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>위 화면 이미지 팔레트</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>애니메이션</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"닫기"</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>미리보기</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>옵션</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>눌림</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>사용 안 함</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>사용</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>문제가 발생했습니다.
+애플리케이션이 종료되며 저장하지 않은 변경 사항은 사라집니다.
+아래 내용을 프로젝트 페이지에 제보해 주세요:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>애플리케이션이 충돌했습니다</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>이 오디오 파일을 CWAV로 변환할 수 없습니다.</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>내보내기</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>효과음을 내보냈습니다.</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>CWAV 데이터를 분석하는 중 오류가 발생했습니다.
+일부 데이터는 복구되었을 수 있지만 문제가 있을 수 있습니다.</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>재생</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1}바이트)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>CWAV 효과음</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>CWAV 데이터가 너무 큽니다.
+최대 크기: {0}바이트
+현재 크기: {1}바이트</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>아니요</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>이 시스템에서는 화면 캡처를 사용할 수 없습니다. 스포이드는 이 창 안으로 제한됩니다.</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>오디오 파일</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>BCSTM 오디오</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>CWAV 오디오</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>이미지 파일</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>메타데이터 파일</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>PNG 파일</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>PNG 이미지</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>지원되는 파일</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>3DS 테마 파일</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>WAV 오디오</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>테마(.bin)를 여기로 끌어다 놓아 열기</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>복사(_C)</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>CWAV 관리자(_C)</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>실험적 기능(_X)</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>파일(_F)</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>종료(_X)</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>새로 만들기(_N)</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>열기(_O)</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>최근 파일(_R)</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>저장(_S)</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>다른 이름으로 저장(_A)...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>미리보기 생성</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>둘 다</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>아래</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>위</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>이미지(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>내보내기(_E)</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>가져오기(_I)</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>제거(_R)</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>아래(_B)</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>파일 (크게)(_L)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>파일 (작게)(_S)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>폴더 (닫힘)(_C)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>폴더 (열림)(_O)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>큰 아이콘 (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>작은 아이콘 (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>위(_T)</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>위 (대체)(_A)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>언어(_L)</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>시스템 기본값</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>메타데이터</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>색상 내보내기</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>플래그 내보내기</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>가져오기</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>음악(_M)</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>BGM.BCSTM 내보내기(_B)...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>WAV로 내보내기(_W)...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>오디오 가져오기 (BCSTM으로 변환)(_I)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>테마 폴더에서 다시 불러오기(_L)</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>배경 음악 제거(_R)</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>붙여넣기(_P)</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>보내기</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>3DS의 IP 주소:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>배경 음악 플래그가 활성화되었습니다:
+ - 테마를 적용하기 전에 BGM.BCSTM 파일이 기기에 있는지 확인하세요. 없으면 충돌합니다!</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>오디오 파일을 읽거나 변환할 수 없습니다.</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>배경 음악을 내보냈습니다.</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>배경 음악을 가져왔습니다 ({0}, {1} kB).
+테마 파일 옆에 BGM.BCSTM으로 저장됩니다.</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>테마 파일 옆에 BGM.BCSTM을 저장했습니다.</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>변환된 BCSTM의 크기는 {0} kB입니다. HOME 메뉴는 {1} kB 이하의 배경 음악만 허용합니다.
+DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 사용해 보세요.</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>오류</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>잘못된 이미지 크기</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>허용되는 크기</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>이 파일을 3DS 테마로 읽을 수 없습니다.</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>언어는 편집기를 다음에 시작할 때 바뀝니다.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>배경 음악 플래그가 비활성화되었습니다:
+ - 플래그가 켜져 있었지만 BGM.BCSTM 파일을 찾을 수 없습니다.
+ - BGM.BCSTM 파일을 테마와 같은 위치에 두고 "불러오기" 버튼을 누르면 다시 활성화됩니다.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>배경 음악 플래그가 설정되어 있습니다:
+ - 저장한 경로에 BGM.BCSTM 파일이 없습니다
+ - 테마를 적용하기 전에 BGM.BCSTM 파일이 기기에 있는지 확인하세요. 없으면 충돌합니다!</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>내보낼 배경 음악이 없습니다.</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>미리보기를 저장했습니다</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>테마를 저장했습니다</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>테마를 전송했습니다</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>새 버전이 있습니다:
+자세한 내용은 정보 창을 확인하세요</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>M/dd (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>카트리지</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>열</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>커서</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>폴더 미리보기</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>메인 미리보기</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>행</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>미리보기 옵션</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>색상</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>플래그</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>테마 정보</value>
+  </data>
+</root>

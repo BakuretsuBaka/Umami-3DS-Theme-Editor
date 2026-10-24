@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="About_CheckUpdates" xml:space="preserve">
+    <value>Başlangıçta güncellemeleri denetle</value>
+  </data>
+  <data name="About_Checking" xml:space="preserve">
+    <value>Güncellemeler denetleniyor...</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Usagirei'nin 3DS Theme Editor'ünü (MIT) temel alır. BCSTM dönüştürme VGAudio ile sağlanır.</value>
+  </data>
+  <data name="About_Latest" xml:space="preserve">
+    <value>Son sürüm: v{0}</value>
+  </data>
+  <data name="About_OpenReleases" xml:space="preserve">
+    <value>Sürümler sayfasını aç</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="About_UpToDate" xml:space="preserve">
+    <value>Güncelsiniz.</value>
+  </data>
+  <data name="About_UpdateAvailable" xml:space="preserve">
+    <value>Bir güncelleme mevcut.</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>Umami 3DS Theme Editor</value>
+  </data>
+  <data name="Bgm_Codec" xml:space="preserve">
+    <value>Kodek</value>
+  </data>
+  <data name="Bgm_Codec_Adpcm" xml:space="preserve">
+    <value>DSP-ADPCM (küçük, önerilir)</value>
+  </data>
+  <data name="Bgm_Codec_Pcm16" xml:space="preserve">
+    <value>PCM 16 bit (kayıpsız, büyük)</value>
+  </data>
+  <data name="Bgm_Convert" xml:space="preserve">
+    <value>Dönüştür</value>
+  </data>
+  <data name="Bgm_EstimatedSize" xml:space="preserve">
+    <value>Tahmini boyut</value>
+  </data>
+  <data name="Bgm_Loop" xml:space="preserve">
+    <value>Parçayı döngüye al</value>
+  </data>
+  <data name="Bgm_LoopEnd" xml:space="preserve">
+    <value>Döngü sonu (saniye, 0 = parça sonu)</value>
+  </data>
+  <data name="Bgm_LoopStart" xml:space="preserve">
+    <value>Döngü başlangıcı (saniye)</value>
+  </data>
+  <data name="Bgm_Mono" xml:space="preserve">
+    <value>Monoya indir</value>
+  </data>
+  <data name="Bgm_SampleRate" xml:space="preserve">
+    <value>Örnekleme hızı</value>
+  </data>
+  <data name="Bgm_SampleRate_Keep" xml:space="preserve">
+    <value>Orijinali koru</value>
+  </data>
+  <data name="Bgm_Source" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Bgm_SourceInfo" xml:space="preserve">
+    <value>{0} Hz, {1} kanal, {2:0.0} sn</value>
+  </data>
+  <data name="Bgm_Title" xml:space="preserve">
+    <value>Sesi BCSTM'ye Dönüştür</value>
+  </data>
+  <data name="Busy_ConvertingAudio" xml:space="preserve">
+    <value>Ses dönüştürülüyor...</value>
+  </data>
+  <data name="Busy_ExportingAudio" xml:space="preserve">
+    <value>Ses dışa aktarılıyor...</value>
+  </data>
+  <data name="Busy_LoadingBGM" xml:space="preserve">
+    <value>Arka plan müziği yükleniyor...</value>
+  </data>
+  <data name="Busy_LoadingTheme" xml:space="preserve">
+    <value>Tema yükleniyor...</value>
+  </data>
+  <data name="Busy_OpeningImage" xml:space="preserve">
+    <value>Görüntü yükleniyor...</value>
+  </data>
+  <data name="Busy_PickingFile" xml:space="preserve">
+    <value>Dosya seçiliyor</value>
+  </data>
+  <data name="Busy_SavingImage" xml:space="preserve">
+    <value>Görüntü kaydediliyor...</value>
+  </data>
+  <data name="Busy_SavingTheme" xml:space="preserve">
+    <value>Tema kaydediliyor...</value>
+  </data>
+  <data name="Busy_Sender_Connecting" xml:space="preserve">
+    <value>Bağlantı kuruluyor...</value>
+  </data>
+  <data name="Busy_Sender_ConnectionError" xml:space="preserve">
+    <value>Bağlantı hatası</value>
+  </data>
+  <data name="Busy_Sender_SendingTheme" xml:space="preserve">
+    <value>Tema gönderiliyor...</value>
+  </data>
+  <data name="Control_AudioPlayer_Label" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="Control_AudioPlayer_Loading" xml:space="preserve">
+    <value>Yükleniyor...</value>
+  </data>
+  <data name="Control_AudioPlayer_Pause" xml:space="preserve">
+    <value>Duraklat</value>
+  </data>
+  <data name="Control_AudioPlayer_Play" xml:space="preserve">
+    <value>Oynat</value>
+  </data>
+  <data name="Control_AudioPlayer_Reload" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="Control_AudioPlayer_Stop" xml:space="preserve">
+    <value>Durdur</value>
+  </data>
+  <data name="Control_ColorPicker_Advanced" xml:space="preserve">
+    <value>Gelişmiş</value>
+  </data>
+  <data name="Control_ColorPicker_BottomPalette" xml:space="preserve">
+    <value>Alt Görüntü Paleti</value>
+  </data>
+  <data name="Control_ColorPicker_Recent" xml:space="preserve">
+    <value>Son Renkler</value>
+  </data>
+  <data name="Control_ColorPicker_Standard" xml:space="preserve">
+    <value>Palet</value>
+  </data>
+  <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
+    <value>Üst Görüntü Paleti</value>
+  </data>
+  <data name="Control_Preview_Animate" xml:space="preserve">
+    <value>Canlandır</value>
+  </data>
+  <data name="Control_Preview_CloseButton" xml:space="preserve">
+    <value>"Kapat"</value>
+  </data>
+  <data name="Control_Preview_Folder" xml:space="preserve">
+    <value>Klasör</value>
+  </data>
+  <data name="Control_Preview_Label" xml:space="preserve">
+    <value>Önizleme</value>
+  </data>
+  <data name="Control_Preview_Options" xml:space="preserve">
+    <value>Seçenekler</value>
+  </data>
+  <data name="Control_Preview_Pressed" xml:space="preserve">
+    <value>Basılı</value>
+  </data>
+  <data name="Control_Toggle_False" xml:space="preserve">
+    <value>Devre dışı</value>
+  </data>
+  <data name="Control_Toggle_True" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="Crash_Message" xml:space="preserve">
+    <value>Bir şeyler ters gitti.
+Uygulama şimdi kapanacak, kaydedilmemiş değişiklikler kaybolacak.
+Lütfen aşağıdaki metni proje sayfasında bildirin:</value>
+  </data>
+  <data name="Crash_Title" xml:space="preserve">
+    <value>Uygulama çöktü</value>
+  </data>
+  <data name="Cwav_ConvertFailed" xml:space="preserve">
+    <value>Bu ses dosyası CWAV'a dönüştürülemedi.</value>
+  </data>
+  <data name="Cwav_Export" xml:space="preserve">
+    <value>Dışa Aktar</value>
+  </data>
+  <data name="Cwav_Exported" xml:space="preserve">
+    <value>Ses efekti dışa aktarıldı.</value>
+  </data>
+  <data name="Cwav_Import" xml:space="preserve">
+    <value>İçe Aktar</value>
+  </data>
+  <data name="Cwav_ParseError" xml:space="preserve">
+    <value>CWAV verisi ayrıştırılırken hatalar oluştu.
+Bazı veriler kurtarılmış olabilir ancak sorunlar bulunabilir.</value>
+  </data>
+  <data name="Cwav_Play" xml:space="preserve">
+    <value>Oynat</value>
+  </data>
+  <data name="Cwav_Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Cwav_Size" xml:space="preserve">
+    <value>{0} - ({1} bayt)</value>
+  </data>
+  <data name="Cwav_Title" xml:space="preserve">
+    <value>CWAV Ses Efektleri</value>
+  </data>
+  <data name="Cwav_TooBig" xml:space="preserve">
+    <value>CWAV verisi çok büyük.
+En büyük boyut: {0} bayt
+Geçerli boyut: {1} bayt</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Dialog_No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Dialog_OK" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="Eyedropper_Unavailable" xml:space="preserve">
+    <value>Bu sistemde ekran yakalama kullanılamıyor. Renk seçimi bu pencereyle sınırlıdır.</value>
+  </data>
+  <data name="Filter_AudioFiles" xml:space="preserve">
+    <value>Ses Dosyaları</value>
+  </data>
+  <data name="Filter_BcstmFile" xml:space="preserve">
+    <value>BCSTM Sesi</value>
+  </data>
+  <data name="Filter_CwavFile" xml:space="preserve">
+    <value>CWAV Sesi</value>
+  </data>
+  <data name="Filter_ImageFiles" xml:space="preserve">
+    <value>Görüntü Dosyaları</value>
+  </data>
+  <data name="Filter_MetadataFile" xml:space="preserve">
+    <value>Üst Veri Dosyası</value>
+  </data>
+  <data name="Filter_PngFiles" xml:space="preserve">
+    <value>PNG Dosyaları</value>
+  </data>
+  <data name="Filter_PngImage" xml:space="preserve">
+    <value>PNG Görüntüsü</value>
+  </data>
+  <data name="Filter_SupportedFiles" xml:space="preserve">
+    <value>Desteklenen Dosyalar</value>
+  </data>
+  <data name="Filter_ThemeFile" xml:space="preserve">
+    <value>3DS Tema Dosyası</value>
+  </data>
+  <data name="Filter_WavFile" xml:space="preserve">
+    <value>WAV Sesi</value>
+  </data>
+  <data name="Hint_DropTheme" xml:space="preserve">
+    <value>Açmak için bir temayı (.bin) buraya bırakın</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>_Kopyala</value>
+  </data>
+  <data name="Menu_CwavManager" xml:space="preserve">
+    <value>_CWAV Yöneticisi</value>
+  </data>
+  <data name="Menu_Experimental" xml:space="preserve">
+    <value>_Deneysel</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_Dosya</value>
+  </data>
+  <data name="Menu_File_Exit" xml:space="preserve">
+    <value>_Çıkış</value>
+  </data>
+  <data name="Menu_File_New" xml:space="preserve">
+    <value>_Yeni</value>
+  </data>
+  <data name="Menu_File_Open" xml:space="preserve">
+    <value>_Aç</value>
+  </data>
+  <data name="Menu_File_Recent" xml:space="preserve">
+    <value>_Son Kullanılanlar</value>
+  </data>
+  <data name="Menu_File_Save" xml:space="preserve">
+    <value>_Kaydet</value>
+  </data>
+  <data name="Menu_File_SaveAs" xml:space="preserve">
+    <value>Farklı _Kaydet...</value>
+  </data>
+  <data name="Menu_File_SavePreview" xml:space="preserve">
+    <value>Önizleme Oluştur</value>
+  </data>
+  <data name="Menu_File_SavePreview_Both" xml:space="preserve">
+    <value>İkisi de</value>
+  </data>
+  <data name="Menu_File_SavePreview_Bottom" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="Menu_File_SavePreview_Top" xml:space="preserve">
+    <value>Üst</value>
+  </data>
+  <data name="Menu_Image" xml:space="preserve">
+    <value>_Görüntü</value>
+  </data>
+  <data name="Menu_Image_Any_Export" xml:space="preserve">
+    <value>_Dışa Aktar</value>
+  </data>
+  <data name="Menu_Image_Any_Load" xml:space="preserve">
+    <value>_İçe Aktar</value>
+  </data>
+  <data name="Menu_Image_Any_Remove" xml:space="preserve">
+    <value>_Kaldır</value>
+  </data>
+  <data name="Menu_Image_Bottom" xml:space="preserve">
+    <value>_Alt</value>
+  </data>
+  <data name="Menu_Image_FileLarge" xml:space="preserve">
+    <value>Dosya (_Büyük)</value>
+  </data>
+  <data name="Menu_Image_FileSmall" xml:space="preserve">
+    <value>Dosya (_Küçük)</value>
+  </data>
+  <data name="Menu_Image_FolderClosed" xml:space="preserve">
+    <value>Klasör (_Kapalı)</value>
+  </data>
+  <data name="Menu_Image_FolderOpen" xml:space="preserve">
+    <value>Klasör (_Açık)</value>
+  </data>
+  <data name="Menu_Image_LargeIcon" xml:space="preserve">
+    <value>Büyük Simge (SMDH)</value>
+  </data>
+  <data name="Menu_Image_SmallIcon" xml:space="preserve">
+    <value>Küçük Simge (SMDH)</value>
+  </data>
+  <data name="Menu_Image_Top" xml:space="preserve">
+    <value>_Üst</value>
+  </data>
+  <data name="Menu_Image_TopStatic" xml:space="preserve">
+    <value>Üst (_Alternatif)</value>
+  </data>
+  <data name="Menu_Language" xml:space="preserve">
+    <value>_Dil</value>
+  </data>
+  <data name="Menu_Language_System" xml:space="preserve">
+    <value>Sistem Varsayılanı</value>
+  </data>
+  <data name="Menu_Metadata" xml:space="preserve">
+    <value>Üst veri</value>
+  </data>
+  <data name="Menu_Metadata_ExportColors" xml:space="preserve">
+    <value>Renkleri Dışa Aktar</value>
+  </data>
+  <data name="Menu_Metadata_ExportFlags" xml:space="preserve">
+    <value>Bayrakları Dışa Aktar</value>
+  </data>
+  <data name="Menu_Metadata_Import" xml:space="preserve">
+    <value>İçe Aktar</value>
+  </data>
+  <data name="Menu_Music" xml:space="preserve">
+    <value>_Müzik</value>
+  </data>
+  <data name="Menu_Music_ExportBcstm" xml:space="preserve">
+    <value>_BGM.BCSTM Dışa Aktar...</value>
+  </data>
+  <data name="Menu_Music_ExportWav" xml:space="preserve">
+    <value>_WAV Olarak Dışa Aktar...</value>
+  </data>
+  <data name="Menu_Music_Import" xml:space="preserve">
+    <value>Sesi _İçe Aktar (BCSTM'ye Dönüştür)...</value>
+  </data>
+  <data name="Menu_Music_Reload" xml:space="preserve">
+    <value>Tema Klasöründen Yeniden _Yükle</value>
+  </data>
+  <data name="Menu_Music_Remove" xml:space="preserve">
+    <value>Arka Plan Müziğini _Kaldır</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>_Yapıştır</value>
+  </data>
+  <data name="Menu_SendTo" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="Menu_SendTo_Prompt" xml:space="preserve">
+    <value>3DS'inizin IP adresi:</value>
+  </data>
+  <data name="Message_BackgroundMusicLoaded" xml:space="preserve">
+    <value>Arka Plan Müziği bayrağı etkinleştirildi:
+ - Temayı uygulamadan önce BGM.BCSTM dosyasının cihazınızda bulunduğundan emin olun, aksi halde çöker!</value>
+  </data>
+  <data name="Message_BgmConvertFailed" xml:space="preserve">
+    <value>Ses dosyası okunamadı veya dönüştürülemedi.</value>
+  </data>
+  <data name="Message_BgmExported" xml:space="preserve">
+    <value>Arka plan müziği dışa aktarıldı.</value>
+  </data>
+  <data name="Message_BgmImported" xml:space="preserve">
+    <value>Arka plan müziği içe aktarıldı ({0}, {1} kB).
+Tema dosyasının yanına BGM.BCSTM olarak kaydedilecek.</value>
+  </data>
+  <data name="Message_BgmSaved" xml:space="preserve">
+    <value>BGM.BCSTM tema dosyasının yanına yazıldı.</value>
+  </data>
+  <data name="Message_BgmTooLarge" xml:space="preserve">
+    <value>Dönüştürülen BCSTM {0} kB. HOME menüsü en fazla {1} kB'lık arka plan müziğini kabul eder.
+DSP-ADPCM kodeğini, monoyu, daha düşük bir örnekleme hızını veya daha kısa bir parçayı deneyin.</value>
+  </data>
+  <data name="Message_Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Message_InvalidImageSize" xml:space="preserve">
+    <value>Geçersiz görüntü boyutu</value>
+  </data>
+  <data name="Message_InvalidImageSize_AllowedSizes" xml:space="preserve">
+    <value>İzin verilen boyutlar</value>
+  </data>
+  <data name="Message_InvalidTheme" xml:space="preserve">
+    <value>Bu dosya 3DS teması olarak okunamadı.</value>
+  </data>
+  <data name="Message_LanguageRestart" xml:space="preserve">
+    <value>Dil, düzenleyici bir sonraki açılışta değişecek.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
+    <value>Arka Plan Müziği bayrağı devre dışı bırakıldı:
+ - Bayrak işaretliydi ancak BGM.BCSTM dosyası bulunamadı.
+ - BGM.BCSTM dosyasını temanın yanına koyup yeniden etkinleştirmek için "Yükle" düğmesine basın.</value>
+  </data>
+  <data name="Message_NoBackgroundMusicOnSave" xml:space="preserve">
+    <value>Arka Plan Müziği bayrağı ayarlı:
+ - Kayıt yolunda BGM.BCSTM dosyası yok
+ - Temayı uygulamadan önce BGM.BCSTM dosyasının cihazınızda bulunduğundan emin olun, aksi halde çöker!</value>
+  </data>
+  <data name="Message_NoBgm" xml:space="preserve">
+    <value>Dışa aktarılacak arka plan müziği yok.</value>
+  </data>
+  <data name="Message_PreviewSaved" xml:space="preserve">
+    <value>Önizleme kaydedildi</value>
+  </data>
+  <data name="Message_ThemeSaved" xml:space="preserve">
+    <value>Tema başarıyla kaydedildi</value>
+  </data>
+  <data name="Message_ThemeSent" xml:space="preserve">
+    <value>Tema başarıyla gönderildi</value>
+  </data>
+  <data name="Message_UpdateAvailable" xml:space="preserve">
+    <value>Yeni bir sürüm mevcut:
+Daha fazla bilgi için Hakkında penceresine bakın</value>
+  </data>
+  <data name="Preview_DateFormat" xml:space="preserve">
+    <value>d.M (ddd)</value>
+  </data>
+  <data name="Preview_HourFormat" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="Preview_MinFormat" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Preview_Options_Cart" xml:space="preserve">
+    <value>Kartuş</value>
+  </data>
+  <data name="Preview_Options_Column" xml:space="preserve">
+    <value>Sütun</value>
+  </data>
+  <data name="Preview_Options_Cursor" xml:space="preserve">
+    <value>İmleç</value>
+  </data>
+  <data name="Preview_Options_File" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="Preview_Options_Folder" xml:space="preserve">
+    <value>Klasör</value>
+  </data>
+  <data name="Preview_Options_FolderMode" xml:space="preserve">
+    <value>Klasör Önizlemesi</value>
+  </data>
+  <data name="Preview_Options_MainMode" xml:space="preserve">
+    <value>Ana Önizleme</value>
+  </data>
+  <data name="Preview_Options_Row" xml:space="preserve">
+    <value>Satır</value>
+  </data>
+  <data name="Preview_Options_Title" xml:space="preserve">
+    <value>Önizleme Seçenekleri</value>
+  </data>
+  <data name="Tab_Colors" xml:space="preserve">
+    <value>Renkler</value>
+  </data>
+  <data name="Tab_Flags" xml:space="preserve">
+    <value>Bayraklar</value>
+  </data>
+  <data name="Tab_Info" xml:space="preserve">
+    <value>Tema Bilgisi</value>
+  </data>
+</root>
