@@ -128,3 +128,5 @@ Filter_WavFile=Audio WAV
 Filter_CwavFile=Audio CWAV
 Filter_SupportedFiles=File supportati
 Hint_DropTheme=Trascina qui un tema (.bin) per aprirlo
+Theme_Sets_FolderArrow_ShadowPos=Posizione ombra freccia
+Theme_Sets_FolderArrow_ShadowPos_Desc=Posizione dell'ombra della freccia (verticale)

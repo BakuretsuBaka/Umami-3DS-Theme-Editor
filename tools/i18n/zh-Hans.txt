@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=阴影
 Theme_Sets_File_Shadow_Desc=图标下方的阴影
 Theme_Sets_Game_Light=高光
 Theme_Sets_Game_Light_Desc=高光
+Theme_Sets_FolderArrow_ShadowPos=箭头阴影位置
+Theme_Sets_FolderArrow_ShadowPos_Desc=箭头阴影位置(垂直)

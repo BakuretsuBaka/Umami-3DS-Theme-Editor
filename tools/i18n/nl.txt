@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Schaduw
 Theme_Sets_File_Shadow_Desc=Schaduw onder het pictogram
 Theme_Sets_Game_Light=Highlight
 Theme_Sets_Game_Light_Desc=Highlight
+Theme_Sets_FolderArrow_ShadowPos=Positie pijlschaduw
+Theme_Sets_FolderArrow_ShadowPos_Desc=Positie van de pijlschaduw (verticaal)

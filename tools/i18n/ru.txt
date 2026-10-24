@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Тень
 Theme_Sets_File_Shadow_Desc=Тень под значком
 Theme_Sets_Game_Light=Блик
 Theme_Sets_Game_Light_Desc=Блик
+Theme_Sets_FolderArrow_ShadowPos=Положение тени стрелки
+Theme_Sets_FolderArrow_ShadowPos_Desc=Положение тени стрелки (по вертикали)

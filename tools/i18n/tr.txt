@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Gölge
 Theme_Sets_File_Shadow_Desc=Simgenin altındaki gölge
 Theme_Sets_Game_Light=Vurgu
 Theme_Sets_Game_Light_Desc=Vurgu
+Theme_Sets_FolderArrow_ShadowPos=Ok Gölge Konumu
+Theme_Sets_FolderArrow_ShadowPos_Desc=Ok gölge konumu (dikey)

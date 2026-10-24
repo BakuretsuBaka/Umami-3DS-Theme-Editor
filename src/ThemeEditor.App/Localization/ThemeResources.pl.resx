@@ -508,6 +508,12 @@
   <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
     <value>Kolor cieniowania</value>
   </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos" xml:space="preserve">
+    <value>Położenie cienia strzałki</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos_Desc" xml:space="preserve">
+    <value>Położenie cienia strzałki (w pionie)</value>
+  </data>
   <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
     <value>Cieniowanie</value>
   </data>

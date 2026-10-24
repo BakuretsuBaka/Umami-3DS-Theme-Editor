@@ -77,3 +77,5 @@ Filter_CwavFile=Áudio CWAV
 Filter_SupportedFiles=Arquivos compatíveis
 Hint_DropTheme=Solte um tema (.bin) aqui para abri-lo
 Menu_SendTo_Prompt=Endereço IP do seu 3DS:
+Theme_Sets_FolderArrow_ShadowPos=Posição da sombra da seta
+Theme_Sets_FolderArrow_ShadowPos_Desc=Posição da sombra da seta (vertical)

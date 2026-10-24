@@ -128,3 +128,5 @@ Filter_WavFile=Audio WAV
 Filter_CwavFile=Audio CWAV
 Filter_SupportedFiles=Archivos compatibles
 Hint_DropTheme=Suelta aquí un tema (.bin) para abrirlo
+Theme_Sets_FolderArrow_ShadowPos=Posición de la sombra de la flecha
+Theme_Sets_FolderArrow_ShadowPos_Desc=Posición de la sombra de la flecha (vertical)

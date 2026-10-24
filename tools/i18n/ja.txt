@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=影
 Theme_Sets_File_Shadow_Desc=アイコンの下の影
 Theme_Sets_Game_Light=ハイライト
 Theme_Sets_Game_Light_Desc=ハイライト
+Theme_Sets_FolderArrow_ShadowPos=矢印の影の位置
+Theme_Sets_FolderArrow_ShadowPos_Desc=矢印の影の位置(縦方向)

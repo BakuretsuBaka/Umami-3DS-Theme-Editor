@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=그림자
 Theme_Sets_File_Shadow_Desc=아이콘 아래의 그림자
 Theme_Sets_Game_Light=하이라이트
 Theme_Sets_Game_Light_Desc=하이라이트
+Theme_Sets_FolderArrow_ShadowPos=화살표 그림자 위치
+Theme_Sets_FolderArrow_ShadowPos_Desc=화살표 그림자 위치 (세로)

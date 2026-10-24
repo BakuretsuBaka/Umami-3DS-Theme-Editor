@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Skugga
 Theme_Sets_File_Shadow_Desc=Skugga under ikonen
 Theme_Sets_Game_Light=Högdager
 Theme_Sets_Game_Light_Desc=Högdager
+Theme_Sets_FolderArrow_ShadowPos=Pilskuggans position
+Theme_Sets_FolderArrow_ShadowPos_Desc=Pilskuggans position (lodrät)

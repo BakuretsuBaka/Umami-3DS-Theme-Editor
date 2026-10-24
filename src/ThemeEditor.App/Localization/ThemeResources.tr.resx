@@ -508,6 +508,12 @@
   <data name="Theme_Sets_FolderArrow_Shading_Desc" xml:space="preserve">
     <value>Gölgelendirme rengi</value>
   </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos" xml:space="preserve">
+    <value>Ok Gölge Konumu</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos_Desc" xml:space="preserve">
+    <value>Ok gölge konumu (dikey)</value>
+  </data>
   <data name="Theme_Sets_Folder_Dark" xml:space="preserve">
     <value>Gölgelendirme</value>
   </data>

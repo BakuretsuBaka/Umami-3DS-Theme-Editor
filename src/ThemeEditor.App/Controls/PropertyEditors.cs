@@ -111,7 +111,7 @@ namespace ThemeEditor.App.Controls
     public sealed class PropertyEditors : IDisposable
     {
         public static readonly IValueConverter BoolToOpacity =
-            new FuncValueConverter<bool, double>(b => b ? 1.0 : 0.25);
+            new FuncValueConverter<bool, double>(b => b ? 1.0 : 0.5);
 
         private readonly List<PropertyProxy> _proxies = new List<PropertyProxy>();
         private readonly List<ColorView> _pickers = new List<ColorView>();
@@ -294,7 +294,7 @@ namespace ThemeEditor.App.Controls
 
         private Control BuildSlider(PropertyProxy prop)
         {
-            var label = new TextBlock { FontSize = 10, Margin = new Thickness(3) };
+            var label = new TextBlock { FontSize = 10, Margin = new Thickness(3), TextTrimming = TextTrimming.CharacterEllipsis };
             var slider = new Slider
             {
                 Minimum = prop.RangeMin,
@@ -355,7 +355,7 @@ namespace ThemeEditor.App.Controls
             {
                 Margin = new Thickness(3),
                 Width = 125,
-                Children = { new TextBlock { Text = prop.Name, FontSize = 10, Margin = new Thickness(3) }, toggle }
+                Children = { new TextBlock { Text = prop.Name, FontSize = 10, Margin = new Thickness(3), TextTrimming = TextTrimming.CharacterEllipsis }, toggle }
             };
         }
 

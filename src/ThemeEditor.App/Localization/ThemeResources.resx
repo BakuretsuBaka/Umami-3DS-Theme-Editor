@@ -864,4 +864,10 @@
   <data name="Theme_Sets_Game_Light_Desc" xml:space="preserve">
     <value>Highlight</value>
   </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos" xml:space="preserve">
+    <value>Arrow Shadow Position</value>
+  </data>
+  <data name="Theme_Sets_FolderArrow_ShadowPos_Desc" xml:space="preserve">
+    <value>Arrow Shadow Position (Vertical)</value>
+  </data>
 </root>

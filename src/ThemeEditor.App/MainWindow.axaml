@@ -7,14 +7,15 @@
     xmlns:props="using:ThemeEditor.App.Properties"
     xmlns:local="using:ThemeEditor.App"
     Title="Umami 3DS Theme Editor"
-    Width="1200"
+    Width="1300"
     Height="640"
-    MinWidth="1000"
+    MinWidth="1150"
     MinHeight="620"
     Icon="avares://UmamiThemeEditor/Assets/umami.png"
     x:CompileBindings="False">
     <Window.Styles>
         <Style Selector="TextBlock.infolabel">
+            <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Padding" Value="2" />
             <Setter Property="Margin" Value="3" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -47,7 +48,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="600" />
         </Grid.ColumnDefinitions>
 
         <!-- Editor side -->
@@ -63,7 +64,7 @@
                         <Grid
                             Classes="info"
                             Margin="3"
-                            ColumnDefinitions="110,*"
+                            ColumnDefinitions="190,*"
                             RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
                             <TextBlock Classes="infolabel" Grid.Row="0" Text="{x:Static locale:ThemeResources.Theme_Info_Author}" />
                             <TextBox Grid.Row="0" Grid.Column="1" MaxLength="64"
@@ -179,7 +180,7 @@
             </Border>
 
             <Border Grid.Row="3" HorizontalAlignment="Stretch" Height="240">
-                <Grid ColumnDefinitions="*,320,*">
+                <Grid ColumnDefinitions="140,320,140">
                     <StackPanel Grid.Column="0" Margin="6,0">
                         <TextBlock HorizontalAlignment="Center" Foreground="White"
                                    Text="{x:Static locale:MainResources.Control_Preview_Label}" />

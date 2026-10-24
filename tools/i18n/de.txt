@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Schatten
 Theme_Sets_File_Shadow_Desc=Schatten unter dem Symbol
 Theme_Sets_Game_Light=Glanzlicht
 Theme_Sets_Game_Light_Desc=Glanzlicht
+Theme_Sets_FolderArrow_ShadowPos=Pfeilschatten-Position
+Theme_Sets_FolderArrow_ShadowPos_Desc=Position des Pfeilschattens (vertikal)

@@ -1487,6 +1487,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Theme_Sets_FolderArrow_ShadowPos".</summary>
+        public static string Theme_Sets_FolderArrow_ShadowPos {
+            get {
+                return ResourceManager.GetString("Theme_Sets_FolderArrow_ShadowPos", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Theme_Sets_FolderArrow_ShadowPos_Desc".</summary>
+        public static string Theme_Sets_FolderArrow_ShadowPos_Desc {
+            get {
+                return ResourceManager.GetString("Theme_Sets_FolderArrow_ShadowPos_Desc", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Theme_Sets_Folder_Dark".</summary>
         public static string Theme_Sets_Folder_Dark {
             get {

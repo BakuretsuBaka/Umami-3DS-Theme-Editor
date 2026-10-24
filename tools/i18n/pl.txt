@@ -367,3 +367,5 @@ Theme_Sets_File_Shadow=Cień
 Theme_Sets_File_Shadow_Desc=Cień pod ikoną
 Theme_Sets_Game_Light=Podświetlenie
 Theme_Sets_Game_Light_Desc=Podświetlenie
+Theme_Sets_FolderArrow_ShadowPos=Położenie cienia strzałki
+Theme_Sets_FolderArrow_ShadowPos_Desc=Położenie cienia strzałki (w pionie)
