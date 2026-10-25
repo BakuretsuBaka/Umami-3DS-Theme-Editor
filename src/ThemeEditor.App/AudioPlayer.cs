@@ -131,6 +131,50 @@ namespace ThemeEditor.App
             SetAudio(BcstmConverter.Load(new MemoryStream(wavData), ".wav"));
         }
 
+        private static readonly System.Collections.Generic.List<(uint Source, uint Buffer)> OneShots =
+            new System.Collections.Generic.List<(uint, uint)>();
+
+        /// <summary>Plays a short sound once, on its own source, without touching the BGM player. Overlapping calls mix.</summary>
+        public static void PlayOneShot(AudioData audio, float gain = 1f)
+        {
+            EnsureInit();
+            if (!_available || audio == null)
+                return;
+
+            // Free the sources that finished
+            for (var i = OneShots.Count - 1; i >= 0; i--)
+            {
+                int state;
+                _al.GetSourceProperty(OneShots[i].Source, GetSourceInteger.SourceState, out state);
+                if (state == (int) SourceState.Playing)
+                    continue;
+                _al.DeleteSource(OneShots[i].Source);
+                _al.DeleteBuffer(OneShots[i].Buffer);
+                OneShots.RemoveAt(i);
+            }
+            if (OneShots.Count >= 24)
+                return;
+
+            var pcm = audio.GetFormat<Pcm16Format>();
+            var channels = pcm.Channels;
+            var frames = channels[0].Length;
+            var count = Math.Min(channels.Length, 2);
+            var data = new short[frames * count];
+            for (var i = 0; i < frames; i++)
+            for (var c = 0; c < count; c++)
+                data[i * count + c] = channels[c][i];
+
+            var buffer = _al.GenBuffer();
+            fixed (short* p = data)
+                _al.BufferData(buffer, count == 1 ? BufferFormat.Mono16 : BufferFormat.Stereo16, p, data.Length * 2, pcm.SampleRate);
+            var source = _al.GenSource();
+            _al.SetSourceProperty(source, SourceInteger.Buffer, (int) buffer);
+            _al.SetSourceProperty(source, SourceBoolean.Looping, false);
+            _al.SetSourceProperty(source, SourceFloat.Gain, gain);
+            _al.SourcePlay(source);
+            OneShots.Add((source, buffer));
+        }
+
         public void SetAudio(AudioData audio)
         {
             ClearAudioData();

@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>資料夾</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>點擊圖示移動游標；再次點擊或按「開啟」可開啟資料夾或啟動。箭頭按鈕翻頁，「關閉」或返回按鈕離開資料夾。方向鍵、Enter 和 Esc 同樣可用。會播放主題的音效。</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>預覽</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>機蓋</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>闔上或打開主機蓋（打開時播放機蓋音效）</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>選項</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>按下</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>聲音</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>使用預覽時播放主題的音效</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>已禁用</value>
@@ -272,6 +287,9 @@
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>退出(_X)</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>匯出主題 ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>新建(_N)</value>
@@ -445,6 +463,12 @@
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>有可用的新版本:
 詳情請查看“關於”視窗</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>主題 ZIP 已儲存（主題、音樂、圖示和預覽）。</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>此 ZIP 不包含主題（body_LZ.bin）。</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>M/dd (ddd)</value>

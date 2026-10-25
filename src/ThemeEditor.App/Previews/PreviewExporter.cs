@@ -26,22 +26,22 @@ namespace ThemeEditor.App.Previews
             }
         }
 
-        public static byte[] RenderPng(ThemeViewModel theme, PreviewKind kind)
+        public static byte[] RenderPng(ThemeViewModel theme, PreviewKind kind, PreviewInteraction state = null)
         {
-            using (var bmp = Render(theme, kind))
+            using (var bmp = Render(theme, kind, state))
             using (var img = SKImage.FromBitmap(bmp))
             using (var data = img.Encode(SKEncodedImageFormat.Png, 100))
                 return data.ToArray();
         }
 
-        public static SKBitmap Render(ThemeViewModel theme, PreviewKind kind)
+        public static SKBitmap Render(ThemeViewModel theme, PreviewKind kind, PreviewInteraction state = null)
         {
             switch (kind)
             {
                 case PreviewKind.Top:
                     return Controls.PreviewSurface.RenderToBitmap(c => Top.Draw(c, theme, false, 0), TopRenderer.Width, TopRenderer.Height);
                 case PreviewKind.Bottom:
-                    return Controls.PreviewSurface.RenderToBitmap(c => BottomRenderer.Draw(c, theme, false, 0), BottomRenderer.Width, BottomRenderer.Height);
+                    return Controls.PreviewSurface.RenderToBitmap(c => BottomRenderer.Draw(c, theme, false, 0, state), BottomRenderer.Width, BottomRenderer.Height);
                 default:
                     return Controls.PreviewSurface.RenderToBitmap(c =>
                     {
@@ -52,7 +52,7 @@ namespace ThemeEditor.App.Previews
                         Top.Draw(c, theme, false, 0);
                         c.Save();
                         c.Translate((412 - 320) / 2, 240);
-                        BottomRenderer.Draw(c, theme, false, 0);
+                        BottomRenderer.Draw(c, theme, false, 0, state);
                         c.Restore();
                     }, 412, 480);
             }

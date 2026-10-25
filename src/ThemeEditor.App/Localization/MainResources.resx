@@ -604,4 +604,28 @@ Some data may have been recovered, but issues may be present.</value>
   <data name="Menu_SendTo_Prompt" xml:space="preserve">
     <value>IP address of your 3DS:</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Click an icon to move the cursor; click it again, or press Open, to open a folder or launch it. The arrow button flips pages; Close or Back leaves a folder. Arrow keys, Enter and Esc work too. Plays the theme's sound effects.</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Play the theme's sound effects when you use the preview</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Lid</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Close or open the console lid (plays the lid sound effect when opening)</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Export Theme ZIP...</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>Theme ZIP saved (theme, music, icon and preview).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>This ZIP does not contain a theme (body_LZ.bin).</value>
+  </data>
 </root>

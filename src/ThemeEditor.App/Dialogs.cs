@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ThemeEditor.App.Properties;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -37,6 +38,29 @@ namespace ThemeEditor.App
             };
         }
 
+        private static async Task<IStorageFolder> StartFolder(Window owner)
+        {
+            var dir = Settings.Default.LastDirectory;
+            if (string.IsNullOrEmpty(dir) || !System.IO.Directory.Exists(dir))
+                return null;
+            try
+            {
+                return await owner.StorageProvider.TryGetFolderFromPathAsync(dir);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private static string Remember(string path)
+        {
+            var dir = string.IsNullOrEmpty(path) ? null : System.IO.Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(dir))
+                Settings.Default.LastDirectory = dir;
+            return path;
+        }
+
         public static async Task<string> OpenFile(Window owner, string title, params FilePickerFileType[] types)
         {
             owner = owner ?? MainWindow;
@@ -44,9 +68,10 @@ namespace ThemeEditor.App
             {
                 Title = title,
                 AllowMultiple = false,
-                FileTypeFilter = types
+                FileTypeFilter = types,
+                SuggestedStartLocation = await StartFolder(owner)
             });
-            return files.Count == 0 ? null : files[0].TryGetLocalPath();
+            return files.Count == 0 ? null : Remember(files[0].TryGetLocalPath());
         }
 
         public static async Task<string> SaveFile(Window owner, string title, string suggestedName, params FilePickerFileType[] types)
@@ -61,9 +86,10 @@ namespace ThemeEditor.App
                 SuggestedFileName = suggestedName,
                 DefaultExtension = defaultExt,
                 FileTypeChoices = types,
-                ShowOverwritePrompt = true
+                ShowOverwritePrompt = true,
+                SuggestedStartLocation = await StartFolder(owner)
             });
-            return file?.TryGetLocalPath();
+            return Remember(file?.TryGetLocalPath());
         }
 
         public static Task Show(Window owner, string message, string title, MessageKind kind = MessageKind.Information)

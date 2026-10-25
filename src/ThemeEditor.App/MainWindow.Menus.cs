@@ -76,6 +76,7 @@ namespace ThemeEditor.App
             file.Items.Add(Item(MainResources.Menu_File_Save, SaveThemeCommandWrapper.Command, null, SaveThemeCommandWrapper.Gesture));
             file.Items.Add(Item(MainResources.Menu_File_SaveAs, SaveAsThemeCommandWrapper.Command, null, SaveAsThemeCommandWrapper.Gesture));
             file.Items.Add(save);
+            file.Items.Add(Item(MainResources.Menu_File_ExportZip, ExportZipCommand));
             file.Items.Add(new Separator());
             file.Items.Add(sendMenu);
             file.Items.Add(new Separator());

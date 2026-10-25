@@ -6,6 +6,7 @@
     xmlns:locale="using:ThemeEditor.App.Localization"
     xmlns:props="using:ThemeEditor.App.Properties"
     xmlns:local="using:ThemeEditor.App"
+    xmlns:previews="using:ThemeEditor.App.Previews"
     Title="Umami 3DS Theme Editor"
     Width="1300"
     Height="640"
@@ -38,8 +39,9 @@
             <Setter Property="Background" Value="#33FFFFFF" />
         </Style>
         <Style Selector="ToggleButton.pv, Button.pv">
-            <Setter Property="Margin" Value="0,3" />
-            <Setter Property="Padding" Value="3" />
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="Padding" Value="3,2" />
+            <Setter Property="MinHeight" Value="26" />
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
@@ -176,6 +178,7 @@
                 <controls:TopScreenPreview
                     x:Name="TopPreview"
                     Theme="{Binding ViewModel}"
+                    Interaction="{x:Static previews:PreviewInteraction.Shared}"
                     Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}" />
             </Border>
 
@@ -198,12 +201,21 @@
                         <ToggleButton Classes="pv"
                                       Content="{x:Static locale:MainResources.Control_Preview_CloseButton}"
                                       IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_CloseToggle, Mode=TwoWay}" />
+                        <ToggleButton Classes="pv"
+                                      Content="{x:Static locale:MainResources.Control_Preview_Sound}"
+                                      ToolTip.Tip="{x:Static locale:MainResources.Control_Preview_Sound_Tip}"
+                                      IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=Preview_SoundToggle, Mode=TwoWay}" />
+                        <Button Classes="pv" Command="{Binding ToggleLidCommand}"
+                                ToolTip.Tip="{x:Static locale:MainResources.Control_Preview_Lid_Tip}"
+                                Content="{x:Static locale:MainResources.Control_Preview_Lid}" />
                     </StackPanel>
 
                     <Border Grid.Column="1" Width="320" Height="240" BoxShadow="0 0 6 1 #CC000000">
                         <controls:BottomScreenPreview
                             x:Name="BottomPreview"
                             Theme="{Binding ViewModel}"
+                            Interaction="{x:Static previews:PreviewInteraction.Shared}"
+                            ToolTip.Tip="{x:Static locale:MainResources.Control_Preview_Hint}"
                             Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}" />
                     </Border>
 

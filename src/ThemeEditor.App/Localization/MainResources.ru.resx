@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Папка</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Нажмите на значок, чтобы переместить курсор; нажмите ещё раз или «Открыть», чтобы открыть папку или запустить. Стрелка листает страницы, «Закрыть» или «Назад» выходит из папки. Работают также стрелки, Enter и Esc. Воспроизводит звуковые эффекты темы.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Предпросмотр</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Крышка</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Закрыть или открыть крышку консоли (при открытии звучит эффект крышки)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Настройки</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Нажато</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Звук</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Воспроизводить звуковые эффекты темы при работе с предпросмотром</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Выключено</value>
@@ -272,6 +287,9 @@
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Выход</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Экспорт темы в ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Создать</value>
@@ -445,6 +463,12 @@
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Доступна новая версия:
 Подробности в окне «О программе»</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>ZIP темы сохранён (тема, музыка, значок и предпросмотр).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>В этом ZIP нет темы (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>d.M (ddd)</value>

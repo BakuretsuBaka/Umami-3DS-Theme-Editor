@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Ordner</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Symbol anklicken, um den Cursor zu bewegen; erneut anklicken oder „Öffnen“ drücken, um einen Ordner zu öffnen oder zu starten. Mit dem Pfeil blätterst du Seiten, mit „Schließen“ oder Zurück verlässt du einen Ordner. Pfeiltasten, Enter und Esc funktionieren auch. Spielt die Soundeffekte des Designs ab.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Vorschau</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Deckel</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Konsolendeckel schließen oder öffnen (beim Öffnen wird der Deckel-Soundeffekt abgespielt)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Optionen</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Gedrückt</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Ton</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Soundeffekte des Designs bei Benutzung der Vorschau abspielen</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Deaktiviert</value>
@@ -272,6 +287,9 @@ Aktuelle Größe: {1} Bytes</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Beenden</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Design-ZIP exportieren...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Neu</value>
@@ -445,6 +463,12 @@ Versuche den DSP-ADPCM-Codec, Mono, eine niedrigere Abtastrate oder einen kürze
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Eine neue Version ist verfügbar:
 Weitere Informationen findest du im Fenster „Über“</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>Design-ZIP gespeichert (Design, Musik, Symbol und Vorschau).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Diese ZIP-Datei enthält kein Design (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>d.M. (ddd)</value>

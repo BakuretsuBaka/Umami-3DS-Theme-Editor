@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>폴더</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>아이콘을 클릭하면 커서가 이동합니다. 다시 클릭하거나 '열기'를 누르면 폴더를 열거나 실행합니다. 화살표 버튼은 페이지를 넘기고, '닫기'나 뒤로 버튼은 폴더에서 나갑니다. 방향키, Enter, Esc도 사용할 수 있습니다. 테마의 효과음을 재생합니다.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>미리보기</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>덮개</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>본체 덮개를 닫거나 엽니다(열 때 덮개 효과음이 재생됩니다)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>옵션</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>눌림</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>소리</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>미리보기를 사용할 때 테마의 효과음을 재생합니다</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>사용 안 함</value>
@@ -272,6 +287,9 @@
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>종료(_X)</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>테마를 ZIP으로 내보내기...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>새로 만들기(_N)</value>
@@ -445,6 +463,12 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>새 버전이 있습니다:
 자세한 내용은 정보 창을 확인하세요</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>테마 ZIP을 저장했습니다(테마, 음악, 아이콘, 미리보기).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>이 ZIP에는 테마(body_LZ.bin)가 없습니다.</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>M/dd (ddd)</value>

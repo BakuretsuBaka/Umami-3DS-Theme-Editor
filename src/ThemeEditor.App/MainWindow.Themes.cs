@@ -115,10 +115,16 @@ namespace ThemeEditor.App
             {
                 BusyText = MainResources.Busy_PickingFile;
                 result.Path = await Dialogs.OpenFile(this, MainResources.Menu_File_Open,
-                    Dialogs.FileType(MainResources.Filter_ThemeFile, ".bin"));
+                    Dialogs.FileType(MainResources.Filter_ThemeFile, ".bin", ".zip"));
             }
             if (string.IsNullOrEmpty(result.Path))
                 return result;
+            if (IsZip(result.Path))
+            {
+                result.Path = await ExtractThemeZip(result.Path);
+                if (result.Path == null)
+                    return result;
+            }
 
             BusyText = MainResources.Busy_LoadingTheme;
             var themePath = result.Path;
@@ -557,7 +563,7 @@ namespace ThemeEditor.App
         private void DragTheme_Execute(object sender, DragEventArgs e)
         {
             var file = FirstDroppedFile(e);
-            e.DragEffects = file != null && ".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase)
+            e.DragEffects = file != null && (".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase) || IsZip(file))
                 ? DragDropEffects.Copy
                 : DragDropEffects.None;
             e.Handled = true;
@@ -567,7 +573,7 @@ namespace ThemeEditor.App
         {
             var file = FirstDroppedFile(e);
             e.Handled = true;
-            if (file != null && ".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase))
+            if (file != null && (".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase) || IsZip(file)))
                 LoadThemeCommandWrapper.Command.Execute(file);
         }
 

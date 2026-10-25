@@ -28,6 +28,11 @@ namespace ThemeEditor.App.Properties
         private bool _previewFolderCartEnable = true;
         private bool _previewModeToggle;
         private bool _previewPressedToggle;
+        private bool _previewSoundToggle = true;
+        private string _lastDirectory = string.Empty;
+        private double _windowWidth;
+        private double _windowHeight;
+        private bool _windowMaximized;
         private string _socketIp = "127.0.0.1";
         private int _socketMaxTries = 5;
         private string _bgmCodec = "DspAdpcm";
@@ -98,6 +103,38 @@ namespace ThemeEditor.App.Properties
         {
             get { return _previewPressedToggle; }
             set { Set(ref _previewPressedToggle, value); }
+        }
+
+        /// <summary>Folder the file dialogs start in (the one of the last file opened or saved).</summary>
+        public string LastDirectory
+        {
+            get { return _lastDirectory; }
+            set { Set(ref _lastDirectory, value ?? string.Empty); }
+        }
+
+        public double Window_Width
+        {
+            get { return _windowWidth; }
+            set { Set(ref _windowWidth, value); }
+        }
+
+        public double Window_Height
+        {
+            get { return _windowHeight; }
+            set { Set(ref _windowHeight, value); }
+        }
+
+        public bool Window_Maximized
+        {
+            get { return _windowMaximized; }
+            set { Set(ref _windowMaximized, value); }
+        }
+
+        /// <summary>Plays the theme's sound effects when the interactive preview is used.</summary>
+        public bool Preview_SoundToggle
+        {
+            get { return _previewSoundToggle; }
+            set { Set(ref _previewSoundToggle, value); }
         }
 
         public bool Preview_CloseToggle

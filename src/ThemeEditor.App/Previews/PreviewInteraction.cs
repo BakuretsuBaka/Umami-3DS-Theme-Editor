@@ -1,0 +1,390 @@
+// --------------------------------------------------
+// Umami 3DS Theme Editor - PreviewInteraction.cs
+// --------------------------------------------------
+
+using System;
+using SkiaSharp;
+using ThemeEditor.App.Experimental.CWAV;
+using ThemeEditor.App.Localization.Enums;
+using ThemeEditor.App.Properties;
+using ThemeEditor.App.Themes;
+
+namespace ThemeEditor.App.Previews
+{
+    /// <summary>What a point on the bottom screen preview is over.</summary>
+    public enum PreviewTarget
+    {
+        None,
+        Cell,
+        Open,
+        Close,
+        Arrow,
+        Back,
+        Home,
+        CornerA,
+        CornerB
+    }
+
+    /// <summary>What sits in a grid cell of the preview.</summary>
+    public enum PreviewItem
+    {
+        None,
+        Cart,
+        File,
+        Folder
+    }
+
+    /// <summary>
+    ///     Transient state of the interactive preview: which button is held down, the animated cursor, the folder
+    ///     open/close transition, the manual page position and the lid. The drawing code reads it; when it is null the
+    ///     renderers draw the static preview that the toggles and the exporter describe.
+    /// </summary>
+    public sealed class PreviewInteraction
+    {
+        private const double LidSeconds = 0.28;
+        private const double FolderSeconds = 0.2;
+        private const double CursorSeconds = 0.16;
+
+        private double _last = -1;
+        private bool _cursorInit;
+        private bool _cursorFolder;
+        private SKPoint _cursorFrom;
+        private SKPoint _cursorTarget;
+        private SKPoint _cursorNow;
+        private double _cursorStart;
+
+        public static PreviewInteraction Shared { get; } = new PreviewInteraction();
+
+        public PreviewTarget Pressed { get; private set; }
+        public int PressedCol { get; private set; } = -1;
+        public int PressedRow { get; private set; } = -1;
+
+        /// <summary>True while the pointer is still over the pressed target (releasing there is a click).</summary>
+        public bool PressedActive { get; private set; }
+
+        /// <summary>Counts arrow-button presses; the bottom wallpaper pages or scrolls with it.</summary>
+        public int Page { get; set; }
+
+        public bool LidOpenTarget { get; set; } = true;
+
+        /// <summary>0 = lid closed (screens dark), 1 = open.</summary>
+        public double Lid { get; private set; } = 1;
+
+        /// <summary>0 = folder closed, 1 = folder view fully open.</summary>
+        public double FolderT { get; private set; }
+
+        /// <summary>Horizontal wallpaper position in texture pixels when the animation is off.</summary>
+        public double ScrollX { get; private set; }
+
+        /// <summary>True while something is still moving, so the surface keeps asking for frames.</summary>
+        public bool Busy { get; private set; }
+
+        public SKPoint CursorPosition => _cursorNow;
+
+        public bool IsPressed(PreviewTarget target)
+        {
+            return PressedActive && Pressed == target;
+        }
+
+        public bool IsCellPressed(int col, int row)
+        {
+            return PressedActive && Pressed == PreviewTarget.Cell && PressedCol == col && PressedRow == row;
+        }
+
+        public void Press(PreviewTarget target, int col, int row)
+        {
+            Pressed = target;
+            PressedCol = col;
+            PressedRow = row;
+            PressedActive = target != PreviewTarget.None;
+        }
+
+        /// <summary>Marks whether the pointer is still over the pressed target (dragging off un-presses it).</summary>
+        public void SetOver(bool over)
+        {
+            if (Pressed != PreviewTarget.None)
+                PressedActive = over;
+        }
+
+        public void Release()
+        {
+            Pressed = PreviewTarget.None;
+            PressedCol = PressedRow = -1;
+            PressedActive = false;
+        }
+
+        /// <summary>Advances every animation to <paramref name="now" />. Safe to call several times per frame.</summary>
+        public void Tick(double now, Settings s, ThemeViewModel t)
+        {
+            var dt = _last < 0 ? 0 : Math.Min(0.1, Math.Max(0, now - _last));
+            _last = now;
+            var busy = false;
+
+            Lid = Approach(Lid, LidOpenTarget ? 1 : 0, dt / LidSeconds, ref busy);
+            FolderT = Approach(FolderT, s.Preview_ModeToggle ? 1 : 0, dt / FolderSeconds, ref busy);
+
+            // Cursor: slides to the cell it is moved to; snaps when switching between the main grid and the folder
+            var folder = s.Preview_ModeToggle;
+            var target = ItemRenderer.GridPosition(folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX,
+                folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY, folder);
+            if (!_cursorInit || folder != _cursorFolder)
+            {
+                _cursorInit = true;
+                _cursorFolder = folder;
+                _cursorFrom = _cursorNow = _cursorTarget = target;
+                _cursorStart = now;
+            }
+            else if (Math.Abs(target.X - _cursorTarget.X) > 0.01f || Math.Abs(target.Y - _cursorTarget.Y) > 0.01f)
+            {
+                _cursorFrom = _cursorNow;
+                _cursorTarget = target;
+                _cursorStart = now;
+            }
+            var k = Math.Min(1.0, (now - _cursorStart) / CursorSeconds);
+            var e = 1 - Math.Pow(1 - k, 3);
+            _cursorNow = new SKPoint((float) (_cursorFrom.X + (_cursorTarget.X - _cursorFrom.X) * e),
+                (float) (_cursorFrom.Y + (_cursorTarget.Y - _cursorFrom.Y) * e));
+            busy |= k < 1;
+
+            // Wallpaper position for the manual page/scroll modes
+            double scrollTarget;
+            switch (t?.Flags.BottomFrameType)
+            {
+                case BottomFrameType.PageScroll:
+                    scrollTarget = (Page % 3 + 3) % 3 * 320;
+                    break;
+                case BottomFrameType.BounceScroll:
+                    scrollTarget = new[] { 0, 1, 2, 1 }[(Page % 4 + 4) % 4] * 320;
+                    break;
+                case BottomFrameType.SlowScroll:
+                case BottomFrameType.FastScroll:
+                    scrollTarget = Page * 168.0;
+                    break;
+                default:
+                    scrollTarget = 0;
+                    break;
+            }
+            var diff = scrollTarget - ScrollX;
+            if (Math.Abs(diff) > 0.5)
+            {
+                ScrollX += diff * Math.Min(1, dt * 9);
+                busy = true;
+            }
+            else
+            {
+                ScrollX = scrollTarget;
+            }
+
+            Busy = busy;
+        }
+
+        private static double Approach(double value, double target, double step, ref bool busy)
+        {
+            if (value < target)
+                value = Math.Min(target, value + step);
+            else if (value > target)
+                value = Math.Max(target, value - step);
+            busy |= Math.Abs(value - target) > 1e-6;
+            return value;
+        }
+    }
+
+    /// <summary>Maps points on the bottom screen to what the console would react to.</summary>
+    public static class PreviewHit
+    {
+        public const int Columns = 5;
+
+        public static int Rows(bool folder)
+        {
+            return folder ? 2 : 3;
+        }
+
+        private static readonly SKRect BackButton = new SKRect(27, 47, 93, 77);
+        private static readonly SKRect HomeCorner = new SKRect(0, 0, 51, 30);
+        private static readonly SKRect CornerARect = new SKRect(268, 0, 293, 30);
+        private static readonly SKRect CornerBRect = new SKRect(293, 0, 320, 30);
+        private static readonly SKRect ArrowRect = new SKRect(296, 100, 320, 146);
+
+        public static PreviewTarget Hit(Settings s, float x, float y, out int col, out int row)
+        {
+            col = row = -1;
+            var p = new SKPoint(x, y);
+            if (p.X < 0 || p.Y < 0 || p.X >= 320 || p.Y >= 240)
+                return PreviewTarget.None;
+
+            // Controls drawn over the grid come first
+            var closeEnabled = s.Preview_CloseToggle;
+            if (p.Y >= 215)
+            {
+                if (closeEnabled && p.X < 106)
+                    return PreviewTarget.Close;
+                return PreviewTarget.Open;
+            }
+            if (HomeCorner.Contains(p))
+                return PreviewTarget.Home;
+            if (CornerARect.Contains(p))
+                return PreviewTarget.CornerA;
+            if (CornerBRect.Contains(p))
+                return PreviewTarget.CornerB;
+            if (ArrowRect.Contains(p))
+                return PreviewTarget.Arrow;
+
+            var folder = s.Preview_ModeToggle;
+            if (folder && BackButton.Contains(p))
+                return PreviewTarget.Back;
+
+            for (var c = 0; c < Columns; c++)
+            for (var r = 0; r < Rows(folder); r++)
+            {
+                var centre = ItemRenderer.GridPosition(c, r, folder);
+                if (Math.Abs(p.X - centre.X) <= 26.5f && Math.Abs(p.Y - centre.Y) <= 26.5f)
+                {
+                    col = c;
+                    row = r;
+                    return PreviewTarget.Cell;
+                }
+            }
+            return PreviewTarget.None;
+        }
+
+        /// <summary>What the current settings place in a grid cell.</summary>
+        public static PreviewItem ItemAt(Settings s, int col, int row, bool folder)
+        {
+            if (folder)
+            {
+                if (s.Preview_Folder_FileEnable && s.Preview_Folder_FileX == col && s.Preview_Folder_FileY == row)
+                    return PreviewItem.File;
+                if (s.Preview_Folder_FolderEnable && s.Preview_Folder_FolderX == col && s.Preview_Folder_FolderY == row)
+                    return PreviewItem.Folder;
+                return PreviewItem.None;
+            }
+            if (s.Preview_Main_CartEnable && s.Preview_Main_CartX == col && s.Preview_Main_CartY == row)
+                return PreviewItem.Cart;
+            if (s.Preview_Main_FileEnable && s.Preview_Main_FileX == col && s.Preview_Main_FileY == row)
+                return PreviewItem.File;
+            if (s.Preview_Main_FolderEnable && s.Preview_Main_FolderX == col && s.Preview_Main_FolderY == row)
+                return PreviewItem.Folder;
+            return PreviewItem.None;
+        }
+    }
+
+    /// <summary>What clicking and pressing keys in the preview does, including the theme's sound effects.</summary>
+    public static class PreviewActions
+    {
+        /// <summary>Completes a click on <paramref name="target" /> (the pointer was released over it).</summary>
+        public static void Click(ThemeViewModel t, Settings s, PreviewInteraction ia, PreviewTarget target, int col, int row)
+        {
+            switch (target)
+            {
+                case PreviewTarget.Cell:
+                    ClickCell(t, s, col, row);
+                    break;
+                case PreviewTarget.Open:
+                    Open(t, s);
+                    break;
+                case PreviewTarget.Close:
+                case PreviewTarget.Back:
+                    Back(t, s);
+                    break;
+                case PreviewTarget.Arrow:
+                    NextPage(t, s, ia);
+                    break;
+            }
+        }
+
+        private static void ClickCell(ThemeViewModel t, Settings s, int col, int row)
+        {
+            var folder = s.Preview_ModeToggle;
+            var cx = folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX;
+            var cy = folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY;
+            if (cx == col && cy == row)
+            {
+                // Tapping what is already selected activates it, like pressing Open
+                Open(t, s);
+                return;
+            }
+            SetCursor(s, folder, col, row);
+            PreviewSounds.Play(t, CwavKind.Cursor);
+        }
+
+        /// <summary>The Open button: opens the selected folder or launches the selected title.</summary>
+        public static void Open(ThemeViewModel t, Settings s)
+        {
+            var folder = s.Preview_ModeToggle;
+            var cx = folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX;
+            var cy = folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY;
+            switch (PreviewHit.ItemAt(s, cx, cy, folder))
+            {
+                case PreviewItem.Folder:
+                    if (!folder)
+                    {
+                        s.Preview_ModeToggle = true;
+                        PreviewSounds.Play(t, CwavKind.Folder);
+                    }
+                    else
+                    {
+                        PreviewSounds.Play(t, CwavKind.Launch);
+                    }
+                    break;
+                case PreviewItem.Cart:
+                case PreviewItem.File:
+                    PreviewSounds.Play(t, CwavKind.Launch);
+                    break;
+            }
+        }
+
+        /// <summary>The Close button and the folder's back button.</summary>
+        public static void Back(ThemeViewModel t, Settings s)
+        {
+            if (s.Preview_ModeToggle)
+                s.Preview_ModeToggle = false;
+            PreviewSounds.Play(t, CwavKind.Close);
+        }
+
+        public static void NextPage(ThemeViewModel t, Settings s, PreviewInteraction ia)
+        {
+            // Manual paging takes over from the automatic animation
+            if (s.Preview_AnimationToggle)
+                s.Preview_AnimationToggle = false;
+            var frame = (ia.Page % 3 + 3) % 3;
+            ia.Page++;
+            PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
+        }
+
+        public static void SetCursor(Settings s, bool folder, int col, int row)
+        {
+            if (folder)
+            {
+                s.Preview_Folder_CursorX = col;
+                s.Preview_Folder_CursorY = row;
+            }
+            else
+            {
+                s.Preview_Main_CursorX = col;
+                s.Preview_Main_CursorY = row;
+            }
+        }
+
+        /// <summary>Arrow-key navigation of the cursor; returns true when it moved.</summary>
+        public static bool MoveCursor(ThemeViewModel t, Settings s, int dx, int dy)
+        {
+            var folder = s.Preview_ModeToggle;
+            var cx = folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX;
+            var cy = folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY;
+            var nx = Math.Max(0, Math.Min(PreviewHit.Columns - 1, cx + dx));
+            var ny = Math.Max(0, Math.Min(PreviewHit.Rows(folder) - 1, cy + dy));
+            if (nx == cx && ny == cy)
+                return false;
+            SetCursor(s, folder, nx, ny);
+            PreviewSounds.Play(t, CwavKind.Cursor);
+            return true;
+        }
+
+        public static void ToggleLid(ThemeViewModel t, PreviewInteraction ia)
+        {
+            ia.LidOpenTarget = !ia.LidOpenTarget;
+            if (ia.LidOpenTarget)
+                PreviewSounds.Play(t, CwavKind.OpenLid);
+        }
+    }
+}

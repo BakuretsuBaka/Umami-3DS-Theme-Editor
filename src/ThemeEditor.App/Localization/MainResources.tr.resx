@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Klasör</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>İmleci taşımak için bir simgeye tıklayın; klasör açmak veya başlatmak için tekrar tıklayın ya da Aç'a basın. Ok düğmesi sayfaları çevirir, Kapat veya Geri klasörden çıkar. Ok tuşları, Enter ve Esc de çalışır. Temanın ses efektlerini çalar.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Önizleme</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Kapak</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Konsol kapağını kapat veya aç (açarken kapak sesi çalınır)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Seçenekler</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Basılı</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Ses</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Önizlemeyi kullanırken temanın ses efektlerini çal</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Devre dışı</value>
@@ -272,6 +287,9 @@ Geçerli boyut: {1} bayt</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Çıkış</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Temayı ZIP olarak dışa aktar...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Yeni</value>
@@ -445,6 +463,12 @@ DSP-ADPCM kodeğini, monoyu, daha düşük bir örnekleme hızını veya daha k�
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Yeni bir sürüm mevcut:
 Daha fazla bilgi için Hakkında penceresine bakın</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>Tema ZIP'i kaydedildi (tema, müzik, simge ve önizleme).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Bu ZIP bir tema içermiyor (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>d.M (ddd)</value>

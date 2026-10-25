@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Dossier</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Cliquez sur une icône pour déplacer le curseur ; cliquez à nouveau, ou sur Ouvrir, pour ouvrir un dossier ou lancer l'élément. La flèche change de page, Fermer ou Retour quitte un dossier. Les flèches du clavier, Entrée et Échap fonctionnent aussi. Joue les effets sonores du thème.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Prévisualisation</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Capot</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Fermer ou ouvrir le capot de la console (joue l'effet sonore à l'ouverture)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Options</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Pressé</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Son</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Jouer les effets sonores du thème quand vous utilisez l'aperçu</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Désactivé</value>
@@ -272,6 +287,9 @@ Taille actuelle : {1} octets</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Quitter</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Exporter le thème en ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Nouveau</value>
@@ -445,6 +463,12 @@ Essayez le codec DSP-ADPCM, le mono, une fréquence d'échantillonnage plus bass
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Une nouvelle version est disponible :
 Vérifiez la fenêtre "A propos" pour plus d'informations</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>ZIP du thème enregistré (thème, musique, icône et aperçu).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Ce ZIP ne contient pas de thème (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>M/dd (ddd)</value>

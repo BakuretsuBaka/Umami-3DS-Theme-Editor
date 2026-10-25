@@ -374,10 +374,31 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Control_Preview_Hint".</summary>
+        public static string Control_Preview_Hint {
+            get {
+                return ResourceManager.GetString("Control_Preview_Hint", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Control_Preview_Label".</summary>
         public static string Control_Preview_Label {
             get {
                 return ResourceManager.GetString("Control_Preview_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Preview_Lid".</summary>
+        public static string Control_Preview_Lid {
+            get {
+                return ResourceManager.GetString("Control_Preview_Lid", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Preview_Lid_Tip".</summary>
+        public static string Control_Preview_Lid_Tip {
+            get {
+                return ResourceManager.GetString("Control_Preview_Lid_Tip", resourceCulture);
             }
         }
 
@@ -392,6 +413,20 @@ namespace ThemeEditor.App.Localization {
         public static string Control_Preview_Pressed {
             get {
                 return ResourceManager.GetString("Control_Preview_Pressed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Preview_Sound".</summary>
+        public static string Control_Preview_Sound {
+            get {
+                return ResourceManager.GetString("Control_Preview_Sound", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Preview_Sound_Tip".</summary>
+        public static string Control_Preview_Sound_Tip {
+            get {
+                return ResourceManager.GetString("Control_Preview_Sound_Tip", resourceCulture);
             }
         }
 
@@ -651,6 +686,13 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_File_Exit {
             get {
                 return ResourceManager.GetString("Menu_File_Exit", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_File_ExportZip".</summary>
+        public static string Menu_File_ExportZip {
+            get {
+                return ResourceManager.GetString("Menu_File_ExportZip", resourceCulture);
             }
         }
 
@@ -1036,6 +1078,20 @@ namespace ThemeEditor.App.Localization {
         public static string Message_UpdateAvailable {
             get {
                 return ResourceManager.GetString("Message_UpdateAvailable", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_ZipExported".</summary>
+        public static string Message_ZipExported {
+            get {
+                return ResourceManager.GetString("Message_ZipExported", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_ZipInvalid".</summary>
+        public static string Message_ZipInvalid {
+            get {
+                return ResourceManager.GetString("Message_ZipInvalid", resourceCulture);
             }
         }
 

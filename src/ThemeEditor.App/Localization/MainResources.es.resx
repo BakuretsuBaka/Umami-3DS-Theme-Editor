@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Carpeta</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Haz clic en un icono para mover el cursor; vuelve a hacer clic, o pulsa Abrir, para abrir una carpeta o iniciarlo. La flecha cambia de página; Cerrar o Atrás sale de una carpeta. También funcionan las flechas del teclado, Intro y Esc. Reproduce los efectos de sonido del tema.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Vista Previa</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Tapa</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Cerrar o abrir la tapa de la consola (al abrir suena el efecto de la tapa)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Opciones</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Pulsado</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Sonido</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Reproducir los efectos de sonido del tema al usar la vista previa</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Desactivado</value>
@@ -272,6 +287,9 @@ Tamaño actual: {1} bytes</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Salir</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Exportar tema como ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Nuevo</value>
@@ -445,6 +463,12 @@ Prueba el códec DSP-ADPCM, mono, una frecuencia de muestreo menor o una pista m
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Hay una actualización disponible:
 Verifica la Ventana "Acerca de" para mas información</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>ZIP del tema guardado (tema, música, icono y vista previa).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Este ZIP no contiene un tema (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>ddd, dd/MM</value>

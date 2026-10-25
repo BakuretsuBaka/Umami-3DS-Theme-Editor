@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Mapp</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Klicka på en ikon för att flytta markören; klicka igen, eller tryck Öppna, för att öppna en mapp eller starta den. Pilen bläddrar sidor, Stäng eller Tillbaka lämnar en mapp. Piltangenter, Enter och Esc fungerar också. Spelar temats ljudeffekter.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Förhandsvisning</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Stäng eller öppna konsolens lock (vid öppning spelas lockljudet)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Alternativ</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Nedtryckt</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Ljud</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Spela temats ljudeffekter när du använder förhandsvisningen</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Av</value>
@@ -272,6 +287,9 @@ Nuvarande storlek: {1} byte</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>A_vsluta</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Exportera tema som ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Nytt</value>
@@ -445,6 +463,12 @@ Prova codecen DSP-ADPCM, mono, lägre samplingsfrekvens eller ett kortare spår.
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>En ny version finns tillgänglig:
 Se fönstret Om för mer information</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>Tema-ZIP sparad (tema, musik, ikon och förhandsvisning).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Denna ZIP innehåller inget tema (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>d/M (ddd)</value>

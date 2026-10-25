@@ -34,8 +34,14 @@ All packages are self-contained – nothing else has to be installed.
 ## Features
 
 * **Image palette** – pick colours from the (up to) 20 most used colours of the top/bottom background images
-* **Animated live preview** – top/bottom screens, folder view, pressed state, 3D folder; animation is toggleable
+* **Interactive live preview** – click an icon to move the cursor, click it again (or press *Open*) to open a folder or launch it, use the arrow button to flip
+  wallpaper pages, *Close*/back to leave a folder. Buttons show their pressed state while you hold them, the cursor slides and folders open with a short
+  transition, and the **theme's own sound effects** play (cursor, launch, folder, close, page flips, lid). Arrow keys, Enter and Esc work too, and there is a
+  *Lid* button. Animated wallpapers are toggleable.
+* **Theme ZIP** – *File → Export Theme ZIP* writes a Theme Plaza / Themezer ready package (theme, music, icon, a fresh preview and name);
+  open or drop such a ZIP to unpack and load it
 * **Exports preview.png** when saving
+* Remembers the window size and the folder of the last file dialog
 * **Image dithering / edge bleed** for textures, **SMDH** (`info.smdh`) generation
 * All top/bottom render modes, frame types, folder & icon colours and textures
 * **Theme sender** – push the theme to CHMM2 over the network

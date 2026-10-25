@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>フォルダ</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>アイコンをクリックするとカーソルが移動します。もう一度クリックするか「開く」を押すと、フォルダを開く／起動します。矢印ボタンでページ切り替え、「閉じる」や戻るボタンでフォルダを出ます。矢印キー、Enter、Esc も使えます。テーマの効果音を再生します。</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>プレビュー</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>フタ</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>本体のフタを閉じる／開く（開くときにフタの効果音が鳴ります）</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>オプション</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>押下</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>サウンド</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>プレビュー操作時にテーマの効果音を再生します</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>無効</value>
@@ -272,6 +287,9 @@
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>終了(_X)</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>テーマをZIPで書き出し...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>新規(_N)</value>
@@ -445,6 +463,12 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>新しいバージョンがあります:
 詳細はバージョン情報をご覧ください</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>テーマZIPを保存しました（テーマ・音楽・アイコン・プレビュー）。</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>このZIPにはテーマ（body_LZ.bin）が含まれていません。</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>M/dd (ddd)</value>

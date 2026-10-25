@@ -148,14 +148,29 @@
   <data name="Control_Preview_Folder" xml:space="preserve">
     <value>Folder</value>
   </data>
+  <data name="Control_Preview_Hint" xml:space="preserve">
+    <value>Kliknij ikonę, aby przesunąć kursor; kliknij ponownie lub naciśnij Otwórz, aby otworzyć folder lub uruchomić element. Strzałka przewraca strony, Zamknij lub Wstecz wychodzi z folderu. Działają też klawisze strzałek, Enter i Esc. Odtwarza efekty dźwiękowe motywu.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Podgląd</value>
+  </data>
+  <data name="Control_Preview_Lid" xml:space="preserve">
+    <value>Klapka</value>
+  </data>
+  <data name="Control_Preview_Lid_Tip" xml:space="preserve">
+    <value>Zamknij lub otwórz klapkę konsoli (przy otwarciu odtwarzany jest dźwięk klapki)</value>
   </data>
   <data name="Control_Preview_Options" xml:space="preserve">
     <value>Opcje</value>
   </data>
   <data name="Control_Preview_Pressed" xml:space="preserve">
     <value>Wciśnięty</value>
+  </data>
+  <data name="Control_Preview_Sound" xml:space="preserve">
+    <value>Dźwięk</value>
+  </data>
+  <data name="Control_Preview_Sound_Tip" xml:space="preserve">
+    <value>Odtwarzaj efekty dźwiękowe motywu podczas korzystania z podglądu</value>
   </data>
   <data name="Control_Toggle_False" xml:space="preserve">
     <value>Wyłączone</value>
@@ -272,6 +287,9 @@ Aktualny rozmiar: {1} B</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>Za_kończ</value>
+  </data>
+  <data name="Menu_File_ExportZip" xml:space="preserve">
+    <value>Eksportuj motyw jako ZIP...</value>
   </data>
   <data name="Menu_File_New" xml:space="preserve">
     <value>_Nowy</value>
@@ -445,6 +463,12 @@ Spróbuj kodeka DSP-ADPCM, trybu mono, niższej częstotliwości próbkowania lu
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Dostępna jest nowa wersja:
 Więcej informacji w oknie „O programie”</value>
+  </data>
+  <data name="Message_ZipExported" xml:space="preserve">
+    <value>Zapisano ZIP motywu (motyw, muzyka, ikona i podgląd).</value>
+  </data>
+  <data name="Message_ZipInvalid" xml:space="preserve">
+    <value>Ten ZIP nie zawiera motywu (body_LZ.bin).</value>
   </data>
   <data name="Preview_DateFormat" xml:space="preserve">
     <value>d.M (ddd)</value>

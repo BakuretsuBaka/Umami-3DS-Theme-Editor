@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -30,15 +31,19 @@ namespace ThemeEditor.App.Controls
         public static readonly StyledProperty<bool> AnimateProperty =
             AvaloniaProperty.Register<PreviewSurface, bool>(nameof(Animate));
 
+        public static readonly StyledProperty<PreviewInteraction> InteractionProperty =
+            AvaloniaProperty.Register<PreviewSurface, PreviewInteraction>(nameof(Interaction));
+
         private readonly DispatcherTimer _clockTimer;
         private readonly DispatcherTimer _frameTimer;
+        private readonly DispatcherTimer _busyTimer;
 
         private WriteableBitmap _bitmap;
         private bool _attached;
 
         static PreviewSurface()
         {
-            AffectsRender<PreviewSurface>(ThemeProperty, AnimateProperty);
+            AffectsRender<PreviewSurface>(ThemeProperty, AnimateProperty, InteractionProperty);
             AnimateProperty.Changed.AddClassHandler<PreviewSurface>((s, e) => s.UpdateTimers());
         }
 
@@ -46,6 +51,16 @@ namespace ThemeEditor.App.Controls
         {
             _frameTimer = new DispatcherTimer(DispatcherPriority.Render) { Interval = TimeSpan.FromMilliseconds(16) };
             _frameTimer.Tick += (s, e) => InvalidateVisual();
+            // Runs only while the interactive state is still moving (cursor slide, folder, lid, paging)
+            _busyTimer = new DispatcherTimer(DispatcherPriority.Render) { Interval = TimeSpan.FromMilliseconds(16) };
+            _busyTimer.Tick += (s, e) =>
+            {
+                // Advance the animation here too, so it always finishes even if no frame gets rendered in between
+                Interaction?.Tick(PreviewClock.Seconds, Settings.Default, Theme);
+                InvalidateVisual();
+                if (!(Interaction?.Busy ?? false))
+                    _busyTimer.Stop();
+            };
             _clockTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             _clockTimer.Tick += (s, e) => InvalidateVisual();
             ClipToBounds = true;
@@ -61,6 +76,13 @@ namespace ThemeEditor.App.Controls
         {
             get { return GetValue(AnimateProperty); }
             set { SetValue(AnimateProperty, value); }
+        }
+
+        /// <summary>Interactive state shared by both screens; null keeps the preview static.</summary>
+        public PreviewInteraction Interaction
+        {
+            get { return GetValue(InteractionProperty); }
+            set { SetValue(InteractionProperty, value); }
         }
 
         protected abstract Size NaturalSize { get; }
@@ -90,6 +112,7 @@ namespace ThemeEditor.App.Controls
             Settings.Default.PropertyChanged -= OnSettingChanged;
             _frameTimer.Stop();
             _clockTimer.Stop();
+            _busyTimer.Stop();
         }
 
         private void UpdateTimers()
@@ -141,7 +164,14 @@ namespace ThemeEditor.App.Controls
                 var canvas = surface.Canvas;
                 canvas.Clear(SKColors.Transparent);
                 canvas.Scale((float) scale);
+                Interaction?.Tick(PreviewClock.Seconds, Settings.Default, Theme);
                 DrawContent(canvas, Theme, Animate, PreviewClock.Seconds);
+
+                // Closed lid: both screens go dark
+                var ia = Interaction;
+                if (ia != null && ia.Lid < 0.999)
+                    using (var shade = new SKPaint { Color = new SKColor(0, 0, 0, (byte) Math.Round(255 * (1 - ia.Lid))) })
+                        canvas.DrawRect(0, 0, (float) size.Width, (float) size.Height, shade);
 
                 if (_bitmap == null || _bitmap.PixelSize.Width != pw || _bitmap.PixelSize.Height != ph)
                 {
@@ -164,6 +194,10 @@ namespace ThemeEditor.App.Controls
                 }
             }
             context.DrawImage(_bitmap, new Rect(0, 0, pw, ph), new Rect(0, 0, size.Width, size.Height));
+
+            // Keep drawing frames while the cursor, folder, lid or wallpaper are still moving
+            if (Interaction != null && Interaction.Busy && _attached && !_busyTimer.IsEnabled)
+                _busyTimer.Start();
         }
 
         /// <summary>Renders the preview at 1x into a standalone bitmap (used for exports and tests).</summary>
@@ -193,11 +227,105 @@ namespace ThemeEditor.App.Controls
 
     public sealed class BottomScreenPreview : PreviewSurface
     {
+        private static readonly Cursor Hand = new Cursor(StandardCursorType.Hand);
+
+        public BottomScreenPreview()
+        {
+            Focusable = true;
+        }
+
         protected override Size NaturalSize => new Size(BottomRenderer.Width, BottomRenderer.Height);
 
         protected override void DrawContent(SKCanvas canvas, ThemeViewModel theme, bool animate, double time)
         {
-            BottomRenderer.Draw(canvas, theme, animate, time);
+            BottomRenderer.Draw(canvas, theme, animate, time, Interaction);
+        }
+
+        private PreviewTarget HitTest(Point p, out int col, out int row)
+        {
+            return PreviewHit.Hit(Settings.Default, (float) p.X, (float) p.Y, out col, out row);
+        }
+
+        protected override void OnPointerPressed(PointerPressedEventArgs e)
+        {
+            base.OnPointerPressed(e);
+            var ia = Interaction;
+            var point = e.GetCurrentPoint(this);
+            if (ia == null || Theme == null || !point.Properties.IsLeftButtonPressed)
+                return;
+            Focus();
+            int col, row;
+            var target = HitTest(point.Position, out col, out row);
+            ia.Press(target, col, row);
+            if (target != PreviewTarget.None)
+                e.Pointer.Capture(this);
+            e.Handled = true;
+            InvalidateVisual();
+        }
+
+        protected override void OnPointerMoved(PointerEventArgs e)
+        {
+            base.OnPointerMoved(e);
+            var ia = Interaction;
+            if (ia == null)
+                return;
+            int col, row;
+            var target = HitTest(e.GetPosition(this), out col, out row);
+            Cursor = target != PreviewTarget.None ? Hand : null;
+            if (ia.Pressed != PreviewTarget.None)
+            {
+                ia.SetOver(target == ia.Pressed && col == ia.PressedCol && row == ia.PressedRow);
+                InvalidateVisual();
+            }
+        }
+
+        protected override void OnPointerReleased(PointerReleasedEventArgs e)
+        {
+            base.OnPointerReleased(e);
+            var ia = Interaction;
+            if (ia == null || ia.Pressed == PreviewTarget.None)
+                return;
+            var clicked = ia.PressedActive;
+            var target = ia.Pressed;
+            int col = ia.PressedCol, row = ia.PressedRow;
+            ia.Release();
+            e.Pointer.Capture(null);
+            if (clicked && Theme != null)
+                PreviewActions.Click(Theme, Settings.Default, ia, target, col, row);
+            InvalidateVisual();
+        }
+
+        protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e)
+        {
+            base.OnPointerCaptureLost(e);
+            Interaction?.Release();
+            InvalidateVisual();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (Interaction == null || Theme == null)
+                return;
+            var s = Settings.Default;
+            switch (e.Key)
+            {
+                case Key.Left: e.Handled = true; PreviewActions.MoveCursor(Theme, s, -1, 0); break;
+                case Key.Right: e.Handled = true; PreviewActions.MoveCursor(Theme, s, 1, 0); break;
+                case Key.Up: e.Handled = true; PreviewActions.MoveCursor(Theme, s, 0, 1); break;
+                case Key.Down: e.Handled = true; PreviewActions.MoveCursor(Theme, s, 0, -1); break;
+                case Key.Enter:
+                case Key.Space: e.Handled = true; PreviewActions.Open(Theme, s); break;
+                case Key.Escape:
+                case Key.Back:
+                    e.Handled = true;
+                    if (s.Preview_ModeToggle)
+                        PreviewActions.Back(Theme, s);
+                    break;
+                case Key.PageDown:
+                case Key.PageUp: e.Handled = true; PreviewActions.NextPage(Theme, s, Interaction); break;
+            }
+            InvalidateVisual();
         }
     }
 }

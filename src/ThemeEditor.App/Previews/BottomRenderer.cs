@@ -35,24 +35,26 @@ namespace ThemeEditor.App.Previews
             }
         }
 
-        public static void Draw(SKCanvas c, ThemeViewModel t, bool animate, double time)
+        /// <param name="ia">Interactive state (pressed buttons, animated cursor/folder/paging); null draws the static preview.</param>
+        public static void Draw(SKCanvas c, ThemeViewModel t, bool animate, double time, PreviewInteraction ia = null)
         {
             var s = Settings.Default;
             c.Save();
             c.ClipRect(new SKRect(0, 0, Width, Height));
 
-            DrawWallpaper(c, t, animate, time);
-            DrawMainItems(c, t, s, animate, time);
-            if (s.Preview_ModeToggle)
-                DrawFolderView(c, t, s, animate, time);
-            DrawOverlays(c, t, s);
+            var folderShown = ia != null ? ia.FolderT > 0.001 : s.Preview_ModeToggle;
+            DrawWallpaper(c, t, animate, time, ia);
+            DrawMainItems(c, t, s, animate, time, ia);
+            if (folderShown)
+                DrawFolderView(c, t, s, animate, time, ia);
+            DrawOverlays(c, t, s, ia);
 
             c.Restore();
         }
 
         // ================================================================ Wallpaper
 
-        private static void DrawWallpaper(SKCanvas c, ThemeViewModel t, bool animate, double time)
+        private static void DrawWallpaper(SKCanvas c, ThemeViewModel t, bool animate, double time, PreviewInteraction ia)
         {
             if (t == null)
             {
@@ -66,7 +68,7 @@ namespace ThemeEditor.App.Previews
                     DrawSolidWallpaper(c, t, t.Flags.BottomBackgroundInnerColor, t.Flags.BottomBackgroundOuterColor);
                     break;
                 case BottomDrawType.Texture:
-                    DrawTextureWallpaper(c, t, animate, time);
+                    DrawTextureWallpaper(c, t, animate, time, ia);
                     break;
                 default:
                     DrawSolidWallpaper(c, t, false, false);
@@ -166,7 +168,7 @@ namespace ThemeEditor.App.Previews
             }
         }
 
-        private static void DrawTextureWallpaper(SKCanvas c, ThemeViewModel t, bool animate, double time)
+        private static void DrawTextureWallpaper(SKCanvas c, ThemeViewModel t, bool animate, double time, PreviewInteraction ia)
         {
             var tex = t.Textures.Bottom.Pixels;
             if (tex != null)
@@ -177,7 +179,7 @@ namespace ThemeEditor.App.Previews
                 if (frame == BottomFrameType.SlowScroll || frame == BottomFrameType.FastScroll)
                 {
                     // 802 = ...? Eyeballed it until it synced
-                    var pos = animate ? (Math.Sin(time / 3) + 1) * 802 : 0;
+                    var pos = animate ? (Math.Sin(time / 3) + 1) * 802 : ia != null ? (ia.ScrollX % 1008 + 1008) % 1008 : 0;
                     if (pos < 1008)
                         c.DrawBitmap(tex.Sk, (float) -pos, 0);
                     if (pos + Width > 1008)
@@ -185,14 +187,22 @@ namespace ThemeEditor.App.Previews
                 }
                 else if (frame == BottomFrameType.PageScroll)
                 {
-                    var pos = animate ? (int) Math.Floor(time % 3) : 0;
-                    c.DrawBitmap(tex.Sk, -pos * Width, 0);
+                    var pos = animate ? Math.Floor(time % 3) * Width : ia != null ? ia.ScrollX : 0;
+                    c.DrawBitmap(tex.Sk, (float) -pos, 0);
                 }
                 else if (frame == BottomFrameType.BounceScroll)
                 {
-                    var pos = animate ? (int) Math.Floor(time % 4) : 0;
-                    pos = pos == 3 ? 1 : pos;
-                    c.DrawBitmap(tex.Sk, -pos * Width, 0);
+                    double pos;
+                    if (animate)
+                    {
+                        var step = (int) Math.Floor(time % 4);
+                        pos = (step == 3 ? 1 : step) * Width;
+                    }
+                    else
+                    {
+                        pos = ia != null ? ia.ScrollX : 0;
+                    }
+                    c.DrawBitmap(tex.Sk, (float) -pos, 0);
                 }
                 else
                 {
@@ -213,17 +223,32 @@ namespace ThemeEditor.App.Previews
 
         // ================================================================ Items (main view)
 
-        private static void DrawMainItems(SKCanvas c, ThemeViewModel t, Settings s, bool animate, double time)
+        private static void DrawMainItems(SKCanvas c, ThemeViewModel t, Settings s, bool animate, double time, PreviewInteraction ia)
         {
             if (s.Preview_Main_CartEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Main_CartX, s.Preview_Main_CartY, false), ItemRenderer.DrawNoCart);
+                AtCell(c, s.Preview_Main_CartX, s.Preview_Main_CartY, false, ia, ItemRenderer.DrawNoCart);
             if (s.Preview_Main_FileEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Main_FileX, s.Preview_Main_FileY, false), cv => ItemRenderer.DrawFile(cv, t));
+                AtCell(c, s.Preview_Main_FileX, s.Preview_Main_FileY, false, ia, cv => ItemRenderer.DrawFile(cv, t));
             if (s.Preview_Main_FolderEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Main_FolderX, s.Preview_Main_FolderY, false), cv => ItemRenderer.DrawFolder(cv, t, false));
+                AtCell(c, s.Preview_Main_FolderX, s.Preview_Main_FolderY, false, ia, cv => ItemRenderer.DrawFolder(cv, t, false));
             // Cursor is hidden while the folder preview is displayed
             if (!s.Preview_ModeToggle && s.Preview_Main_CursorEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false), cv => ItemRenderer.DrawCursor(cv, t, animate, time));
+            {
+                var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false);
+                At(c, pos, cv => ItemRenderer.DrawCursor(cv, t, animate, time));
+            }
+        }
+
+        /// <summary>Draws an item in its grid cell, slightly shrunk while the pointer holds it down.</summary>
+        private static void AtCell(SKCanvas c, int col, int row, bool folder, PreviewInteraction ia, Action<SKCanvas> draw)
+        {
+            var p = ItemRenderer.GridPosition(col, row, folder);
+            c.Save();
+            c.Translate(p.X, p.Y);
+            if (ia != null && ia.IsCellPressed(col, row))
+                c.Scale(0.93f);
+            draw(c);
+            c.Restore();
         }
 
         private static void At(SKCanvas c, SKPoint p, Action<SKCanvas> draw)
@@ -236,9 +261,17 @@ namespace ThemeEditor.App.Previews
 
         // ================================================================ Folder view
 
-        private static void DrawFolderView(SKCanvas c, ThemeViewModel t, Settings s, bool animate, double time)
+        private static void DrawFolderView(SKCanvas c, ThemeViewModel t, Settings s, bool animate, double time, PreviewInteraction ia)
         {
-            DrawBackButton(c, t, s);
+            // While the folder opens or closes it fades in/out and rises a little
+            var transition = ia != null && ia.FolderT < 0.999;
+            if (transition)
+            {
+                using (var layer = new SKPaint { Color = SKColors.White.WithAlpha((byte) Math.Round(255 * Math.Max(0, ia.FolderT))) })
+                    c.SaveLayer(layer);
+                c.Translate(0, (float) ((1 - ia.FolderT) * 14));
+            }
+            DrawBackButton(c, t, s, ia);
 
             var custom = t != null && t.Flags.FolderBackgroundColor;
             var innerMain = new SKColor(223, 220, 215);
@@ -256,16 +289,21 @@ namespace ThemeEditor.App.Previews
             DrawSlots(c, 86, 2, innerEdge, innerGlow, 140);
 
             if (s.Preview_Folder_FileEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Folder_FileX, s.Preview_Folder_FileY, true), cv => ItemRenderer.DrawFile(cv, t));
+                AtCell(c, s.Preview_Folder_FileX, s.Preview_Folder_FileY, true, ia, cv => ItemRenderer.DrawFile(cv, t));
             if (s.Preview_Folder_FolderEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Folder_FolderX, s.Preview_Folder_FolderY, true), cv => ItemRenderer.DrawFolder(cv, t, true));
+                AtCell(c, s.Preview_Folder_FolderX, s.Preview_Folder_FolderY, true, ia, cv => ItemRenderer.DrawFolder(cv, t, true));
             if (s.Preview_Folder_CursorEnable)
-                At(c, ItemRenderer.GridPosition(s.Preview_Folder_CursorX, s.Preview_Folder_CursorY, true), cv => ItemRenderer.DrawCursor(cv, t, animate, time));
+            {
+                var pos = ia != null && s.Preview_ModeToggle ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Folder_CursorX, s.Preview_Folder_CursorY, true);
+                At(c, pos, cv => ItemRenderer.DrawCursor(cv, t, animate, time));
+            }
+            if (transition)
+                c.Restore();
         }
 
-        private static void DrawBackButton(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawBackButton(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
-            var pressed = s.Preview_PressedToggle;
+            var pressed = s.Preview_PressedToggle || (ia != null && ia.IsPressed(PreviewTarget.Back));
             var arrowFlag = t != null && t.Flags.FolderArrowColor;
             var both = t != null && t.Flags.OpenCloseColor && pressed;
 
@@ -348,11 +386,16 @@ namespace ThemeEditor.App.Previews
 
         // ================================================================ Overlays
 
-        private static void DrawOverlays(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawOverlays(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
-            DrawOpenClose(c, t, s);
-            DrawCorners(c, t, s);
-            DrawArrowButton(c, t, s);
+            DrawOpenClose(c, t, s, ia);
+            DrawCorners(c, t, s, ia);
+            DrawArrowButton(c, t, s, ia);
+        }
+
+        private static bool Held(PreviewInteraction ia, PreviewTarget target)
+        {
+            return ia != null && ia.IsPressed(target);
         }
 
         private static SKPath OpenGeometry(bool closeEnabled)
@@ -373,25 +416,27 @@ namespace ThemeEditor.App.Previews
             return SkiaHelpers.Combine(main, tab, SKPathOp.Union);
         }
 
-        private static void DrawOpenClose(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawOpenClose(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
             var closeEnabled = s.Preview_CloseToggle;
-            var pressed = s.Preview_PressedToggle;
             var flag = t != null && t.Flags.OpenCloseColor;
-            var both = flag && pressed;
+            var pressedOpen = s.Preview_PressedToggle || Held(ia, PreviewTarget.Open);
+            var pressedClose = s.Preview_PressedToggle || Held(ia, PreviewTarget.Close);
+            var bothOpen = flag && pressedOpen;
+            var bothClose = flag && pressedClose;
 
             using (var open = OpenGeometry(closeEnabled))
             {
                 c.Save();
                 c.Translate(106, 240);
-                DrawButton(c, open, t, pressed, flag, both, false);
+                DrawButton(c, open, t, pressedOpen, flag, bothOpen, false);
                 c.Restore();
             }
             using (var close = CloseGeometry(closeEnabled))
             {
                 c.Save();
                 c.Translate(0, 240);
-                DrawButton(c, close, t, pressed, flag, both, true);
+                DrawButton(c, close, t, pressedClose, flag, bothClose, true);
                 c.Restore();
             }
 
@@ -400,16 +445,15 @@ namespace ThemeEditor.App.Previews
             c.Translate(0, 240);
             const float labelSize = 14;
             var face = PreviewFonts.Bold;
-            var lineHeight = PreviewText.LineHeight(face, labelSize);
             if (closeEnabled)
             {
                 // Close button: "Umami"
-                DrawLabel(c, t, "Umami", 50, 60, face, labelSize, pressed, flag, both, true);
-                DrawLabel(c, t, "3DS Theme Editor", 111, -1, face, labelSize, pressed, flag, both, false);
+                DrawLabel(c, t, "Umami", 50, 60, face, labelSize, pressedClose, flag, bothClose, true);
+                DrawLabel(c, t, "3DS Theme Editor", 111, -1, face, labelSize, pressedOpen, flag, bothOpen, false);
             }
             else
             {
-                DrawLabel(c, t, "Umami 3DS Theme Editor", 0, Width, face, labelSize, pressed, flag, both, false);
+                DrawLabel(c, t, "Umami 3DS Theme Editor", 0, Width, face, labelSize, pressedOpen, flag, bothOpen, false);
             }
             c.Restore();
         }
@@ -516,7 +560,7 @@ namespace ThemeEditor.App.Previews
 
         // ---------------------------------------------------------------- Corner buttons
 
-        private static void DrawCorners(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawCorners(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
             var flag = t != null && t.Flags.BottomCornerButtonColor;
             var pressed = s.Preview_PressedToggle;
@@ -569,9 +613,9 @@ namespace ThemeEditor.App.Previews
                            "S 27 13 27 15 L 25 17 C 24 18 20 18 19 19 L 17 21 Q 15 21 15 19 Z"))
                     home.AddPath(hp);
 
-                DrawIcon(c, rightGlow, 271, 4, larger, 275, 10, t, flag, pressed);
-                DrawIcon(c, rightGlow, 297, 4, smaller, 301, 10, t, flag, pressed);
-                DrawIcon(c, leftGlow, 3, 3, home, 13, 5, t, flag, pressed);
+                DrawIcon(c, rightGlow, 271, 4, larger, 275, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerA));
+                DrawIcon(c, rightGlow, 297, 4, smaller, 301, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerB));
+                DrawIcon(c, leftGlow, 3, 3, home, 13, 5, t, flag, pressed || Held(ia, PreviewTarget.Home));
             }
 
             var strip = IconStrip;
@@ -645,12 +689,12 @@ namespace ThemeEditor.App.Previews
 
         // ---------------------------------------------------------------- Right arrow button
 
-        private static void DrawArrowButton(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawArrowButton(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
             var flag = t != null && t.Flags.ArrowButtonColor;
             var arrowFlag = t != null && t.Flags.ArrowColor;
-            var pressed = s.Preview_PressedToggle;
-            var bothOpen = t != null && t.Flags.OpenCloseColor && pressed;
+            var pressed = s.Preview_PressedToggle || Held(ia, PreviewTarget.Arrow);
+            var bothOpen = t != null && t.Flags.OpenCloseColor && s.Preview_PressedToggle || arrowFlag && Held(ia, PreviewTarget.Arrow);
 
             c.Save();
             c.Translate(pressed ? 322 : 320, 123);

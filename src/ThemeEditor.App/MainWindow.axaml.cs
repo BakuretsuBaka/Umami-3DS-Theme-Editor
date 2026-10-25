@@ -41,6 +41,7 @@ namespace ThemeEditor.App
         public ICommand CWavManagerCommand { get; }
         public ICommand ExportPreviewCommand { get; }
         public ICommand PreviewOptionsCommand { get; }
+        public ICommand ToggleLidCommand { get; }
 
         public ObservableCollection<string> RecentsList { get; } = new ObservableCollection<string>();
 
@@ -90,15 +91,18 @@ namespace ThemeEditor.App
         public MainWindow()
         {
             InitializeComponent();
+            RestoreWindowState();
 
             AboutCommand = new RelayCommand(AboutCommand_Execute);
             CWavManagerCommand = new RelayCommand(CWavManager_Execute, CanExecute_ViewModelLoaded);
             ExportPreviewCommand = new RelayCommand<PreviewKind>(ExportPreview_Execute, k => CanExecute_ViewModelLoaded());
             PreviewOptionsCommand = new RelayCommand(PreviewOptionsCommand_Execute);
+            ToggleLidCommand = new RelayCommand(() => PreviewActions.ToggleLid(ViewModel, PreviewInteraction.Shared));
 
             SetupThemeCommands();
             SetupImageCommands();
             SetupBgmCommands();
+            SetupArchive();
 
             DataContext = this;
             BuildMenus();
@@ -134,8 +138,27 @@ namespace ThemeEditor.App
             }
         }
 
+        private void RestoreWindowState()
+        {
+            var st = Settings.Default;
+            if (st.Window_Width >= MinWidth && st.Window_Height >= MinHeight)
+            {
+                Width = st.Window_Width;
+                Height = st.Window_Height;
+            }
+            if (st.Window_Maximized)
+                WindowState = WindowState.Maximized;
+        }
+
         private void MainWindow_OnClosing(object sender, WindowClosingEventArgs e)
         {
+            var st = Settings.Default;
+            st.Window_Maximized = WindowState == WindowState.Maximized;
+            if (WindowState == WindowState.Normal && Bounds.Width >= MinWidth && Bounds.Height >= MinHeight)
+            {
+                st.Window_Width = Bounds.Width;
+                st.Window_Height = Bounds.Height;
+            }
             Settings.Default.MRU_List = RecentsList.ToArray();
             Settings.Default.Save();
             AudioPlayer.Instance.ClearAudioData();
