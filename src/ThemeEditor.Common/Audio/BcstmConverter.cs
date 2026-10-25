@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - BcstmConverter.cs
 // --------------------------------------------------
 
@@ -214,7 +214,8 @@ namespace ThemeEditor.Common.Audio
                 // GC-ADPCM frames are 14 samples; keep loop points aligned so no encoder drift occurs.
                 LoopPointAlignment = options.Codec == BcstmCodec.DspAdpcm ? 14 : 1
             };
-            return new BCFstmWriter(NwTarget.Ctr).GetFile(outAudio, config);
+            // The HOME menu only plays the compact 2.0 layout, not the 2.1 one VGAudio writes
+            return BcstmCompat.Normalize(new BCFstmWriter(NwTarget.Ctr).GetFile(outAudio, config));
         }
 
         /// <summary>Mixes down and/or resamples audio (used for small sound effects).</summary>
