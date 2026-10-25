@@ -133,14 +133,18 @@
         <ThemeVariantScope Grid.Column="1" RequestedThemeVariant="Dark">
         <Grid
             x:Name="PreviewPanel"
-            RowDefinitions="56,240,8,240,*">
-            <Grid.Background>
-                <ImageBrush
-                    Source="avares://UmamiThemeEditor/Resources/BLACK_NOISE.png"
-                    TileMode="Tile"
-                    Stretch="None"
-                    DestinationRect="0,0,48,48" />
-            </Grid.Background>
+            RowDefinitions="56,240,8,240,*"
+            Background="#202020">
+            <!-- The noise texture is translucent: it needs the solid dark base above, or it turns into black/white checks on a light window -->
+            <Border Grid.RowSpan="5" IsHitTestVisible="False">
+                <Border.Background>
+                    <ImageBrush
+                        Source="avares://UmamiThemeEditor/Resources/BLACK_NOISE.png"
+                        TileMode="Tile"
+                        Stretch="None"
+                        DestinationRect="0,0,48,48" />
+                </Border.Background>
+            </Border>
 
             <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="DropTop" Classes="drop" Tag="Top">

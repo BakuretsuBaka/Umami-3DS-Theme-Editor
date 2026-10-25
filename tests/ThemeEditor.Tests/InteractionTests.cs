@@ -451,6 +451,26 @@ namespace ThemeEditor.Tests
             }
         }
 
+        [AvaloniaTheory]
+        [InlineData("Light")]
+        [InlineData("Dark")]
+        public void WindowRendersInBothThemeVariants(string variant)
+        {
+            var dir = Environment.GetEnvironmentVariable("UMAMI_SHOT_DIR");
+            Avalonia.Application.Current.RequestedThemeVariant = variant == "Light" ? Avalonia.Styling.ThemeVariant.Light : Avalonia.Styling.ThemeVariant.Dark;
+            var win = new MainWindow();
+            win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            for (var i = 0; i < 100 && win.ViewModel == null; i++) { Avalonia.Threading.Dispatcher.UIThread.RunJobs(); System.Threading.Thread.Sleep(20); }
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+            var frame = win.CaptureRenderedFrame();
+            Assert.NotNull(frame);
+            if (!string.IsNullOrEmpty(dir)) { Directory.CreateDirectory(dir); frame.Save(Path.Combine(dir, "variant_" + variant + ".png")); }
+            win.Close();
+            Avalonia.Application.Current.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
+        }
+
         private static ThemeEditor.App.Themes.ThemeViewModel NewTheme()
         {
             var win = new MainWindow();
