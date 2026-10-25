@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - TopRenderer.cs
 // --------------------------------------------------
 
@@ -33,6 +33,8 @@ namespace ThemeEditor.App.Previews
             DrawBackground(c, t, animate, time);
             DrawSystemBar(c);
             DrawBottomBar(c, t);
+            // The screen-edge shading lies over everything, bars included
+            DrawSideShade(c);
 
             if (Settings.Default.Preview_ModeToggle)
                 DrawFolder(c, t, animate, time);
@@ -47,7 +49,6 @@ namespace ThemeEditor.App.Previews
             if (t == null)
             {
                 SkiaHelpers.FillPath(c, SkiaHelpers.RoundRect(0, 0, Width, Height), DefaultBackground);
-                DrawSideShade(c);
                 return;
             }
 
@@ -108,7 +109,6 @@ namespace ThemeEditor.App.Previews
                     c.DrawBitmap(tex.Sk, 0, 0);
                 }
             }
-            DrawSideShade(c);
         }
 
         private static void DrawSideShade(SKCanvas c)
