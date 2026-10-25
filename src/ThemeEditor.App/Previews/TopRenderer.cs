@@ -276,7 +276,7 @@ namespace ThemeEditor.App.Previews
 
             // Right camera
             c.Save();
-            c.Translate(412 - 80 - 16.25f, 5);
+            c.Translate(328, 5);   // camera, then L + R with even gaps
             using (var body = SkiaHelpers.Combine(SkiaHelpers.RoundRect(0, 2, 16, 12, 1.5f, 1.5f),
                        SkiaHelpers.RoundRect(4, 0, 8, 4, 3, 3), SKPathOp.Union))
             using (var lens = SkiaHelpers.Ellipse(8, 8, 3, 3))
@@ -290,7 +290,7 @@ namespace ThemeEditor.App.Previews
 
             // L
             c.Save();
-            c.Translate(412 - 60 - 16.75f, 5);
+            c.Translate(349, 5);
             using (var shape = SkiaHelpers.Parse("M 0 13 Q 2 0 3 0 L 16 0 Q 15 2 13 13 Z"))
                 SkiaHelpers.StrokePath(c, shape, fg, 1.5f);
             CornerText(c, "L", 4, -1, fg);
@@ -298,15 +298,16 @@ namespace ThemeEditor.App.Previews
 
             // R
             c.Save();
-            c.Translate(412 - 32 - 16.75f, 5);
+            c.Translate(377, 5);
             using (var shape = SkiaHelpers.Parse("M 16 13 Q 14 0 13 0 L 0 0 Q 1 2 3 13 Z"))
                 SkiaHelpers.StrokePath(c, shape, fg, 1.5f);
             CornerText(c, "R", 5, -1, fg);
             c.Restore();
 
             // +
+            // between L and R: L ends at 365, R starts at 377
             var plusW = PreviewText.Measure("+", PreviewFonts.Mono, 12);
-            CornerText(c, "+", 412 - 35 - plusW, 4, fg);
+            CornerText(c, "+", 371 - plusW / 2, 4, fg);
 
             c.Restore();
         }
