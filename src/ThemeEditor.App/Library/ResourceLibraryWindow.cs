@@ -41,6 +41,10 @@ namespace ThemeEditor.App.Library
         private readonly ResourceLibrary _lib;
         private readonly ILibraryTarget _target;
         private readonly AudioPlayer _player = new AudioPlayer { Loop = false };
+        private LibraryItem _previewItem;
+
+        /// <summary>The music item whose audio is loaded in the preview player (null when none).</summary>
+        internal LibraryItem PreviewTrack => _previewItem;
         private readonly RadioButton[] _tabs = new RadioButton[4];
         private readonly TextBox _search = new TextBox { Watermark = MainResources.Library_Search };
         private readonly ComboBox _show = new ComboBox { HorizontalAlignment = HorizontalAlignment.Stretch };
@@ -445,7 +449,9 @@ namespace ThemeEditor.App.Library
             var stop = new Button { Content = "■ " + MainResources.Control_AudioPlayer_Stop, MinWidth = 100 };
             play.Click += async (_, __) =>
             {
-                if (_player.HasData && _selected == item)
+                // Only reuse what is loaded when it is this item's music: checking the selection here was always true,
+                // so after the first track every Play button replayed that first track
+                if (_player.HasData && _previewItem == item)
                 {
                     _player.PlayCommand.Execute(null);
                     return;
@@ -458,6 +464,7 @@ namespace ThemeEditor.App.Library
                 if (audio != null && _selected == item)
                 {
                     _player.SetAudio(audio);
+                    _previewItem = item;
                     _player.PlayCommand.Execute(null);
                 }
             };

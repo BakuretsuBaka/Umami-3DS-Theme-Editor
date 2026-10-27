@@ -212,6 +212,66 @@ namespace ThemeEditor.Tests
             }
         }
 
+        private sealed class NoTarget : ThemeEditor.App.Library.ILibraryTarget
+        {
+            public bool HasTheme => true;
+            public void ApplyTextures(ThemeEditor.App.Library.LibraryItem item, float hue, float saturation, float brightness) {}
+            public void ApplySoundEffects(ThemeEditor.App.Library.LibraryItem item) {}
+            public void ApplySound(ThemeEditor.App.Library.LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}
+            public void ApplyMusic(ThemeEditor.App.Library.LibraryItem item) {}
+        }
+
+        /// <summary>Play in the library used to replay the first previewed track for every other item.</summary>
+        [AvaloniaFact]
+        public void LibraryMusicPreviewPlaysTheSelectedTrack()
+        {
+            var dir = Path.Combine(Path.GetTempPath(), "umami-preview-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var lib = new ThemeEditor.App.Library.ResourceLibrary(dir);
+                lib.Load(false);
+                Directory.CreateDirectory(Path.Combine(dir, "bgm"));
+                foreach (var (id, freq) in new[] { ("m-first", 330.0), ("m-second", 550.0) })
+                {
+                    var pcm = new short[32000];
+                    for (var i = 0; i < pcm.Length; i++)
+                        pcm[i] = (short) (Math.Sin(2 * Math.PI * freq * i / 32000) * 8000);
+                    var bcstm = ThemeEditor.Common.Audio.BcstmConverter.Encode(ThemeEditor.Common.Audio.BcstmConverter.FromPcm(new[] { pcm }, 32000));
+                    File.WriteAllBytes(Path.Combine(dir, "bgm", id + ".bcstm"), bcstm);
+                    lib.Add(new ThemeEditor.App.Library.LibraryItem { Id = id, Kind = ThemeEditor.App.Library.LibraryKind.Music, Name = id, DataFile = "bgm/" + id + ".bcstm", Seconds = 1, Bytes = bcstm.Length });
+                }
+
+                var win = new ThemeEditor.App.Library.ResourceLibraryWindow(lib, new NoTarget());
+                win.Show();
+                Dispatcher.UIThread.RunJobs();
+                var descendants = new Func<System.Collections.Generic.IEnumerable<Control>>(() => Avalonia.VisualTree.VisualExtensions.GetVisualDescendants(win).OfType<Control>());
+                descendants().OfType<RadioButton>().ElementAt(3).RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+                Dispatcher.UIThread.RunJobs();
+                var list = descendants().OfType<ListBox>().First();
+                var items = ((System.Collections.IEnumerable) list.ItemsSource).Cast<ThemeEditor.App.Library.LibraryItem>().ToList();
+                Assert.Equal(2, items.Count);
+
+                foreach (var item in items)
+                {
+                    list.SelectedItem = item;
+                    Dispatcher.UIThread.RunJobs();
+                    var play = descendants().OfType<Button>().First(b => (b.Content as string)?.StartsWith("\u25B6 ") == true);
+                    play.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+                    for (var i = 0; i < 200 && win.PreviewTrack != item; i++)
+                    {
+                        System.Threading.Thread.Sleep(10);
+                        Dispatcher.UIThread.RunJobs();
+                    }
+                    Assert.Same(item, win.PreviewTrack);
+                }
+                win.Close();
+            }
+            finally
+            {
+                try { Directory.Delete(dir, true); } catch (IOException) { }
+            }
+        }
+
         [Fact]
         public void FitCropsToTheVisibleArea()
         {
