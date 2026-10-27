@@ -26,7 +26,7 @@ namespace ThemeEditor.App.Library
     /// </summary>
     public sealed class ThemeImporter
     {
-        public const int MaxBgmBytes = 3 * 1024 * 1024;
+        public const int MaxBgmBytes = 3371008;
 
         private readonly ResourceLibrary _library;
         private readonly string _collection;

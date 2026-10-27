@@ -252,7 +252,7 @@ namespace ThemeEditor.App.Library
                         var info = BcstmConverter.GetInfo(BcstmConverter.ReadBcstm(data[0]));
                         if (info.SampleRate <= 0 || data[0].Length > MaxBgmBytes)
                         {
-                            why = "music is invalid or larger than 3 MB";
+                            why = "music is invalid or larger than 3,371,008 bytes";
                             return false;
                         }
                         return true;
@@ -313,7 +313,7 @@ namespace ThemeEditor.App.Library
                         string why;
                         if (bytes.Length > (kind == LibraryKind.Music ? MaxBgmBytes : MaxBlockBytes) || !ContentOk(kind, new List<byte[]> { bytes }, out why))
                         {
-                            result.Fail(bytes.Length > MaxBgmBytes && kind == LibraryKind.Music ? name + ": larger than 3 MB" : name + ": not a valid " + (kind == LibraryKind.Music ? "BCSTM" : "sound effect block"));
+                            result.Fail(bytes.Length > MaxBgmBytes && kind == LibraryKind.Music ? name + ": larger than 3,371,008 bytes" : name + ": not a valid " + (kind == LibraryKind.Music ? "BCSTM" : "sound effect block"));
                             continue;
                         }
                         var id = (kind == LibraryKind.Music ? "m-" : "s-") + ThemeImporter.Hash(bytes);

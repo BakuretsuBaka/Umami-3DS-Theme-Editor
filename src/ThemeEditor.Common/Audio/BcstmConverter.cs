@@ -62,7 +62,7 @@ namespace ThemeEditor.Common.Audio
     public static class BcstmConverter
     {
         /// <summary>Largest BGM.BCSTM the HOME menu will accept in a theme.</summary>
-        public const int MaxThemeBgmBytes = 3 * 1024 * 1024;
+        public const int MaxThemeBgmBytes = 3371008;
 
         public static readonly string[] ImportExtensions =
         {

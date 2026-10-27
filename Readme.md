@@ -114,7 +114,7 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 ### Music and sound effects
 
 * **BGM conversion:** *Music → Import Audio* turns **WAV, MP3, OGG, BCSTM, BFSTM, BRSTM, BCWAV, DSP, IDSP, ADX** and **HPS** into a
-  theme-ready `BGM.BCSTM` (DSP-ADPCM or PCM16, mono mix-down, resampling, loop points), checks the 3 MB HOME Menu limit,
+  theme-ready `BGM.BCSTM` (DSP-ADPCM or PCM16, mono mix-down, resampling, loop points), checks the 3,371,008-byte HOME Menu limit,
   and exports the music as WAV or BCSTM again.
 * **CWAV sound-effect manager:** converts WAV / MP3 / OGG to CWAV itself; no external `ctr_WaveConverter` or `vgmstream` needed.
 * **In-app playback** on every platform (OpenAL Soft).
