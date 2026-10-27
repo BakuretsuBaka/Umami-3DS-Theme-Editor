@@ -7,6 +7,9 @@
     <Description>Theme Editor Core Library (LZ11, textures, theme/SMDH IO, BCSTM conversion)</Description>
   </PropertyGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="ThemeEditor.Tests" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="NLayer" Version="3.0.0" />
     <PackageReference Include="NVorbis" Version="0.10.5" />
     <PackageReference Include="VGAudio" Version="2.2.1" />

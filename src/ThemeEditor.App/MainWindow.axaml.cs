@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.axaml.cs
 // --------------------------------------------------
 
@@ -64,6 +64,7 @@ namespace ThemeEditor.App
                     return;
                 _isBusy = value;
                 OnPropertyChanged(nameof(IsBusy));
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -99,10 +100,12 @@ namespace ThemeEditor.App
             PreviewOptionsCommand = new RelayCommand(PreviewOptionsCommand_Execute);
             ToggleLidCommand = new RelayCommand(() => PreviewActions.ToggleLid(ViewModel, PreviewInteraction.Shared));
 
+            SetupHistory();
             SetupThemeCommands();
             SetupImageCommands();
             SetupBgmCommands();
             SetupArchive();
+            ShowInFolderCommand = new RelayCommand(ShowInFolder_Execute, () => ThemePath != null && File.Exists(ThemePath));
             SetupLibrary();
 
             DataContext = this;
@@ -112,9 +115,18 @@ namespace ThemeEditor.App
             SetupIconPickers();
 
             ViewModelBase.ViewModelChanged += OnAnyViewModelChanged;
+            CommandManager.UnhandledCommandError = OnCommandError;
             Opened += MainWindow_OnOpened;
             Closing += MainWindow_OnClosing;
             Title = WINDOW_TITLE;
+            UpdateTitleAndStatus();
+        }
+
+        /// <summary>An async command threw: drop the busy overlay and tell the user instead of crashing.</summary>
+        private async void OnCommandError(Exception ex)
+        {
+            IsBusy = false;
+            await Dialogs.Show(this, string.Format(MainResources.Message_CommandError, ex.Message), WINDOW_TITLE, MessageKind.Error);
         }
 
         // ---------------------------------------------------------------- Lifecycle
@@ -151,8 +163,21 @@ namespace ThemeEditor.App
                 WindowState = WindowState.Maximized;
         }
 
-        private void MainWindow_OnClosing(object sender, WindowClosingEventArgs e)
+        private bool _closeConfirmed;
+
+        private async void MainWindow_OnClosing(object sender, WindowClosingEventArgs e)
         {
+            if (!_closeConfirmed && ViewModel != null && HasUnsavedChanges)
+            {
+                // Ask first; the window is closed again from here once the user decided
+                e.Cancel = true;
+                if (!await ConfirmDiscardChanges())
+                    return;
+                _closeConfirmed = true;
+                Close();
+                return;
+            }
+
             var st = Settings.Default;
             st.Window_Maximized = WindowState == WindowState.Maximized;
             if (WindowState == WindowState.Normal && Bounds.Width >= MinWidth && Bounds.Height >= MinHeight)
@@ -254,9 +279,22 @@ namespace ThemeEditor.App
                 flagsHost.Content = null;
                 return;
             }
+            // Undo/redo rebuilds the editors: keep the user's scroll position instead of jumping back to the top
+            var colorsScroll = colorsHost.Parent as ScrollViewer;
+            var flagsScroll = flagsHost.Parent as ScrollViewer;
+            var colorsOffset = colorsScroll?.Offset ?? default(Vector);
+            var flagsOffset = flagsScroll?.Offset ?? default(Vector);
             _editors = new PropertyEditors();
             colorsHost.Content = _editors.BuildColors(_viewModel);
             flagsHost.Content = _editors.BuildFlags(_viewModel);
+            if (_restoring)
+                Dispatcher.UIThread.Post(() =>
+                {
+                    if (colorsScroll != null)
+                        colorsScroll.Offset = colorsOffset;
+                    if (flagsScroll != null)
+                        flagsScroll.Offset = flagsOffset;
+                }, DispatcherPriority.Loaded);
         }
 
         private void OnAnyViewModelChanged(ViewModelBase.ViewModelChangedArgs args)
@@ -266,6 +304,10 @@ namespace ThemeEditor.App
                 return;
             if (args.Property == nameof(TexturesViewModel.Top) || args.Property == nameof(TexturesViewModel.Bottom))
                 Dispatcher.UIThread.Post(() => _editors?.RefreshPalettes());
+            if (Dispatcher.UIThread.CheckAccess())
+                OnThemeEdited();
+            else
+                Dispatcher.UIThread.Post(OnThemeEdited);
             CommandManager.InvalidateRequerySuggested();
         }
 
@@ -289,9 +331,16 @@ namespace ThemeEditor.App
         {
             foreach (var wrapper in new[]
                      {
-                         LoadThemeCommandWrapper, SaveThemeCommandWrapper, SaveAsThemeCommandWrapper, NewThemeCommandWrapper
+                         LoadThemeCommandWrapper, SaveThemeCommandWrapper, SaveAsThemeCommandWrapper, NewThemeCommandWrapper,
+                         UndoCommandWrapper, RedoCommandWrapper, ExportZipCommandWrapper
                      })
                 KeyBindings.Add(new KeyBinding { Gesture = wrapper.Gesture, Command = wrapper.Command });
+            // Ctrl+Y is the usual redo shortcut on Windows and Linux
+            KeyBindings.Add(new KeyBinding
+            {
+                Gesture = new KeyGesture(Key.Y, GestureCommandWrapper.CommandModifier),
+                Command = RedoCommandWrapper.Command
+            });
         }
 
         // ---------------------------------------------------------------- Valid texture sizes
@@ -303,23 +352,23 @@ namespace ThemeEditor.App
                 {
                     TargetImage.Top, new List<ImageSize>
                     {
-                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565),
+                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565, 1008, 240),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565, 412, 240),
                         new ImageSize(64, 64, RawTexture.DataFormat.A8)
                     }
                 },
                 {
                     TargetImage.Bottom, new List<ImageSize>
                     {
-                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565),
-                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565)
+                        new ImageSize(1024, 256, RawTexture.DataFormat.Bgr565, 1008, 240),
+                        new ImageSize(512, 256, RawTexture.DataFormat.Bgr565, 320, 240)
                     }
                 },
                 {TargetImage.TopAlt, new List<ImageSize> {new ImageSize(64, 64, RawTexture.DataFormat.A8)}},
-                {TargetImage.FileSmall, new List<ImageSize> {new ImageSize(32, 64, RawTexture.DataFormat.Bgr888)}},
-                {TargetImage.FileLarge, new List<ImageSize> {new ImageSize(64, 128, RawTexture.DataFormat.Bgr888)}},
-                {TargetImage.FolderClosed, new List<ImageSize> {new ImageSize(128, 64, RawTexture.DataFormat.Bgr888)}},
-                {TargetImage.FolderOpen, new List<ImageSize> {new ImageSize(128, 64, RawTexture.DataFormat.Bgr888)}},
+                {TargetImage.FileSmall, new List<ImageSize> {new ImageSize(32, 64, RawTexture.DataFormat.Bgr888, 25, 50)}},
+                {TargetImage.FileLarge, new List<ImageSize> {new ImageSize(64, 128, RawTexture.DataFormat.Bgr888, 36, 72)}},
+                {TargetImage.FolderClosed, new List<ImageSize> {new ImageSize(128, 64, RawTexture.DataFormat.Bgr888, 74, 64)}},
+                {TargetImage.FolderOpen, new List<ImageSize> {new ImageSize(128, 64, RawTexture.DataFormat.Bgr888, 82, 64)}},
                 {TargetImage.SmallIcon, new List<ImageSize> {new ImageSize(24, 24, RawTexture.DataFormat.Bgr565)}},
                 {TargetImage.LargeIcon, new List<ImageSize> {new ImageSize(48, 48, RawTexture.DataFormat.Bgr565)}}
             };

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -784,5 +784,89 @@ Use it anyway?</value>
   </data>
   <data name="Library_Exporting" xml:space="preserve">
     <value>Exporting... {0}/{1}</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Undo</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>_Redo</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Clear List</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Show in File Manager</value>
+  </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Copy All Colors</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Paste Colors</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Crop to Fill</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Stretch</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>The theme has unsaved changes. Do you want to save them first?</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>The theme could not be saved:
+{0}</value>
+  </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>This file no longer exists and was removed from the recent files:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>The theme could not be sent to {0}.
+Make sure CHMM2 is running on the 3DS and waiting for a connection.</value>
+  </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Something went wrong:
+{0}</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>The image is {0}x{1}, but this slot uses {2}x{3}.
+Should the editor fit it for you?</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>The metadata file could not be read.</value>
+  </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Sending: {0:f1}%
+Rate: {1} KB/s</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Unsaved changes</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>New theme (not saved yet)</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Music: {0} KB of {1} KB</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>No music</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Sound effects: {0} KB of {1} KB</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Filter settings...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Shown as the theme name</value>
   </data>
 </root>

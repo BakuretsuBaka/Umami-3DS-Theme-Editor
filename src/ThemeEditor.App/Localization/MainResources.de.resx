@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>Verbindungsfehler</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Senden: {0:f1}%
+Rate: {1} KB/s</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>Design wird gesendet...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>Palette des oberen Bildes</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Einstellungen filtern...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Wird als Name des Designs angezeigt</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Animieren</value>
@@ -231,11 +241,23 @@ Aktuelle Größe: {1} Bytes</value>
   <data name="Dialog_Close" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Nicht speichern</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Zuschneiden</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Strecken</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>Nein</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Speichern</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>Ja</value>
@@ -423,17 +445,35 @@ Aktuelle Größe: {1} Bytes</value>
   <data name="Menu_About" xml:space="preserve">
     <value>Über</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Alle Farben kopieren</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Farben einfügen</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>_Kopieren</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>_CWAV-Verwaltung</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Bearbeiten</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>_Wiederholen</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Rückgängig</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>E_xperimentell</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>_Datei</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Liste leeren</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Beenden</value>
@@ -467,6 +507,9 @@ Aktuelle Größe: {1} Bytes</value>
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>Oben</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Im Dateimanager zeigen</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>_Bild</value>
@@ -580,8 +623,16 @@ Versuche den DSP-ADPCM-Codec, Mono, eine niedrigere Abtastrate oder einen kürze
     <value>Die umgewandelte Musik ist {0} kB groß, mehr als die {1} kB, die das HOME-Menü der 3DS abspielen kann: Ein Design damit hat keine Musik.
 Trotzdem verwenden?</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Etwas ist schiefgelaufen:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>Das Bild ist {0}x{1} groß, dieser Platz verwendet aber {2}x{3}.
+Soll der Editor es anpassen?</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Ungültige Bildgröße</value>
@@ -594,6 +645,9 @@ Trotzdem verwenden?</value>
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>Die Sprache ändert sich beim nächsten Start des Editors.</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>Die Metadaten-Datei konnte nicht gelesen werden.</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>Die Option „Hintergrundmusik“ wurde deaktiviert:
@@ -611,11 +665,26 @@ Trotzdem verwenden?</value>
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Vorschau gespeichert</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>Diese Datei existiert nicht mehr und wurde aus den zuletzt geöffneten Dateien entfernt:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>Das Design konnte nicht gespeichert werden:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>Das Design konnte nicht an {0} gesendet werden.
+Stelle sicher, dass CHMM2 auf dem 3DS läuft und auf eine Verbindung wartet.</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Design erfolgreich gespeichert</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>Design erfolgreich gesendet</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>Das Design hat ungespeicherte Änderungen. Möchtest du sie zuerst speichern?</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Eine neue Version ist verfügbar:
@@ -662,6 +731,21 @@ Weitere Informationen findest du im Fenster „Über“</value>
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>Vorschau-Optionen</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Musik: {0} KB von {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>Neues Design (noch nicht gespeichert)</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>Keine Musik</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Soundeffekte: {0} KB von {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Ungespeicherte Änderungen</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>Farben</value>

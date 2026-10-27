@@ -140,8 +140,20 @@ namespace ThemeEditor.App
 
         private static async Task<bool> Ask(Window owner, string message, string title, MessageKind kind, bool question)
         {
+            var labels = question
+                ? new[] { Localization.MainResources.Dialog_Yes ?? "Yes", Localization.MainResources.Dialog_No ?? "No" }
+                : new[] { Localization.MainResources.Dialog_OK ?? "OK" };
+            return await Choose(owner, message, title, kind, labels) == 0;
+        }
+
+        /// <summary>
+        ///     Message box with any number of buttons. Returns the index of the button pressed (the first one is the
+        ///     default), or -1 when the window was closed or Escape was pressed.
+        /// </summary>
+        public static async Task<int> Choose(Window owner, string message, string title, MessageKind kind, params string[] labels)
+        {
             owner = owner ?? MainWindow;
-            var result = false;
+            var result = -1;
 
             var window = new Window
             {
@@ -191,7 +203,7 @@ namespace ThemeEditor.App
                 Margin = new Thickness(0, 16, 0, 0)
             };
 
-            Button Make(string label, bool value, bool isDefault)
+            Button Make(string label, int value, bool isDefault)
             {
                 var b = new Button { Content = label, MinWidth = 72, HorizontalContentAlignment = HorizontalAlignment.Center, IsDefault = isDefault };
                 b.Click += (s, e) =>
@@ -202,15 +214,8 @@ namespace ThemeEditor.App
                 return b;
             }
 
-            if (question)
-            {
-                buttons.Children.Add(Make(Localization.MainResources.Dialog_Yes ?? "Yes", true, true));
-                buttons.Children.Add(Make(Localization.MainResources.Dialog_No ?? "No", false, false));
-            }
-            else
-            {
-                buttons.Children.Add(Make(Localization.MainResources.Dialog_OK ?? "OK", true, true));
-            }
+            for (var i = 0; i < labels.Length; i++)
+                buttons.Children.Add(Make(labels[i], i, i == 0));
 
             var row = new StackPanel { Orientation = Orientation.Horizontal, Children = { glyph, text } };
             window.Content = new StackPanel { Margin = new Thickness(18), Children = { row, buttons } };

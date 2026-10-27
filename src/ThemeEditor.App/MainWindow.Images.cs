@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -82,6 +83,7 @@ namespace ThemeEditor.App
                     var bmp = PixelBuffer.Load(file);
                     results.OriginalWidth = bmp.Width;
                     results.OriginalHeight = bmp.Height;
+                    results.Original = bmp;
                     results.Image = IsIcon(target) ? bmp : bmp.ResizeNextPot();
                     results.Loaded = true;
                 }
@@ -113,24 +115,53 @@ namespace ThemeEditor.App
             var target = args.Target;
             var validSizes = _validImageSizes[target];
             var targetSize = validSizes.FirstOrDefault(pair => pair.X == bmp.Width && pair.Y == bmp.Height);
+            var visibleWidth = args.OriginalWidth;
+            var visibleHeight = args.OriginalHeight;
 
             if (targetSize.X == 0)
             {
+                // Rather than rejecting the image, offer to scale it to the slot that fits its shape best
+                var fit = BestFit(validSizes, args.OriginalWidth, args.OriginalHeight);
                 var sb = new StringBuilder();
-                sb.AppendFormat("{2}: {0}x{1}\n", bmp.Width, bmp.Height, MainResources.Message_InvalidImageSize);
-                sb.AppendFormat("{0}:\n", MainResources.Message_InvalidImageSize_AllowedSizes);
+                sb.AppendFormat(MainResources.Message_ImageFit, args.OriginalWidth, args.OriginalHeight, fit.VisibleX, fit.VisibleY);
+                sb.AppendFormat("\n\n{0}:\n", MainResources.Message_InvalidImageSize_AllowedSizes);
                 foreach (var pair in validSizes)
-                    sb.AppendFormat("\t- {0}x{1}\n", pair.X, pair.Y);
-                await Dialogs.Show(this, sb.ToString(), Title, MessageKind.Error);
-                return;
+                    sb.AppendFormat(pair.VisibleX == pair.X && pair.VisibleY == pair.Y ? "\t- {0}x{1}\n" : "\t- {0}x{1} ({2}x{3})\n",
+                        pair.X, pair.Y, pair.VisibleX, pair.VisibleY);
+                var choice = await Dialogs.Choose(this, sb.ToString(), WINDOW_TITLE, MessageKind.Warning,
+                    MainResources.Dialog_FitCrop, MainResources.Dialog_FitStretch, MainResources.Dialog_Cancel);
+                if (choice != 0 && choice != 1)
+                    return;
+                bmp = args.Original.Fit(fit.VisibleX, fit.VisibleY, fit.X, fit.Y, choice == 0);
+                targetSize = fit;
+                visibleWidth = fit.VisibleX;
+                visibleHeight = fit.VisibleY;
             }
 
             var tex = TextureFor(target);
             tex.EncodeTexture(bmp, targetSize.Format);
             if (!IsIcon(target))
-                tex.EdgeBleed(0, 0, args.OriginalWidth, args.OriginalHeight);
+                tex.EdgeBleed(0, 0, visibleWidth, visibleHeight);
             else if (target == TargetImage.LargeIcon)
                 ViewModel.Info.SmallIcon.EncodeTexture(bmp.Resize(24, 24), targetSize.Format);
+        }
+
+        /// <summary>The allowed size whose visible area has the aspect ratio closest to the image (A8 masks only as a last resort).</summary>
+        private static ImageSize BestFit(List<ImageSize> sizes, int width, int height)
+        {
+            var colored = sizes.Where(s => s.Format != RawTexture.DataFormat.A8).ToList();
+            var pool = colored.Count > 0 ? colored : sizes;
+            var aspect = Math.Log((double) width / Math.Max(1, height));
+            return pool.OrderBy(s => Math.Abs(Math.Log((double) s.VisibleX / s.VisibleY) - aspect)).First();
+        }
+
+        private async void ImportImageFile(string file, TargetImage target)
+        {
+            if (!CanExecute_ViewModelLoaded())
+                return;
+            PreExecute_SetBusy();
+            var result = await DecodeImage(file, target);
+            LoadImage_PostExecute(result);
         }
 
         // ---------------------------------------------------------------- Export
@@ -217,16 +248,13 @@ namespace ThemeEditor.App
                     : DragDropEffects.None;
                 e.Handled = true;
             });
-            button.AddHandler(DragDrop.DropEvent, async (s, e) =>
+            button.AddHandler(DragDrop.DropEvent, (s, e) =>
             {
                 e.Handled = true;
                 var files = e.Data.GetFiles()?.ToList();
                 var file = files != null && files.Count > 0 ? files[0].TryGetLocalPath() : null;
-                if (file == null || !CanExecute_ViewModelLoaded())
-                    return;
-                PreExecute_SetBusy();
-                var result = await DecodeImage(file, target);
-                LoadImage_PostExecute(result);
+                if (file != null)
+                    ImportImageFile(file, target);
             });
         }
 
@@ -274,6 +302,7 @@ namespace ThemeEditor.App
             public int OriginalWidth;
             public int OriginalHeight;
             public PixelBuffer Image;
+            public PixelBuffer Original;
             public bool Loaded;
             public TargetImage Target;
         }

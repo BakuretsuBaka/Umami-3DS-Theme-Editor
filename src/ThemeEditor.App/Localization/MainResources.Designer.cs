@@ -283,6 +283,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Busy_Sender_Progress".</summary>
+        public static string Busy_Sender_Progress {
+            get {
+                return ResourceManager.GetString("Busy_Sender_Progress", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Busy_Sender_SendingTheme".</summary>
         public static string Busy_Sender_SendingTheme {
             get {
@@ -364,6 +371,20 @@ namespace ThemeEditor.App.Localization {
         public static string Control_ColorPicker_TopPalette {
             get {
                 return ResourceManager.GetString("Control_ColorPicker_TopPalette", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Filter_Watermark".</summary>
+        public static string Control_Filter_Watermark {
+            get {
+                return ResourceManager.GetString("Control_Filter_Watermark", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_Info_Name_Watermark".</summary>
+        public static string Control_Info_Name_Watermark {
+            get {
+                return ResourceManager.GetString("Control_Info_Name_Watermark", resourceCulture);
             }
         }
 
@@ -556,6 +577,27 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Dialog_Discard".</summary>
+        public static string Dialog_Discard {
+            get {
+                return ResourceManager.GetString("Dialog_Discard", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Dialog_FitCrop".</summary>
+        public static string Dialog_FitCrop {
+            get {
+                return ResourceManager.GetString("Dialog_FitCrop", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Dialog_FitStretch".</summary>
+        public static string Dialog_FitStretch {
+            get {
+                return ResourceManager.GetString("Dialog_FitStretch", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Dialog_No".</summary>
         public static string Dialog_No {
             get {
@@ -567,6 +609,13 @@ namespace ThemeEditor.App.Localization {
         public static string Dialog_OK {
             get {
                 return ResourceManager.GetString("Dialog_OK", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Dialog_Save".</summary>
+        public static string Dialog_Save {
+            get {
+                return ResourceManager.GetString("Dialog_Save", resourceCulture);
             }
         }
 
@@ -1004,6 +1053,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_ColorSet_Copy".</summary>
+        public static string Menu_ColorSet_Copy {
+            get {
+                return ResourceManager.GetString("Menu_ColorSet_Copy", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_ColorSet_Paste".</summary>
+        public static string Menu_ColorSet_Paste {
+            get {
+                return ResourceManager.GetString("Menu_ColorSet_Paste", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_Copy".</summary>
         public static string Menu_Copy {
             get {
@@ -1018,6 +1081,27 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_Edit".</summary>
+        public static string Menu_Edit {
+            get {
+                return ResourceManager.GetString("Menu_Edit", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_Edit_Redo".</summary>
+        public static string Menu_Edit_Redo {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Redo", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_Edit_Undo".</summary>
+        public static string Menu_Edit_Undo {
+            get {
+                return ResourceManager.GetString("Menu_Edit_Undo", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_Experimental".</summary>
         public static string Menu_Experimental {
             get {
@@ -1029,6 +1113,13 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_File {
             get {
                 return ResourceManager.GetString("Menu_File", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_File_ClearRecent".</summary>
+        public static string Menu_File_ClearRecent {
+            get {
+                return ResourceManager.GetString("Menu_File_ClearRecent", resourceCulture);
             }
         }
 
@@ -1106,6 +1197,13 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_File_SavePreview_Top {
             get {
                 return ResourceManager.GetString("Menu_File_SavePreview_Top", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_File_ShowInFolder".</summary>
+        public static string Menu_File_ShowInFolder {
+            get {
+                return ResourceManager.GetString("Menu_File_ShowInFolder", resourceCulture);
             }
         }
 
@@ -1361,10 +1459,24 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Message_CommandError".</summary>
+        public static string Message_CommandError {
+            get {
+                return ResourceManager.GetString("Message_CommandError", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_Error".</summary>
         public static string Message_Error {
             get {
                 return ResourceManager.GetString("Message_Error", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_ImageFit".</summary>
+        public static string Message_ImageFit {
+            get {
+                return ResourceManager.GetString("Message_ImageFit", resourceCulture);
             }
         }
 
@@ -1396,6 +1508,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Message_MetadataInvalid".</summary>
+        public static string Message_MetadataInvalid {
+            get {
+                return ResourceManager.GetString("Message_MetadataInvalid", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_NoBackgroundMusicOnLoad".</summary>
         public static string Message_NoBackgroundMusicOnLoad {
             get {
@@ -1424,6 +1543,27 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Message_RecentMissing".</summary>
+        public static string Message_RecentMissing {
+            get {
+                return ResourceManager.GetString("Message_RecentMissing", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_SaveFailed".</summary>
+        public static string Message_SaveFailed {
+            get {
+                return ResourceManager.GetString("Message_SaveFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_SendFailed".</summary>
+        public static string Message_SendFailed {
+            get {
+                return ResourceManager.GetString("Message_SendFailed", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_ThemeSaved".</summary>
         public static string Message_ThemeSaved {
             get {
@@ -1435,6 +1575,13 @@ namespace ThemeEditor.App.Localization {
         public static string Message_ThemeSent {
             get {
                 return ResourceManager.GetString("Message_ThemeSent", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_UnsavedChanges".</summary>
+        public static string Message_UnsavedChanges {
+            get {
+                return ResourceManager.GetString("Message_UnsavedChanges", resourceCulture);
             }
         }
 
@@ -1540,6 +1687,41 @@ namespace ThemeEditor.App.Localization {
         public static string Preview_Options_Title {
             get {
                 return ResourceManager.GetString("Preview_Options_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_Bgm".</summary>
+        public static string Status_Bgm {
+            get {
+                return ResourceManager.GetString("Status_Bgm", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_NewTheme".</summary>
+        public static string Status_NewTheme {
+            get {
+                return ResourceManager.GetString("Status_NewTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_NoBgm".</summary>
+        public static string Status_NoBgm {
+            get {
+                return ResourceManager.GetString("Status_NoBgm", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_Sfx".</summary>
+        public static string Status_Sfx {
+            get {
+                return ResourceManager.GetString("Status_Sfx", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_Unsaved".</summary>
+        public static string Status_Unsaved {
+            get {
+                return ResourceManager.GetString("Status_Unsaved", resourceCulture);
             }
         }
 

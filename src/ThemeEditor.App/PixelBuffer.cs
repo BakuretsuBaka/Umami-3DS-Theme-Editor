@@ -126,6 +126,34 @@ namespace ThemeEditor.App
             }
         }
 
+        /// <summary>
+        ///     Scales the image into the (visibleWidth x visibleHeight) top-left area of a transparent
+        ///     (canvasWidth x canvasHeight) canvas. With <paramref name="crop" /> the aspect ratio is kept and the overhang is
+        ///     cut off evenly on both sides, otherwise the image is stretched.
+        /// </summary>
+        public PixelBuffer Fit(int visibleWidth, int visibleHeight, int canvasWidth, int canvasHeight, bool crop)
+        {
+            var srcRect = new SKRect(0, 0, Width, Height);
+            if (crop)
+            {
+                var scale = Math.Max((float) visibleWidth / Width, (float) visibleHeight / Height);
+                var w = visibleWidth / scale;
+                var h = visibleHeight / scale;
+                var x = (Width - w) / 2;
+                var y = (Height - h) / 2;
+                srcRect = new SKRect(x, y, x + w, y + h);
+            }
+            using (var src = ToSkia())
+            using (var dst = new SKBitmap(new SKImageInfo(canvasWidth, canvasHeight, SKColorType.Bgra8888, SKAlphaType.Premul)))
+            using (var canvas = new SKCanvas(dst))
+            using (var paint = new SKPaint { FilterQuality = SKFilterQuality.High, IsAntialias = true })
+            {
+                canvas.Clear(SKColors.Transparent);
+                canvas.DrawBitmap(src, srcRect, new SKRect(0, 0, visibleWidth, visibleHeight), paint);
+                return FromSkia(dst);
+            }
+        }
+
         public PixelBuffer ResizeNextPot()
         {
             var potW = (int) ((uint) Width).NextPowerOfTwo();

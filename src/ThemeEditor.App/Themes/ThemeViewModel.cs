@@ -26,7 +26,12 @@ namespace ThemeEditor.App.Themes
         public byte[] CWavBytes
         {
             get { return Model.CWAV; }
-            set { Model.CWAV = value; }
+            set
+            {
+                var old = Model.CWAV;
+                Model.CWAV = value;
+                RaiseViewModelChanged(nameof(CWavBytes), old, value);
+            }
         }
 
         public ThemeViewModel(Theme model, SMDH info = null) : base(model, Guid.NewGuid().ToString())

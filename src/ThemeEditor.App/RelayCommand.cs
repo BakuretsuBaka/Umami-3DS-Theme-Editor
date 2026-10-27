@@ -16,14 +16,40 @@ namespace ThemeEditor.App
     /// </summary>
     public static class CommandManager
     {
+        private static int _pending;
+
         public static event EventHandler RequerySuggested;
 
+        /// <summary>Called (on the UI thread) when an async command throws, instead of tearing the app down.</summary>
+        public static Action<Exception> UnhandledCommandError { get; set; }
+
+        /// <summary>
+        ///     Every view model change asks for a requery, so a dragged color slider used to re-evaluate every command
+        ///     dozens of times per frame. The requests are coalesced into one requery per dispatcher pass.
+        /// </summary>
         public static void InvalidateRequerySuggested()
         {
+            if (Interlocked.Exchange(ref _pending, 1) == 1)
+                return;
+            Dispatcher.UIThread.Post(RequeryNow, DispatcherPriority.Background);
+        }
+
+        /// <summary>Re-queries all commands immediately (tests and code that needs the new state right away).</summary>
+        public static void RequeryNow()
+        {
+            Interlocked.Exchange(ref _pending, 0);
+            RequerySuggested?.Invoke(null, EventArgs.Empty);
+        }
+
+        internal static void ReportError(Exception ex)
+        {
+            var handler = UnhandledCommandError;
+            if (handler == null)
+                throw ex;
             if (Dispatcher.UIThread.CheckAccess())
-                RequerySuggested?.Invoke(null, EventArgs.Empty);
+                handler(ex);
             else
-                Dispatcher.UIThread.Post(() => RequerySuggested?.Invoke(null, EventArgs.Empty));
+                Dispatcher.UIThread.Post(() => handler(ex));
         }
     }
 
@@ -155,12 +181,23 @@ namespace ThemeEditor.App
             {
                 retVal = await _execute.Invoke();
             }
-            finally
+            catch (Exception ex)
             {
                 Interlocked.Exchange(ref _isExecuting, 0);
                 RaiseCanExecuteChanged();
+                CommandManager.ReportError(ex);
+                return;
             }
-            _postExecute?.Invoke(retVal);
+            Interlocked.Exchange(ref _isExecuting, 0);
+            RaiseCanExecuteChanged();
+            try
+            {
+                _postExecute?.Invoke(retVal);
+            }
+            catch (Exception ex)
+            {
+                CommandManager.ReportError(ex);
+            }
         }
     }
 
@@ -213,12 +250,23 @@ namespace ThemeEditor.App
             {
                 retVal = await _execute(arg);
             }
-            finally
+            catch (Exception ex)
             {
                 Interlocked.Exchange(ref _isExecuting, 0);
                 RaiseCanExecuteChanged();
+                CommandManager.ReportError(ex);
+                return;
             }
-            _postExecute?.Invoke(retVal);
+            Interlocked.Exchange(ref _isExecuting, 0);
+            RaiseCanExecuteChanged();
+            try
+            {
+                _postExecute?.Invoke(retVal);
+            }
+            catch (Exception ex)
+            {
+                CommandManager.ReportError(ex);
+            }
         }
     }
 }

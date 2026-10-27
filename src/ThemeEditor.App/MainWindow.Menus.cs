@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.Menus.cs
 // --------------------------------------------------
 
@@ -76,12 +76,19 @@ namespace ThemeEditor.App
             file.Items.Add(Item(MainResources.Menu_File_Save, SaveThemeCommandWrapper.Command, null, SaveThemeCommandWrapper.Gesture));
             file.Items.Add(Item(MainResources.Menu_File_SaveAs, SaveAsThemeCommandWrapper.Command, null, SaveAsThemeCommandWrapper.Gesture));
             file.Items.Add(save);
-            file.Items.Add(Item(MainResources.Menu_File_ExportZip, ExportZipCommand));
+            file.Items.Add(Item(MainResources.Menu_File_ExportZip, ExportZipCommand, null, ExportZipCommandWrapper.Gesture));
             file.Items.Add(new Separator());
+            file.Items.Add(Item(MainResources.Menu_File_ShowInFolder, ShowInFolderCommand));
             file.Items.Add(sendMenu);
             file.Items.Add(new Separator());
             file.Items.Add(exit);
             menu.Items.Add(file);
+
+            // ---- Edit
+            var edit = new MenuItem {Header = MainResources.Menu_Edit};
+            edit.Items.Add(Item(MainResources.Menu_Edit_Undo, UndoCommandWrapper.Command, null, UndoCommandWrapper.Gesture));
+            edit.Items.Add(Item(MainResources.Menu_Edit_Redo, RedoCommandWrapper.Command, null, RedoCommandWrapper.Gesture));
+            menu.Items.Add(edit);
 
             // ---- Image
             var image = new MenuItem {Header = MainResources.Menu_Image};
@@ -90,8 +97,8 @@ namespace ThemeEditor.App
             AddImageMenu(image, TargetImage.Bottom, "Menu_Image_Bottom", "1024x256 (1008x240)", "1024x256 (960x240)", "512x256 (320x240)");
             AddImageMenu(image, TargetImage.FileLarge, "Menu_Image_FileLarge", "64x128 (36x72)");
             AddImageMenu(image, TargetImage.FileSmall, "Menu_Image_FileSmall", "32x64 (25x50)");
-            AddImageMenu(image, TargetImage.FolderClosed, "Menu_Image_FolderClosed", "64x128 (74x64)");
-            AddImageMenu(image, TargetImage.FolderOpen, "Menu_Image_FolderOpen", "64x128 (82x64)");
+            AddImageMenu(image, TargetImage.FolderClosed, "Menu_Image_FolderClosed", "128x64 (74x64)");
+            AddImageMenu(image, TargetImage.FolderOpen, "Menu_Image_FolderOpen", "128x64 (82x64)");
             image.Items.Add(new Separator());
             AddImageMenu(image, TargetImage.LargeIcon, "Menu_Image_LargeIcon", "48x48");
             AddImageMenu(image, TargetImage.SmallIcon, "Menu_Image_SmallIcon", "24x24");
@@ -150,6 +157,29 @@ namespace ThemeEditor.App
             parent.Items.Add(sub);
         }
 
+        public ICommand ShowInFolderCommand { get; private set; }
+
+        /// <summary>Opens the folder of the theme in Explorer / Finder / the desktop's file manager.</summary>
+        private void ShowInFolder_Execute()
+        {
+            var dir = ThemePath == null ? null : Path.GetDirectoryName(ThemePath);
+            if (dir == null || !Directory.Exists(dir))
+                return;
+            try
+            {
+                if (OperatingSystem.IsWindows())
+                    Process.Start(new ProcessStartInfo("explorer.exe") {ArgumentList = {"/select,", ThemePath}, UseShellExecute = false});
+                else if (OperatingSystem.IsMacOS())
+                    Process.Start(new ProcessStartInfo("open") {ArgumentList = {"-R", ThemePath}, UseShellExecute = false});
+                else
+                    Process.Start(new ProcessStartInfo("xdg-open") {ArgumentList = {dir}, UseShellExecute = false});
+            }
+            catch (Exception)
+            {
+                // No file manager available; nothing else to do
+            }
+        }
+
         private MenuItem BuildLanguageMenu()
         {
             var langMenu = new MenuItem {Header = MainResources.Menu_Language};
@@ -187,11 +217,24 @@ namespace ThemeEditor.App
             _recentMenu.Items.Clear();
             foreach (var path in RecentsList)
             {
-                var item = new MenuItem {Header = Path.GetFileName(Path.GetDirectoryName(path) ?? string.Empty) + Path.DirectorySeparatorChar + Path.GetFileName(path).Replace("_", "__")};
+                // "_" marks an access key in menu headers, so it has to be doubled in folder names too
+                var label = Path.GetFileName(Path.GetDirectoryName(path) ?? string.Empty) + Path.DirectorySeparatorChar + Path.GetFileName(path);
+                var item = new MenuItem {Header = label.Replace("_", "__")};
                 ToolTip.SetTip(item, path);
                 item.Command = LoadThemeCommandWrapper.Command;
                 item.CommandParameter = path;
                 _recentMenu.Items.Add(item);
+            }
+            if (RecentsList.Count > 0)
+            {
+                var clear = new MenuItem {Header = MainResources.Menu_File_ClearRecent};
+                clear.Click += (s, e) =>
+                {
+                    RecentsList.Clear();
+                    RebuildRecentMenu();
+                };
+                _recentMenu.Items.Add(new Separator());
+                _recentMenu.Items.Add(clear);
             }
             _recentMenu.IsEnabled = RecentsList.Count > 0;
         }

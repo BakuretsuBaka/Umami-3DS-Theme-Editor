@@ -73,4 +73,78 @@ namespace ThemeEditor.Common.Compression
             return maxLength;
         }
     }
+
+    /// <summary>
+    ///     Hash-chain replacement for <see cref="LZUtil.GetOccurrenceLength" /> (with minDisp = 1) that yields exactly
+    ///     the same length and disp whenever the length is 3 or more, so the compressed output stays byte-identical.
+    ///     Only candidates whose first three bytes match are compared, and the comparison itself is vectorized.
+    /// </summary>
+    internal sealed class LZMatchFinder
+    {
+        private const int HASH_BITS = 16;
+
+        private readonly byte[] _data;
+        private readonly int _length;
+        private readonly int[] _head;
+        private readonly int[] _prev;
+        private int _inserted;
+
+        public LZMatchFinder(byte[] data, int length)
+        {
+            _data = data;
+            _length = length;
+            _head = new int[1 << HASH_BITS];
+            _prev = new int[System.Math.Max(length, 1)];
+            System.Array.Fill(_head, -1);
+        }
+
+        private int Hash(int pos)
+        {
+            var v = (uint) (_data[pos] << 16 | _data[pos + 1] << 8 | _data[pos + 2]);
+            return (int) ((v * 2654435761u) >> (32 - HASH_BITS));
+        }
+
+        /// <param name="pos">Position to compress from.</param>
+        /// <param name="maxLength">Longest match allowed.</param>
+        /// <param name="window">Number of bytes back that may be referenced.</param>
+        /// <param name="disp">Displacement of the longest match.</param>
+        public int Find(int pos, int maxLength, int window, out int disp)
+        {
+            disp = 0;
+            // The reference implementation never uses disp 1, so the newest usable start is pos - 2
+            var newest = pos - 2;
+            while (_inserted <= newest && _inserted + 2 < _length)
+            {
+                var h = Hash(_inserted);
+                _prev[_inserted] = _head[h];
+                _head[h] = _inserted;
+                _inserted++;
+            }
+            if (maxLength < 3 || newest < 0 || pos + 2 >= _length)
+                return 0;
+
+            var oldest = pos - window;
+            var target = new System.ReadOnlySpan<byte>(_data, pos, maxLength);
+            var best = 0;
+            var bestStart = -1;
+            for (var cand = _head[Hash(pos)]; cand >= oldest; cand = _prev[cand])
+            {
+                if (cand > newest)
+                    continue;
+                if (_data[cand] != _data[pos] || _data[cand + 1] != _data[pos + 1] || _data[cand + 2] != _data[pos + 2])
+                    continue;
+                // Candidates are visited newest first; ">=" keeps the oldest one among equal lengths, like the brute force search
+                var len = System.MemoryExtensions.CommonPrefixLength(new System.ReadOnlySpan<byte>(_data, cand, maxLength), target);
+                if (len >= best)
+                {
+                    best = len;
+                    bestStart = cand;
+                }
+            }
+            if (best < 3)
+                return 0;
+            disp = pos - bestStart;
+            return best;
+        }
+    }
 }

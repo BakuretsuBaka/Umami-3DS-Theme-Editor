@@ -113,6 +113,11 @@ namespace ThemeEditor.App.Controls
         public static readonly IValueConverter BoolToOpacity =
             new FuncValueConverter<bool, double>(b => b ? 1.0 : 0.5);
 
+        // Kept across rebuilds (undo/redo, opening another theme), so the tabs look the way the user left them
+        private static readonly HashSet<string> CollapsedSets = new HashSet<string>();
+        private static string _colorsFilter = string.Empty;
+        private static string _flagsFilter = string.Empty;
+
         private readonly List<PropertyProxy> _proxies = new List<PropertyProxy>();
         private readonly List<ColorView> _pickers = new List<ColorView>();
         private ThemeViewModel _theme;
@@ -157,33 +162,143 @@ namespace ThemeEditor.App.Controls
         {
             _theme = theme;
             var root = new StackPanel();
+            var sections = new List<(Expander Expander, string Text)>();
+            var filtering = false;
+
             foreach (var set in Unroll(theme.Colors))
             {
                 var setVm = set.Value as ViewModelBase;
                 if (setVm == null)
                     continue;
 
-                var title = new TextBlock { Text = set.Name, FontWeight = FontWeight.Bold };
-                var desc = new TextBlock { Text = set.Description, FontStyle = FontStyle.Italic, TextWrapping = TextWrapping.Wrap };
+                var desc = new TextBlock { Text = set.Description, FontStyle = FontStyle.Italic, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(3, 0) };
                 var wrap = new WrapPanel();
+                var colorProps = new List<PropertyProxy>();
+                var searchText = set.Name;
 
                 foreach (var prop in Unroll(setVm))
                 {
                     var editor = BuildColorEditor(prop);
                     if (editor != null)
                         wrap.Children.Add(editor);
+                    if (prop.ValueType == typeof(Color))
+                        colorProps.Add(prop);
+                    searchText += "\n" + prop.Name;
                 }
 
-                var panel = new StackPanel
+                var key = set.Property.Name;
+                var expander = new Expander
                 {
-                    Margin = new Thickness(3, 0),
-                    Children = { title, desc, wrap, new Separator { Margin = new Thickness(3) } }
+                    Header = new TextBlock { Text = set.Name, FontWeight = FontWeight.Bold },
+                    Content = new StackPanel { Children = { desc, wrap } },
+                    IsExpanded = !CollapsedSets.Contains(key),
+                    Tag = key,
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    Margin = new Thickness(3, 2)
                 };
-                panel.Bind(Visual.OpacityProperty,
+                expander.PropertyChanged += (s, e) =>
+                {
+                    if (e.Property != Expander.IsExpandedProperty || filtering)
+                        return;
+                    if (expander.IsExpanded)
+                        CollapsedSets.Remove(key);
+                    else
+                        CollapsedSets.Add(key);
+                };
+                expander.ContextMenu = BuildColorSetMenu(expander, colorProps);
+                expander.Bind(Visual.OpacityProperty,
                     new Binding(nameof(ViewModelBase.Enabled)) { Source = setVm, Converter = BoolToOpacity });
-                root.Children.Add(panel);
+                sections.Add((expander, searchText));
             }
+
+            Action<string> apply = text =>
+            {
+                filtering = true;
+                foreach (var (exp, haystack) in sections)
+                {
+                    var match = Matches(haystack, text);
+                    exp.IsVisible = match;
+                    // While filtering every hit is opened up; clearing the filter restores what the user had collapsed
+                    exp.IsExpanded = string.IsNullOrWhiteSpace(text) ? !CollapsedSets.Contains((string) exp.Tag) : match;
+                }
+                filtering = false;
+            };
+            root.Children.Add(BuildFilterBox(_colorsFilter, text =>
+            {
+                _colorsFilter = text;
+                apply(text);
+            }));
+            foreach (var (exp, _) in sections)
+                root.Children.Add(exp);
+            if (!string.IsNullOrWhiteSpace(_colorsFilter))
+                apply(_colorsFilter);
             return root;
+        }
+
+        private static bool Matches(string haystack, string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+                return true;
+            return filter.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .All(word => haystack.IndexOf(word, StringComparison.CurrentCultureIgnoreCase) >= 0);
+        }
+
+        private static Control BuildFilterBox(string initial, Action<string> changed)
+        {
+            var box = new TextBox
+            {
+                Text = initial,
+                Watermark = MainResources.Control_Filter_Watermark,
+                Margin = new Thickness(3, 3, 3, 6),
+                Classes = { "clearButton" }
+            };
+            box.PropertyChanged += (s, e) =>
+            {
+                if (e.Property == TextBox.TextProperty)
+                    changed(box.Text ?? string.Empty);
+            };
+            box.KeyDown += (s, e) =>
+            {
+                if (e.Key == Key.Escape)
+                    box.Text = string.Empty;
+            };
+            return box;
+        }
+
+        /// <summary>Copy / paste of every color of a set at once ("#RRGGBB #RRGGBB ..."), to reuse a color scheme elsewhere.</summary>
+        private static ContextMenu BuildColorSetMenu(Control owner, List<PropertyProxy> colors)
+        {
+            if (colors.Count == 0)
+                return null;
+            var menu = new ContextMenu();
+            var copy = new MenuItem { Header = MainResources.Menu_ColorSet_Copy };
+            copy.Click += async (s, e) =>
+            {
+                var clip = TopLevel.GetTopLevel(owner)?.Clipboard;
+                if (clip != null)
+                    await clip.SetTextAsync(string.Join(" ", colors.Select(c => ToHex((Color) c.Value))));
+            };
+            var paste = new MenuItem { Header = MainResources.Menu_ColorSet_Paste };
+            paste.Click += async (s, e) =>
+            {
+                var clip = TopLevel.GetTopLevel(owner)?.Clipboard;
+                var text = clip == null ? null : await clip.GetTextAsync();
+                if (string.IsNullOrWhiteSpace(text))
+                    return;
+                var parsed = new List<Color>();
+                foreach (var token in text.Split(new[] { ' ', '\t', '\r', '\n', ';' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    Color c;
+                    if (TryParseColor(token, out c))
+                        parsed.Add(c);
+                }
+                for (var i = 0; i < Math.Min(parsed.Count, colors.Count); i++)
+                    colors[i].Value = parsed[i];
+            };
+            menu.Items.Add(copy);
+            menu.Items.Add(paste);
+            return menu;
         }
 
         private Control BuildColorEditor(PropertyProxy prop)
@@ -365,6 +480,17 @@ namespace ThemeEditor.App.Controls
         {
             _theme = theme;
             var root = new StackPanel();
+            var rows = new List<(Control Row, string Text)>();
+            Action<string> apply = text =>
+            {
+                foreach (var (row, haystack) in rows)
+                    row.IsVisible = Matches(haystack, text);
+            };
+            root.Children.Add(BuildFilterBox(_flagsFilter, text =>
+            {
+                _flagsFilter = text;
+                apply(text);
+            }));
             foreach (var prop in Unroll(theme.Flags))
             {
                 Control editor = null;
@@ -400,8 +526,11 @@ namespace ThemeEditor.App.Controls
                 grid.Children.Add(name);
                 grid.Children.Add(editor);
 
-                root.Children.Add(new StackPanel { Children = { grid, new Separator { Margin = new Thickness(3) } } });
+                var row = new StackPanel { Children = { grid, new Separator { Margin = new Thickness(3) } } };
+                rows.Add((row, prop.Name + "\n" + prop.Description));
+                root.Children.Add(row);
             }
+            apply(_flagsFilter);
             return root;
         }
 

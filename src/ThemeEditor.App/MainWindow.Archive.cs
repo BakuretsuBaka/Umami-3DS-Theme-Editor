@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Input;
 using SkiaSharp;
 using ThemeEditor.App.Localization;
 using ThemeEditor.App.Previews;
@@ -16,11 +17,13 @@ namespace ThemeEditor.App
 {
     partial class MainWindow
     {
-        public ICommand ExportZipCommand { get; private set; }
+        public ICommand ExportZipCommand => ExportZipCommandWrapper.Command;
+        public GestureCommandWrapper ExportZipCommandWrapper { get; private set; }
 
         private void SetupArchive()
         {
-            ExportZipCommand = new RelayCommand(ExportZip_Execute, CanExecute_ViewModelLoaded);
+            ExportZipCommandWrapper = GestureCommandWrapper.Create(
+                new RelayCommand(ExportZip_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy), Key.E);
         }
 
         private static bool IsZip(string path)
@@ -43,8 +46,11 @@ namespace ThemeEditor.App
             if (path == null)
                 return;
 
+            IsBusy = true;
+            BusyText = MainResources.Busy_SavingTheme;
             try
             {
+                FlushPendingSnapshot();
                 byte[] bgm = BgmBcstm;
                 var themeDir = ThemePath == null ? null : Path.GetDirectoryName(ThemePath);
                 if (bgm == null && vm.Flags.BackgroundMusic && themeDir != null && File.Exists(Path.Combine(themeDir, BGM_FILE_NAME)))
@@ -61,13 +67,20 @@ namespace ThemeEditor.App
                 using (var data = img.Encode(SKEncodedImageFormat.Png, 100))
                     icon = data.ToArray();
 
-                var zip = ThemeArchive.Create(name, CompressTheme(vm), smdh, vm.Flags.BackgroundMusic ? bgm : null, icon,
-                    PreviewExporter.RenderPng(vm, PreviewKind.Both));
-                File.WriteAllBytes(path, zip);
+                // The preview has to be rendered on the UI thread; compressing the theme takes a moment, so it does not
+                var preview = PreviewExporter.RenderPng(vm, PreviewKind.Both);
+                var music = vm.Flags.BackgroundMusic ? bgm : null;
+                await Task.Run(() =>
+                {
+                    var zip = ThemeArchive.Create(name, CompressTheme(vm), smdh, music, icon, preview);
+                    File.WriteAllBytes(path, zip);
+                });
+                IsBusy = false;
                 await Dialogs.Show(this, MainResources.Message_ZipExported, WINDOW_TITLE);
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 await Dialogs.Show(this, ex.Message, WINDOW_TITLE, MessageKind.Error);
             }
         }

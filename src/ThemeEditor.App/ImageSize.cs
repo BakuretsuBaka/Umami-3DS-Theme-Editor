@@ -12,11 +12,19 @@ namespace ThemeEditor.App
         public readonly int Y;
         public readonly RawTexture.DataFormat Format;
 
-        public ImageSize(int x, int y, RawTexture.DataFormat format) : this()
+        /// <summary>Part of the texture the HOME menu actually shows (the rest is padding up to the power of two).</summary>
+        public readonly int VisibleX;
+        public readonly int VisibleY;
+
+        public ImageSize(int x, int y, RawTexture.DataFormat format) : this(x, y, format, x, y) {}
+
+        public ImageSize(int x, int y, RawTexture.DataFormat format, int visibleX, int visibleY) : this()
         {
             X = x;
             Y = y;
             Format = format;
+            VisibleX = visibleX;
+            VisibleY = visibleY;
         }
 
         public override bool Equals(object obj)

@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // ThemeEditor.Common - LZ11.cs
 // --------------------------------------------------
 
@@ -319,6 +319,7 @@ namespace ThemeEditor.Common.Compression
                 outbuffer[0] = 0;
                 int bufferlength = 1, bufferedBlocks = 0;
                 int readBytes = 0;
+                var matcher = new LZMatchFinder(indata, (int) inLength);
                 while (readBytes < inLength)
                 {
                     #region If 8 blocks are bufferd, write them and reset the buffer
@@ -341,11 +342,7 @@ namespace ThemeEditor.Common.Compression
                     // somewhere in the set of already compressed bytes.
                     int disp;
                     int oldLength = Math.Min(readBytes, 0x1000);
-                    int length = LZUtil.GetOccurrenceLength(instart + readBytes,
-                        (int) Math.Min(inLength - readBytes, 0x10110),
-                        instart + readBytes - oldLength,
-                        oldLength,
-                        out disp);
+                    int length = matcher.Find(readBytes, (int) Math.Min(inLength - readBytes, 0x10110), oldLength, out disp);
                     // length not 3 or more? next byte is raw data
                     if (length < 3)
                     {

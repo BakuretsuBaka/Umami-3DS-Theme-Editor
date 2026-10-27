@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.BGM.cs
 // --------------------------------------------------
 
@@ -22,10 +22,29 @@ namespace ThemeEditor.App
         public ICommand RemoveBgmCommand { get; private set; }
 
         /// <summary>The background music as a BCSTM file image (what ends up as BGM.BCSTM), or null.</summary>
-        public byte[] BgmBcstm { get; private set; }
+        public byte[] BgmBcstm
+        {
+            get { return _bgmBcstm; }
+            private set
+            {
+                _bgmBcstm = value;
+                UpdateTitleAndStatus();
+            }
+        }
+
+        private byte[] _bgmBcstm;
+        private bool _bgmDirty;
 
         /// <summary>True when <see cref="BgmBcstm" /> was imported and still has to be written next to the theme.</summary>
-        public bool BgmDirty { get; private set; }
+        public bool BgmDirty
+        {
+            get { return _bgmDirty; }
+            private set
+            {
+                _bgmDirty = value;
+                UpdateTitleAndStatus();
+            }
+        }
 
         private void ResetBgm()
         {
@@ -80,6 +99,10 @@ namespace ThemeEditor.App
         private async void LoadBGM_PostExecute(LoadBGMResults result)
         {
             IsBusy = false;
+            var afterLoad = _resetHistoryAfterBgm;
+            _resetHistoryAfterBgm = false;
+            string message = null;
+            var kind = MessageKind.Warning;
             if (result.Loaded)
             {
                 BgmBcstm = result.Bcstm;
@@ -87,10 +110,10 @@ namespace ThemeEditor.App
                 AudioPlayer.Instance.SetAudio(result.Audio);
                 if (result.Bcstm.Length > BcstmConverter.MaxThemeBgmBytes)
                     await Dialogs.Show(this, string.Format(MainResources.Bgm_TooLargeWarning, result.Bcstm.Length / 1024, BcstmConverter.MaxThemeBgmBytes / 1024), WINDOW_TITLE, MessageKind.Warning);
-                if (!ViewModel.Flags.BackgroundMusic)
+                if (ViewModel != null && !ViewModel.Flags.BackgroundMusic)
                 {
                     ViewModel.Flags.BackgroundMusic = true;
-                    await Dialogs.Show(this, MainResources.Message_BackgroundMusicLoaded, WINDOW_TITLE, MessageKind.Warning);
+                    message = MainResources.Message_BackgroundMusicLoaded;
                 }
             }
             else
@@ -100,13 +123,18 @@ namespace ThemeEditor.App
                     BgmBcstm = null;
                     AudioPlayer.Instance.ClearAudioData();
                 }
-                if (ViewModel.Flags.BackgroundMusic && BgmBcstm == null)
+                if (ViewModel != null && ViewModel.Flags.BackgroundMusic && BgmBcstm == null)
                 {
                     ViewModel.Flags.BackgroundMusic = false;
-                    await Dialogs.Show(this, MainResources.Message_NoBackgroundMusicOnLoad, WINDOW_TITLE, MessageKind.Warning);
+                    message = MainResources.Message_NoBackgroundMusicOnLoad;
                 }
             }
+            // Fixing up the music flag right after opening a theme is part of loading it, not an edit of the user
+            if (afterLoad)
+                ResetHistory();
             CommandManager.InvalidateRequerySuggested();
+            if (message != null)
+                await Dialogs.Show(this, message, WINDOW_TITLE, kind);
         }
 
         // ---------------------------------------------------------------- Import / convert

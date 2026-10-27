@@ -1,4 +1,4 @@
-﻿<Window
+<Window
     x:Class="ThemeEditor.App.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -25,6 +25,10 @@
             <Setter Property="Padding" Value="4" />
             <Setter Property="Margin" Value="3" />
             <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TextBlock.warning">
+            <Setter Property="Foreground" Value="#E0662A" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
         <Style Selector="Button.drop">
             <Setter Property="Width" Value="52" />
@@ -54,7 +58,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Editor side -->
-        <Grid Grid.Column="0" RowDefinitions="Auto,*">
+        <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto">
             <Menu x:Name="MainMenu" Grid.Row="0" />
 
             <TabControl
@@ -74,6 +78,7 @@
 
                             <TextBlock Classes="infolabel" Grid.Row="1" Text="{x:Static locale:ThemeResources.Theme_Info_ShortDesc}" />
                             <TextBox Grid.Row="1" Grid.Column="1" MaxLength="64"
+                                     Watermark="{x:Static locale:MainResources.Control_Info_Name_Watermark}"
                                      Text="{Binding ViewModel.Info.ShortDescription, Mode=TwoWay}" />
 
                             <TextBlock Classes="infolabel" Grid.Row="2" Text="{x:Static locale:ThemeResources.Theme_Info_LongDesc}" />
@@ -116,6 +121,16 @@
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
+
+            <!-- Status bar: where the theme lives, unsaved changes, music / sound effect budget -->
+            <Border Grid.Row="2" Padding="8,3" BorderThickness="0,1,0,0" BorderBrush="#40808080">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Grid.Column="0" FontSize="11" Text="{Binding StatusText}" TextTrimming="PrefixCharacterEllipsis"
+                               ToolTip.Tip="{Binding StatusText}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" FontSize="11" Margin="12,0,0,0" Text="{Binding StatusDetail}" VerticalAlignment="Center"
+                               Classes.warning="{Binding StatusWarning}" />
+                </Grid>
+            </Border>
 
             <!-- Busy overlay -->
             <Border

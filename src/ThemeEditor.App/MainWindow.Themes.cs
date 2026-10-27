@@ -19,6 +19,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using Avalonia.Platform;
+using Avalonia.VisualTree;
 using ThemeEditor.App.Localization;
 using ThemeEditor.App.Previews;
 using ThemeEditor.App.Properties;
@@ -55,9 +56,7 @@ namespace ThemeEditor.App
                     return;
                 _themePath = value;
                 OnPropertyChanged(nameof(ThemePath));
-                Title = value == null
-                    ? WINDOW_TITLE
-                    : WINDOW_TITLE + " - " + Path.GetFileName(Path.GetDirectoryName(value) ?? string.Empty) + Path.DirectorySeparatorChar + Path.GetFileName(value);
+                UpdateTitleAndStatus();
                 CommandManager.InvalidateRequerySuggested();
             }
         }
@@ -71,8 +70,10 @@ namespace ThemeEditor.App
 
         private async Task<LoadThemeResults> LoadNullTheme_Execute()
         {
-            BusyText = MainResources.Busy_LoadingTheme;
             var result = new LoadThemeResults { Loaded = false, Path = null };
+            if (!await ConfirmDiscardChanges())
+                return result;
+            BusyText = MainResources.Busy_LoadingTheme;
             try
             {
                 byte[] data;
@@ -107,9 +108,21 @@ namespace ThemeEditor.App
             }
         }
 
+        private bool _resetHistoryAfterBgm;
+
         private async Task<LoadThemeResults> LoadTheme_Execute(string path)
         {
             var result = new LoadThemeResults { Loaded = false, Path = path };
+
+            if (!string.IsNullOrEmpty(result.Path) && !File.Exists(result.Path))
+            {
+                // Typically a stale entry of the recent files list
+                RemoveFromRecents(result.Path);
+                await Dialogs.Show(this, string.Format(MainResources.Message_RecentMissing, result.Path), WINDOW_TITLE, MessageKind.Warning);
+                return new LoadThemeResults { Loaded = false };
+            }
+            if (!await ConfirmDiscardChanges())
+                return new LoadThemeResults { Loaded = false };
 
             if (string.IsNullOrEmpty(result.Path))
             {
@@ -181,8 +194,13 @@ namespace ThemeEditor.App
 
                 ThemePath = result.Path;
                 ResetBgm();
+                ResetHistory();
                 if (ReloadBGMCommand.CanExecute(null))
+                {
+                    // The music reload may still fix up the music flag; that is part of loading, not an edit
+                    _resetHistoryAfterBgm = true;
                     ReloadBGMCommand.Execute(null);
+                }
             }
             IsBusy = false;
         }
@@ -210,20 +228,25 @@ namespace ThemeEditor.App
             }
 
             BusyText = MainResources.Busy_SavingTheme;
+            FlushPendingSnapshot();
             var target = result.Path;
-            result.Saved = await Task.Run(() =>
+            result.Error = await Task.Run(() =>
             {
                 try
                 {
                     var compressed = CompressTheme(viewModel);
-                    File.WriteAllBytes(target, compressed);
-                    return true;
+                    // Write next to the target first, so a failing write never leaves a truncated theme behind
+                    var temp = target + ".tmp";
+                    File.WriteAllBytes(temp, compressed);
+                    File.Move(temp, target, true);
+                    return null;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    return false;
+                    return ex.Message;
                 }
             });
+            result.Saved = result.Error == null;
             return result;
         }
 
@@ -241,9 +264,22 @@ namespace ThemeEditor.App
 
         private async void SaveTheme_PostExecute(SaveThemeResults result)
         {
+            await FinishSave(result, true);
+        }
+
+        /// <summary>Writes the files that go next to body_LZ.bin and reports the outcome. Returns true when saved.</summary>
+        private async Task<bool> FinishSave(SaveThemeResults result, bool confirm)
+        {
+            if (result.Error != null)
+            {
+                IsBusy = false;
+                await Dialogs.Show(this, string.Format(MainResources.Message_SaveFailed, result.Error), WINDOW_TITLE, MessageKind.Error);
+                return false;
+            }
             if (result.Saved)
             {
                 ThemePath = result.Path;
+                UpdateRecentsList(result.Path);
                 var themeDir = Path.GetDirectoryName(result.Path) ?? ".";
                 try
                 {
@@ -257,9 +293,15 @@ namespace ThemeEditor.App
                         File.WriteAllBytes(bgmPath, BgmBcstm);
                         BgmDirty = false;
                     }
+                    else if (BgmBcstm == null && !ViewModel.Flags.BackgroundMusic && BgmDirty)
+                    {
+                        BgmDirty = false;
+                    }
+                    MarkSaved();
 
                     IsBusy = false;
-                    await Dialogs.Show(this, MainResources.Message_ThemeSaved, WINDOW_TITLE);
+                    if (confirm)
+                        await Dialogs.Show(this, MainResources.Message_ThemeSaved, WINDOW_TITLE);
 
                     if (ViewModel.Flags.BackgroundMusic && !File.Exists(bgmPath))
                         await Dialogs.Show(this, MainResources.Message_NoBackgroundMusicOnSave, WINDOW_TITLE, MessageKind.Warning);
@@ -267,18 +309,19 @@ namespace ThemeEditor.App
                 catch (Exception ex)
                 {
                     IsBusy = false;
-                    await Dialogs.Show(this, ex.Message, WINDOW_TITLE, MessageKind.Error);
+                    await Dialogs.Show(this, string.Format(MainResources.Message_SaveFailed, ex.Message), WINDOW_TITLE, MessageKind.Error);
+                    return false;
                 }
             }
             IsBusy = false;
+            return result.Saved;
         }
 
         // ---------------------------------------------------------------- Zip for CHMM2
 
-        private ZipThemeResults ZipTheme(string bgmPath)
+        private ZipThemeResults ZipTheme(string bgmPath, byte[] previewPng)
         {
             var viewModel = ViewModel;
-            var previewPng = PreviewExporter.RenderPng(viewModel, PreviewKind.Both);
             var bgmData = BgmBcstm;
             var results = new ZipThemeResults { Saved = false, BGMPath = bgmPath, Data = null };
 
@@ -341,33 +384,44 @@ namespace ThemeEditor.App
             if (!IPAddress.TryParse(ip, out addr))
                 return result;
 
-            // Rendering the preview needs the UI thread; zip it first
-            result.Zip = ZipTheme(bgmPath);
+            // Rendering the preview needs the UI thread; the compression does not
+            var previewPng = PreviewExporter.RenderPng(ViewModel, PreviewKind.Both);
+            result.Zip = await Task.Run(() => ZipTheme(bgmPath, previewPng));
 
             var sendingTheme = MainResources.Busy_Sender_SendingTheme;
             var connecting = MainResources.Busy_Sender_Connecting;
             var connectionError = MainResources.Busy_Sender_ConnectionError;
-            var maxTries = Settings.Default.SocketMaxTries;
+            var progress = MainResources.Busy_Sender_Progress;
+            var maxTries = Math.Max(1, Settings.Default.SocketMaxTries);
 
             return await Task.Run(() =>
             {
                 var endPoint = new IPEndPoint(addr, 5000);
-                using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+                Socket socket = null;
+                try
                 {
-                    var tries = 0;
-                    var connected = false;
-                    while (!connected)
+                    for (var tries = 1; socket == null; tries++)
                     {
+                        BusyText = connecting + $" [{tries}/{maxTries}]";
+                        // A socket whose connect failed cannot be reused on Linux/macOS, so every attempt gets a new one
+                        var attempt = new Socket(addr.AddressFamily, SocketType.Stream, ProtocolType.Tcp)
+                        {
+                            ReceiveTimeout = 15000,
+                            SendTimeout = 15000
+                        };
                         try
                         {
-                            BusyText = connecting + $" [{++tries}/{maxTries}]";
-                            socket.Connect(endPoint);
-                            connected = true;
+                            var connect = attempt.ConnectAsync(endPoint);
+                            if (!connect.Wait(5000))
+                                throw new SocketException((int) SocketError.TimedOut);
+                            socket = attempt;
                         }
-                        catch (SocketException)
+                        catch (Exception)
                         {
+                            attempt.Dispose();
                             if (tries >= maxTries)
                                 return result;
+                            System.Threading.Thread.Sleep(1000);
                         }
                     }
 
@@ -400,8 +454,7 @@ namespace ThemeEditor.App
                             var delta = offset - lastOffset;
                             lastOffset = offset;
                             averageSample = averageSample * 0.75f + delta / trans * 0.25f;
-                            BusyText = $"Sending: {offset / fLen:f2}%" + Environment.NewLine +
-                                       $"Rate: {(int) (averageSample / 1.024)}KB/s";
+                            BusyText = string.Format(progress, offset / fLen, (int) (averageSample / 1.024));
                             sw.Restart();
                         }
                     }
@@ -415,6 +468,14 @@ namespace ThemeEditor.App
                     result.Sent = true;
                     return result;
                 }
+                catch (SocketException)
+                {
+                    return result;
+                }
+                finally
+                {
+                    socket?.Dispose();
+                }
             });
         }
 
@@ -423,6 +484,8 @@ namespace ThemeEditor.App
             IsBusy = false;
             if (obj.Sent)
                 await Dialogs.Show(this, MainResources.Message_ThemeSent, WINDOW_TITLE);
+            else if (obj.IP != null)
+                await Dialogs.Show(this, string.Format(MainResources.Message_SendFailed, obj.IP), WINDOW_TITLE, MessageKind.Error);
         }
 
         // ---------------------------------------------------------------- Commands
@@ -463,14 +526,21 @@ namespace ThemeEditor.App
                 ip = await Dialogs.Prompt(this, WINDOW_TITLE, MainResources.Menu_SendTo_Prompt, Settings.Default.SocketIP);
             if (string.IsNullOrEmpty(ip))
                 return new SendThemeResults { Sent = false };
+            ip = ip.Trim();
             Settings.Default.SocketIP = ip;
             return await SendTheme_Execute(ip);
         }
 
         // ---------------------------------------------------------------- Metadata
 
-        private void ImportMetadata_PostExecute(LoadMetadataResults r)
+        private async void ImportMetadata_PostExecute(LoadMetadataResults r)
         {
+            if (r.Failed)
+            {
+                IsBusy = false;
+                await Dialogs.Show(this, MainResources.Message_MetadataInvalid, WINDOW_TITLE, MessageKind.Error);
+                return;
+            }
             if (r.Loaded)
             {
                 ViewModel.Rules.Pause();
@@ -508,7 +578,7 @@ namespace ThemeEditor.App
             }
             catch (Exception)
             {
-                // Unreadable file
+                result.Failed = true;
             }
             return result;
         }
@@ -546,10 +616,33 @@ namespace ThemeEditor.App
 
         private void SetupDragDrop()
         {
-            var tabs = this.FindControl<TabControl>("EditorTabs");
-            DragDrop.SetAllowDrop(tabs, true);
-            tabs.AddHandler(DragDrop.DragOverEvent, DragTheme_Execute);
-            tabs.AddHandler(DragDrop.DropEvent, DropTheme_Execute);
+            // Themes can be dropped anywhere in the window, images straight onto the top or bottom screen preview
+            DragDrop.SetAllowDrop(this, true);
+            AddHandler(DragDrop.DragOverEvent, DragTheme_Execute);
+            AddHandler(DragDrop.DropEvent, DropTheme_Execute);
+        }
+
+        private static bool IsThemeFile(string file)
+        {
+            return file != null && (".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase) || IsZip(file));
+        }
+
+        private static bool IsImageFile(string file)
+        {
+            return file != null && VALID_IMAGE_EXT.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>The texture a drop over this element replaces (top/bottom preview), or null.</summary>
+        private TargetImage? DropTargetFor(object source)
+        {
+            for (var v = source as Visual; v != null; v = v.GetVisualParent())
+            {
+                if (ReferenceEquals(v, TopPreview))
+                    return TargetImage.Top;
+                if (ReferenceEquals(v, BottomPreview))
+                    return TargetImage.Bottom;
+            }
+            return null;
         }
 
         private static string FirstDroppedFile(DragEventArgs e)
@@ -563,9 +656,8 @@ namespace ThemeEditor.App
         private void DragTheme_Execute(object sender, DragEventArgs e)
         {
             var file = FirstDroppedFile(e);
-            e.DragEffects = file != null && (".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase) || IsZip(file))
-                ? DragDropEffects.Copy
-                : DragDropEffects.None;
+            var image = IsImageFile(file) && CanExecute_ViewModelLoaded() && DropTargetFor(e.Source) != null;
+            e.DragEffects = IsThemeFile(file) || image ? DragDropEffects.Copy : DragDropEffects.None;
             e.Handled = true;
         }
 
@@ -573,8 +665,14 @@ namespace ThemeEditor.App
         {
             var file = FirstDroppedFile(e);
             e.Handled = true;
-            if (file != null && (".bin".Equals(Path.GetExtension(file), StringComparison.OrdinalIgnoreCase) || IsZip(file)))
+            if (IsThemeFile(file))
+            {
                 LoadThemeCommandWrapper.Command.Execute(file);
+                return;
+            }
+            var target = DropTargetFor(e.Source);
+            if (IsImageFile(file) && target != null && CanExecute_ViewModelLoaded())
+                ImportImageFile(file, target.Value);
         }
 
         // ---------------------------------------------------------------- Recent files
@@ -590,6 +688,12 @@ namespace ThemeEditor.App
             while (RecentsList.Count > 10)
                 RecentsList.RemoveAt(10);
             RebuildRecentMenu();
+        }
+
+        private void RemoveFromRecents(string path)
+        {
+            if (RecentsList.Remove(path))
+                RebuildRecentMenu();
         }
 
         // ---------------------------------------------------------------- Result types
@@ -618,6 +722,7 @@ namespace ThemeEditor.App
 
         private class SaveThemeResults
         {
+            public string Error;
             public string Path;
             public bool Saved;
         }
@@ -625,6 +730,7 @@ namespace ThemeEditor.App
         private class LoadMetadataResults
         {
             public Dictionary<string, string> Data;
+            public bool Failed;
             public bool Loaded;
         }
 

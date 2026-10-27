@@ -33,6 +33,16 @@ All packages are self-contained – nothing else has to be installed.
 
 ## Features
 
+* **Undo / redo** (*Edit* menu, `Ctrl/Cmd+Z`, `Ctrl/Cmd+Shift+Z` or `Ctrl+Y`) for every edit – colours, flags, textures, sound effects and the
+  theme info. The title bar marks unsaved changes with `*`, and New / Open / closing the window ask before throwing changes away.
+* **Status bar** – where the theme is saved, unsaved changes, and the music / sound effect size against the HOME menu limits (turns orange when over)
+* **Any image size** – images that do not have the exact texture size are no longer rejected: the editor offers to *crop to fill* or *stretch*
+  them into the visible area (it picks the wide or the single-screen layout from the image's shape). Images can also be dropped straight onto the
+  top or bottom screen preview, and themes anywhere in the window.
+* **Colours / Flags tabs** – collapsible colour sets (remembered while you work), a filter box (`Esc` clears it), and *Copy all colors* /
+  *Paste colors* in a colour set's context menu to move a whole colour scheme between sets or themes
+* **Fast saving** – the LZ11 compressor finds matches with a hash chain instead of a brute force search: ~50× faster with byte-identical output
+  (saving, *Export Theme ZIP* (`Ctrl/Cmd+E`) and *Send to CHMM2* no longer freeze the window)
 * **Image palette** – pick colours from the (up to) 20 most used colours of the top/bottom background images
 * **Interactive live preview** – click an icon to move the cursor, click it again (or press *Open*) to open a folder or launch it, use the arrow button to flip
   wallpaper pages, *Close*/back to leave a folder. Buttons show their pressed state while you hold them, the cursor slides and folders open with a short
@@ -47,7 +57,8 @@ All packages are self-contained – nothing else has to be installed.
   **Import / Export** shares resources as `.umamipack` files (validated on import) or as plain files (BCSTM, sound BIN, PNG textures);
   your own items can be removed again.
 * **Exports preview.png** when saving
-* Remembers the window size and the folder of the last file dialog
+* Remembers the window size and the folder of the last file dialog; *File → Show in File Manager*; *Recent → Clear List*
+  (entries whose file is gone are removed when clicked)
 * **Image dithering / edge bleed** for textures, **SMDH** (`info.smdh`) generation
 * All top/bottom render modes, frame types, folder & icon colours and textures
 * **Theme sender** – push the theme to CHMM2 over the network
@@ -104,10 +115,14 @@ corrections from native speakers are very welcome.
 * **3dbrew** – [file format documentation](https://www.3dbrew.org/wiki/)
 * **VGAudio** (Alex Barney, MIT) – BCSTM/DSP-ADPCM · **NLayer**, **NVorbis** – MP3/OGG decoding
 * **Avalonia**, **SkiaSharp**, **OpenAL Soft** (via Silk.NET)
+* **beelzy** – [Kame Editor] (GPL-3.0) was the inspiration for the collapsible colour sets and for copying colour schemes between sets.
+  No Kame Editor code is included: it is C++/Qt, and copying GPL code would require relicensing this MIT project under the GPL,
+  so the ideas were implemented from scratch.
 
 [YATA]:https://github.com/Reisyukaku/YATA
 [DSDecmp]:https://github.com/Barubary/dsdecmp/tree/master/CSharp/DSDecmp
 [pk3DS]:https://github.com/kwsch/pk3DS/blob/master/pk3DS/3DS/LZSS.cs
+[Kame Editor]:https://gitlab.com/beelzy/kame-editor
 
 ## License
 
