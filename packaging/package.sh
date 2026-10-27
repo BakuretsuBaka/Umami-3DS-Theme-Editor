@@ -31,6 +31,9 @@ for RID in $RIDS; do
       APP="$ROOT/publish/$RID-bundle/Umami 3DS Theme Editor.app"
       mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
       cp -R "$DIR"/. "$APP/Contents/MacOS/"
+      # The library data pack is thousands of data files: as Resources they are only hashed, in Contents/MacOS
+      # codesign and Gatekeeper treat each one as code and verification alone takes minutes (the app looks frozen)
+      if [ -d "$APP/Contents/MacOS/Library" ]; then mv "$APP/Contents/MacOS/Library" "$APP/Contents/Resources/Library"; fi
       sed "s/@VERSION@/$VERSION/g" "$ROOT/packaging/Info.plist" > "$APP/Contents/Info.plist"
       [ -f "$ROOT/packaging/umami.icns" ] && cp "$ROOT/packaging/umami.icns" "$APP/Contents/Resources/umami.icns"
       chmod +x "$APP/Contents/MacOS/UmamiThemeEditor"

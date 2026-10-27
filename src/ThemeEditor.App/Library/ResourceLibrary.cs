@@ -27,7 +27,17 @@ namespace ThemeEditor.App.Library
         public static ResourceLibrary Instance { get; } = new ResourceLibrary();
 
         /// <summary>Folder of the pack shipped with the editor (may not exist, e.g. in tests).</summary>
-        public static string BundledRoot => Path.Combine(AppContext.BaseDirectory, "Library");
+        public static string BundledRoot
+        {
+            get
+            {
+                // Next to the executable; inside a macOS .app the pack lives in Contents/Resources (thousands of data files
+                // inside Contents/MacOS would be signed and verified as code, which takes minutes on first launch)
+                var beside = Path.Combine(AppContext.BaseDirectory, "Library");
+                var resources = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "Resources", "Library"));
+                return !File.Exists(Path.Combine(beside, "index.json")) && File.Exists(Path.Combine(resources, "index.json")) ? resources : beside;
+            }
+        }
 
         public static string UserRoot => Path.Combine(Settings.SettingsDirectory, "Library");
 
