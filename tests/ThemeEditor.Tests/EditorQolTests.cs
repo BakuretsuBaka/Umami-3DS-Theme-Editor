@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
@@ -171,6 +172,43 @@ namespace ThemeEditor.Tests
             finally
             {
                 System.Globalization.CultureInfo.CurrentUICulture = previous;
+            }
+        }
+
+        /// <summary>The library window's toolbar (category tabs, Import, Export) has to fit at its minimum width in every language.</summary>
+        [AvaloniaFact]
+        public void LibraryToolbarFitsAtMinimumWidthInAllLanguages()
+        {
+            var previous = System.Globalization.CultureInfo.CurrentUICulture;
+            var dir = Path.Combine(Path.GetTempPath(), "umami-toolbar-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                foreach (var (culture, _) in MainWindow.Languages)
+                {
+                    System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+                    var lib = new ThemeEditor.App.Library.ResourceLibrary(dir);
+                    lib.Load(false);
+                    var win = new ThemeEditor.App.Library.ResourceLibraryWindow(lib, null);
+                    win.Width = win.MinWidth;
+                    win.Show();
+                    Dispatcher.UIThread.RunJobs();
+                    Avalonia.Headless.AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+                    var controls = Avalonia.VisualTree.VisualExtensions.GetVisualDescendants(win).OfType<Control>()
+                        .Where(c => c is Button || c is RadioButton || c is ComboBox || c is TextBox).Where(c => c.IsEffectivelyVisible).ToList();
+                    Assert.True(controls.Count >= 8, $"{culture}: toolbar not laid out");
+                    foreach (var c in controls)
+                    {
+                        var right = c.TranslatePoint(new Point(c.Bounds.Width, 0), win);
+                        Assert.True(right.HasValue && right.Value.X <= win.Bounds.Width + 0.5,
+                            $"{culture}: {c.GetType().Name} '{(c as ContentControl)?.Content}' ends at {right?.X} of {win.Bounds.Width}");
+                    }
+                    win.Close();
+                }
+            }
+            finally
+            {
+                System.Globalization.CultureInfo.CurrentUICulture = previous;
+                try { Directory.Delete(dir, true); } catch (IOException) { }
             }
         }
 

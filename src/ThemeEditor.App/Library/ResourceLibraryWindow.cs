@@ -42,8 +42,8 @@ namespace ThemeEditor.App.Library
         private readonly ILibraryTarget _target;
         private readonly AudioPlayer _player = new AudioPlayer { Loop = false };
         private readonly RadioButton[] _tabs = new RadioButton[4];
-        private readonly TextBox _search = new TextBox { Watermark = MainResources.Library_Search, MinWidth = 150, Width = 170 };
-        private readonly ComboBox _show = new ComboBox { MinWidth = 130 };
+        private readonly TextBox _search = new TextBox { Watermark = MainResources.Library_Search };
+        private readonly ComboBox _show = new ComboBox { HorizontalAlignment = HorizontalAlignment.Stretch };
         private static readonly string[] ShowModes = { "All", "Presets", "Mine" };
         private readonly ListBox _list = new ListBox();
         private readonly TextBlock _status = new TextBlock { VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
@@ -118,30 +118,36 @@ namespace ThemeEditor.App.Library
             _list.SelectionChanged += (_, __) => Select(_list.SelectedItem as LibraryItem);
             _list.ItemTemplate = new FuncDataTemplate<LibraryItem>((item, _) => BuildRow(item));
 
-            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto,Auto,Auto,Auto"), Margin = new Thickness(10, 8) };
-            var showLabel = new TextBlock { Text = MainResources.Library_Show_Label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 6, 0) };
-            Grid.SetColumn(showLabel, 2);
-            Grid.SetColumn(_show, 3);
-            Grid.SetColumn(_search, 4);
-            Grid.SetColumn(_import, 5);
-            Grid.SetColumn(_export, 6);
-            _show.Margin = new Thickness(0, 0, 8, 0);
-            _search.Margin = new Thickness(0, 0, 8, 0);
-            toolbar.Children.Add(showLabel);
-            toolbar.Children.Add(_show);
-            _import.Margin = new Thickness(0, 0, 6, 0);
+            // Top: what kind of resource, and import/export. The filters sit right above the list they filter.
+            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto"), Margin = new Thickness(10, 8) };
+            Grid.SetColumn(_import, 2);
+            Grid.SetColumn(_export, 3);
+            _import.Margin = new Thickness(8, 0, 6, 0);
             toolbar.Children.Add(tabs);
-            toolbar.Children.Add(_search);
             toolbar.Children.Add(_import);
             toolbar.Children.Add(_export);
 
+            var showLabel = new TextBlock { Text = MainResources.Library_Show_Label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 6, 0) };
+            var filters = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*"), RowDefinitions = new RowDefinitions("Auto,Auto"), Margin = new Thickness(6, 0, 6, 6) };
+            Grid.SetColumn(_show, 1);
+            Grid.SetRow(_search, 1);
+            Grid.SetColumnSpan(_search, 2);
+            _search.Margin = new Thickness(0, 6, 0, 0);
+            filters.Children.Add(showLabel);
+            filters.Children.Add(_show);
+            filters.Children.Add(_search);
+            var listPane = new DockPanel();
+            DockPanel.SetDock(filters, Dock.Top);
+            listPane.Children.Add(filters);
+            listPane.Children.Add(_list);
+
             var body = new Grid { ColumnDefinitions = new ColumnDefinitions("340,Auto,*") };
-            Grid.SetColumn(_list, 0);
+            Grid.SetColumn(listPane, 0);
             var splitter = new GridSplitter { Width = 4, Background = Brushes.Transparent };
             Grid.SetColumn(splitter, 1);
             var scroll = new ScrollViewer { Content = _detail };
             Grid.SetColumn(scroll, 2);
-            body.Children.Add(_list);
+            body.Children.Add(listPane);
             body.Children.Add(splitter);
             body.Children.Add(scroll);
 
