@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>Verbindingsfout</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Verzenden: {0:f1}%
+Snelheid: {1} KB/s</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>Thema verzenden...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>Palet van bovenste afbeelding</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Instellingen filteren...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Wordt getoond als naam van het thema</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Animeren</value>
@@ -231,11 +241,23 @@ Huidige grootte: {1} bytes</value>
   <data name="Dialog_Close" xml:space="preserve">
     <value>Sluiten</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Niet opslaan</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Bijsnijden om te vullen</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Uitrekken</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>Nee</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Opslaan</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>Ja</value>
@@ -423,17 +445,35 @@ Huidige grootte: {1} bytes</value>
   <data name="Menu_About" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Alle kleuren kopiëren</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Kleuren plakken</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>_Kopiëren</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>_CWAV-beheer</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>Be_werken</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>Opnieuw _uitvoeren</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Ongedaan maken</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>E_xperimenteel</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>_Bestand</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Lijst wissen</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Afsluiten</value>
@@ -467,6 +507,9 @@ Huidige grootte: {1} bytes</value>
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>Boven</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Weergeven in bestandsbeheer</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>_Afbeelding</value>
@@ -580,8 +623,16 @@ Probeer de DSP-ADPCM-codec, mono, een lagere samplefrequentie of een kortere tra
     <value>De geconverteerde muziek is {0} kB, meer dan de {1} kB die het HOME-menu van de 3DS kan afspelen: een thema ermee heeft geen muziek.
 Toch gebruiken?</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Er is iets misgegaan:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fout</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>De afbeelding is {0}x{1}, maar deze plek gebruikt {2}x{3}.
+Zal de editor hem passend maken?</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Ongeldige afbeeldingsgrootte</value>
@@ -594,6 +645,9 @@ Toch gebruiken?</value>
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>De taal verandert bij de volgende start van de editor.</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>Het metadatabestand kon niet worden gelezen.</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>De vlag 'Achtergrondmuziek' is uitgeschakeld:
@@ -611,11 +665,26 @@ Toch gebruiken?</value>
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Voorbeeld opgeslagen</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>Dit bestand bestaat niet meer en is uit de recente bestanden verwijderd:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>Het thema kon niet worden opgeslagen:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>Het thema kon niet naar {0} worden verzonden.
+Zorg ervoor dat CHMM2 op de 3DS draait en op een verbinding wacht.</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Thema opgeslagen</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>Thema verzonden</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>Het thema heeft niet-opgeslagen wijzigingen. Wil je ze eerst opslaan?</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Er is een nieuwe versie beschikbaar:
@@ -662,6 +731,21 @@ Bekijk het venster 'Info' voor meer informatie</value>
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>Voorbeeldopties</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Muziek: {0} KB van {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>Nieuw thema (nog niet opgeslagen)</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>Geen muziek</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Geluidseffecten: {0} KB van {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Niet-opgeslagen wijzigingen</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>Kleuren</value>

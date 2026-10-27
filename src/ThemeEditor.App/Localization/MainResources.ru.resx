@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>Ошибка соединения</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Отправка: {0:f1}%
+Скорость: {1} КБ/с</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>Отправка темы...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>Палитра верхнего изображения</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Фильтр настроек...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Отображается как название темы</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Анимация</value>
@@ -231,11 +241,23 @@
   <data name="Dialog_Close" xml:space="preserve">
     <value>Закрыть</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Не сохранять</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Обрезать по размеру</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Растянуть</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>Нет</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>Да</value>
@@ -423,17 +445,35 @@
   <data name="Menu_About" xml:space="preserve">
     <value>О программе</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Копировать все цвета</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Вставить цвета</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>_Копировать</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>Менеджер _CWAV</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Правка</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>_Повторить</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Отменить</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>Э_ксперименты</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>_Файл</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Очистить список</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Выход</value>
@@ -467,6 +507,9 @@
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>Верхний</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Показать в файловом менеджере</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>_Изображение</value>
@@ -580,8 +623,16 @@
     <value>Преобразованная музыка занимает {0} КБ, больше {1} КБ, которые может воспроизвести меню HOME 3DS: тема с ней будет без музыки.
 Всё равно использовать?</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Что-то пошло не так:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Ошибка</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>Размер изображения {0}x{1}, а для этого места нужен {2}x{3}.
+Подогнать его автоматически?</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Недопустимый размер изображения</value>
@@ -594,6 +645,9 @@
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>Язык изменится при следующем запуске редактора.</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>Не удалось прочитать файл метаданных.</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>Параметр «Фоновая музыка» отключён:
@@ -611,11 +665,26 @@
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Превью сохранено</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>Этот файл больше не существует и удалён из списка недавних:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>Не удалось сохранить тему:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>Не удалось отправить тему на {0}.
+Убедитесь, что CHMM2 запущен на 3DS и ожидает подключения.</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Тема успешно сохранена</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>Тема успешно отправлена</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>В теме есть несохранённые изменения. Сохранить их?</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Доступна новая версия:
@@ -662,6 +731,21 @@
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>Настройки предпросмотра</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Музыка: {0} КБ из {1} КБ</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>Новая тема (ещё не сохранена)</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>Нет музыки</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Звуковые эффекты: {0} КБ из {1} КБ</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Несохранённые изменения</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>Цвета</value>

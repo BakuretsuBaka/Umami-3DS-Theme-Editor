@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>Anslutningsfel</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Skickar: {0:f1}%
+Hastighet: {1} KB/s</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>Skickar tema...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>Palett för övre bilden</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Filtrera inställningar...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Visas som temats namn</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Animera</value>
@@ -231,11 +241,23 @@ Nuvarande storlek: {1} byte</value>
   <data name="Dialog_Close" xml:space="preserve">
     <value>Stäng</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Spara inte</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Beskär för att fylla</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Sträck ut</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>Nej</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Spara</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>Ja</value>
@@ -423,17 +445,35 @@ Nuvarande storlek: {1} byte</value>
   <data name="Menu_About" xml:space="preserve">
     <value>Om</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Kopiera alla färger</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Klistra in färger</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>_Kopiera</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>_CWAV-hanterare</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Redigera</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>_Gör om</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Ångra</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>E_xperimentellt</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>_Arkiv</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Rensa listan</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>A_vsluta</value>
@@ -467,6 +507,9 @@ Nuvarande storlek: {1} byte</value>
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>Övre</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Visa i filhanteraren</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>_Bild</value>
@@ -580,8 +623,16 @@ Prova codecen DSP-ADPCM, mono, lägre samplingsfrekvens eller ett kortare spår.
     <value>Den konverterade musiken är {0} kB, mer än de {1} kB som 3DS HOME-meny kan spela: ett tema med den får ingen musik.
 Använda ändå?</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Något gick fel:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fel</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>Bilden är {0}x{1}, men den här platsen använder {2}x{3}.
+Ska redigeraren anpassa den?</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Ogiltig bildstorlek</value>
@@ -594,6 +645,9 @@ Använda ändå?</value>
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>Språket ändras nästa gång redigeraren startas.</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>Metadatafilen kunde inte läsas.</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>Flaggan för bakgrundsmusik har inaktiverats:
@@ -611,11 +665,26 @@ Använda ändå?</value>
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Förhandsvisningen har sparats</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>Filen finns inte längre och har tagits bort från de senaste filerna:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>Temat kunde inte sparas:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>Temat kunde inte skickas till {0}.
+Kontrollera att CHMM2 körs på 3DS:en och väntar på en anslutning.</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Temat har sparats</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>Temat har skickats</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>Temat har osparade ändringar. Vill du spara dem först?</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>En ny version finns tillgänglig:
@@ -662,6 +731,21 @@ Se fönstret Om för mer information</value>
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>Förhandsvisningsalternativ</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Musik: {0} KB av {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>Nytt tema (inte sparat än)</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>Ingen musik</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Ljudeffekter: {0} KB av {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Osparade ändringar</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>Färger</value>

@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>Bağlantı hatası</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>Gönderiliyor: %{0:f1}
+Hız: {1} KB/sn</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>Tema gönderiliyor...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>Üst Görüntü Paleti</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>Ayarları filtrele...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>Temanın adı olarak gösterilir</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>Canlandır</value>
@@ -231,11 +241,23 @@ Geçerli boyut: {1} bayt</value>
   <data name="Dialog_Close" xml:space="preserve">
     <value>Kapat</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>Kaydetme</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>Doldurmak için kırp</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>Uzat</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>Hayır</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>Tamam</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Kaydet</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>Evet</value>
@@ -423,17 +445,35 @@ Geçerli boyut: {1} bayt</value>
   <data name="Menu_About" xml:space="preserve">
     <value>Hakkında</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>Tüm renkleri kopyala</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>Renkleri yapıştır</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>_Kopyala</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>_CWAV Yöneticisi</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Düzen</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>_Yinele</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>_Geri al</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>_Deneysel</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>_Dosya</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>Listeyi temizle</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>_Çıkış</value>
@@ -467,6 +507,9 @@ Geçerli boyut: {1} bayt</value>
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>Üst</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>Dosya yöneticisinde göster</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>_Görüntü</value>
@@ -580,8 +623,16 @@ DSP-ADPCM kodeğini, monoyu, daha düşük bir örnekleme hızını veya daha k�
     <value>Dönüştürülen müzik {0} KB, 3DS HOME menüsünün çalabildiği {1} KB'tan büyük: onunla bir temada müzik olmaz.
 Yine de kullanılsın mı?</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>Bir şeyler ters gitti:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Hata</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>Görüntü {0}x{1} boyutunda, ancak bu alan {2}x{3} kullanıyor.
+Düzenleyici sığdırsın mı?</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>Geçersiz görüntü boyutu</value>
@@ -594,6 +645,9 @@ Yine de kullanılsın mı?</value>
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>Dil, düzenleyici bir sonraki açılışta değişecek.</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>Meta veri dosyası okunamadı.</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>Arka Plan Müziği bayrağı devre dışı bırakıldı:
@@ -611,11 +665,26 @@ Yine de kullanılsın mı?</value>
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>Önizleme kaydedildi</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>Bu dosya artık mevcut değil ve son dosyalardan kaldırıldı:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>Tema kaydedilemedi:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>Tema {0} adresine gönderilemedi.
+CHMM2'nin 3DS'te çalıştığından ve bağlantı beklediğinden emin olun.</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>Tema başarıyla kaydedildi</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>Tema başarıyla gönderildi</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>Temada kaydedilmemiş değişiklikler var. Önce kaydetmek ister misiniz?</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>Yeni bir sürüm mevcut:
@@ -662,6 +731,21 @@ Daha fazla bilgi için Hakkında penceresine bakın</value>
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>Önizleme Seçenekleri</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>Müzik: {0} KB / {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>Yeni tema (henüz kaydedilmedi)</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>Müzik yok</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>Ses efektleri: {0} KB / {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>Kaydedilmemiş değişiklikler</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>Renkler</value>

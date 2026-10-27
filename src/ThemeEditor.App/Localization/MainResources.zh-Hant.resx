@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>連線錯誤</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>正在傳送：{0:f1}%
+速度：{1} KB/s</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>正在傳送主題...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>上螢幕影像調色盤</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>篩選設定...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>顯示為主題名稱</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>動畫</value>
@@ -231,11 +241,23 @@
   <data name="Dialog_Close" xml:space="preserve">
     <value>關閉</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>不儲存</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>裁切填滿</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>延展</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>否</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>確定</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>儲存</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>是</value>
@@ -423,17 +445,35 @@
   <data name="Menu_About" xml:space="preserve">
     <value>關於</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>複製所有顏色</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>貼上顏色</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>復制(_C)</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>CWAV 管理器(_C)</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>編輯(_E)</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>重做(_R)</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>復原(_U)</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>實驗功能(_X)</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>檔案(_F)</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>清除清單</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>退出(_X)</value>
@@ -467,6 +507,9 @@
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>上螢幕</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>在檔案總管中顯示</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>影像(_I)</value>
@@ -580,8 +623,16 @@
     <value>轉換後的音樂為 {0} KB，超過 3DS HOME 選單可播放的 {1} KB：使用它的主題將沒有音樂。
 仍要使用嗎？</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>發生錯誤：
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>錯誤</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>影像為 {0}x{1}，但此位置使用 {2}x{3}。
+要讓編輯器自動調整嗎？</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>影像尺寸無效</value>
@@ -594,6 +645,9 @@
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>語言將在下次啟動編輯器時生效。</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>無法讀取中繼資料檔案。</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>“背景音樂”旗標已禁用:
@@ -611,11 +665,26 @@
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>預覽已儲存</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>此檔案已不存在，已從最近檔案中移除：
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>無法儲存主題：
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>無法將主題傳送到 {0}。
+請確認 3DS 上的 CHMM2 正在執行並等待連線。</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>主題儲存成功</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>主題傳送成功</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>主題有未儲存的變更。要先儲存嗎？</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>有可用的新版本:
@@ -662,6 +731,21 @@
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>預覽選項</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>音樂：{0} KB / {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>新主題（尚未儲存）</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>無音樂</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>音效：{0} KB / {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>未儲存的變更</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>顏色</value>

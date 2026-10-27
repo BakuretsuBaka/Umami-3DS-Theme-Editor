@@ -109,6 +109,10 @@
   <data name="Busy_Sender_ConnectionError" xml:space="preserve">
     <value>接続エラー</value>
   </data>
+  <data name="Busy_Sender_Progress" xml:space="preserve">
+    <value>送信中: {0:f1}%
+速度: {1} KB/s</value>
+  </data>
   <data name="Busy_Sender_SendingTheme" xml:space="preserve">
     <value>テーマを送信中...</value>
   </data>
@@ -144,6 +148,12 @@
   </data>
   <data name="Control_ColorPicker_TopPalette" xml:space="preserve">
     <value>上画面画像のパレット</value>
+  </data>
+  <data name="Control_Filter_Watermark" xml:space="preserve">
+    <value>設定を絞り込む...</value>
+  </data>
+  <data name="Control_Info_Name_Watermark" xml:space="preserve">
+    <value>テーマ名として表示されます</value>
   </data>
   <data name="Control_Preview_Animate" xml:space="preserve">
     <value>アニメーション</value>
@@ -231,11 +241,23 @@
   <data name="Dialog_Close" xml:space="preserve">
     <value>閉じる</value>
   </data>
+  <data name="Dialog_Discard" xml:space="preserve">
+    <value>保存しない</value>
+  </data>
+  <data name="Dialog_FitCrop" xml:space="preserve">
+    <value>切り抜いて合わせる</value>
+  </data>
+  <data name="Dialog_FitStretch" xml:space="preserve">
+    <value>引き伸ばす</value>
+  </data>
   <data name="Dialog_No" xml:space="preserve">
     <value>いいえ</value>
   </data>
   <data name="Dialog_OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>保存</value>
   </data>
   <data name="Dialog_Yes" xml:space="preserve">
     <value>はい</value>
@@ -423,17 +445,35 @@
   <data name="Menu_About" xml:space="preserve">
     <value>バージョン情報</value>
   </data>
+  <data name="Menu_ColorSet_Copy" xml:space="preserve">
+    <value>すべての色をコピー</value>
+  </data>
+  <data name="Menu_ColorSet_Paste" xml:space="preserve">
+    <value>色を貼り付け</value>
+  </data>
   <data name="Menu_Copy" xml:space="preserve">
     <value>コピー(_C)</value>
   </data>
   <data name="Menu_CwavManager" xml:space="preserve">
     <value>CWAVマネージャー(_C)</value>
   </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>編集(_E)</value>
+  </data>
+  <data name="Menu_Edit_Redo" xml:space="preserve">
+    <value>やり直し(_R)</value>
+  </data>
+  <data name="Menu_Edit_Undo" xml:space="preserve">
+    <value>元に戻す(_U)</value>
+  </data>
   <data name="Menu_Experimental" xml:space="preserve">
     <value>試験的機能(_X)</value>
   </data>
   <data name="Menu_File" xml:space="preserve">
     <value>ファイル(_F)</value>
+  </data>
+  <data name="Menu_File_ClearRecent" xml:space="preserve">
+    <value>リストを消去</value>
   </data>
   <data name="Menu_File_Exit" xml:space="preserve">
     <value>終了(_X)</value>
@@ -467,6 +507,9 @@
   </data>
   <data name="Menu_File_SavePreview_Top" xml:space="preserve">
     <value>上画面</value>
+  </data>
+  <data name="Menu_File_ShowInFolder" xml:space="preserve">
+    <value>ファイルマネージャーで表示</value>
   </data>
   <data name="Menu_Image" xml:space="preserve">
     <value>画像(_I)</value>
@@ -580,8 +623,16 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
     <value>変換した音楽は {0} KB で、3DS の HOME メニューが再生できる {1} KB を超えています。使ったテーマでは音楽が鳴りません。
 それでも使用しますか？</value>
   </data>
+  <data name="Message_CommandError" xml:space="preserve">
+    <value>問題が発生しました:
+{0}</value>
+  </data>
   <data name="Message_Error" xml:space="preserve">
     <value>エラー</value>
+  </data>
+  <data name="Message_ImageFit" xml:space="preserve">
+    <value>画像は {0}x{1} ですが、この枠は {2}x{3} です。
+エディターで自動的に合わせますか？</value>
   </data>
   <data name="Message_InvalidImageSize" xml:space="preserve">
     <value>画像サイズが正しくありません</value>
@@ -594,6 +645,9 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   </data>
   <data name="Message_LanguageRestart" xml:space="preserve">
     <value>言語はエディターを次に起動したときに変更されます。</value>
+  </data>
+  <data name="Message_MetadataInvalid" xml:space="preserve">
+    <value>メタデータファイルを読み込めませんでした。</value>
   </data>
   <data name="Message_NoBackgroundMusicOnLoad" xml:space="preserve">
     <value>「BGM」フラグが無効になりました:
@@ -611,11 +665,26 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Message_PreviewSaved" xml:space="preserve">
     <value>プレビューを保存しました</value>
   </data>
+  <data name="Message_RecentMissing" xml:space="preserve">
+    <value>このファイルは存在しないため、最近使ったファイルから削除しました:
+{0}</value>
+  </data>
+  <data name="Message_SaveFailed" xml:space="preserve">
+    <value>テーマを保存できませんでした:
+{0}</value>
+  </data>
+  <data name="Message_SendFailed" xml:space="preserve">
+    <value>テーマを {0} に送信できませんでした。
+3DS で CHMM2 が起動し、接続を待っていることを確認してください。</value>
+  </data>
   <data name="Message_ThemeSaved" xml:space="preserve">
     <value>テーマを保存しました</value>
   </data>
   <data name="Message_ThemeSent" xml:space="preserve">
     <value>テーマを送信しました</value>
+  </data>
+  <data name="Message_UnsavedChanges" xml:space="preserve">
+    <value>テーマに未保存の変更があります。先に保存しますか？</value>
   </data>
   <data name="Message_UpdateAvailable" xml:space="preserve">
     <value>新しいバージョンがあります:
@@ -662,6 +731,21 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   </data>
   <data name="Preview_Options_Title" xml:space="preserve">
     <value>プレビューのオプション</value>
+  </data>
+  <data name="Status_Bgm" xml:space="preserve">
+    <value>BGM: {0} KB / {1} KB</value>
+  </data>
+  <data name="Status_NewTheme" xml:space="preserve">
+    <value>新しいテーマ（未保存）</value>
+  </data>
+  <data name="Status_NoBgm" xml:space="preserve">
+    <value>BGMなし</value>
+  </data>
+  <data name="Status_Sfx" xml:space="preserve">
+    <value>効果音: {0} KB / {1} KB</value>
+  </data>
+  <data name="Status_Unsaved" xml:space="preserve">
+    <value>未保存の変更</value>
   </data>
   <data name="Tab_Colors" xml:space="preserve">
     <value>色</value>
