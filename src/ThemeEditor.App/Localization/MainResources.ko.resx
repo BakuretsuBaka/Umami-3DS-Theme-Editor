@@ -279,6 +279,9 @@
   <data name="Library_Apply" xml:space="preserve">
     <value>테마에 적용</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>세트 전체 적용</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>밝기</value>
   </data>
@@ -333,6 +336,9 @@
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>폴더 열기</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>'사용'으로 소리를 하나씩 고를 수 있습니다(테마의 다른 소리는 그대로). 세트 전체로 모두 바꿀 수도 있습니다.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>실행</value>
   </data>
@@ -350,6 +356,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>리소스 라이브러리</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>사용</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>열려 있는 테마에서 이 소리만 사용하고 나머지는 유지합니다</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>색상 변형</value>

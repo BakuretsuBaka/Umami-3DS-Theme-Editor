@@ -406,3 +406,7 @@ Library_Snd_Close=Kapat
 Library_Snd_Page=Sayfa
 Library_Snd_Lid=Kapak
 Library_Snd_Number=Ses {0}
+Library_UseSound=Kullan
+Library_UseSound_Tip=Yalnızca bu sesi açık temada kullan, diğerleri kalır
+Library_ApplyWholeSet=Tüm seti uygula
+Library_Snd_Hint="Kullan" ile tek tek ses seçin (temanızın diğer sesleri değişmez) veya hepsini tüm setle değiştirin.

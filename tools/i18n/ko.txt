@@ -406,3 +406,7 @@ Library_Snd_Close=닫기
 Library_Snd_Page=페이지
 Library_Snd_Lid=덮개
 Library_Snd_Number=소리 {0}
+Library_UseSound=사용
+Library_UseSound_Tip=열려 있는 테마에서 이 소리만 사용하고 나머지는 유지합니다
+Library_ApplyWholeSet=세트 전체 적용
+Library_Snd_Hint='사용'으로 소리를 하나씩 고를 수 있습니다(테마의 다른 소리는 그대로). 세트 전체로 모두 바꿀 수도 있습니다.

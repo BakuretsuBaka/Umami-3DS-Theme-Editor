@@ -279,6 +279,9 @@
   <data name="Library_Apply" xml:space="preserve">
     <value>套用到主題</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>套用整組</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>亮度</value>
   </data>
@@ -333,6 +336,9 @@
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>開啟資料夾</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>用「使用」逐個選擇音效（主題的其他音效保持不變），也可以用整組取代全部。</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>啟動</value>
   </data>
@@ -350,6 +356,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>資源庫</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>使用</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>僅在開啟的主題中使用此音效，其餘保持不變</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>顏色變體</value>

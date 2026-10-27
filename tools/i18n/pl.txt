@@ -406,3 +406,7 @@ Library_Snd_Close=Zamknięcie
 Library_Snd_Page=Strona
 Library_Snd_Lid=Klapka
 Library_Snd_Number=Dźwięk {0}
+Library_UseSound=Użyj
+Library_UseSound_Tip=Użyj tylko tego dźwięku w otwartym motywie, pozostałe zostają
+Library_ApplyWholeSet=Zastosuj cały zestaw
+Library_Snd_Hint=Wybieraj pojedyncze dźwięki przyciskiem „Użyj” (pozostałe dźwięki motywu się nie zmienią) albo zastąp wszystkie całym zestawem.

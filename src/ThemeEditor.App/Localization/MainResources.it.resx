@@ -279,6 +279,9 @@ Dimensione attuale: {1} byte</value>
   <data name="Library_Apply" xml:space="preserve">
     <value>Applica al tema</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>Applica l'intero set</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>Luminosità</value>
   </data>
@@ -333,6 +336,9 @@ Dimensione attuale: {1} byte</value>
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>Apri cartella</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>Scegli i singoli suoni con «Usa» (gli altri suoni del tema restano invariati) oppure sostituiscili tutti con l'intero set.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>Avvio</value>
   </data>
@@ -350,6 +356,12 @@ Dimensione attuale: {1} byte</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Libreria risorse</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>Usa</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>Usa solo questo suono nel tema aperto, gli altri restano invariati</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>Varianti di colore</value>

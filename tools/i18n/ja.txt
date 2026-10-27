@@ -406,3 +406,7 @@ Library_Snd_Close=閉じる
 Library_Snd_Page=ページ
 Library_Snd_Lid=フタ
 Library_Snd_Number=サウンド {0}
+Library_UseSound=使う
+Library_UseSound_Tip=開いているテーマでこの音だけを使う（他の音はそのまま）
+Library_ApplyWholeSet=セット全体を適用
+Library_Snd_Hint=「使う」で音を1つずつ選べます（テーマの他の音は変わりません）。セット全体で全ての音を置き換えることもできます。

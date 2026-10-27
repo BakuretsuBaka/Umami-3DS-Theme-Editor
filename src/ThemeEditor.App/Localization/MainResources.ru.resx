@@ -279,6 +279,9 @@
   <data name="Library_Apply" xml:space="preserve">
     <value>Применить к теме</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>Применить весь набор</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>Яркость</value>
   </data>
@@ -333,6 +336,9 @@
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>Открытие папки</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>Выбирайте отдельные звуки кнопкой «Использовать» (остальные звуки темы не меняются) или замените все целым набором.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>Запуск</value>
   </data>
@@ -350,6 +356,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Библиотека ресурсов</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>Использовать</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>Использовать только этот звук в открытой теме, остальные не меняются</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>Варианты цвета</value>

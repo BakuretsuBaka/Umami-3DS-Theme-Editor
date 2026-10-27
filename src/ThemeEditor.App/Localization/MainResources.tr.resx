@@ -279,6 +279,9 @@ Geçerli boyut: {1} bayt</value>
   <data name="Library_Apply" xml:space="preserve">
     <value>Temaya uygula</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>Tüm seti uygula</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>Parlaklık</value>
   </data>
@@ -333,6 +336,9 @@ Geçerli boyut: {1} bayt</value>
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>Klasörü aç</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>"Kullan" ile tek tek ses seçin (temanızın diğer sesleri değişmez) veya hepsini tüm setle değiştirin.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>Başlat</value>
   </data>
@@ -350,6 +356,12 @@ Geçerli boyut: {1} bayt</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Kaynak kitaplığı</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>Kullan</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>Yalnızca bu sesi açık temada kullan, diğerleri kalır</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>Renk varyasyonları</value>

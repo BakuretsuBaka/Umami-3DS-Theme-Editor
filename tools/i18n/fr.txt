@@ -167,3 +167,7 @@ Library_Snd_Close=Fermer
 Library_Snd_Page=Page
 Library_Snd_Lid=Capot
 Library_Snd_Number=Son {0}
+Library_UseSound=Utiliser
+Library_UseSound_Tip=Utiliser uniquement ce son dans le thème ouvert, les autres sont conservés
+Library_ApplyWholeSet=Appliquer tout le jeu
+Library_Snd_Hint=Choisissez des sons un par un avec « Utiliser » (les autres sons de votre thème restent inchangés) ou remplacez-les tous par le jeu complet.

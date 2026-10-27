@@ -406,3 +406,7 @@ Library_Snd_Close=Sluiten
 Library_Snd_Page=Pagina
 Library_Snd_Lid=Klep
 Library_Snd_Number=Geluid {0}
+Library_UseSound=Gebruiken
+Library_UseSound_Tip=Alleen dit geluid in het geopende thema gebruiken, de andere blijven behouden
+Library_ApplyWholeSet=Hele set toepassen
+Library_Snd_Hint=Kies losse geluiden met 'Gebruiken' (de andere geluiden van je thema blijven zoals ze zijn) of vervang ze allemaal met de hele set.

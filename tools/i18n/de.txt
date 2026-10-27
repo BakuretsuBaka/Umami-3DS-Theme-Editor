@@ -406,3 +406,7 @@ Library_Snd_Close=Schließen
 Library_Snd_Page=Seite
 Library_Snd_Lid=Deckel
 Library_Snd_Number=Sound {0}
+Library_UseSound=Verwenden
+Library_UseSound_Tip=Nur diesen Sound im geöffneten Design verwenden, die übrigen bleiben erhalten
+Library_ApplyWholeSet=Ganzes Set anwenden
+Library_Snd_Hint=Wähle einzelne Sounds mit „Verwenden“ (die anderen Sounds deines Designs bleiben unverändert) oder ersetze alle mit dem ganzen Set.

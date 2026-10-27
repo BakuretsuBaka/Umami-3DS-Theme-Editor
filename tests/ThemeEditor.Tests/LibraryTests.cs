@@ -133,6 +133,7 @@ namespace ThemeEditor.Tests
             public bool HasTheme => true;
             public void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness) {}
             public void ApplySoundEffects(LibraryItem item) {}
+            public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}
             public void ApplyMusic(LibraryItem item) {}
         }
 

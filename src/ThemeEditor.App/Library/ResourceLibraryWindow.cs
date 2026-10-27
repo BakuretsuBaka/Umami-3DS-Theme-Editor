@@ -29,6 +29,7 @@ namespace ThemeEditor.App.Library
         bool HasTheme { get; }
         void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness);
         void ApplySoundEffects(LibraryItem item);
+        void ApplySound(LibraryItem item, CwavKind kind);
         void ApplyMusic(LibraryItem item);
     }
 
@@ -196,7 +197,7 @@ namespace ThemeEditor.App.Library
             else
                 BuildMusicDetail(item);
 
-            var apply = new Button { Content = MainResources.Library_Apply, IsEnabled = _target.HasTheme, HorizontalAlignment = HorizontalAlignment.Left, Padding = new Thickness(18, 6), Margin = new Thickness(0, 10, 0, 0) };
+            var apply = new Button { Content = item.Kind == LibraryKind.SoundEffects ? MainResources.Library_ApplyWholeSet : MainResources.Library_Apply, IsEnabled = _target.HasTheme, HorizontalAlignment = HorizontalAlignment.Left, Padding = new Thickness(18, 6), Margin = new Thickness(0, 10, 0, 0) };
             apply.Click += (_, __) => Apply(item);
             _detail.Children.Add(apply);
             if (!_target.HasTheme)
@@ -318,28 +319,25 @@ namespace ThemeEditor.App.Library
             try
             {
                 data = _lib.ReadAllBytes(item, item.DataFile);
-                block.TryImport(data);   // also scans the block for every embedded CWAV
+                block.TryImport(data);
             }
             catch (Exception)
             {
                 return;
             }
-            var named = new[] { MainResources.Library_Snd_Cursor, MainResources.Library_Snd_Launch, MainResources.Library_Snd_Folder, MainResources.Library_Snd_Close, MainResources.Library_Snd_Page + " 1", MainResources.Library_Snd_Page + " 2", MainResources.Library_Snd_Page + " 3", MainResources.Library_Snd_Lid };
-            var clips = new List<(string Label, CwavFile File)>();
-            var all8 = Enumerable.Range(0, 8).All(i => block.Sounds.TryGetValue((CwavKind) i, out var f) && f.CwavData != null && f.CwavData.Length > 0x10);
-            if (all8)
-                for (var i = 0; i < 8; i++)
-                    clips.Add((named[i], block.Sounds[(CwavKind) i]));
-            else
-                for (var i = 0; i < block.Scanned.Count; i++)
-                    clips.Add((string.Format(MainResources.Library_Snd_Number, i + 1), block.Scanned[i]));
+            var names = new[] { MainResources.Library_Snd_Cursor, MainResources.Library_Snd_Launch, MainResources.Library_Snd_Folder, MainResources.Library_Snd_Close, MainResources.Library_Snd_Page + " 1", MainResources.Library_Snd_Page + " 2", MainResources.Library_Snd_Page + " 3", MainResources.Library_Snd_Lid };
+            _detail.Children.Add(new TextBlock { Text = MainResources.Library_Snd_Hint, TextWrapping = TextWrapping.Wrap, Opacity = 0.7 });
 
-            var wrap = new WrapPanel();
-            foreach (var (label, file) in clips)
+            var rows = new StackPanel { Spacing = 4 };
+            for (var i = 0; i < 8; i++)
             {
+                var kind = (CwavKind) i;
+                var file = block.Sounds[kind];
+                if (file.CwavData == null || file.CwavData.Length <= 0x10)
+                    continue;
                 var f = file;
-                var b = new Button { Content = "▶ " + label, Margin = new Thickness(0, 0, 6, 6), MinWidth = 90 };
-                b.Click += (_, __) =>
+                var play = new Button { Content = "▶", MinWidth = 36, HorizontalContentAlignment = HorizontalAlignment.Center };
+                play.Click += (_, __) =>
                 {
                     try
                     {
@@ -349,10 +347,33 @@ namespace ThemeEditor.App.Library
                     }
                     catch (Exception) { }
                 };
-                wrap.Children.Add(b);
+                var use = new Button { Content = MainResources.Library_UseSound, IsEnabled = _target.HasTheme, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center };
+                ToolTip.SetTip(use, MainResources.Library_UseSound_Tip);
+                use.Click += (_, __) => UseSound(item, kind);
+                var row = new Grid { ColumnDefinitions = new ColumnDefinitions("140,Auto,Auto"), HorizontalAlignment = HorizontalAlignment.Left };
+                row.Children.Add(new TextBlock { Text = names[i], VerticalAlignment = VerticalAlignment.Center });
+                Grid.SetColumn(play, 1);
+                Grid.SetColumn(use, 2);
+                play.Margin = new Thickness(0, 0, 6, 0);
+                row.Children.Add(play);
+                row.Children.Add(use);
+                rows.Children.Add(row);
             }
-            _detail.Children.Add(wrap);
+            _detail.Children.Add(rows);
             _detail.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_SfxSize, data.Length / 1024), Opacity = 0.7 });
+        }
+
+        private void UseSound(LibraryItem item, CwavKind kind)
+        {
+            try
+            {
+                _target.ApplySound(item, kind);
+                _status.Text = MainResources.Library_Applied;
+            }
+            catch (Exception ex)
+            {
+                _status.Text = ex.Message;
+            }
         }
 
         private void BuildMusicDetail(LibraryItem item)

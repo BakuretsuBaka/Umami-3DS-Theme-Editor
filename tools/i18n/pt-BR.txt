@@ -116,3 +116,7 @@ Library_Snd_Close=Fechar
 Library_Snd_Page=Página
 Library_Snd_Lid=Tampa
 Library_Snd_Number=Som {0}
+Library_UseSound=Usar
+Library_UseSound_Tip=Usar só este som no tema aberto, mantendo os outros
+Library_ApplyWholeSet=Aplicar o conjunto inteiro
+Library_Snd_Hint=Escolha sons individuais com "Usar" (os outros sons do seu tema ficam como estão) ou substitua todos pelo conjunto inteiro.

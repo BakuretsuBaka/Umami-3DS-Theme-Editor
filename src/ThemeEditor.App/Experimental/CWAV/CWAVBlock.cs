@@ -16,6 +16,17 @@ namespace ThemeEditor.App.Experimental.CWAV
 
         public SoundDictionary Sounds { get; }
 
+        /// <summary>
+        ///     Many themes carry a ninth sound in front of the page flip sounds: the 44 byte block before them starts
+        ///     with its size and its data follows directly. It is kept so that re-generating the block does not drop it.
+        /// </summary>
+        public byte[] ExtraSound { get; private set; }
+
+        private byte[] _ext;
+        private int _headerVolume = 0x64;
+        private int _headerKind = 0x02;
+        private readonly Dictionary<int, int> _volumes = new Dictionary<int, int>();
+
 
         public CwavBlock()
         {
@@ -74,28 +85,38 @@ namespace ThemeEditor.App.Experimental.CWAV
             using (var ms = new MemoryStream())
             using (var bw = new BinaryWriter(ms))
             {
-                bw.Write(0x02);
-                bw.Write(0x64);
+                bw.Write(_headerKind);
+                bw.Write(_headerVolume);
                 for (int i = 0; i <= 7; i++)
                 {
                     var kind = (CwavKind) i;
                     var file = Sounds[kind];
                     if (kind == CwavKind.Frame0)
                     {
-                        int[] extData =
+                        if (_ext != null)
                         {
-                            0x00, 0x64, //
-                            0x00, 0x64, //
-                            0x64, 0x00, //
-                            0x64, 0x64, //
-                            0x00, 0x00, //
-                            0x00
-                        };
-                        foreach (var j in extData)
-                            bw.Write(j);
+                            bw.Write(_ext);
+                            if (ExtraSound != null)
+                                bw.Write(ExtraSound);
+                        }
+                        else
+                        {
+                            int[] extData =
+                            {
+                                0x00, 0x64, //
+                                0x00, 0x64, //
+                                0x64, 0x00, //
+                                0x64, 0x64, //
+                                0x00, 0x00, //
+                                0x00
+                            };
+                            foreach (var j in extData)
+                                bw.Write(j);
+                        }
                     }
                     bw.Write(file.Size);
-                    bw.Write(file.Size > 0 ? 0x50 : 1);
+                    // Keep the volume a theme came with; new sounds get the editor's defaults
+                    bw.Write(_volumes.TryGetValue(i, out var vol) ? vol : file.Size > 0 ? 0x50 : 1);
                     bw.Write(file.CwavData);
                 }
                 return ms.ToArray();
@@ -112,8 +133,8 @@ namespace ThemeEditor.App.Experimental.CWAV
                     using (var ms = new MemoryStream(data))
                     using (var br = new BinaryReader(ms))
                     {
-                        br.ReadInt32();
-                        br.ReadInt32();
+                        _headerKind = br.ReadInt32();
+                        _headerVolume = br.ReadInt32();
                         for (int i = 0; i <= 7; i++)
                         {
                             if (ms.Position == ms.Length)
@@ -121,10 +142,19 @@ namespace ThemeEditor.App.Experimental.CWAV
 
                             var kind = (CwavKind) i;
                             if (kind == CwavKind.Frame0)
-                                br.ReadBytes(44); // ExtData
+                            {
+                                var ext = br.ReadBytes(44); // ExtData
+                                var extSize = ext.Length == 44 ? BitConverter.ToInt32(ext, 0) : 0;
+                                if (ext.Length == 44)
+                                    _ext = ext;
+                                // A non zero first value is the size of an extra sound whose data follows right away
+                                if (extSize > 0 && ms.Position + extSize <= ms.Length && Encoding.ASCII.GetString(data, (int) ms.Position, 4) == "CWAV")
+                                    ExtraSound = br.ReadBytes(extSize);
+                            }
 
                             var sz = br.ReadInt32();
                             var volume = br.ReadInt32();
+                            _volumes[i] = volume;
                             if (sz == 0)
                                 continue;
                             // Probably a Mismatch

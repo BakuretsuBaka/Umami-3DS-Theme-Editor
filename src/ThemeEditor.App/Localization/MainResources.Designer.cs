@@ -668,6 +668,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_ApplyWholeSet".</summary>
+        public static string Library_ApplyWholeSet {
+            get {
+                return ResourceManager.GetString("Library_ApplyWholeSet", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Brightness".</summary>
         public static string Library_Brightness {
             get {
@@ -794,6 +801,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_Snd_Hint".</summary>
+        public static string Library_Snd_Hint {
+            get {
+                return ResourceManager.GetString("Library_Snd_Hint", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Snd_Launch".</summary>
         public static string Library_Snd_Launch {
             get {
@@ -833,6 +847,20 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Title {
             get {
                 return ResourceManager.GetString("Library_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_UseSound".</summary>
+        public static string Library_UseSound {
+            get {
+                return ResourceManager.GetString("Library_UseSound", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_UseSound_Tip".</summary>
+        public static string Library_UseSound_Tip {
+            get {
+                return ResourceManager.GetString("Library_UseSound_Tip", resourceCulture);
             }
         }
 

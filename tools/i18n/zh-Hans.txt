@@ -406,3 +406,7 @@ Library_Snd_Close=关闭
 Library_Snd_Page=翻页
 Library_Snd_Lid=机盖
 Library_Snd_Number=声音 {0}
+Library_UseSound=使用
+Library_UseSound_Tip=仅在打开的主题中使用此音效，其余保持不变
+Library_ApplyWholeSet=应用整套
+Library_Snd_Hint=用“使用”逐个选择音效（主题的其他音效保持不变），也可以用整套替换全部。

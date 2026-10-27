@@ -279,6 +279,9 @@ Tamaño actual: {1} bytes</value>
   <data name="Library_Apply" xml:space="preserve">
     <value>Aplicar al tema</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>Aplicar el conjunto completo</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>Brillo</value>
   </data>
@@ -333,6 +336,9 @@ Tamaño actual: {1} bytes</value>
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>Abrir carpeta</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>Elige sonidos sueltos con «Usar» (los demás sonidos de tu tema no cambian) o reemplázalos todos con el conjunto completo.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>Inicio</value>
   </data>
@@ -350,6 +356,12 @@ Tamaño actual: {1} bytes</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Biblioteca de recursos</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>Usar</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>Usar solo este sonido en el tema abierto; los demás se mantienen</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>Variantes de color</value>

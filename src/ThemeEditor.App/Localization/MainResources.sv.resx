@@ -279,6 +279,9 @@ Nuvarande storlek: {1} byte</value>
   <data name="Library_Apply" xml:space="preserve">
     <value>Använd på tema</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>Använd hela setet</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>Ljusstyrka</value>
   </data>
@@ -333,6 +336,9 @@ Nuvarande storlek: {1} byte</value>
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>Öppna mapp</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>Välj enskilda ljud med "Använd" (temats andra ljud ändras inte) eller ersätt alla med hela setet.</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>Start</value>
   </data>
@@ -350,6 +356,12 @@ Nuvarande storlek: {1} byte</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Resursbibliotek</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>Använd</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>Använd bara det här ljudet i det öppna temat, de andra behålls</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>Färgvarianter</value>

@@ -167,3 +167,7 @@ Library_Snd_Close=Chiudi
 Library_Snd_Page=Pagina
 Library_Snd_Lid=Coperchio
 Library_Snd_Number=Suono {0}
+Library_UseSound=Usa
+Library_UseSound_Tip=Usa solo questo suono nel tema aperto, gli altri restano invariati
+Library_ApplyWholeSet=Applica l'intero set
+Library_Snd_Hint=Scegli i singoli suoni con «Usa» (gli altri suoni del tema restano invariati) oppure sostituiscili tutti con l'intero set.

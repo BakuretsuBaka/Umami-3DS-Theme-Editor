@@ -167,3 +167,7 @@ Library_Snd_Close=Cerrar
 Library_Snd_Page=Página
 Library_Snd_Lid=Tapa
 Library_Snd_Number=Sonido {0}
+Library_UseSound=Usar
+Library_UseSound_Tip=Usar solo este sonido en el tema abierto; los demás se mantienen
+Library_ApplyWholeSet=Aplicar el conjunto completo
+Library_Snd_Hint=Elige sonidos sueltos con «Usar» (los demás sonidos de tu tema no cambian) o reemplázalos todos con el conjunto completo.

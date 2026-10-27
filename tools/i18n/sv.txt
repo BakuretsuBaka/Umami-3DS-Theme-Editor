@@ -406,3 +406,7 @@ Library_Snd_Close=Stäng
 Library_Snd_Page=Sida
 Library_Snd_Lid=Lock
 Library_Snd_Number=Ljud {0}
+Library_UseSound=Använd
+Library_UseSound_Tip=Använd bara det här ljudet i det öppna temat, de andra behålls
+Library_ApplyWholeSet=Använd hela setet
+Library_Snd_Hint=Välj enskilda ljud med "Använd" (temats andra ljud ändras inte) eller ersätt alla med hela setet.

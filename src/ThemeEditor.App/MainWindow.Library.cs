@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.Library.cs
 // --------------------------------------------------
 
@@ -81,6 +81,13 @@ namespace ThemeEditor.App
             {
                 var vm = _w.ViewModel;
                 vm.CWavBytes = ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile);
+                vm.Flags.SoundEffect = true;
+            }
+
+            public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind)
+            {
+                var vm = _w.ViewModel;
+                vm.CWavBytes = SoundMerge.Replace(vm.CWavBytes, ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile), kind);
                 vm.Flags.SoundEffect = true;
             }
 

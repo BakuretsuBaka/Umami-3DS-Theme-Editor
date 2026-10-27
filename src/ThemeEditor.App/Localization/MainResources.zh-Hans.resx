@@ -279,6 +279,9 @@
   <data name="Library_Apply" xml:space="preserve">
     <value>应用到主题</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>应用整套</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>亮度</value>
   </data>
@@ -333,6 +336,9 @@
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>打开文件夹</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>用“使用”逐个选择音效（主题的其他音效保持不变），也可以用整套替换全部。</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>启动</value>
   </data>
@@ -350,6 +356,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>资源库</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>使用</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>仅在打开的主题中使用此音效，其余保持不变</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>颜色变体</value>

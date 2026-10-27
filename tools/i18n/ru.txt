@@ -406,3 +406,7 @@ Library_Snd_Close=Закрытие
 Library_Snd_Page=Страница
 Library_Snd_Lid=Крышка
 Library_Snd_Number=Звук {0}
+Library_UseSound=Использовать
+Library_UseSound_Tip=Использовать только этот звук в открытой теме, остальные не меняются
+Library_ApplyWholeSet=Применить весь набор
+Library_Snd_Hint=Выбирайте отдельные звуки кнопкой «Использовать» (остальные звуки темы не меняются) или замените все целым набором.

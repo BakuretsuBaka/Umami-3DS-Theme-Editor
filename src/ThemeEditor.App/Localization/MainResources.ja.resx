@@ -279,6 +279,9 @@
   <data name="Library_Apply" xml:space="preserve">
     <value>テーマに適用</value>
   </data>
+  <data name="Library_ApplyWholeSet" xml:space="preserve">
+    <value>セット全体を適用</value>
+  </data>
   <data name="Library_Brightness" xml:space="preserve">
     <value>明るさ</value>
   </data>
@@ -333,6 +336,9 @@
   <data name="Library_Snd_Folder" xml:space="preserve">
     <value>フォルダを開く</value>
   </data>
+  <data name="Library_Snd_Hint" xml:space="preserve">
+    <value>「使う」で音を1つずつ選べます（テーマの他の音は変わりません）。セット全体で全ての音を置き換えることもできます。</value>
+  </data>
   <data name="Library_Snd_Launch" xml:space="preserve">
     <value>起動</value>
   </data>
@@ -350,6 +356,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>リソースライブラリ</value>
+  </data>
+  <data name="Library_UseSound" xml:space="preserve">
+    <value>使う</value>
+  </data>
+  <data name="Library_UseSound_Tip" xml:space="preserve">
+    <value>開いているテーマでこの音だけを使う（他の音はそのまま）</value>
   </data>
   <data name="Library_Variants" xml:space="preserve">
     <value>カラーバリエーション</value>
