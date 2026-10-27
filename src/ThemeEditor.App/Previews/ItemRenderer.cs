@@ -131,10 +131,11 @@ namespace ThemeEditor.App.Previews
                 {
                     c.Save();
                     c.ClipPath(FileGeometry, SKClipOperation.Intersect, true);
-                    // Right half: viewbox 1,1,34,69 of the texture into a 24x48 tile, left half mirrored
+                    // Right half: viewbox 1,1,34,69 of the texture into a 24x48 tile, left half mirrored.
+                    // The halves overlap by half a pixel: two antialiased edges meeting exactly left a visible seam.
                     var view = new SKRect(1, 1, 35, 70);
-                    SkiaHelpers.DrawImageUniform(c, tex.Sk, view, new SKRect(0, -24, 24, 24));
-                    SkiaHelpers.DrawImageUniform(c, tex.Sk, view, new SKRect(-24, -24, 0, 24), true);
+                    SkiaHelpers.DrawImageUniform(c, tex.Sk, view, new SKRect(-0.25f, -24, 24, 24));
+                    SkiaHelpers.DrawImageUniform(c, tex.Sk, view, new SKRect(-24, -24, 0.25f, 24), true);
                     c.Restore();
                 }
                 else
