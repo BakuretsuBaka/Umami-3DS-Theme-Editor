@@ -46,7 +46,11 @@ namespace ThemeEditor.App.Library
         private readonly ListBox _list = new ListBox();
         private readonly TextBlock _status = new TextBlock { VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
         private readonly ProgressBar _progress = new ProgressBar { Minimum = 0, Maximum = 1, Width = 160, IsVisible = false };
-        private readonly Button _import = new Button { Content = MainResources.Library_AddFolder };
+        private readonly Button _import = new Button { Content = MainResources.Library_Import + "  ▾" };
+        private readonly Button _export = new Button { Content = MainResources.Library_Export + "  ▾" };
+        private readonly MenuItem _exportItemPack = new MenuItem { Header = MainResources.Library_ExportPack };
+        private readonly MenuItem _exportItemFiles = new MenuItem { Header = MainResources.Library_ExportFiles };
+        private readonly MenuItem _exportShown = new MenuItem { Header = MainResources.Library_ExportShown };
         private readonly StackPanel _detail = new StackPanel { Spacing = 8, Margin = new Thickness(14) };
 
         private LibraryKind _kind = LibraryKind.FolderTexture;
@@ -62,9 +66,9 @@ namespace ThemeEditor.App.Library
             _lib = lib;
             _target = target;
             Title = MainResources.Library_Title;
-            Width = 1060;
+            Width = 1120;
             Height = 640;
-            MinWidth = 900;
+            MinWidth = 960;
             MinHeight = 480;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
@@ -79,18 +83,31 @@ namespace ThemeEditor.App.Library
                 tabs.Children.Add(rb);
             }
 
-            _import.Click += async (_, __) => await ImportFolder();
+            var importPack = new MenuItem { Header = MainResources.Library_ImportPack };
+            importPack.Click += async (_, __) => await ImportPackFile();
+            var importFiles = new MenuItem { Header = MainResources.Library_ImportFiles };
+            importFiles.Click += async (_, __) => await ImportLooseFiles();
+            var importThemes = new MenuItem { Header = MainResources.Library_AddFolder };
+            importThemes.Click += async (_, __) => await ImportFolder();
+            _import.Flyout = new MenuFlyout { Items = { importPack, importFiles, new Separator(), importThemes } };
+            _exportItemPack.Click += async (_, __) => await ExportSelected(true);
+            _exportItemFiles.Click += async (_, __) => await ExportSelected(false);
+            _exportShown.Click += async (_, __) => await ExportShownPack();
+            _export.Flyout = new MenuFlyout { Items = { _exportItemPack, _exportItemFiles, new Separator(), _exportShown } };
             _search.TextChanged += (_, __) => Refresh();
             _list.SelectionChanged += (_, __) => Select(_list.SelectedItem as LibraryItem);
             _list.ItemTemplate = new FuncDataTemplate<LibraryItem>((item, _) => BuildRow(item));
 
-            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto"), Margin = new Thickness(10, 8) };
+            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto,Auto"), Margin = new Thickness(10, 8) };
             Grid.SetColumn(_search, 2);
             Grid.SetColumn(_import, 3);
+            Grid.SetColumn(_export, 4);
             _search.Margin = new Thickness(0, 0, 8, 0);
+            _import.Margin = new Thickness(0, 0, 6, 0);
             toolbar.Children.Add(tabs);
             toolbar.Children.Add(_search);
             toolbar.Children.Add(_import);
+            toolbar.Children.Add(_export);
 
             var body = new Grid { ColumnDefinitions = new ColumnDefinitions("340,Auto,*") };
             Grid.SetColumn(_list, 0);
@@ -181,6 +198,7 @@ namespace ThemeEditor.App.Library
         private void Select(LibraryItem item)
         {
             _selected = item;
+            _exportItemPack.IsEnabled = _exportItemFiles.IsEnabled = item != null;
             _player.StopCommand.Execute(null);
             _detail.Children.Clear();
             _srcA?.Dispose();
@@ -200,6 +218,12 @@ namespace ThemeEditor.App.Library
             var apply = new Button { Content = item.Kind == LibraryKind.SoundEffects ? MainResources.Library_ApplyWholeSet : MainResources.Library_Apply, IsEnabled = _target.HasTheme, HorizontalAlignment = HorizontalAlignment.Left, Padding = new Thickness(18, 6), Margin = new Thickness(0, 10, 0, 0) };
             apply.Click += (_, __) => Apply(item);
             _detail.Children.Add(apply);
+            var removable = _lib.IsRemovable(item);
+            var remove = new Button { Content = MainResources.Library_Remove, IsEnabled = removable, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
+            if (!removable)
+                ToolTip.SetTip(remove, MainResources.Library_RemoveBundled);
+            remove.Click += async (_, __) => await RemoveSelected(item);
+            _detail.Children.Add(remove);
             if (!_target.HasTheme)
                 _detail.Children.Add(new TextBlock { Text = MainResources.Library_NoTheme, Opacity = 0.7 });
         }
@@ -406,6 +430,132 @@ namespace ThemeEditor.App.Library
         }
 
         // ---------------------------------------------------------------- Import
+
+        private void Busy(bool on)
+        {
+            _import.IsEnabled = _export.IsEnabled = !on;
+            _progress.IsVisible = on;
+            if (on)
+                _progress.Value = 0;
+        }
+
+        private IProgress<ImportProgress> Progress(string format)
+        {
+            return new Progress<ImportProgress>(p =>
+            {
+                _progress.Value = p.Total == 0 ? 0 : (double) p.Done / p.Total;
+                _status.Text = string.Format(format, p.Done, p.Total, p.Added);
+            });
+        }
+
+        private void Report(TransferResult r)
+        {
+            _status.Text = string.Format(MainResources.Library_Transfer_Done, r.Added, r.Existing, r.Invalid)
+                           + (r.FirstError != null ? "  –  " + string.Format(MainResources.Library_Transfer_Error, r.FirstError) : string.Empty);
+        }
+
+        private async Task<List<string>> PickFiles(string title, FilePickerFileType type)
+        {
+            var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions { Title = title, AllowMultiple = true, FileTypeFilter = new[] { type } });
+            return files.Select(f => f.TryGetLocalPath()).Where(x => x != null).ToList();
+        }
+
+        private async Task ImportPackFile()
+        {
+            var files = await PickFiles(MainResources.Library_ImportPack, Dialogs.FileType(MainResources.Library_Filter_Pack, LibraryTransfer.PackExtension, ".zip"));
+            if (files.Count == 0)
+                return;
+            Busy(true);
+            var total = new TransferResult();
+            foreach (var f in files)
+            {
+                var r = await Task.Run(() => LibraryTransfer.ImportPack(_lib, f, Progress(MainResources.Library_Importing)));
+                total.Added += r.Added;
+                total.Existing += r.Existing;
+                total.Invalid += r.Invalid;
+                total.FirstError = total.FirstError ?? r.FirstError;
+            }
+            Busy(false);
+            Refresh();
+            Report(total);
+        }
+
+        private async Task ImportLooseFiles()
+        {
+            var files = await PickFiles(MainResources.Library_ImportFiles, Dialogs.FileType(MainResources.Library_Filter_Files, ".bcstm", ".bin", ".png", ".jpg", ".jpeg", ".bmp", ".webp", ".gif"));
+            if (files.Count == 0)
+                return;
+            Busy(true);
+            var r = await Task.Run(() => LibraryTransfer.ImportFiles(_lib, files));
+            Busy(false);
+            Refresh();
+            Report(r);
+        }
+
+        private async Task ExportSelected(bool asPack)
+        {
+            var item = _selected;
+            if (item == null)
+                return;
+            var invalid = Path.GetInvalidFileNameChars();
+            var name = new string(item.Name.Select(c => invalid.Contains(c) ? '_' : c).ToArray()).Trim();
+            if (name.Length == 0)
+                name = "resource";
+            try
+            {
+                if (asPack)
+                {
+                    var path = await Dialogs.SaveFile(this, MainResources.Library_ExportPack, name + LibraryTransfer.PackExtension, Dialogs.FileType(MainResources.Library_Filter_Pack, LibraryTransfer.PackExtension));
+                    if (path == null)
+                        return;
+                    await Task.Run(() => LibraryTransfer.ExportPack(_lib, new[] { item }, path));
+                    _status.Text = string.Format(MainResources.Library_Exported, 1);
+                }
+                else
+                {
+                    var ext = item.Kind == LibraryKind.Music ? ".bcstm" : item.Kind == LibraryKind.SoundEffects ? ".bin" : ".png";
+                    var path = await Dialogs.SaveFile(this, MainResources.Library_ExportFiles, name + (ext == ".png" ? string.Empty : ext), Dialogs.FileType("*" + ext, ext));
+                    if (path == null)
+                        return;
+                    var basePath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
+                    var written = await Task.Run(() => LibraryTransfer.ExportFiles(_lib, item, basePath));
+                    _status.Text = string.Format(MainResources.Library_Exported, written.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                _status.Text = ex.Message;
+            }
+        }
+
+        private async Task ExportShownPack()
+        {
+            var items = (_list.ItemsSource as IEnumerable<LibraryItem>)?.ToList() ?? new List<LibraryItem>();
+            if (items.Count == 0)
+                return;
+            var path = await Dialogs.SaveFile(this, MainResources.Library_ExportShown, "resources" + LibraryTransfer.PackExtension, Dialogs.FileType(MainResources.Library_Filter_Pack, LibraryTransfer.PackExtension));
+            if (path == null)
+                return;
+            Busy(true);
+            try
+            {
+                await Task.Run(() => LibraryTransfer.ExportPack(_lib, items, path, Progress(MainResources.Library_Exporting)));
+                _status.Text = string.Format(MainResources.Library_Exported, items.Count);
+            }
+            catch (Exception ex)
+            {
+                _status.Text = ex.Message;
+            }
+            Busy(false);
+        }
+
+        private async Task RemoveSelected(LibraryItem item)
+        {
+            if (!await Dialogs.Confirm(this, string.Format(MainResources.Library_RemoveConfirm, item.Name), Title))
+                return;
+            _lib.Remove(item);
+            Refresh();
+        }
 
         private async Task ImportFolder()
         {

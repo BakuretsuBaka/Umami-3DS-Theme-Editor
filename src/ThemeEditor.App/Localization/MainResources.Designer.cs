@@ -724,6 +724,62 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_Export".</summary>
+        public static string Library_Export {
+            get {
+                return ResourceManager.GetString("Library_Export", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ExportFiles".</summary>
+        public static string Library_ExportFiles {
+            get {
+                return ResourceManager.GetString("Library_ExportFiles", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ExportPack".</summary>
+        public static string Library_ExportPack {
+            get {
+                return ResourceManager.GetString("Library_ExportPack", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ExportShown".</summary>
+        public static string Library_ExportShown {
+            get {
+                return ResourceManager.GetString("Library_ExportShown", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Exported".</summary>
+        public static string Library_Exported {
+            get {
+                return ResourceManager.GetString("Library_Exported", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Exporting".</summary>
+        public static string Library_Exporting {
+            get {
+                return ResourceManager.GetString("Library_Exporting", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Filter_Files".</summary>
+        public static string Library_Filter_Files {
+            get {
+                return ResourceManager.GetString("Library_Filter_Files", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Filter_Pack".</summary>
+        public static string Library_Filter_Pack {
+            get {
+                return ResourceManager.GetString("Library_Filter_Pack", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Folders".</summary>
         public static string Library_Folders {
             get {
@@ -745,6 +801,27 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_Import".</summary>
+        public static string Library_Import {
+            get {
+                return ResourceManager.GetString("Library_Import", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ImportFiles".</summary>
+        public static string Library_ImportFiles {
+            get {
+                return ResourceManager.GetString("Library_ImportFiles", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ImportPack".</summary>
+        public static string Library_ImportPack {
+            get {
+                return ResourceManager.GetString("Library_ImportPack", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Importing".</summary>
         public static string Library_Importing {
             get {
@@ -763,6 +840,27 @@ namespace ThemeEditor.App.Localization {
         public static string Library_NoTheme {
             get {
                 return ResourceManager.GetString("Library_NoTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Remove".</summary>
+        public static string Library_Remove {
+            get {
+                return ResourceManager.GetString("Library_Remove", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_RemoveBundled".</summary>
+        public static string Library_RemoveBundled {
+            get {
+                return ResourceManager.GetString("Library_RemoveBundled", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_RemoveConfirm".</summary>
+        public static string Library_RemoveConfirm {
+            get {
+                return ResourceManager.GetString("Library_RemoveConfirm", resourceCulture);
             }
         }
 
@@ -861,6 +959,20 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Title {
             get {
                 return ResourceManager.GetString("Library_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Transfer_Done".</summary>
+        public static string Library_Transfer_Done {
+            get {
+                return ResourceManager.GetString("Library_Transfer_Done", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Transfer_Error".</summary>
+        public static string Library_Transfer_Error {
+            get {
+                return ResourceManager.GetString("Library_Transfer_Error", resourceCulture);
             }
         }
 

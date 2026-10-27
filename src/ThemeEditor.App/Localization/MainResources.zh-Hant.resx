@@ -303,6 +303,30 @@
   <data name="Library_Empty" xml:space="preserve">
     <value>這裡還沒有內容。使用「新增主題資料夾...」從主題資料夾匯入紋理、音效和音樂。</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>所選項目為檔案...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>所選項目為資源包...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>清單中的全部為資源包...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>已匯出 {0} 個檔案。</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>正在匯出... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>音樂 (BCSTM)、音效 (BIN) 和紋理 (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>資源包</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>資料夾紋理</value>
   </data>
@@ -312,6 +336,15 @@
   <data name="Library_Icons" xml:space="preserve">
     <value>圖示紋理</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>檔案（音樂、音效、紋理）...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>資源包...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>正在匯入... {0}/{1} 個主題，新增 {2} 項</value>
   </data>
@@ -320,6 +353,15 @@
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>請先開啟或建立主題再套用。</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>從庫中移除</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>隨編輯器附帶的項目無法移除。</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>要從庫中移除「{0}」嗎？</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>重設</value>
@@ -362,6 +404,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>資源庫</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>已新增 {0} 項，{1} 項已存在，略過 {2} 項</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>已略過：{0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>使用</value>

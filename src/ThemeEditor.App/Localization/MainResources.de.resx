@@ -303,6 +303,30 @@ Aktuelle Größe: {1} Bytes</value>
   <data name="Library_Empty" xml:space="preserve">
     <value>Noch nichts vorhanden. Mit „Design-Ordner hinzufügen...“ importierst du Texturen, Sounds und Musik aus einem Ordner mit Designs.</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>Exportieren</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>Gewähltes Element als Dateien...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>Gewähltes Element als Paket...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>Alles in der Liste als Paket...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>{0} Datei(en) exportiert.</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>Exportiere... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>Musik (BCSTM), Soundeffekte (BIN) und Texturen (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>Ressourcen-Paket</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>Ordner-Texturen</value>
   </data>
@@ -312,6 +336,15 @@ Aktuelle Größe: {1} Bytes</value>
   <data name="Library_Icons" xml:space="preserve">
     <value>Symbol-Texturen</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>Dateien (Musik, Sounds, Texturen)...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>Ressourcen-Paket...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>Import... {0}/{1} Designs, {2} neue Einträge</value>
   </data>
@@ -320,6 +353,15 @@ Aktuelle Größe: {1} Bytes</value>
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Öffne oder erstelle ein Design, um etwas anzuwenden.</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>Aus der Bibliothek entfernen</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>Elemente, die mit dem Editor mitgeliefert werden, können nicht entfernt werden.</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>„{0}“ aus deiner Bibliothek entfernen?</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>Zurücksetzen</value>
@@ -362,6 +404,12 @@ Aktuelle Größe: {1} Bytes</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Ressourcenbibliothek</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>{0} hinzugefügt, {1} schon vorhanden, {2} übersprungen</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>Übersprungen: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>Verwenden</value>

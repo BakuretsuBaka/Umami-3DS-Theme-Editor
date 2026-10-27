@@ -44,6 +44,8 @@ All packages are self-contained – nothing else has to be installed.
   with one click, with search, audio preview and **colour variations** (hue / saturation / brightness, plus 8 one-click hue presets) for the textures.
   *Add themes folder...* imports everything from a folder of theme ZIPs or theme folders into your own library: textures and sound effects are
   de-duplicated, music is copied in (the library is self-contained, the source ZIPs can be deleted afterwards).
+  **Import / Export** shares resources as `.umamipack` files (validated on import) or as plain files (BCSTM, sound BIN, PNG textures);
+  your own items can be removed again.
 * **Exports preview.png** when saving
 * Remembers the window size and the folder of the last file dialog
 * **Image dithering / edge bleed** for textures, **SMDH** (`info.smdh`) generation
@@ -51,7 +53,7 @@ All packages are self-contained – nothing else has to be installed.
 * **Theme sender** – push the theme to CHMM2 over the network
 * **BGM / BCSTM conversion (new)** – *Music → Import Audio*: converts **WAV, MP3, OGG, BCSTM, BFSTM, BRSTM, BCWAV, DSP, IDSP, ADX, HPS** to a theme-ready
   `BGM.BCSTM` with DSP-ADPCM (or PCM16), mono mix-down, resampling and loop points. Checks the 3 MB HOME-menu limit. Export the music as WAV or BCSTM again.
-* **CWAV sound-effect manager** – now converts WAV/MP3/OGG to CWAV itself (no external `ctr_WaveConverter`/`vgmstream` needed)
+* **CWAV sound-effect manager** (own menu entry) – now converts WAV/MP3/OGG to CWAV itself (no external `ctr_WaveConverter`/`vgmstream` needed)
 * **In-app audio playback** on every platform (OpenAL Soft)
 * **Languages** – English, Deutsch, Español, Français, Italiano, Nederlands, Polski, Português (Brasil), Svenska, Türkçe, Русский, 日本語, 한국어, 简体中文, 繁體中文
   (*Language* menu; takes effect on the next start)

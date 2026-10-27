@@ -119,10 +119,8 @@ namespace ThemeEditor.App
             // ---- Resource library
             menu.Items.Add(Item(MainResources.Menu_Library, OpenLibraryCommand));
 
-            // ---- Experimental
-            var exp = new MenuItem {Header = MainResources.Menu_Experimental};
-            exp.Items.Add(Item(MainResources.Menu_CwavManager, CWavManagerCommand));
-            menu.Items.Add(exp);
+            // ---- CWAV manager
+            menu.Items.Add(Item(MainResources.Menu_CwavManager, CWavManagerCommand));
 
             // ---- Language
             menu.Items.Add(BuildLanguageMenu());

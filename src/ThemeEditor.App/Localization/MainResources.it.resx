@@ -303,6 +303,30 @@ Dimensione attuale: {1} byte</value>
   <data name="Library_Empty" xml:space="preserve">
     <value>Ancora nulla. Usa «Aggiungi cartella di temi...» per importare texture, suoni e musica da una cartella di temi.</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>Elemento selezionato come file...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>Elemento selezionato come pacchetto...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>Tutto l'elenco come pacchetto...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>{0} file esportati.</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>Esportazione... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>Musica (BCSTM), effetti sonori (BIN) e texture (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>Pacchetto di risorse</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>Texture cartella</value>
   </data>
@@ -312,6 +336,15 @@ Dimensione attuale: {1} byte</value>
   <data name="Library_Icons" xml:space="preserve">
     <value>Texture icona</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>File (musica, suoni, texture)...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>Pacchetto di risorse...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>Importazione... {0}/{1} temi, {2} nuovi elementi</value>
   </data>
@@ -320,6 +353,15 @@ Dimensione attuale: {1} byte</value>
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Apri o crea un tema per applicare risorse.</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>Rimuovi dalla libreria</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>Gli elementi forniti con l'editor non possono essere rimossi.</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>Rimuovere «{0}» dalla libreria?</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>Reimposta</value>
@@ -362,6 +404,12 @@ Dimensione attuale: {1} byte</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Libreria risorse</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>{0} aggiunti, {1} già presenti, {2} saltati</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>Saltato: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>Usa</value>

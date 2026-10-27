@@ -106,7 +106,7 @@ namespace ThemeEditor.App.Library
             }
         }
 
-        private static string Hash(params byte[][] parts)
+        internal static string Hash(params byte[][] parts)
         {
             using (var sha = SHA1.Create())
             {

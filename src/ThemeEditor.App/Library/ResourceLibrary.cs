@@ -172,6 +172,38 @@ namespace ThemeEditor.App.Library
                     Sources.Add(path);
         }
 
+        /// <summary>True when the item lives in the user's own (writable) library, i.e. it can be removed.</summary>
+        public bool IsRemovable(LibraryItem item)
+        {
+            lock (_lock)
+                return !_rootOf.TryGetValue(item.Id, out var r) || string.Equals(r, WritableRoot, StringComparison.Ordinal);
+        }
+
+        /// <summary>Removes an item (and its files) from the user's library. Items of the shipped pack cannot be removed.</summary>
+        public bool Remove(LibraryItem item)
+        {
+            if (!IsRemovable(item))
+                return false;
+            foreach (var f in new[] { item.FileA, item.FileB, item.DataFile })
+            {
+                try
+                {
+                    var path = f == null ? null : PathOf(item, f);
+                    if (path != null && File.Exists(path))
+                        File.Delete(path);
+                }
+                catch (IOException) { }
+            }
+            lock (_lock)
+            {
+                Items.RemoveAll(i => i.Id == item.Id);
+                _ids.Remove(item.Id);
+                _rootOf.Remove(item.Id);
+            }
+            Save();
+            return true;
+        }
+
         public byte[] ReadAllBytes(LibraryItem item, string file)
         {
             return File.ReadAllBytes(PathOf(item, file));

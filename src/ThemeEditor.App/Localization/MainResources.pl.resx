@@ -303,6 +303,30 @@ Aktualny rozmiar: {1} B</value>
   <data name="Library_Empty" xml:space="preserve">
     <value>Na razie pusto. Użyj „Dodaj folder z motywami...”, aby zaimportować tekstury, dźwięki i muzykę z folderu z motywami.</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>Eksportuj</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>Wybrany element jako pliki...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>Wybrany element jako pakiet...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>Wszystko z listy jako pakiet...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>Wyeksportowano plików: {0}.</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>Eksportowanie... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>Muzyka (BCSTM), efekty dźwiękowe (BIN) i tekstury (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>Pakiet zasobów</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>Tekstury folderów</value>
   </data>
@@ -312,6 +336,15 @@ Aktualny rozmiar: {1} B</value>
   <data name="Library_Icons" xml:space="preserve">
     <value>Tekstury ikon</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Importuj</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>Pliki (muzyka, dźwięki, tekstury)...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>Pakiet zasobów...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>Importowanie... {0}/{1} motywów, {2} nowych elementów</value>
   </data>
@@ -320,6 +353,15 @@ Aktualny rozmiar: {1} B</value>
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Otwórz lub utwórz motyw, aby coś zastosować.</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>Usuń z biblioteki</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>Elementów dostarczanych z edytorem nie można usunąć.</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>Usunąć „{0}” z biblioteki?</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>Resetuj</value>
@@ -362,6 +404,12 @@ Aktualny rozmiar: {1} B</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Biblioteka zasobów</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>Dodano {0}, już było {1}, pominięto {2}</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>Pominięto: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>Użyj</value>

@@ -303,6 +303,30 @@
   <data name="Library_Empty" xml:space="preserve">
     <value>まだ何もありません。「テーマのフォルダを追加...」でテーマのフォルダからテクスチャ・効果音・音楽を取り込めます。</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>エクスポート</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>選択した項目をファイルで...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>選択した項目をパックで...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>一覧のすべてをパックで...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>{0} 個のファイルをエクスポートしました。</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>エクスポート中... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>音楽 (BCSTM)、効果音 (BIN)、テクスチャ (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>リソースパック</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>フォルダテクスチャ</value>
   </data>
@@ -312,6 +336,15 @@
   <data name="Library_Icons" xml:space="preserve">
     <value>アイコンテクスチャ</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>ファイル（音楽・効果音・テクスチャ）...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>リソースパック...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>取り込み中... {0}/{1} テーマ、新規 {2} 件</value>
   </data>
@@ -320,6 +353,15 @@
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>適用するにはテーマを開くか作成してください。</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>ライブラリから削除</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>エディタに同梱の項目は削除できません。</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>「{0}」をライブラリから削除しますか？</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>リセット</value>
@@ -362,6 +404,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>リソースライブラリ</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>{0} 件追加、{1} 件は既にあり、{2} 件をスキップ</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>スキップ: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>使う</value>

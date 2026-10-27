@@ -303,6 +303,30 @@
   <data name="Library_Empty" xml:space="preserve">
     <value>Пока пусто. Используйте «Добавить папку с темами...», чтобы импортировать текстуры, звуки и музыку из папки с темами.</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>Выбранный элемент как файлы...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>Выбранный элемент как пакет...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>Всё из списка как пакет...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>Экспортировано файлов: {0}.</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>Экспорт... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>Музыка (BCSTM), звуковые эффекты (BIN) и текстуры (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>Пакет ресурсов</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>Текстуры папок</value>
   </data>
@@ -312,6 +336,15 @@
   <data name="Library_Icons" xml:space="preserve">
     <value>Текстуры значков</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>Файлы (музыка, звуки, текстуры)...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>Пакет ресурсов...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>Импорт... {0}/{1} тем, новых элементов: {2}</value>
   </data>
@@ -320,6 +353,15 @@
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Откройте или создайте тему, чтобы применять ресурсы.</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>Удалить из библиотеки</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>Элементы, поставляемые с редактором, удалить нельзя.</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>Удалить «{0}» из библиотеки?</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>Сбросить</value>
@@ -362,6 +404,12 @@
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Библиотека ресурсов</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>Добавлено: {0}, уже было: {1}, пропущено: {2}</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>Пропущено: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>Использовать</value>

@@ -303,6 +303,30 @@ Huidige grootte: {1} bytes</value>
   <data name="Library_Empty" xml:space="preserve">
     <value>Nog niets. Gebruik 'Themamap toevoegen...' om texturen, geluiden en muziek uit een map met thema's te importeren.</value>
   </data>
+  <data name="Library_Export" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="Library_ExportFiles" xml:space="preserve">
+    <value>Geselecteerd item als bestanden...</value>
+  </data>
+  <data name="Library_ExportPack" xml:space="preserve">
+    <value>Geselecteerd item als pakket...</value>
+  </data>
+  <data name="Library_ExportShown" xml:space="preserve">
+    <value>Alles in de lijst als pakket...</value>
+  </data>
+  <data name="Library_Exported" xml:space="preserve">
+    <value>{0} bestand(en) geëxporteerd.</value>
+  </data>
+  <data name="Library_Exporting" xml:space="preserve">
+    <value>Exporteren... {0}/{1}</value>
+  </data>
+  <data name="Library_Filter_Files" xml:space="preserve">
+    <value>Muziek (BCSTM), geluidseffecten (BIN) en texturen (PNG)</value>
+  </data>
+  <data name="Library_Filter_Pack" xml:space="preserve">
+    <value>Bronnenpakket</value>
+  </data>
   <data name="Library_Folders" xml:space="preserve">
     <value>Maptexturen</value>
   </data>
@@ -312,6 +336,15 @@ Huidige grootte: {1} bytes</value>
   <data name="Library_Icons" xml:space="preserve">
     <value>Pictogramtexturen</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="Library_ImportFiles" xml:space="preserve">
+    <value>Bestanden (muziek, geluiden, texturen)...</value>
+  </data>
+  <data name="Library_ImportPack" xml:space="preserve">
+    <value>Bronnenpakket...</value>
+  </data>
   <data name="Library_Importing" xml:space="preserve">
     <value>Importeren... {0}/{1} thema's, {2} nieuwe items</value>
   </data>
@@ -320,6 +353,15 @@ Huidige grootte: {1} bytes</value>
   </data>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Open of maak een thema om er dingen op toe te passen.</value>
+  </data>
+  <data name="Library_Remove" xml:space="preserve">
+    <value>Uit bibliotheek verwijderen</value>
+  </data>
+  <data name="Library_RemoveBundled" xml:space="preserve">
+    <value>Items die met de editor worden meegeleverd, kunnen niet worden verwijderd.</value>
+  </data>
+  <data name="Library_RemoveConfirm" xml:space="preserve">
+    <value>'{0}' uit je bibliotheek verwijderen?</value>
   </data>
   <data name="Library_Reset" xml:space="preserve">
     <value>Herstellen</value>
@@ -362,6 +404,12 @@ Huidige grootte: {1} bytes</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Bronnenbibliotheek</value>
+  </data>
+  <data name="Library_Transfer_Done" xml:space="preserve">
+    <value>{0} toegevoegd, {1} al aanwezig, {2} overgeslagen</value>
+  </data>
+  <data name="Library_Transfer_Error" xml:space="preserve">
+    <value>Overgeslagen: {0}</value>
   </data>
   <data name="Library_UseSound" xml:space="preserve">
     <value>Gebruiken</value>
