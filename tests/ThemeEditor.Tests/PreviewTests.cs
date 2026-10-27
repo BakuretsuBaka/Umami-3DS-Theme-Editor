@@ -49,7 +49,8 @@ namespace ThemeEditor.Tests
             }
         }
 
-        [Fact]
+        // Tests that change preview settings run on the UI thread: open previews redraw when a setting changes
+        [AvaloniaFact]
         public void DefaultZoomKeepsTheOriginalLayout()
         {
             WithSettings(s =>
@@ -67,7 +68,7 @@ namespace ThemeEditor.Tests
             });
         }
 
-        [Theory]
+        [AvaloniaTheory]
         [InlineData(1, 3)]
         [InlineData(2, 3)]
         [InlineData(4, 7)]
