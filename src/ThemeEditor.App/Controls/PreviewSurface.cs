@@ -267,7 +267,8 @@ namespace ThemeEditor.App.Controls
                          && point.Position.Y > 30 && point.Position.Y < 212;
             _swipeStart = onGrid ? point.Position : (Point?) null;
             _swiping = false;
-            if (target != PreviewTarget.None || onGrid)
+            // Empty spots only capture the mouse once a swipe really starts (see OnPointerMoved)
+            if (target != PreviewTarget.None)
                 e.Pointer.Capture(this);
             e.Handled = true;
             InvalidateVisual();
@@ -285,8 +286,15 @@ namespace ThemeEditor.App.Controls
             Cursor = target != PreviewTarget.None ? Hand : null;
             if (_swipeStart.HasValue && !_swiping && Math.Abs(position.X - _swipeStart.Value.X) > SwipeDistance / 2)
             {
+                if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+                {
+                    // The button was released outside the preview: there is no swipe in progress
+                    _swipeStart = null;
+                    return;
+                }
                 // Dragging sideways: no longer a click on the item it started on
                 _swiping = true;
+                e.Pointer.Capture(this);
                 ia.SetOver(false);
                 InvalidateVisual();
                 return;
