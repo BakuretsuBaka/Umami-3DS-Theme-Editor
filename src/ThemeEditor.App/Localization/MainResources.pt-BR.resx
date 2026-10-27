@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1} can., {2:0.0} s</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>A saída é sempre estéreo: música mono pode causar problemas em temas (uma fonte mono é duplicada nos dois canais).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Converter áudio para BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Aviso: a saída tem {0} KB, mais que os {1} KB que o menu HOME do 3DS consegue tocar. Um tema com esta música NÃO terá música. Reduza a taxa de amostragem ou encurte a música.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Convertendo áudio...</value>
@@ -521,6 +527,10 @@ Ela será salva como BGM.BCSTM ao lado do arquivo do tema.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>O BCSTM convertido tem {0} kB. O menu HOME só aceita música de fundo de até {1} kB.
 Experimente o codec DSP-ADPCM, mono, uma taxa de amostragem menor ou uma faixa mais curta.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>A música convertida tem {0} KB, mais que os {1} KB que o menu HOME do 3DS consegue tocar: um tema com ela ficará sem música.
+Usar mesmo assim?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Erro</value>

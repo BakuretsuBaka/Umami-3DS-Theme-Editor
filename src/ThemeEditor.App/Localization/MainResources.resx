@@ -629,7 +629,7 @@ Some data may have been recovered, but issues may be present.</value>
     <value>This ZIP does not contain a theme (body_LZ.bin).</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Resource Library...</value>
+    <value>Resource Library</value>
   </data>
   <data name="Library_Title" xml:space="preserve">
     <value>Resource Library</value>
@@ -726,5 +726,15 @@ Some data may have been recovered, but issues may be present.</value>
   </data>
   <data name="Library_Snd_Hint" xml:space="preserve">
     <value>Pick single sounds with "Use" (the other sounds of your theme stay as they are), or replace all of them with the whole set.</value>
+  </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>The output is always stereo: mono music can cause problems in themes (a mono source is duplicated to both channels).</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Warning: the output is {0} kB, more than the {1} kB the 3DS HOME menu can play. A theme with this music will have NO music. Lower the sample rate or shorten the music.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>The converted music is {0} kB, more than the {1} kB the 3DS HOME menu can play: a theme with it will have no music.
+Use it anyway?</value>
   </data>
 </root>

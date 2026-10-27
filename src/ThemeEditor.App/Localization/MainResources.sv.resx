@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1} kanaler, {2:0.0} s</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>Utdata är alltid stereo: monomusik kan ge problem i teman (en monokälla dupliceras till båda kanalerna).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Konvertera ljud till BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Varning: utdata är {0} kB, mer än de {1} kB som 3DS HOME-meny kan spela. Ett tema med den här musiken får INGEN musik. Sänk samplingsfrekvensen eller korta musiken.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Konverterar ljud...</value>
@@ -460,7 +466,7 @@ Nuvarande storlek: {1} byte</value>
     <value>Systemstandard</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Resursbibliotek...</value>
+    <value>Resursbibliotek</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadata</value>
@@ -521,6 +527,10 @@ Den sparas som BGM.BCSTM bredvid temafilen.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>Den konverterade BCSTM-filen är {0} kB. HOME-menyn accepterar bakgrundsmusik upp till {1} kB.
 Prova codecen DSP-ADPCM, mono, lägre samplingsfrekvens eller ett kortare spår.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>Den konverterade musiken är {0} kB, mer än de {1} kB som 3DS HOME-meny kan spela: ett tema med den får ingen musik.
+Använda ändå?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fel</value>

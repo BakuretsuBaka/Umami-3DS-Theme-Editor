@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1} kanalen, {2:0.0} s</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>De uitvoer is altijd stereo: mono-muziek kan problemen geven in thema's (een mono-bron wordt naar beide kanalen gedupliceerd).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Audio omzetten naar BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Waarschuwing: de uitvoer is {0} kB, meer dan de {1} kB die het HOME-menu van de 3DS kan afspelen. Een thema met deze muziek heeft GEEN muziek. Verlaag de samplefrequentie of kort de muziek in.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Audio omzetten...</value>
@@ -460,7 +466,7 @@ Huidige grootte: {1} bytes</value>
     <value>Systeemstandaard</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Bronnenbibliotheek...</value>
+    <value>Bronnenbibliotheek</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadata</value>
@@ -521,6 +527,10 @@ Het wordt als BGM.BCSTM naast het themabestand opgeslagen.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>De omgezette BCSTM is {0} kB. Het HOME-menu accepteert achtergrondmuziek tot {1} kB.
 Probeer de DSP-ADPCM-codec, mono, een lagere samplefrequentie of een kortere track.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>De geconverteerde muziek is {0} kB, meer dan de {1} kB die het HOME-menu van de 3DS kan afspelen: een thema ermee heeft geen muziek.
+Toch gebruiken?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fout</value>

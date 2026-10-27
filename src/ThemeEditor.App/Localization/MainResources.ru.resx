@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Гц, каналов: {1}, {2:0.0} с</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>Вывод всегда стерео: моно-музыка может вызывать проблемы в темах (моно-источник дублируется на оба канала).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Конвертация аудио в BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Внимание: результат занимает {0} КБ, больше {1} КБ, которые может воспроизвести меню HOME 3DS. Тема с такой музыкой будет БЕЗ музыки. Понизьте частоту дискретизации или сократите музыку.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Конвертация аудио...</value>
@@ -460,7 +466,7 @@
     <value>Как в системе</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Библиотека ресурсов...</value>
+    <value>Библиотека ресурсов</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Метаданные</value>
@@ -521,6 +527,10 @@
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>Размер полученного BCSTM — {0} КБ. Меню HOME принимает фоновую музыку не больше {1} КБ.
 Попробуйте кодек DSP-ADPCM, моно, меньшую частоту дискретизации или более короткий трек.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>Преобразованная музыка занимает {0} КБ, больше {1} КБ, которые может воспроизвести меню HOME 3DS: тема с ней будет без музыки.
+Всё равно использовать?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Ошибка</value>

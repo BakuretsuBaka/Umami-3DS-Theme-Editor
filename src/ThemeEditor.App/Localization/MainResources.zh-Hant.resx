@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz，{1} 聲道，{2:0.0} 秒</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>輸出一律為立體聲：單聲道音樂可能造成主題出問題（單聲道來源會複製到兩個聲道）。</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>將音訊轉換為 BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>警告：輸出為 {0} KB，超過 3DS HOME 選單可播放的 {1} KB。使用此音樂的主題將沒有音樂。請降低取樣率或縮短音樂。</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>正在轉換音訊...</value>
@@ -460,7 +466,7 @@
     <value>跟隨系統</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>資源庫...</value>
+    <value>資源庫</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>元資料</value>
@@ -521,6 +527,10 @@
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>轉換後的 BCSTM 大小為 {0} kB。HOME 選單只接受不超過 {1} kB 的背景音樂。
 請嘗試使用 DSP-ADPCM 編碼、單聲道、較低的取樣率或較短的曲目。</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>轉換後的音樂為 {0} KB，超過 3DS HOME 選單可播放的 {1} KB：使用它的主題將沒有音樂。
+仍要使用嗎？</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>錯誤</value>

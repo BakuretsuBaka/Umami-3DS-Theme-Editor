@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -83,15 +83,29 @@ namespace ThemeEditor.Tests
         }
 
         [Fact]
-        public void ResampleAndMonoAreApplied()
+        public void ResampleIsAppliedAndOutputIsAlwaysStereo()
         {
             var wav = MakeSineWav(44100, 2, 1.0);
+            // Even when mono is asked for, theme music is written as stereo
             var bcstm = BcstmConverter.ConvertToBcstm(new MemoryStream(wav), ".wav",
                 new BcstmOptions { Mono = true, SampleRate = 32728 });
             var info = BcstmConverter.GetInfo(BcstmConverter.ReadBcstm(bcstm));
-            Assert.Equal(1, info.Channels);
+            Assert.Equal(2, info.Channels);
             Assert.Equal(32728, info.SampleRate);
             Assert.InRange(info.SampleCount, 32700, 32730);
+        }
+
+        [Theory]
+        [InlineData(BcstmCodec.DspAdpcm)]
+        [InlineData(BcstmCodec.Pcm16)]
+        public void MonoSourcesAreDuplicatedToStereo(BcstmCodec codec)
+        {
+            var wav = MakeSineWav(32000, 1, 1.0);
+            var bcstm = BcstmConverter.ConvertToBcstm(new MemoryStream(wav), ".wav", new BcstmOptions { Codec = codec });
+            var audio = BcstmConverter.ReadBcstm(bcstm);
+            Assert.Equal(2, BcstmConverter.GetInfo(audio).Channels);
+            var ch = audio.GetFormat<VGAudio.Formats.Pcm16.Pcm16Format>().Channels;
+            Assert.Equal(ch[0], ch[1]);   // identical left and right
         }
 
         [Fact]

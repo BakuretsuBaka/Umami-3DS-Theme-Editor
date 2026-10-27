@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1}채널, {2:0.0}초</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>출력은 항상 스테레오입니다. 모노 음악은 테마에서 문제를 일으킬 수 있어 모노 소스는 두 채널에 복제됩니다.</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>오디오를 BCSTM으로 변환</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>경고: 출력이 {0} KB로, 3DS HOME 메뉴가 재생할 수 있는 {1} KB를 초과합니다. 이 음악을 쓴 테마는 음악이 나오지 않습니다. 샘플링 레이트를 낮추거나 음악을 줄이세요.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>오디오 변환 중...</value>
@@ -460,7 +466,7 @@
     <value>시스템 기본값</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>리소스 라이브러리...</value>
+    <value>리소스 라이브러리</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>메타데이터</value>
@@ -521,6 +527,10 @@
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>변환된 BCSTM의 크기는 {0} kB입니다. HOME 메뉴는 {1} kB 이하의 배경 음악만 허용합니다.
 DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 사용해 보세요.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>변환된 음악이 {0} KB로, 3DS HOME 메뉴가 재생할 수 있는 {1} KB를 초과합니다. 이 음악을 쓴 테마는 음악이 나오지 않습니다.
+그래도 사용하시겠습니까?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>오류</value>

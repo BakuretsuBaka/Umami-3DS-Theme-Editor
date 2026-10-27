@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1} Kanäle, {2:0.0} s</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>Die Ausgabe ist immer Stereo: Mono-Musik kann in Designs Probleme machen (eine Mono-Quelle wird auf beide Kanäle dupliziert).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Audio in BCSTM umwandeln</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Warnung: Die Ausgabe ist {0} kB groß, mehr als die {1} kB, die das HOME-Menü der 3DS abspielen kann. Ein Design mit dieser Musik hat KEINE Musik. Senke die Abtastrate oder kürze die Musik.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Audio wird umgewandelt...</value>
@@ -460,7 +466,7 @@ Aktuelle Größe: {1} Bytes</value>
     <value>Systemstandard</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Ressourcenbibliothek...</value>
+    <value>Ressourcenbibliothek</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadaten</value>
@@ -521,6 +527,10 @@ Sie wird als BGM.BCSTM neben der Design-Datei gespeichert.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>Die umgewandelte BCSTM ist {0} kB groß. Das HOME-Menü akzeptiert Hintergrundmusik nur bis {1} kB.
 Versuche den DSP-ADPCM-Codec, Mono, eine niedrigere Abtastrate oder einen kürzeren Titel.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>Die umgewandelte Musik ist {0} kB groß, mehr als die {1} kB, die das HOME-Menü der 3DS abspielen kann: Ein Design damit hat keine Musik.
+Trotzdem verwenden?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Fehler</value>

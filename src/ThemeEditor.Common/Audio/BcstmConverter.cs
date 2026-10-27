@@ -26,7 +26,7 @@ namespace ThemeEditor.Common.Audio
     {
         public BcstmCodec Codec { get; set; } = BcstmCodec.DspAdpcm;
 
-        /// <summary>Mix all channels down to a single channel.</summary>
+        /// <summary>Ignored: BGM output is always stereo (mono music misbehaves in HOME menu themes). Kept so older callers compile.</summary>
         public bool Mono { get; set; }
 
         /// <summary>Resample to this rate (Hz). Null or 0 keeps the source rate.</summary>
@@ -167,8 +167,11 @@ namespace ThemeEditor.Common.Audio
             var loopEnd = pcm.LoopEnd;
             var srcCount = channels[0].Length;
 
-            if (options.Mono && channels.Length > 1)
-                channels = new[] { MixDown(channels) };
+            // Theme music is always written as stereo: a mono source is duplicated, extra channels are dropped
+            if (channels.Length == 1)
+                channels = new[] { channels[0], (short[]) channels[0].Clone() };
+            else if (channels.Length > 2)
+                channels = new[] { channels[0], channels[1] };
 
             if (options.SampleRate.HasValue && options.SampleRate.Value > 0 && options.SampleRate.Value != rate)
             {

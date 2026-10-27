@@ -157,5 +157,21 @@ namespace ThemeEditor.Tests
             }
             win.Close();
         }
+
+        [AvaloniaFact]
+        public void ConvertDialogWarnsAboveTheLimitForScreenshots()
+        {
+            var dir = Environment.GetEnvironmentVariable("UMAMI_SHOT_DIR");
+            if (string.IsNullOrEmpty(dir)) return;
+            Directory.CreateDirectory(dir);
+            foreach (var seconds in new[] { 45, 120 })
+            {
+                var n = 32000 * seconds; var pcm = new short[2][]; for (var c = 0; c < 2; c++) pcm[c] = new short[n];
+                var info = BcstmConverter.GetInfo(BcstmConverter.FromPcm(pcm, 32000));
+                var win = new BgmConvertWindow(info, "song.mp3"); win.Show();
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs(); AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+                win.CaptureRenderedFrame()?.Save(Path.Combine(dir, "convert_" + seconds + "s.png")); win.Close();
+            }
+        }
     }
 }

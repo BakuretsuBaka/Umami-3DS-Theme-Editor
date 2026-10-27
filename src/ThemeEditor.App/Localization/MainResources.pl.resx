@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, kanały: {1}, {2:0.0} s</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>Wyjście jest zawsze stereo: muzyka mono może powodować problemy w motywach (źródło mono jest powielane na oba kanały).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Konwersja dźwięku do BCSTM</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Ostrzeżenie: wynik ma {0} KB, więcej niż {1} KB, które odtworzy menu HOME 3DS. Motyw z tą muzyką NIE będzie miał muzyki. Obniż częstotliwość próbkowania lub skróć muzykę.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Konwersja dźwięku...</value>
@@ -460,7 +466,7 @@ Aktualny rozmiar: {1} B</value>
     <value>Domyślny systemowy</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Biblioteka zasobów...</value>
+    <value>Biblioteka zasobów</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadane</value>
@@ -521,6 +527,10 @@ Zostanie zapisana jako BGM.BCSTM obok pliku motywu.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>Przekonwertowany plik BCSTM ma {0} kB. Menu HOME przyjmuje muzykę w tle do {1} kB.
 Spróbuj kodeka DSP-ADPCM, trybu mono, niższej częstotliwości próbkowania lub krótszego utworu.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>Przekonwertowana muzyka ma {0} KB, więcej niż {1} KB, które odtworzy menu HOME 3DS: motyw z nią nie będzie miał muzyki.
+Użyć mimo to?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Błąd</value>

@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz、{1} ch、{2:0.0} 秒</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>出力は常にステレオです。モノラル音源はテーマで問題を起こすことがあるため、両チャンネルに複製されます。</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>オーディオをBCSTMに変換</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>警告: 出力は {0} KB で、3DS の HOME メニューが再生できる {1} KB を超えています。この音楽を使ったテーマは音楽が鳴りません。サンプリングレートを下げるか、曲を短くしてください。</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>オーディオを変換中...</value>
@@ -460,7 +466,7 @@
     <value>システムの設定に従う</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>リソースライブラリ...</value>
+    <value>リソースライブラリ</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>メタデータ</value>
@@ -521,6 +527,10 @@
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>変換後のBCSTMは {0} kB です。HOMEメニューが受け付けるBGMは {1} kB までです。
 DSP-ADPCMコーデック、モノラル、低いサンプリングレート、または短い曲をお試しください。</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>変換した音楽は {0} KB で、3DS の HOME メニューが再生できる {1} KB を超えています。使ったテーマでは音楽が鳴りません。
+それでも使用しますか？</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>エラー</value>

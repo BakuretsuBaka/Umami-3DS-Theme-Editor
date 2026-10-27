@@ -70,8 +70,14 @@
   <data name="Bgm_SourceInfo" xml:space="preserve">
     <value>{0} Hz, {1} kanal, {2:0.0} sn</value>
   </data>
+  <data name="Bgm_StereoOnly" xml:space="preserve">
+    <value>Çıktı her zaman stereodur: mono müzik temalarda sorun çıkarabilir (mono kaynak iki kanala kopyalanır).</value>
+  </data>
   <data name="Bgm_Title" xml:space="preserve">
     <value>Sesi BCSTM'ye Dönüştür</value>
+  </data>
+  <data name="Bgm_TooLargeWarning" xml:space="preserve">
+    <value>Uyarı: çıktı {0} KB, 3DS HOME menüsünün çalabildiği {1} KB'tan büyük. Bu müzikli bir temada müzik OLMAZ. Örnekleme hızını düşürün veya müziği kısaltın.</value>
   </data>
   <data name="Busy_ConvertingAudio" xml:space="preserve">
     <value>Ses dönüştürülüyor...</value>
@@ -460,7 +466,7 @@ Geçerli boyut: {1} bayt</value>
     <value>Sistem Varsayılanı</value>
   </data>
   <data name="Menu_Library" xml:space="preserve">
-    <value>Kaynak kitaplığı...</value>
+    <value>Kaynak kitaplığı</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Üst veri</value>
@@ -521,6 +527,10 @@ Tema dosyasının yanına BGM.BCSTM olarak kaydedilecek.</value>
   <data name="Message_BgmTooLarge" xml:space="preserve">
     <value>Dönüştürülen BCSTM {0} kB. HOME menüsü en fazla {1} kB'lık arka plan müziğini kabul eder.
 DSP-ADPCM kodeğini, monoyu, daha düşük bir örnekleme hızını veya daha kısa bir parçayı deneyin.</value>
+  </data>
+  <data name="Message_BgmTooLargeConfirm" xml:space="preserve">
+    <value>Dönüştürülen müzik {0} KB, 3DS HOME menüsünün çalabildiği {1} KB'tan büyük: onunla bir temada müzik olmaz.
+Yine de kullanılsın mı?</value>
   </data>
   <data name="Message_Error" xml:space="preserve">
     <value>Hata</value>

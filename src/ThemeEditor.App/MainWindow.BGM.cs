@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.BGM.cs
 // --------------------------------------------------
 
@@ -85,6 +85,8 @@ namespace ThemeEditor.App
                 BgmBcstm = result.Bcstm;
                 BgmDirty = false;
                 AudioPlayer.Instance.SetAudio(result.Audio);
+                if (result.Bcstm.Length > BcstmConverter.MaxThemeBgmBytes)
+                    await Dialogs.Show(this, string.Format(MainResources.Bgm_TooLargeWarning, result.Bcstm.Length / 1024, BcstmConverter.MaxThemeBgmBytes / 1024), WINDOW_TITLE, MessageKind.Warning);
                 if (!ViewModel.Flags.BackgroundMusic)
                 {
                     ViewModel.Flags.BackgroundMusic = true;
@@ -167,10 +169,12 @@ namespace ThemeEditor.App
             var kb = result.Bcstm.Length / 1024;
             if (result.Bcstm.Length > BcstmConverter.MaxThemeBgmBytes)
             {
-                await Dialogs.Show(this,
-                    string.Format(MainResources.Message_BgmTooLarge, kb, BcstmConverter.MaxThemeBgmBytes / 1024),
-                    WINDOW_TITLE, MessageKind.Error);
-                return;
+                // The HOME menu will not play music over the limit: warn, and only continue when the user insists
+                var proceed = await Dialogs.Confirm(this,
+                    string.Format(MainResources.Message_BgmTooLargeConfirm, kb, BcstmConverter.MaxThemeBgmBytes / 1024),
+                    WINDOW_TITLE);
+                if (!proceed)
+                    return;
             }
 
             BgmBcstm = result.Bcstm;

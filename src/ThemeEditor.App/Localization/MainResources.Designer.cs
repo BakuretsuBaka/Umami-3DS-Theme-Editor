@@ -192,10 +192,24 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Bgm_StereoOnly".</summary>
+        public static string Bgm_StereoOnly {
+            get {
+                return ResourceManager.GetString("Bgm_StereoOnly", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Bgm_Title".</summary>
         public static string Bgm_Title {
             get {
                 return ResourceManager.GetString("Bgm_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Bgm_TooLargeWarning".</summary>
+        public static string Bgm_TooLargeWarning {
+            get {
+                return ResourceManager.GetString("Bgm_TooLargeWarning", resourceCulture);
             }
         }
 
@@ -1225,6 +1239,13 @@ namespace ThemeEditor.App.Localization {
         public static string Message_BgmTooLarge {
             get {
                 return ResourceManager.GetString("Message_BgmTooLarge", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_BgmTooLargeConfirm".</summary>
+        public static string Message_BgmTooLargeConfirm {
+            get {
+                return ResourceManager.GetString("Message_BgmTooLargeConfirm", resourceCulture);
             }
         }
 

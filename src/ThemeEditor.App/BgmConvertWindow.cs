@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - BgmConvertWindow.cs
 // --------------------------------------------------
 
@@ -22,7 +22,8 @@ namespace ThemeEditor.App
 
         private readonly BcstmInfo _info;
         private readonly ComboBox _codec;
-        private readonly CheckBox _mono;
+        private readonly TextBlock _stereoNote;
+        private readonly TextBlock _warning;
         private readonly ComboBox _rate;
         private readonly CheckBox _loop;
         private readonly NumericUpDown _loopStart;
@@ -48,7 +49,8 @@ namespace ThemeEditor.App
                 SelectedIndex = s.BgmCodec == "Pcm16" ? 1 : 0,
                 HorizontalAlignment = HorizontalAlignment.Stretch
             };
-            _mono = new CheckBox {Content = MainResources.Bgm_Mono, IsChecked = s.BgmMono};
+            _stereoNote = new TextBlock {Text = MainResources.Bgm_StereoOnly, Opacity = 0.75, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 2)};
+            _warning = new TextBlock {Foreground = Brushes.Firebrick, FontWeight = FontWeight.SemiBold, TextWrapping = TextWrapping.Wrap, IsVisible = false, MaxWidth = 420, Margin = new Thickness(0, 4)};
             _rate = new ComboBox
             {
                 ItemsSource = SampleRates.Select(r => r == 0 ? MainResources.Bgm_SampleRate_Keep : r + " Hz").ToList(),
@@ -75,7 +77,6 @@ namespace ThemeEditor.App
                 Result = BuildOptions();
                 var st = Settings.Default;
                 st.BgmCodec = Result.Codec == BcstmCodec.Pcm16 ? "Pcm16" : "DspAdpcm";
-                st.BgmMono = Result.Mono;
                 st.BgmSampleRate = Result.SampleRate ?? 0;
                 st.BgmLoop = Result.Loop == true;
                 Close();
@@ -106,11 +107,12 @@ namespace ThemeEditor.App
                         }),
                     Row(MainResources.Bgm_Codec, _codec),
                     Row(MainResources.Bgm_SampleRate, _rate),
-                    _mono,
+                    _stereoNote,
                     _loop,
                     Row(MainResources.Bgm_LoopStart, _loopStart),
                     Row(MainResources.Bgm_LoopEnd, _loopEnd),
                     Row(MainResources.Bgm_EstimatedSize, _estimate),
+                    _warning,
                     new StackPanel
                     {
                         Orientation = Orientation.Horizontal,
@@ -124,7 +126,6 @@ namespace ThemeEditor.App
 
             _codec.SelectionChanged += (_, __) => UpdateEstimate();
             _rate.SelectionChanged += (_, __) => UpdateEstimate();
-            _mono.IsCheckedChanged += (_, __) => UpdateEstimate();
             _loop.IsCheckedChanged += (_, __) =>
             {
                 _loopStart.IsEnabled = _loopEnd.IsEnabled = _loop.IsChecked == true;
@@ -141,7 +142,6 @@ namespace ThemeEditor.App
             return new BcstmOptions
             {
                 Codec = _codec.SelectedIndex == 1 ? BcstmCodec.Pcm16 : BcstmCodec.DspAdpcm,
-                Mono = _mono.IsChecked == true,
                 SampleRate = rate == 0 ? (int?) null : rate,
                 Loop = loop,
                 LoopStart = (int) ((double) (_loopStart.Value ?? 0) * sourceRate),
@@ -153,13 +153,19 @@ namespace ThemeEditor.App
         {
             var rate = SampleRates[Math.Max(0, _rate.SelectedIndex)];
             var effectiveRate = rate == 0 ? _info.SampleRate : rate;
-            var channels = _mono.IsChecked == true ? 1 : _info.Channels;
+            const int channels = 2;   // output is always stereo
             var samples = _info.Duration * effectiveRate;
             // DSP-ADPCM packs 14 samples into 8 bytes, PCM16 uses 2 bytes per sample, plus headers/seek tables
             var bytes = (_codec.SelectedIndex == 1 ? samples * 2 : samples * 8 / 14) * channels + 0x1000;
             var kb = (int) (bytes / 1024);
             _estimate.Text = kb + " kB";
-            _estimate.Foreground = bytes > BcstmConverter.MaxThemeBgmBytes ? Brushes.Firebrick : null;
+            var tooLarge = bytes > BcstmConverter.MaxThemeBgmBytes;
+            if (tooLarge)
+                _estimate.Foreground = Brushes.Firebrick;
+            else
+                _estimate.ClearValue(TextBlock.ForegroundProperty);   // back to the theme colour (assigning null would make the text invisible)
+            _warning.IsVisible = tooLarge;
+            _warning.Text = string.Format(MainResources.Bgm_TooLargeWarning, kb, BcstmConverter.MaxThemeBgmBytes / 1024);
         }
     }
 }
