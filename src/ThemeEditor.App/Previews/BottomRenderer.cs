@@ -301,7 +301,8 @@ namespace ThemeEditor.App.Previews
             var main = custom ? t.Colors.GameText.Main.ToSk() : SkiaHelpers.Hex("#fbfbfb");
             var light = custom ? t.Colors.GameText.Light.ToSk() : SKColors.White;
             var fg = custom ? t.Colors.GameText.Text.ToSk() : SkiaHelpers.Hex("#4a4a4a");
-            var shadow = custom ? t.Colors.GameText.Shadow.ToSk() : SKColors.Black;
+            // (the set's Shadow colour exists in debug builds only, so the bubble always casts a neutral shadow)
+            var shadow = SKColors.Black;
 
             // The box shifts a little with the selected column; the tail points at the icon
             var icon = PreviewGrid.Centre(zc, 0, 1);
