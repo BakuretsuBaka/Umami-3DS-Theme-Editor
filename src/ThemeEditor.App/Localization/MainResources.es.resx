@@ -376,6 +376,32 @@ Tamaño actual: {1} bytes</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Abre o crea un tema para aplicarle recursos.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>En macOS los preajustes incluidos están dentro de la app, y borrarlos dañaría su firma (macOS podría negarse a abrirla). Se han ocultado; elige "Todo" o "Preajustes incluidos" en Mostrar para recuperarlos. Para liberar ese espacio de verdad, borra tú mismo Contents/Resources/Library dentro de la app.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Todo</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>¿Qué quieres borrar?
+
+Tus importaciones: {0} elementos ({1:0.0} MB)
+Preajustes incluidos: {2} elementos ({3:0.0} MB)
+
+No se puede deshacer (reinstalar el editor recupera los preajustes).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} elementos borrados, {1:0.0} MB liberados</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Liberar espacio...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Mis importaciones</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Todavía no has importado nada en la biblioteca.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Quitar de la biblioteca</value>
   </data>
@@ -396,6 +422,21 @@ Tamaño actual: {1} bytes</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Juego de efectos de sonido, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Todo</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Mostrar:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Mis importaciones</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Preajustes incluidos</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Mostrar todo, solo los preajustes incluidos con el editor o solo lo que importaste tú</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Cerrar</value>

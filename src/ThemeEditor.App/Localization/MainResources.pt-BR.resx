@@ -376,6 +376,32 @@ Tamanho atual: {1} bytes</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Abra ou crie um tema para aplicar recursos.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>No macOS as predefinições incluídas ficam dentro do app, e excluí-las danificaria a assinatura dele (o macOS poderia se recusar a abri-lo). Elas foram ocultadas; escolha "Tudo" ou "Predefinições incluídas" em Mostrar para recuperá-las. Para liberar mesmo esse espaço, exclua você mesmo Contents/Resources/Library dentro do app.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Tudo</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>O que deve ser excluído?
+
+Suas importações: {0} itens ({1:0.0} MB)
+Predefinições incluídas: {2} itens ({3:0.0} MB)
+
+Isso não pode ser desfeito (reinstalar o editor traz as predefinições de volta).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} itens excluídos, {1:0.0} MB liberados</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Liberar espaço...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Minhas importações</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Você ainda não importou nada para a biblioteca.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Remover da biblioteca</value>
   </data>
@@ -396,6 +422,21 @@ Tamanho atual: {1} bytes</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Conjunto de efeitos sonoros, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Tudo</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Mostrar:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Minhas importações</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Predefinições incluídas</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Mostrar tudo, só as predefinições que vêm com o editor ou só o que você importou</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Fechar</value>

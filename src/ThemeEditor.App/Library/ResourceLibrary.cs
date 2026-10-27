@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - ResourceLibrary.cs
 // --------------------------------------------------
 
@@ -202,6 +202,129 @@ namespace ThemeEditor.App.Library
             }
             Save();
             return true;
+        }
+
+        /// <summary>Items in the user's own library (imported by the user), as opposed to the shipped presets.</summary>
+        public List<LibraryItem> Mine()
+        {
+            lock (_lock)
+                return Items.Where(i => !_rootOf.TryGetValue(i.Id, out var r) || string.Equals(r, WritableRoot, StringComparison.Ordinal)).ToList();
+        }
+
+        /// <summary>Items of the pack that ships with the editor.</summary>
+        public List<LibraryItem> Bundled()
+        {
+            lock (_lock)
+                return Items.Where(i => _rootOf.TryGetValue(i.Id, out var r) && !string.Equals(r, WritableRoot, StringComparison.Ordinal)).ToList();
+        }
+
+        /// <summary>Disk space used by the user's own items (music read from theme ZIPs is not counted, it is not copied).</summary>
+        public long MyBytes()
+        {
+            return BytesOf(Mine());
+        }
+
+        public long BytesOf(IEnumerable<LibraryItem> items)
+        {
+            long total = 0;
+            foreach (var item in items)
+                foreach (var f in new[] { item.FileA, item.FileB, item.DataFile })
+                {
+                    var path = f == null ? null : PathOf(item, f);
+                    if (path != null && File.Exists(path))
+                        total += new FileInfo(path).Length;
+                }
+            return total;
+        }
+
+        /// <summary>
+        ///     Deletes everything the user imported (files and index entries) in one go and forgets the imported folders.
+        ///     The shipped presets are left alone. Returns the number of items removed.
+        /// </summary>
+        public int PurgeMine()
+        {
+            var mine = Mine();
+            foreach (var item in mine)
+                foreach (var f in new[] { item.FileA, item.FileB, item.DataFile })
+                {
+                    try
+                    {
+                        var path = f == null ? null : PathOf(item, f);
+                        if (path != null && File.Exists(path))
+                            File.Delete(path);
+                    }
+                    catch (IOException) { }
+                    catch (UnauthorizedAccessException) { }
+                }
+            lock (_lock)
+            {
+                var gone = new HashSet<string>(mine.Select(i => i.Id));
+                Items.RemoveAll(i => gone.Contains(i.Id));
+                foreach (var id in gone)
+                {
+                    _ids.Remove(id);
+                    _rootOf.Remove(id);
+                }
+                Sources.Clear();
+            }
+            Save();
+            return mine.Count;
+        }
+
+        /// <summary>
+        ///     True when the shipped pack can be deleted from disk: it exists, is writable, and is not inside a macOS app
+        ///     bundle (changing a signed bundle's resources breaks its signature, and macOS may then refuse to open the app).
+        /// </summary>
+        public static bool CanDeleteBundled()
+        {
+            var root = BundledRoot;
+            if (!File.Exists(Path.Combine(root, IndexName)))
+                return false;
+            if (root.Replace('\\', '/').Contains(".app/Contents/"))
+                return false;
+            try
+            {
+                var probe = Path.Combine(root, ".write-test");
+                File.WriteAllText(probe, string.Empty);
+                File.Delete(probe);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>Deletes the shipped presets from disk (see <see cref="CanDeleteBundled" />). Returns the number of items removed.</summary>
+        public int PurgeBundled()
+        {
+            var bundled = Bundled();
+            var root = BundledRoot;
+            foreach (var item in bundled)
+                foreach (var f in new[] { item.FileA, item.FileB, item.DataFile })
+                {
+                    try
+                    {
+                        var path = f == null ? null : PathOf(item, f);
+                        if (path != null && File.Exists(path))
+                            File.Delete(path);
+                    }
+                    catch (IOException) { }
+                    catch (UnauthorizedAccessException) { }
+                }
+            // An empty index keeps the folder valid, so the editor simply starts with no presets
+            File.WriteAllText(Path.Combine(root, IndexName), JsonConvert.SerializeObject(new LibraryIndex(), Formatting.None));
+            lock (_lock)
+            {
+                var gone = new HashSet<string>(bundled.Select(i => i.Id));
+                Items.RemoveAll(i => gone.Contains(i.Id));
+                foreach (var id in gone)
+                {
+                    _ids.Remove(id);
+                    _rootOf.Remove(id);
+                }
+            }
+            return bundled.Count;
         }
 
         public byte[] ReadAllBytes(LibraryItem item, string file)

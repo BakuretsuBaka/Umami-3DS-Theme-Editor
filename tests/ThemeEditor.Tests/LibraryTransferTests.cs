@@ -178,6 +178,64 @@ namespace ThemeEditor.Tests
         }
 
         [Fact]
+        public void PurgeDeletesEverythingTheUserImported()
+        {
+            var lib = Lib("purge");
+            Directory.CreateDirectory(Path.Combine(lib.WritableRoot, "sfx"));
+            for (var i = 0; i < 3; i++)
+            {
+                var file = "sfx/s-test" + i + ".bin";
+                File.WriteAllBytes(Path.Combine(lib.WritableRoot, file), new byte[1000 + i]);
+                Assert.True(lib.Add(new LibraryItem { Id = "s-test" + i, Kind = LibraryKind.SoundEffects, Name = "Test " + i, DataFile = file, Bytes = 1000 + i }));
+            }
+            lib.AddSource("/some/themes");
+            lib.Save();
+            Assert.Equal(3, lib.Mine().Count);
+            Assert.Equal(3003, lib.MyBytes());
+
+            Assert.Equal(3, lib.PurgeMine());
+            Assert.Empty(lib.Items);
+            Assert.Empty(lib.Sources);
+            Assert.Empty(Directory.GetFiles(Path.Combine(lib.WritableRoot, "sfx")));
+            // The emptied index is what a fresh start sees
+            Assert.Empty(Lib("purge").Items);
+        }
+
+        [Fact]
+        public void PurgeCanAlsoDeleteTheBuiltInPresets()
+        {
+            var bundled = ResourceLibrary.BundledRoot;
+            if (File.Exists(Path.Combine(bundled, "index.json")))
+                return; // a real pack was built into the test output; never touch it
+            try
+            {
+                Directory.CreateDirectory(Path.Combine(bundled, "sfx"));
+                File.WriteAllBytes(Path.Combine(bundled, "sfx", "s-preset.bin"), new byte[500]);
+                var index = new LibraryIndex();
+                index.Items.Add(new LibraryItem { Id = "s-preset", Kind = LibraryKind.SoundEffects, Name = "Preset", Collection = "Umami", DataFile = "sfx/s-preset.bin", Bytes = 500 });
+                File.WriteAllText(Path.Combine(bundled, "index.json"), JsonConvert.SerializeObject(index));
+
+                var lib = new ResourceLibrary(P("mine"));
+                lib.Load(true);
+                Assert.Single(lib.Bundled());
+                Assert.False(lib.IsRemovable(lib.Bundled()[0]));
+                Assert.Equal(500, lib.BytesOf(lib.Bundled()));
+                Assert.True(ResourceLibrary.CanDeleteBundled());
+
+                Assert.Equal(1, lib.PurgeBundled());
+                Assert.Empty(lib.Items);
+                Assert.False(File.Exists(Path.Combine(bundled, "sfx", "s-preset.bin")));
+                var reloaded = new ResourceLibrary(P("mine"));
+                reloaded.Load(true);
+                Assert.Empty(reloaded.Items);
+            }
+            finally
+            {
+                try { Directory.Delete(bundled, true); } catch (IOException) { }
+            }
+        }
+
+        [Fact]
         public void ExportsPlainFilesAndRemovesItems()
         {
             var lib = Lib("a");

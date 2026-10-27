@@ -376,6 +376,32 @@ Huidige grootte: {1} bytes</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Open of maak een thema om er dingen op toe te passen.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>Op macOS staan de meegeleverde presets in de app, en ze verwijderen zou de handtekening van de app beschadigen (macOS kan de app dan weigeren te openen). Ze zijn daarom verborgen; kies "Alles" of "Meegeleverde presets" bij Tonen om ze terug te halen. Om de ruimte echt vrij te maken, verwijder je zelf Contents/Resources/Library in de app.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Wat moet er worden verwijderd?
+
+Je imports: {0} items ({1:0.0} MB)
+Meegeleverde presets: {2} items ({3:0.0} MB)
+
+Dit kan niet ongedaan worden gemaakt (opnieuw installeren brengt de presets terug).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} items verwijderd, {1:0.0} MB vrijgemaakt</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Ruimte vrijmaken...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Mijn imports</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Je hebt nog niets in de bibliotheek geïmporteerd.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Uit bibliotheek verwijderen</value>
   </data>
@@ -396,6 +422,21 @@ Huidige grootte: {1} bytes</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Geluidseffectenset, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Tonen:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Mijn imports</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Meegeleverde presets</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Alles tonen, alleen de presets die bij de editor horen, of alleen wat je zelf hebt geïmporteerd</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Sluiten</value>

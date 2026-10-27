@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.Library.cs
 // --------------------------------------------------
 
@@ -30,7 +30,7 @@ namespace ThemeEditor.App
                 _libraryWindow.Activate();
                 return;
             }
-            ResourceLibrary.Instance.Load();
+            ResourceLibrary.Instance.Load(!Properties.Settings.Default.Library_HideBundled);
             _libraryWindow = new ResourceLibraryWindow(ResourceLibrary.Instance, new LibraryTarget(this));
             _libraryWindow.Closed += (_, __) => _libraryWindow = null;
             _libraryWindow.Show(this);

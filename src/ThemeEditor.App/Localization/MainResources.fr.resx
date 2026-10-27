@@ -376,6 +376,32 @@ Taille actuelle : {1} octets</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Ouvrez ou créez un thème pour y appliquer des éléments.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>Sous macOS, les préréglages inclus sont stockés dans l'application ; les supprimer casserait sa signature (macOS pourrait refuser de l'ouvrir). Ils ont été masqués ; choisissez « Tout » ou « Préréglages inclus » dans Afficher pour les retrouver. Pour vraiment libérer cet espace, supprimez vous-même Contents/Resources/Library dans l'application.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Tout</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Que faut-il supprimer ?
+
+Vos imports : {0} éléments ({1:0.0} Mo)
+Préréglages inclus : {2} éléments ({3:0.0} Mo)
+
+Cette action est irréversible (réinstaller l'éditeur restaure les préréglages).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} éléments supprimés, {1:0.0} Mo libérés</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Libérer de l'espace...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Mes imports</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Vous n'avez encore rien importé dans la bibliothèque.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Retirer de la bibliothèque</value>
   </data>
@@ -396,6 +422,21 @@ Taille actuelle : {1} octets</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Jeu d'effets sonores, {0} Ko</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Tout</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Afficher :</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Mes imports</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Préréglages inclus</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Tout afficher, seulement les préréglages fournis avec l'éditeur, ou seulement ce que vous avez importé</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Fermer</value>

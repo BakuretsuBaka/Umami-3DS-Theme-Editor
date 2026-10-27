@@ -376,6 +376,32 @@
   <data name="Library_NoTheme" xml:space="preserve">
     <value>請先開啟或建立主題再套用。</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>在 macOS 上，內建預設存放在應用程式內部，刪除它們會破壞應用程式簽章（macOS 可能拒絕開啟）。因此改為隱藏；在「顯示」中選擇「全部」或「內建預設」即可恢復。若要真正釋放空間，請自行刪除應用程式內的 Contents/Resources/Library。</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>要刪除什麼？
+
+你的匯入：{0} 個項目（{1:0.0} MB）
+內建預設：{2} 個項目（{3:0.0} MB）
+
+此操作無法復原（重新安裝編輯器可恢復預設）。</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>已刪除 {0} 個項目，釋放 {1:0.0} MB</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>釋放空間...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>我的匯入</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>你還沒有向資源庫匯入任何內容。</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>從庫中移除</value>
   </data>
@@ -396,6 +422,21 @@
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>音效組, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>顯示：</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>我的匯入</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>內建預設</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>顯示全部、僅編輯器內建的預設，或僅你自己匯入的內容</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>關閉</value>

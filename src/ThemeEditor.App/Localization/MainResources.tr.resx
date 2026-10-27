@@ -376,6 +376,32 @@ Geçerli boyut: {1} bayt</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Bir şey uygulamak için bir tema açın veya oluşturun.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>macOS'ta yerleşik hazır ayarlar uygulamanın içinde saklanır ve silinmeleri uygulamanın imzasını bozar (macOS uygulamayı açmayı reddedebilir). Bu yüzden gizlendiler; geri getirmek için Göster altında "Tümü" veya "Yerleşik hazır ayarlar"ı seçin. Alanı gerçekten boşaltmak için uygulamanın içindeki Contents/Resources/Library klasörünü kendiniz silin.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Her şey</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Ne silinsin?
+
+İçe aktardıklarınız: {0} öğe ({1:0.0} MB)
+Yerleşik hazır ayarlar: {2} öğe ({3:0.0} MB)
+
+Bu işlem geri alınamaz (düzenleyiciyi yeniden kurmak hazır ayarları geri getirir).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} öğe silindi, {1:0.0} MB boşaltıldı</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Yer aç...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>İçe aktardıklarım</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Kütüphaneye henüz hiçbir şey içe aktarmadınız.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Kitaplıktan kaldır</value>
   </data>
@@ -396,6 +422,21 @@ Geçerli boyut: {1} bayt</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Ses efekti seti, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Göster:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>İçe aktardıklarım</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Yerleşik hazır ayarlar</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Her şeyi, yalnızca düzenleyiciyle gelen hazır ayarları ya da yalnızca kendi içe aktardıklarını göster</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Kapat</value>

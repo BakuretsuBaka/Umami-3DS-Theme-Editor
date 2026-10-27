@@ -892,6 +892,55 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_PresetsHidden".</summary>
+        public static string Library_PresetsHidden {
+            get {
+                return ResourceManager.GetString("Library_PresetsHidden", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeAllButton".</summary>
+        public static string Library_PurgeAllButton {
+            get {
+                return ResourceManager.GetString("Library_PurgeAllButton", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeChoice".</summary>
+        public static string Library_PurgeChoice {
+            get {
+                return ResourceManager.GetString("Library_PurgeChoice", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeDone".</summary>
+        public static string Library_PurgeDone {
+            get {
+                return ResourceManager.GetString("Library_PurgeDone", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeMenu".</summary>
+        public static string Library_PurgeMenu {
+            get {
+                return ResourceManager.GetString("Library_PurgeMenu", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeMineButton".</summary>
+        public static string Library_PurgeMineButton {
+            get {
+                return ResourceManager.GetString("Library_PurgeMineButton", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_PurgeNothing".</summary>
+        public static string Library_PurgeNothing {
+            get {
+                return ResourceManager.GetString("Library_PurgeNothing", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Remove".</summary>
         public static string Library_Remove {
             get {
@@ -938,6 +987,41 @@ namespace ThemeEditor.App.Localization {
         public static string Library_SfxSize {
             get {
                 return ResourceManager.GetString("Library_SfxSize", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Show_All".</summary>
+        public static string Library_Show_All {
+            get {
+                return ResourceManager.GetString("Library_Show_All", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Show_Label".</summary>
+        public static string Library_Show_Label {
+            get {
+                return ResourceManager.GetString("Library_Show_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Show_Mine".</summary>
+        public static string Library_Show_Mine {
+            get {
+                return ResourceManager.GetString("Library_Show_Mine", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Show_Presets".</summary>
+        public static string Library_Show_Presets {
+            get {
+                return ResourceManager.GetString("Library_Show_Presets", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Show_Tip".</summary>
+        public static string Library_Show_Tip {
+            get {
+                return ResourceManager.GetString("Library_Show_Tip", resourceCulture);
             }
         }
 

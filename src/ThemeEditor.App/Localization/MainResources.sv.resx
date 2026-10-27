@@ -376,6 +376,32 @@ Nuvarande storlek: {1} byte</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Öppna eller skapa ett tema för att kunna använda saker.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>På macOS ligger de medföljande förvalen inuti appen, och att ta bort dem skulle skada appens signatur (macOS kan då vägra öppna den). De har dolts i stället; välj "Alla" eller "Medföljande förval" under Visa för att få tillbaka dem. För att verkligen frigöra utrymmet, ta själv bort Contents/Resources/Library i appen.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Allt</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Vad ska tas bort?
+
+Dina importer: {0} objekt ({1:0.0} MB)
+Medföljande förval: {2} objekt ({3:0.0} MB)
+
+Det går inte att ångra (en ominstallation ger tillbaka förvalen).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} objekt borttagna, {1:0.0} MB frigjort</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Frigör utrymme...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Mina importer</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Du har inte importerat något till biblioteket än.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Ta bort från biblioteket</value>
   </data>
@@ -396,6 +422,21 @@ Nuvarande storlek: {1} byte</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Ljudeffektset, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Alla</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Visa:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Mina importer</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Medföljande förval</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Visa allt, bara förvalen som följer med redigeraren eller bara det du själv har importerat</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Stäng</value>

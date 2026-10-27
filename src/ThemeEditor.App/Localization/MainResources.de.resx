@@ -376,6 +376,32 @@ Aktuelle Größe: {1} Bytes</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Öffne oder erstelle ein Design, um etwas anzuwenden.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>Unter macOS liegen die mitgelieferten Vorlagen in der App, und sie zu löschen würde die Signatur der App beschädigen (macOS könnte sie dann nicht mehr öffnen). Sie wurden stattdessen ausgeblendet; wähle unter Anzeigen „Alle“ oder „Mitgelieferte Vorlagen“, um sie zurückzuholen. Um den Platz wirklich freizugeben, lösche Contents/Resources/Library in der App selbst.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Alles</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Was soll gelöscht werden?
+
+Deine Importe: {0} Elemente ({1:0.0} MB)
+Mitgelieferte Vorlagen: {2} Elemente ({3:0.0} MB)
+
+Das kann nicht rückgängig gemacht werden (eine Neuinstallation bringt die Vorlagen zurück).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} Elemente gelöscht, {1:0.0} MB frei</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Speicher freigeben...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Meine Importe</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Du hast noch nichts in die Bibliothek importiert.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Aus der Bibliothek entfernen</value>
   </data>
@@ -396,6 +422,21 @@ Aktuelle Größe: {1} Bytes</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Soundeffekt-Set, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Anzeigen:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Meine Importe</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Mitgelieferte Vorlagen</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Alles anzeigen, nur die mitgelieferten Vorlagen oder nur deine eigenen Importe</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Schließen</value>

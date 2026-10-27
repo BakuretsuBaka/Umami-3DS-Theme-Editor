@@ -376,6 +376,32 @@ Aktualny rozmiar: {1} B</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Otwórz lub utwórz motyw, aby coś zastosować.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>W macOS wbudowane ustawienia są zapisane w aplikacji, a ich usunięcie uszkodziłoby jej podpis (macOS mógłby odmówić jej otwarcia). Zostały więc ukryte; wybierz „Wszystko” lub „Wbudowane ustawienia” w Pokaż, aby je przywrócić. Aby naprawdę zwolnić miejsce, usuń samodzielnie Contents/Resources/Library w aplikacji.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Wszystko</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Co usunąć?
+
+Twoje importy: {0} elementów ({1:0.0} MB)
+Wbudowane ustawienia: {2} elementów ({3:0.0} MB)
+
+Tej operacji nie można cofnąć (ponowna instalacja edytora przywraca ustawienia).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>Usunięto {0} elementów, zwolniono {1:0.0} MB</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Zwolnij miejsce...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Moje importy</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Nie zaimportowano jeszcze niczego do biblioteki.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Usuń z biblioteki</value>
   </data>
@@ -396,6 +422,21 @@ Aktualny rozmiar: {1} B</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Zestaw efektów dźwiękowych, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Wszystko</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Pokaż:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Moje importy</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Wbudowane ustawienia</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Pokaż wszystko, tylko ustawienia dołączone do edytora lub tylko to, co zaimportowałeś</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Zamknięcie</value>

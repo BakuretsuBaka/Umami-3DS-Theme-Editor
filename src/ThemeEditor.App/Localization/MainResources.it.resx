@@ -376,6 +376,32 @@ Dimensione attuale: {1} byte</value>
   <data name="Library_NoTheme" xml:space="preserve">
     <value>Apri o crea un tema per applicare risorse.</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>Su macOS i preset inclusi si trovano dentro l'app, ed eliminarli danneggerebbe la sua firma (macOS potrebbe rifiutarsi di aprirla). Sono stati nascosti; scegli "Tutto" o "Preset inclusi" in Mostra per riaverli. Per liberare davvero lo spazio, elimina tu Contents/Resources/Library dentro l'app.</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Tutto</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>Cosa vuoi eliminare?
+
+Le tue importazioni: {0} elementi ({1:0.0} MB)
+Preset inclusi: {2} elementi ({3:0.0} MB)
+
+L'operazione non può essere annullata (reinstallare l'editor ripristina i preset).</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} elementi eliminati, {1:0.0} MB liberati</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Libera spazio...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>Le mie importazioni</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>Non hai ancora importato nulla nella libreria.</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>Rimuovi dalla libreria</value>
   </data>
@@ -396,6 +422,21 @@ Dimensione attuale: {1} byte</value>
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>Set di effetti sonori, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>Tutto</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Mostra:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>Le mie importazioni</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Preset inclusi</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Mostra tutto, solo i preset inclusi nell'editor o solo ciò che hai importato tu</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>Chiudi</value>

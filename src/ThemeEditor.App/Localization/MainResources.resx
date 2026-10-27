@@ -869,4 +869,45 @@ Rate: {1} KB/s</value>
   <data name="Control_Info_Name_Watermark" xml:space="preserve">
     <value>Shown as the theme name</value>
   </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>Built-in presets</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>My imports</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>Show everything, only the presets that come with the editor, or only what you imported yourself</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>Deleted {0} items, {1:0.0} MB freed</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>You have not imported anything into the library yet.</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>Free Up Space...</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>What should be deleted?
+
+Your imports: {0} items ({1:0.0} MB)
+Built-in presets: {2} items ({3:0.0} MB)
+
+This cannot be undone (reinstalling the editor brings the presets back).</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>My Imports</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>Everything</value>
+  </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>On macOS the built-in presets are stored inside the app, and deleting them would break the app's signature (macOS could then refuse to open it). They are hidden instead; choose "All" or "Built-in presets" under Show to get them back. To really free that space, delete Contents/Resources/Library inside the app yourself.</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>Show:</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - ResourceLibraryWindow.cs
 // --------------------------------------------------
 
@@ -43,6 +43,8 @@ namespace ThemeEditor.App.Library
         private readonly AudioPlayer _player = new AudioPlayer { Loop = false };
         private readonly RadioButton[] _tabs = new RadioButton[4];
         private readonly TextBox _search = new TextBox { Watermark = MainResources.Library_Search, MinWidth = 150, Width = 170 };
+        private readonly ComboBox _show = new ComboBox { MinWidth = 130 };
+        private static readonly string[] ShowModes = { "All", "Presets", "Mine" };
         private readonly ListBox _list = new ListBox();
         private readonly TextBlock _status = new TextBlock { VerticalAlignment = VerticalAlignment.Center, TextTrimming = TextTrimming.CharacterEllipsis };
         private readonly ProgressBar _progress = new ProgressBar { Minimum = 0, Maximum = 1, Width = 160, IsVisible = false };
@@ -89,7 +91,25 @@ namespace ThemeEditor.App.Library
             importFiles.Click += async (_, __) => await ImportLooseFiles();
             var importThemes = new MenuItem { Header = MainResources.Library_AddFolder };
             importThemes.Click += async (_, __) => await ImportFolder();
-            _import.Flyout = new MenuFlyout { Items = { importPack, importFiles, new Separator(), importThemes } };
+            var purge = new MenuItem { Header = MainResources.Library_PurgeMenu };
+            purge.Click += async (_, __) => await PurgeLibrary();
+            _import.Flyout = new MenuFlyout { Items = { importPack, importFiles, new Separator(), importThemes, new Separator(), purge } };
+
+            // Presets only / my own imports only (remembered)
+            _show.ItemsSource = new[] { MainResources.Library_Show_All, MainResources.Library_Show_Presets, MainResources.Library_Show_Mine };
+            _show.SelectedIndex = Math.Max(0, Array.IndexOf(ShowModes, Properties.Settings.Default.Library_Show));
+            ToolTip.SetTip(_show, MainResources.Library_Show_Tip);
+            _show.SelectionChanged += (_, __) =>
+            {
+                Properties.Settings.Default.Library_Show = ShowModes[Math.Max(0, _show.SelectedIndex)];
+                // Asking for the presets again brings back presets that were hidden by "delete everything" on macOS
+                if (_show.SelectedIndex != 2 && Properties.Settings.Default.Library_HideBundled)
+                {
+                    Properties.Settings.Default.Library_HideBundled = false;
+                    _lib.Load(true);
+                }
+                Refresh();
+            };
             _exportItemPack.Click += async (_, __) => await ExportSelected(true);
             _exportItemFiles.Click += async (_, __) => await ExportSelected(false);
             _exportShown.Click += async (_, __) => await ExportShownPack();
@@ -98,11 +118,17 @@ namespace ThemeEditor.App.Library
             _list.SelectionChanged += (_, __) => Select(_list.SelectedItem as LibraryItem);
             _list.ItemTemplate = new FuncDataTemplate<LibraryItem>((item, _) => BuildRow(item));
 
-            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto,Auto"), Margin = new Thickness(10, 8) };
-            Grid.SetColumn(_search, 2);
-            Grid.SetColumn(_import, 3);
-            Grid.SetColumn(_export, 4);
+            var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto,Auto,Auto,Auto"), Margin = new Thickness(10, 8) };
+            var showLabel = new TextBlock { Text = MainResources.Library_Show_Label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 6, 0) };
+            Grid.SetColumn(showLabel, 2);
+            Grid.SetColumn(_show, 3);
+            Grid.SetColumn(_search, 4);
+            Grid.SetColumn(_import, 5);
+            Grid.SetColumn(_export, 6);
+            _show.Margin = new Thickness(0, 0, 8, 0);
             _search.Margin = new Thickness(0, 0, 8, 0);
+            toolbar.Children.Add(showLabel);
+            toolbar.Children.Add(_show);
             _import.Margin = new Thickness(0, 0, 6, 0);
             toolbar.Children.Add(tabs);
             toolbar.Children.Add(_search);
@@ -183,13 +209,19 @@ namespace ThemeEditor.App.Library
         private void Refresh()
         {
             var q = (_search.Text ?? string.Empty).Trim();
+            var show = ShowModes[Math.Max(0, _show.SelectedIndex)];
             var items = _lib.Of(_kind)
+                .Where(i => show == "All" || _lib.IsRemovable(i) == (show == "Mine"))
                 .Where(i => q.Length == 0 || i.Name.IndexOf(q, StringComparison.OrdinalIgnoreCase) >= 0)
                 .OrderBy(i => i.Collection == "Umami" ? 0 : 1).ThenBy(i => i.Name, StringComparer.CurrentCultureIgnoreCase).ToList();
             _list.ItemsSource = items;
             _status.Text = items.Count == 0 ? MainResources.Library_Empty : string.Format(MainResources.Library_Count, items.Count);
             for (var i = 0; i < 4; i++)
-                _tabs[i].Content = new[] { MainResources.Library_Folders, MainResources.Library_Icons, MainResources.Library_Sounds, MainResources.Library_Music }[i] + "  (" + _lib.Count((LibraryKind) i) + ")";
+            {
+                var kind = (LibraryKind) i;
+                var count = show == "All" ? _lib.Count(kind) : _lib.Of(kind).Count(x => _lib.IsRemovable(x) == (show == "Mine"));
+                _tabs[i].Content = new[] { MainResources.Library_Folders, MainResources.Library_Icons, MainResources.Library_Sounds, MainResources.Library_Music }[i] + "  (" + count + ")";
+            }
             Select(null);
         }
 
@@ -555,6 +587,50 @@ namespace ThemeEditor.App.Library
                 return;
             _lib.Remove(item);
             Refresh();
+        }
+
+        /// <summary>Frees disk space: deletes what the user imported, or everything including the presets that ship with the editor.</summary>
+        private async Task PurgeLibrary()
+        {
+            var mine = _lib.Mine();
+            var bundled = _lib.Bundled();
+            if (mine.Count == 0 && bundled.Count == 0)
+            {
+                await Dialogs.Show(this, MainResources.Library_PurgeNothing, Title);
+                return;
+            }
+            const double MB = 1024.0 * 1024.0;
+            var mineMb = _lib.BytesOf(mine) / MB;
+            var bundledMb = _lib.BytesOf(bundled) / MB;
+            var choice = await Dialogs.Choose(this, string.Format(MainResources.Library_PurgeChoice, mine.Count, mineMb, bundled.Count, bundledMb),
+                Title, MessageKind.Warning, MainResources.Library_PurgeMineButton, MainResources.Library_PurgeAllButton, MainResources.Dialog_Cancel);
+            if (choice != 0 && choice != 1)
+                return;
+
+            var removed = await Task.Run(() => _lib.PurgeMine());
+            var freed = mineMb;
+            var hidden = false;
+            if (choice == 1 && bundled.Count > 0)
+            {
+                if (ResourceLibrary.CanDeleteBundled())
+                {
+                    removed += await Task.Run(() => _lib.PurgeBundled());
+                    freed += bundledMb;
+                }
+                else
+                {
+                    // Inside the macOS app the files cannot be deleted without breaking the app: stop loading them instead
+                    Properties.Settings.Default.Library_HideBundled = true;
+                    Properties.Settings.Default.Save();
+                    _lib.Load(false);
+                    removed += bundled.Count;
+                    hidden = true;
+                }
+            }
+            Refresh();
+            _status.Text = string.Format(MainResources.Library_PurgeDone, removed, freed);
+            if (hidden)
+                await Dialogs.Show(this, MainResources.Library_PresetsHidden, Title);
         }
 
         private async Task ImportFolder()

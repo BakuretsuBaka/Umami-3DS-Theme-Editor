@@ -376,6 +376,32 @@
   <data name="Library_NoTheme" xml:space="preserve">
     <value>適用するにはテーマを開くか作成してください。</value>
   </data>
+  <data name="Library_PresetsHidden" xml:space="preserve">
+    <value>macOS では内蔵プリセットがアプリ内に保存されており、削除するとアプリの署名が壊れます（macOS がアプリを開けなくなる可能性があります）。そのため代わりに非表示にしました。戻すには表示で「すべて」または「内蔵プリセット」を選んでください。容量を本当に空けるには、アプリ内の Contents/Resources/Library をご自身で削除してください。</value>
+  </data>
+  <data name="Library_PurgeAllButton" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Library_PurgeChoice" xml:space="preserve">
+    <value>何を削除しますか？
+
+自分のインポート: {0} 個（{1:0.0} MB）
+内蔵プリセット: {2} 個（{3:0.0} MB）
+
+この操作は元に戻せません（エディターを再インストールするとプリセットは戻ります）。</value>
+  </data>
+  <data name="Library_PurgeDone" xml:space="preserve">
+    <value>{0} 個の項目を削除し、{1:0.0} MB を解放しました</value>
+  </data>
+  <data name="Library_PurgeMenu" xml:space="preserve">
+    <value>空き容量を増やす...</value>
+  </data>
+  <data name="Library_PurgeMineButton" xml:space="preserve">
+    <value>自分のインポート</value>
+  </data>
+  <data name="Library_PurgeNothing" xml:space="preserve">
+    <value>まだライブラリに何もインポートしていません。</value>
+  </data>
   <data name="Library_Remove" xml:space="preserve">
     <value>ライブラリから削除</value>
   </data>
@@ -396,6 +422,21 @@
   </data>
   <data name="Library_SfxSize" xml:space="preserve">
     <value>効果音セット, {0} KB</value>
+  </data>
+  <data name="Library_Show_All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Library_Show_Label" xml:space="preserve">
+    <value>表示:</value>
+  </data>
+  <data name="Library_Show_Mine" xml:space="preserve">
+    <value>自分のインポート</value>
+  </data>
+  <data name="Library_Show_Presets" xml:space="preserve">
+    <value>内蔵プリセット</value>
+  </data>
+  <data name="Library_Show_Tip" xml:space="preserve">
+    <value>すべて表示、エディター付属のプリセットのみ、または自分でインポートしたもののみを表示します</value>
   </data>
   <data name="Library_Snd_Close" xml:space="preserve">
     <value>閉じる</value>

@@ -36,6 +36,8 @@ namespace ThemeEditor.App.Properties
         private string _socketIp = "127.0.0.1";
         private int _socketMaxTries = 5;
         private string _bgmCodec = "DspAdpcm";
+        private string _libraryShow = "All";
+        private bool _libraryHideBundled;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -116,6 +118,20 @@ namespace ThemeEditor.App.Properties
         {
             get { return _windowWidth; }
             set { Set(ref _windowWidth, value); }
+        }
+
+        /// <summary>Which resource library items are listed: "All", "Presets" (shipped with the editor) or "Mine" (imported).</summary>
+        public string Library_Show
+        {
+            get { return _libraryShow; }
+            set { Set(ref _libraryShow, string.IsNullOrEmpty(value) ? "All" : value); }
+        }
+
+        /// <summary>The shipped presets were "deleted" where they cannot be removed from disk (inside the macOS app): they are not loaded.</summary>
+        public bool Library_HideBundled
+        {
+            get { return _libraryHideBundled; }
+            set { Set(ref _libraryHideBundled, value); }
         }
 
         public double Window_Height

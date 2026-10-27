@@ -55,7 +55,9 @@ All packages are self-contained – nothing else has to be installed.
   *Add themes folder...* imports everything from a folder of theme ZIPs or theme folders into your own library: textures and sound effects are
   de-duplicated, music is copied in (the library is self-contained, the source ZIPs can be deleted afterwards).
   **Import / Export** shares resources as `.umamipack` files (validated on import) or as plain files (BCSTM, sound BIN, PNG textures);
-  your own items can be removed again.
+  your own items can be removed again. *Show* lists everything, only the built-in presets or only your own imports;
+  *Import → Free Up Space...* deletes your imports, or everything including the built-in presets (on macOS the presets live inside the
+  signed app, so there they are hidden instead of deleted).
 * **Exports preview.png** when saving
 * Remembers the window size and the folder of the last file dialog; *File → Show in File Manager*; *Recent → Clear List*
   (entries whose file is gone are removed when clicked)
