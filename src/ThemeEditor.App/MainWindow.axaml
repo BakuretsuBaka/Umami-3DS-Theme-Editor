@@ -51,19 +51,21 @@
         </Style>
     </Window.Styles>
 
-    <Grid>
+    <Grid RowDefinitions="Auto,*">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="600" />
         </Grid.ColumnDefinitions>
 
         <!-- Editor side -->
-        <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto">
-            <Menu x:Name="MainMenu" Grid.Row="0" />
+        <!-- The menu spans the whole window: inside the editor column it ran out of room and got cut off under the preview -->
+        <Menu x:Name="MainMenu" Grid.Row="0" Grid.ColumnSpan="2" />
+
+        <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="*,Auto">
 
             <TabControl
                 x:Name="EditorTabs"
-                Grid.Row="1"
+                Grid.Row="0"
                 DragDrop.AllowDrop="True">
                 <TabItem Header="{x:Static locale:MainResources.Tab_Info}">
                     <ScrollViewer>
@@ -123,7 +125,7 @@
             </TabControl>
 
             <!-- Status bar: where the theme lives, unsaved changes, music / sound effect budget -->
-            <Border Grid.Row="2" Padding="8,3" BorderThickness="0,1,0,0" BorderBrush="#40808080">
+            <Border Grid.Row="1" Padding="8,3" BorderThickness="0,1,0,0" BorderBrush="#40808080">
                 <Grid ColumnDefinitions="*,Auto">
                     <TextBlock Grid.Column="0" FontSize="11" Text="{Binding StatusText}" TextTrimming="PrefixCharacterEllipsis"
                                ToolTip.Tip="{Binding StatusText}" VerticalAlignment="Center" />
@@ -134,7 +136,7 @@
 
             <!-- Busy overlay -->
             <Border
-                Grid.Row="1"
+                Grid.Row="0"
                 Background="#99000000"
                 IsVisible="{Binding IsBusy}">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
@@ -145,7 +147,7 @@
         </Grid>
 
         <!-- Preview side -->
-        <ThemeVariantScope Grid.Column="1" RequestedThemeVariant="Dark">
+        <ThemeVariantScope Grid.Row="1" Grid.Column="1" RequestedThemeVariant="Dark">
         <Grid
             x:Name="PreviewPanel"
             RowDefinitions="56,240,8,240,*"

@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Avalonia.Media;
 using Avalonia.Threading;
@@ -133,6 +135,43 @@ namespace ThemeEditor.Tests
             win.FlushPendingSnapshot(); // what the debounce timer does after a short pause
             Assert.False(win.HasUnsavedChanges);
             Assert.DoesNotContain("*", win.Title);
+        }
+
+        /// <summary>Every top-level menu has to be fully visible at the smallest window size, in every language.</summary>
+        [AvaloniaFact]
+        public void MenuBarFitsAtMinimumWidthInAllLanguages()
+        {
+            var previous = System.Globalization.CultureInfo.CurrentUICulture;
+            try
+            {
+                foreach (var (culture, _) in MainWindow.Languages)
+                {
+                    System.Globalization.CultureInfo.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+                    var win = new MainWindow();
+                    win.Width = win.MinWidth;
+                    win.Show();
+                    Dispatcher.UIThread.RunJobs();
+                    Avalonia.Headless.AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+                    var menu = win.FindControl<Avalonia.Controls.Menu>("MainMenu");
+                    // Items that run past the menu bar end up hidden under the preview panel or the window edge
+                    var menuRight = menu.TranslatePoint(new Avalonia.Point(menu.Bounds.Width, 0), win).Value.X;
+                    Assert.True(menuRight <= win.Bounds.Width + 0.5);
+                    Assert.True(menu.Items.Count >= 9);
+                    foreach (var item in menu.Items)
+                    {
+                        var control = (Avalonia.Controls.Control) item;
+                        Assert.True(control.Bounds.Width > 0, $"{culture}: menu not laid out");
+                        var right = control.TranslatePoint(new Avalonia.Point(control.Bounds.Width, 0), win);
+                        Assert.True(right.HasValue && right.Value.X <= menuRight + 0.5,
+                            $"{culture}: menu '{(item as Avalonia.Controls.MenuItem)?.Header}' ends at {right?.X}, the menu bar at {menuRight}");
+                    }
+                    win.Close();
+                }
+            }
+            finally
+            {
+                System.Globalization.CultureInfo.CurrentUICulture = previous;
+            }
         }
 
         [Fact]
