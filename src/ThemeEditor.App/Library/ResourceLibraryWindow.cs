@@ -42,6 +42,7 @@ namespace ThemeEditor.App.Library
         private readonly ILibraryTarget _target;
         private readonly AudioPlayer _player = new AudioPlayer { Loop = false };
         private LibraryItem _previewItem;
+        private System.ComponentModel.PropertyChangedEventHandler _previewStateChanged;
 
         /// <summary>The music item whose audio is loaded in the preview player (null when none).</summary>
         internal LibraryItem PreviewTrack => _previewItem;
@@ -242,6 +243,11 @@ namespace ThemeEditor.App.Library
             _selected = item;
             _exportItemPack.IsEnabled = _exportItemFiles.IsEnabled = item != null;
             _player.StopCommand.Execute(null);
+            if (_previewStateChanged != null)
+            {
+                _player.PropertyChanged -= _previewStateChanged;
+                _previewStateChanged = null;
+            }
             _detail.Children.Clear();
             _srcA?.Dispose();
             _srcB?.Dispose();
@@ -445,15 +451,32 @@ namespace ThemeEditor.App.Library
         private void BuildMusicDetail(LibraryItem item)
         {
             _detail.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_Duration, item.Seconds, item.Bytes / 1024), Opacity = 0.7 });
-            var play = new Button { Content = "▶ " + MainResources.Control_AudioPlayer_Play, MinWidth = 100 };
-            var stop = new Button { Content = "■ " + MainResources.Control_AudioPlayer_Stop, MinWidth = 100 };
+            // One button: Play while idle, Stop while this item's music is playing (it flips back when the track ends)
+            var play = new Button { MinWidth = 100 };
+            Action showState = () => play.Content = _player.IsPlaying && _previewItem == item
+                ? "■ " + MainResources.Control_AudioPlayer_Stop
+                : "▶ " + MainResources.Control_AudioPlayer_Play;
+            _previewStateChanged = (_, e) =>
+            {
+                if (e.PropertyName == nameof(AudioPlayer.IsPlaying))
+                    Dispatcher.UIThread.Post(showState);
+            };
+            _player.PropertyChanged += _previewStateChanged;
+            showState();
             play.Click += async (_, __) =>
             {
+                if (_player.IsPlaying && _previewItem == item)
+                {
+                    _player.StopCommand.Execute(null);
+                    showState();
+                    return;
+                }
                 // Only reuse what is loaded when it is this item's music: checking the selection here was always true,
                 // so after the first track every Play button replayed that first track
                 if (_player.HasData && _previewItem == item)
                 {
                     _player.PlayCommand.Execute(null);
+                    showState();
                     return;
                 }
                 var path = _lib.PathOf(item, item.DataFile);
@@ -466,12 +489,12 @@ namespace ThemeEditor.App.Library
                     _player.SetAudio(audio);
                     _previewItem = item;
                     _player.PlayCommand.Execute(null);
+                    showState();
                 }
             };
-            stop.Click += (_, __) => _player.StopCommand.Execute(null);
             var vol = new Slider { Minimum = 0, Maximum = 1, Value = _player.Volume, Width = 140 };
             vol.PropertyChanged += (_, e) => { if (e.Property == Avalonia.Controls.Primitives.RangeBase.ValueProperty) _player.Volume = (float) vol.Value; };
-            _detail.Children.Add(new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Children = { play, stop, vol } });
+            _detail.Children.Add(new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Children = { play, vol } });
         }
 
         // ---------------------------------------------------------------- Import

@@ -263,6 +263,15 @@ namespace ThemeEditor.Tests
                         Dispatcher.UIThread.RunJobs();
                     }
                     Assert.Same(item, win.PreviewTrack);
+                    // One button that toggles (needs a real audio device; skipped where there is none)
+                    Assert.Single(descendants().OfType<Button>(), b => b.Content is string t && (t.StartsWith("\u25B6 ") || t.StartsWith("\u25A0 ")));
+                    if (AudioPlayer.IsAvailable)
+                    {
+                        Assert.StartsWith("\u25A0 ", (string) play.Content);
+                        play.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+                        Dispatcher.UIThread.RunJobs();
+                        Assert.StartsWith("\u25B6 ", (string) play.Content);
+                    }
                 }
                 win.Close();
             }
