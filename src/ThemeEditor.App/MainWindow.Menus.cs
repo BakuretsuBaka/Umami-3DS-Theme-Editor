@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - MainWindow.Menus.cs
 // --------------------------------------------------
 
@@ -115,6 +115,9 @@ namespace ThemeEditor.App
             music.Items.Add(new Separator());
             music.Items.Add(Item(MainResources.Menu_Music_Remove, RemoveBgmCommand));
             menu.Items.Add(music);
+
+            // ---- Resource library
+            menu.Items.Add(Item(MainResources.Menu_Library, OpenLibraryCommand));
 
             // ---- Experimental
             var exp = new MenuItem {Header = MainResources.Menu_Experimental};

@@ -270,6 +270,90 @@
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>テーマ(.bin)をここにドロップして開く</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>テーマのフォルダを追加...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>開いているテーマに適用しました。</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>テーマに適用</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>明るさ</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} 件</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>完了: 新規 {0} 件を追加しました。</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} 秒, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>まだ何もありません。「テーマのフォルダを追加...」でテーマのフォルダからテクスチャ・効果音・音楽を取り込めます。</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>フォルダテクスチャ</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>色相</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>アイコンテクスチャ</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>取り込み中... {0}/{1} テーマ、新規 {2} 件</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>音楽</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>適用するにはテーマを開くか作成してください。</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>彩度</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>検索...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>効果音セット, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>カーソル</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>フォルダを開く</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>起動</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>フタ</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>サウンド {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>効果音</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>リソースライブラリ</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>カラーバリエーション</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>バージョン情報</value>
   </data>
@@ -362,6 +446,9 @@
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>システムの設定に従う</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>リソースライブラリ...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>メタデータ</value>

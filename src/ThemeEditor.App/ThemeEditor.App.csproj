@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -29,6 +29,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ThemeEditor.Common\ThemeEditor.Common.csproj" />
+  </ItemGroup>
+
+  <!-- The resource library data pack (textures, sound effects, music) is downloaded by packaging/package.sh into library-pack/ and shipped next to the executable -->
+  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\library-pack\index.json')">
+    <Content Include="..\..\library-pack\**\*" Link="Library\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ThemeEditor.Tests" />
   </ItemGroup>
 
   <ItemGroup>

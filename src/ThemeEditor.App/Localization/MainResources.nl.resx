@@ -270,6 +270,90 @@ Huidige grootte: {1} bytes</value>
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>Sleep een thema (.bin) hierheen om het te openen</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>Themamap toevoegen...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>Toegepast op het geopende thema.</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>Toepassen op thema</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>Helderheid</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} items</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>Klaar: {0} nieuwe items toegevoegd.</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} s, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>Nog niets. Gebruik 'Themamap toevoegen...' om texturen, geluiden en muziek uit een map met thema's te importeren.</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>Maptexturen</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>Tint</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>Pictogramtexturen</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>Importeren... {0}/{1} thema's, {2} nieuwe items</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>Muziek</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>Open of maak een thema om er dingen op toe te passen.</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>Herstellen</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>Verzadiging</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>Zoeken...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>Geluidseffectenset, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>Map openen</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>Starten</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>Klep</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>Geluid {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>Pagina</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>Geluidseffecten</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>Bronnenbibliotheek</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>Kleurvarianten</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -362,6 +446,9 @@ Huidige grootte: {1} bytes</value>
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>Systeemstandaard</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>Bronnenbibliotheek...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadata</value>

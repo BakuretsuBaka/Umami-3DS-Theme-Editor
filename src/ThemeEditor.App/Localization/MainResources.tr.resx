@@ -270,6 +270,90 @@ Geçerli boyut: {1} bayt</value>
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>Açmak için bir temayı (.bin) buraya bırakın</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>Tema klasörü ekle...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>Açık temaya uygulandı.</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>Temaya uygula</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>Parlaklık</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} öğe</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>Bitti: {0} yeni öğe eklendi.</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} sn, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>Henüz bir şey yok. Bir tema klasöründen doku, ses ve müzik almak için "Tema klasörü ekle..." seçeneğini kullanın.</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>Klasör dokuları</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>Ton</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>Simge dokuları</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>İçe aktarılıyor... {0}/{1} tema, {2} yeni öğe</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>Müzik</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>Bir şey uygulamak için bir tema açın veya oluşturun.</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>Doygunluk</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>Ara...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>Ses efekti seti, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>İmleç</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>Klasörü aç</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>Başlat</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>Kapak</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>Ses {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>Sayfa</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>Ses efektleri</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>Kaynak kitaplığı</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>Renk varyasyonları</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>Hakkında</value>
   </data>
@@ -362,6 +446,9 @@ Geçerli boyut: {1} bayt</value>
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>Sistem Varsayılanı</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>Kaynak kitaplığı...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Üst veri</value>

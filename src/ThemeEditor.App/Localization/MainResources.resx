@@ -628,4 +628,91 @@ Some data may have been recovered, but issues may be present.</value>
   <data name="Message_ZipInvalid" xml:space="preserve">
     <value>This ZIP does not contain a theme (body_LZ.bin).</value>
   </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>Resource Library...</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>Resource Library</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>Folder textures</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>Icon textures</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>Sound effects</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>Add themes folder...</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>Apply to theme</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>Applied to the open theme.</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>Open or create a theme to apply things to it.</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>Nothing here yet. Use "Add themes folder..." to import textures, sounds and music from a folder of themes.</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} items</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} s, {1} KB</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>Colour variations</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>Hue</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>Importing... {0}/{1} themes, {2} new items</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>Done: {0} new items added.</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>Sound effect set, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>Launch</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>Lid</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>Sound {0}</value>
+  </data>
 </root>

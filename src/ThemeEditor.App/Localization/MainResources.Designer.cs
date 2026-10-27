@@ -647,6 +647,202 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_AddFolder".</summary>
+        public static string Library_AddFolder {
+            get {
+                return ResourceManager.GetString("Library_AddFolder", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Applied".</summary>
+        public static string Library_Applied {
+            get {
+                return ResourceManager.GetString("Library_Applied", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Apply".</summary>
+        public static string Library_Apply {
+            get {
+                return ResourceManager.GetString("Library_Apply", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Brightness".</summary>
+        public static string Library_Brightness {
+            get {
+                return ResourceManager.GetString("Library_Brightness", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Count".</summary>
+        public static string Library_Count {
+            get {
+                return ResourceManager.GetString("Library_Count", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Done".</summary>
+        public static string Library_Done {
+            get {
+                return ResourceManager.GetString("Library_Done", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Duration".</summary>
+        public static string Library_Duration {
+            get {
+                return ResourceManager.GetString("Library_Duration", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Empty".</summary>
+        public static string Library_Empty {
+            get {
+                return ResourceManager.GetString("Library_Empty", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Folders".</summary>
+        public static string Library_Folders {
+            get {
+                return ResourceManager.GetString("Library_Folders", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Hue".</summary>
+        public static string Library_Hue {
+            get {
+                return ResourceManager.GetString("Library_Hue", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Icons".</summary>
+        public static string Library_Icons {
+            get {
+                return ResourceManager.GetString("Library_Icons", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Importing".</summary>
+        public static string Library_Importing {
+            get {
+                return ResourceManager.GetString("Library_Importing", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Music".</summary>
+        public static string Library_Music {
+            get {
+                return ResourceManager.GetString("Library_Music", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_NoTheme".</summary>
+        public static string Library_NoTheme {
+            get {
+                return ResourceManager.GetString("Library_NoTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Reset".</summary>
+        public static string Library_Reset {
+            get {
+                return ResourceManager.GetString("Library_Reset", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Saturation".</summary>
+        public static string Library_Saturation {
+            get {
+                return ResourceManager.GetString("Library_Saturation", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Search".</summary>
+        public static string Library_Search {
+            get {
+                return ResourceManager.GetString("Library_Search", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_SfxSize".</summary>
+        public static string Library_SfxSize {
+            get {
+                return ResourceManager.GetString("Library_SfxSize", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Close".</summary>
+        public static string Library_Snd_Close {
+            get {
+                return ResourceManager.GetString("Library_Snd_Close", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Cursor".</summary>
+        public static string Library_Snd_Cursor {
+            get {
+                return ResourceManager.GetString("Library_Snd_Cursor", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Folder".</summary>
+        public static string Library_Snd_Folder {
+            get {
+                return ResourceManager.GetString("Library_Snd_Folder", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Launch".</summary>
+        public static string Library_Snd_Launch {
+            get {
+                return ResourceManager.GetString("Library_Snd_Launch", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Lid".</summary>
+        public static string Library_Snd_Lid {
+            get {
+                return ResourceManager.GetString("Library_Snd_Lid", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Number".</summary>
+        public static string Library_Snd_Number {
+            get {
+                return ResourceManager.GetString("Library_Snd_Number", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Snd_Page".</summary>
+        public static string Library_Snd_Page {
+            get {
+                return ResourceManager.GetString("Library_Snd_Page", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Sounds".</summary>
+        public static string Library_Sounds {
+            get {
+                return ResourceManager.GetString("Library_Sounds", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Title".</summary>
+        public static string Library_Title {
+            get {
+                return ResourceManager.GetString("Library_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Variants".</summary>
+        public static string Library_Variants {
+            get {
+                return ResourceManager.GetString("Library_Variants", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_About".</summary>
         public static string Menu_About {
             get {
@@ -861,6 +1057,13 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_Language_System {
             get {
                 return ResourceManager.GetString("Menu_Language_System", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_Library".</summary>
+        public static string Menu_Library {
+            get {
+                return ResourceManager.GetString("Menu_Library", resourceCulture);
             }
         }
 

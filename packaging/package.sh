@@ -9,6 +9,18 @@ PROJECT="$ROOT/src/ThemeEditor.App/ThemeEditor.App.csproj"
 OUT="$ROOT/dist"
 mkdir -p "$OUT"
 
+# Resource library data pack (textures, sound effects, music) that ships next to the editor.
+# Skipped without failing when it cannot be downloaded: the editor then starts with an empty library.
+PACK="$ROOT/library-pack"
+PACK_URL="${LIBRARY_PACK_URL:-https://github.com/BakuretsuBaka/Umami-3DS-Theme-Editor/releases/download/library-pack/library-pack.zip}"
+if [ ! -f "$PACK/index.json" ]; then
+  if curl -fsSL "$PACK_URL" -o "$ROOT/library-pack.zip"; then
+    mkdir -p "$PACK" && unzip -q -o "$ROOT/library-pack.zip" -d "$PACK" && rm -f "$ROOT/library-pack.zip"
+  else
+    echo "note: resource library pack not available, building without it"
+  fi
+fi
+
 for RID in $RIDS; do
   DIR="$ROOT/publish/$RID"
   dotnet publish "$PROJECT" -c Release -r "$RID" --self-contained true \

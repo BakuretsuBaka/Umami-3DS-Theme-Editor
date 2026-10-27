@@ -270,6 +270,90 @@
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>將主題(.bin)拖到此处打開</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>新增主題資料夾...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>已套用到開啟的主題。</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>套用到主題</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>亮度</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} 項</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>完成：新增 {0} 項。</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} 秒, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>這裡還沒有內容。使用「新增主題資料夾...」從主題資料夾匯入紋理、音效和音樂。</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>資料夾紋理</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>色相</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>圖示紋理</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>正在匯入... {0}/{1} 個主題，新增 {2} 項</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>音樂</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>請先開啟或建立主題再套用。</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>重設</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>飽和度</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>搜尋...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>音效組, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>游標</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>開啟資料夾</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>啟動</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>機蓋</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>聲音 {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>翻頁</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>音效</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>資源庫</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>顏色變體</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>關於</value>
   </data>
@@ -362,6 +446,9 @@
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>跟隨系統</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>資源庫...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>元資料</value>

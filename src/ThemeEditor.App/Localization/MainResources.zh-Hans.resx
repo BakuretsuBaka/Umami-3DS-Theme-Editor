@@ -270,6 +270,90 @@
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>将主题(.bin)拖到此处打开</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>添加主题文件夹...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>已应用到打开的主题。</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>应用到主题</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>亮度</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>{0} 项</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>完成：新增 {0} 项。</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} 秒, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>这里还没有内容。使用“添加主题文件夹...”从主题文件夹导入纹理、音效和音乐。</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>文件夹纹理</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>色相</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>图标纹理</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>正在导入... {0}/{1} 个主题，新增 {2} 项</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>音乐</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>请先打开或创建主题再应用。</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>饱和度</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>搜索...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>音效组, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>光标</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>启动</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>机盖</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>声音 {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>翻页</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>音效</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>资源库</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>颜色变体</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -362,6 +446,9 @@
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>跟随系统</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>资源库...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>元数据</value>

@@ -220,3 +220,7 @@ ModelManifest.xml
 # Packaging output
 /dist/
 /publish/
+
+# Resource library data pack (downloaded at packaging time)
+/library-pack/
+/library-pack.zip

@@ -40,6 +40,10 @@ All packages are self-contained – nothing else has to be installed.
   *Lid* button. Animated wallpapers are toggleable.
 * **Theme ZIP** – *File → Export Theme ZIP* writes a Theme Plaza / Themezer ready package (theme, music, icon, a fresh preview and name);
   open or drop such a ZIP to unpack and load it
+* **Resource library** (*Resource Library...* menu) – ready-made **folder textures, icon textures, sound effect sets and music** to apply to the open theme
+  with one click, with search, audio preview and **colour variations** (hue / saturation / brightness, plus 8 one-click hue presets) for the textures.
+  *Add themes folder...* imports everything from a folder of theme ZIPs or theme folders into your own library: textures and sound effects are
+  de-duplicated, music is copied in (the library is self-contained, the source ZIPs can be deleted afterwards).
 * **Exports preview.png** when saving
 * Remembers the window size and the folder of the last file dialog
 * **Image dithering / edge bleed** for textures, **SMDH** (`info.smdh`) generation

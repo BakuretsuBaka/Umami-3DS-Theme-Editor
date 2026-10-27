@@ -103,6 +103,7 @@ namespace ThemeEditor.App
             SetupImageCommands();
             SetupBgmCommands();
             SetupArchive();
+            SetupLibrary();
 
             DataContext = this;
             BuildMenus();

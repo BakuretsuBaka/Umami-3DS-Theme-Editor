@@ -270,6 +270,90 @@ Aktualny rozmiar: {1} B</value>
   <data name="Hint_DropTheme" xml:space="preserve">
     <value>Upuść tutaj motyw (.bin), aby go otworzyć</value>
   </data>
+  <data name="Library_AddFolder" xml:space="preserve">
+    <value>Dodaj folder z motywami...</value>
+  </data>
+  <data name="Library_Applied" xml:space="preserve">
+    <value>Zastosowano do otwartego motywu.</value>
+  </data>
+  <data name="Library_Apply" xml:space="preserve">
+    <value>Zastosuj do motywu</value>
+  </data>
+  <data name="Library_Brightness" xml:space="preserve">
+    <value>Jasność</value>
+  </data>
+  <data name="Library_Count" xml:space="preserve">
+    <value>Elementów: {0}</value>
+  </data>
+  <data name="Library_Done" xml:space="preserve">
+    <value>Gotowe: dodano {0} nowych elementów.</value>
+  </data>
+  <data name="Library_Duration" xml:space="preserve">
+    <value>{0:0} s, {1} KB</value>
+  </data>
+  <data name="Library_Empty" xml:space="preserve">
+    <value>Na razie pusto. Użyj „Dodaj folder z motywami...”, aby zaimportować tekstury, dźwięki i muzykę z folderu z motywami.</value>
+  </data>
+  <data name="Library_Folders" xml:space="preserve">
+    <value>Tekstury folderów</value>
+  </data>
+  <data name="Library_Hue" xml:space="preserve">
+    <value>Odcień</value>
+  </data>
+  <data name="Library_Icons" xml:space="preserve">
+    <value>Tekstury ikon</value>
+  </data>
+  <data name="Library_Importing" xml:space="preserve">
+    <value>Importowanie... {0}/{1} motywów, {2} nowych elementów</value>
+  </data>
+  <data name="Library_Music" xml:space="preserve">
+    <value>Muzyka</value>
+  </data>
+  <data name="Library_NoTheme" xml:space="preserve">
+    <value>Otwórz lub utwórz motyw, aby coś zastosować.</value>
+  </data>
+  <data name="Library_Reset" xml:space="preserve">
+    <value>Resetuj</value>
+  </data>
+  <data name="Library_Saturation" xml:space="preserve">
+    <value>Nasycenie</value>
+  </data>
+  <data name="Library_Search" xml:space="preserve">
+    <value>Szukaj...</value>
+  </data>
+  <data name="Library_SfxSize" xml:space="preserve">
+    <value>Zestaw efektów dźwiękowych, {0} KB</value>
+  </data>
+  <data name="Library_Snd_Close" xml:space="preserve">
+    <value>Zamknięcie</value>
+  </data>
+  <data name="Library_Snd_Cursor" xml:space="preserve">
+    <value>Kursor</value>
+  </data>
+  <data name="Library_Snd_Folder" xml:space="preserve">
+    <value>Otwarcie folderu</value>
+  </data>
+  <data name="Library_Snd_Launch" xml:space="preserve">
+    <value>Uruchomienie</value>
+  </data>
+  <data name="Library_Snd_Lid" xml:space="preserve">
+    <value>Klapka</value>
+  </data>
+  <data name="Library_Snd_Number" xml:space="preserve">
+    <value>Dźwięk {0}</value>
+  </data>
+  <data name="Library_Snd_Page" xml:space="preserve">
+    <value>Strona</value>
+  </data>
+  <data name="Library_Sounds" xml:space="preserve">
+    <value>Efekty dźwiękowe</value>
+  </data>
+  <data name="Library_Title" xml:space="preserve">
+    <value>Biblioteka zasobów</value>
+  </data>
+  <data name="Library_Variants" xml:space="preserve">
+    <value>Warianty kolorów</value>
+  </data>
   <data name="Menu_About" xml:space="preserve">
     <value>O programie</value>
   </data>
@@ -362,6 +446,9 @@ Aktualny rozmiar: {1} B</value>
   </data>
   <data name="Menu_Language_System" xml:space="preserve">
     <value>Domyślny systemowy</value>
+  </data>
+  <data name="Menu_Library" xml:space="preserve">
+    <value>Biblioteka zasobów...</value>
   </data>
   <data name="Menu_Metadata" xml:space="preserve">
     <value>Metadane</value>

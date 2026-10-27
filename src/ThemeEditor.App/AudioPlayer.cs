@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - AudioPlayer.cs
 // --------------------------------------------------
 
@@ -216,6 +216,8 @@ namespace ThemeEditor.App
 
         private void Play_Execute()
         {
+            if (!HasData)
+                return;
             if (IsPlaying)
                 _al.SourcePause(_source);
             else
@@ -225,6 +227,8 @@ namespace ThemeEditor.App
 
         private void Stop_Execute()
         {
+            if (!HasData)
+                return;
             _al.SourceStop(_source);
             PollState();
         }
