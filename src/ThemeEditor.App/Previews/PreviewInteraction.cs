@@ -330,11 +330,11 @@ namespace ThemeEditor.App.Previews
             s.Preview_ZoomRows = rows;
             // Keep the cursor on the visible page, like the console does
             var last = PreviewGrid.Columns(rows) * rows - 1;
-            var index = PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY);
+            var index = PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
             if (index > last)
             {
                 int col, row;
-                PreviewGrid.FromIndex(last, out col, out row);
+                PreviewGrid.FromZoomCell(last / rows, last % rows, rows, out col, out row);
                 SetCursor(s, false, col, row);
             }
             PreviewSounds.Play(t, CwavKind.Cursor);

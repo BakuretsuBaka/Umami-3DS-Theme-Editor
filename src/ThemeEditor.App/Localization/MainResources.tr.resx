@@ -134,6 +134,24 @@ Hız: {1} KB/sn</value>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Durdur</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Otomatik renkler</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Koyu</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Yumuşak</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Temanın tüm renklerini üst ve alt ekran görüntülerine göre, okunaklı metinle birlikte seçer. Bir stil seçin; Geri al renklerinizi geri getirir.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Canlı</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Gelişmiş</value>
   </data>

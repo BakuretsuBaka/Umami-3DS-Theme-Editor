@@ -134,6 +134,24 @@ Snelheid: {1} KB/s</value>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Automatische kleuren</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Licht</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Zacht</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Kiest alle kleuren van het thema op basis van de afbeeldingen van het boven- en onderscherm, met goed leesbare tekst. Kies een stijl; Ongedaan maken zet je kleuren terug.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Levendig</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Geavanceerd</value>
   </data>

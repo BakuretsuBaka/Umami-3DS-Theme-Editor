@@ -224,16 +224,72 @@ namespace ThemeEditor.App.Controls
                 }
                 filtering = false;
             };
-            root.Children.Add(BuildFilterBox(_colorsFilter, text =>
+            var filterBox = BuildFilterBox(_colorsFilter, text =>
             {
                 _colorsFilter = text;
                 apply(text);
-            }));
+            });
+            var auto = BuildAutoColorsButton(theme);
+            var top = new DockPanel { Margin = new Thickness(0) };
+            DockPanel.SetDock(auto, Dock.Left);
+            top.Children.Add(auto);
+            top.Children.Add(filterBox);
+            root.Children.Add(top);
             foreach (var (exp, _) in sections)
                 root.Children.Add(exp);
             if (!string.IsNullOrWhiteSpace(_colorsFilter))
                 apply(_colorsFilter);
             return root;
+        }
+
+        /// <summary>
+        ///     "Auto Colors": a menu of four styles built from the wallpapers, each shown with its swatches. Picking one
+        ///     sets every colour of the theme at once (one undo step).
+        /// </summary>
+        private static Control BuildAutoColorsButton(ThemeViewModel theme)
+        {
+            var button = new Button
+            {
+                Content = MainResources.Control_AutoColors + "  \u25BE",
+                Margin = new Thickness(3, 3, 3, 6),
+                VerticalAlignment = VerticalAlignment.Stretch,
+                VerticalContentAlignment = VerticalAlignment.Center
+            };
+            ToolTip.SetTip(button, new TextBlock { Text = MainResources.Control_AutoColors_Tip, TextWrapping = TextWrapping.Wrap, MaxWidth = 320 });
+            var flyout = new MenuFlyout { Placement = PlacementMode.BottomEdgeAlignedLeft };
+            // The styles are worked out when the menu opens, so they always match the current wallpapers
+            flyout.Opening += (s, e) =>
+            {
+                flyout.Items.Clear();
+                foreach (var scheme in AutoColors.Suggest(theme))
+                {
+                    var swatches = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 2, Margin = new Thickness(0, 0, 10, 0) };
+                    foreach (var color in scheme.Swatches)
+                        swatches.Children.Add(new Border
+                        {
+                            Width = 18,
+                            Height = 18,
+                            CornerRadius = new CornerRadius(4),
+                            Background = new SolidColorBrush(color),
+                            BorderBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0)),
+                            BorderThickness = new Thickness(1)
+                        });
+                    var name = MainResources.ResourceManager.GetString("Control_AutoColors_" + scheme.Style) ?? scheme.Style.ToString();
+                    var item = new MenuItem
+                    {
+                        Header = new StackPanel
+                        {
+                            Orientation = Orientation.Horizontal,
+                            Children = { swatches, new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center } }
+                        }
+                    };
+                    var chosen = scheme;
+                    item.Click += (_, __) => AutoColors.Apply(theme, chosen);
+                    flyout.Items.Add(item);
+                }
+            };
+            button.Flyout = flyout;
+            return button;
         }
 
         private static bool Matches(string haystack, string filter)

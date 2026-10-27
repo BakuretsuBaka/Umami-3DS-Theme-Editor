@@ -913,4 +913,22 @@ This cannot be undone (reinstalling the editor brings the presets back).</value>
   <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
     <value>The two buttons in the top-right corner change the icon size (+ and − keys too); drag the icons sideways to flip pages.</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Auto Colors</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Picks every colour of the theme from the top and bottom screen images, readable text included. Choose a style; Undo brings your colours back.</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Vivid</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Soft</value>
+  </data>
 </root>

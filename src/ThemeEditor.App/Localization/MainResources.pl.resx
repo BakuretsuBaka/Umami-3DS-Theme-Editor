@@ -134,6 +134,24 @@ Prędkość: {1} KB/s</value>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Automatyczne kolory</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Łagodny</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Dobiera wszystkie kolory motywu na podstawie obrazów górnego i dolnego ekranu, z czytelnym tekstem. Wybierz styl; Cofnij przywraca twoje kolory.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Żywy</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Zaawansowane</value>
   </data>

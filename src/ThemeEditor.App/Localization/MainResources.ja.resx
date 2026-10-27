@@ -134,6 +134,24 @@
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>停止</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>自動配色</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>ダーク</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>ライト</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>ソフト</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>上画面と下画面の画像からテーマのすべての色を選びます（文字も読みやすく調整）。スタイルを選んでください。元に戻すで以前の色に戻せます。</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>ビビッド</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>詳細</value>
   </data>

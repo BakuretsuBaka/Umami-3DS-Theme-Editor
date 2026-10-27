@@ -134,6 +134,24 @@ Débit : {1} Ko/s</value>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Couleurs auto</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Sombre</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Doux</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Choisit toutes les couleurs du thème d'après les images des écrans du haut et du bas, avec un texte lisible. Choisissez un style ; Annuler rétablit vos couleurs.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Vif</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Avancé</value>
   </data>

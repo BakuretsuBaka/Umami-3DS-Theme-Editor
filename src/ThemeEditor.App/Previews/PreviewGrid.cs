@@ -3,6 +3,8 @@
 // --------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using SkiaSharp;
 using ThemeEditor.App.Properties;
 
@@ -10,8 +12,10 @@ namespace ThemeEditor.App.Previews
 {
     /// <summary>
     ///     Layout of the HOME Menu icon grid for the console's zoom levels (1 to 6 rows). Item and cursor positions are
-    ///     stored for the default 3-row layout; they are mapped through their slot index, which runs down each column and
-    ///     then on to the next one, the way the console reflows icons when zooming.
+    ///     stored for the default 3-row layout. At other zoom levels the preview's items (game card, the theme's file
+    ///     icon, the folder) take the first slots in their stored order and every other slot follows them; slots run
+    ///     down each column and on to the next one, like the console. That keeps all items on screen at every zoom
+    ///     (the one-row layout shows exactly three) instead of the file icon wandering off to another page.
     /// </summary>
     public static class PreviewGrid
     {
@@ -48,10 +52,50 @@ namespace ThemeEditor.App.Previews
             row = BaseRows - 1 - index % BaseRows;
         }
 
+        /// <summary>Slot indices of the enabled preview items, in order.</summary>
+        private static List<int> ItemIndices()
+        {
+            var s = Settings.Default;
+            var items = new List<int>();
+            if (s.Preview_Main_CartEnable)
+                items.Add(IndexOf(s.Preview_Main_CartX, s.Preview_Main_CartY));
+            if (s.Preview_Main_FileEnable)
+                items.Add(IndexOf(s.Preview_Main_FileX, s.Preview_Main_FileY));
+            if (s.Preview_Main_FolderEnable)
+                items.Add(IndexOf(s.Preview_Main_FolderX, s.Preview_Main_FolderY));
+            return items.Where(i => i >= 0).Distinct().OrderBy(i => i).ToList();
+        }
+
+        /// <summary>Slot on the zoomed grid of a stored slot: items first (in order), then every other slot in order.</summary>
+        public static int ToZoomIndex(int index, int rows)
+        {
+            if (rows == BaseRows || index < 0)
+                return Math.Max(0, index);
+            var items = ItemIndices();
+            var pos = items.IndexOf(index);
+            return pos >= 0 ? pos : items.Count + index - items.Count(i => i < index);
+        }
+
+        /// <summary>Inverse of <see cref="ToZoomIndex" />.</summary>
+        public static int FromZoomIndex(int zoomIndex, int rows)
+        {
+            if (rows == BaseRows)
+                return zoomIndex;
+            var items = ItemIndices();
+            if (zoomIndex < items.Count)
+                return items[zoomIndex];
+            // The n-th slot that is not an item
+            var index = zoomIndex - items.Count;
+            foreach (var i in items)
+                if (i <= index)
+                    index++;
+            return index;
+        }
+
         /// <summary>Cell of a stored position on a grid with <paramref name="rows" /> rows (row counted from the top).</summary>
         public static void ToZoomCell(int column, int row, int rows, out int zoomColumn, out int rowFromTop)
         {
-            var index = Math.Max(0, IndexOf(column, row));
+            var index = ToZoomIndex(IndexOf(column, row), rows);
             zoomColumn = index / rows;
             rowFromTop = index % rows;
         }
@@ -59,7 +103,7 @@ namespace ThemeEditor.App.Previews
         /// <summary>Stored position of a cell on a grid with <paramref name="rows" /> rows.</summary>
         public static void FromZoomCell(int zoomColumn, int rowFromTop, int rows, out int column, out int row)
         {
-            FromIndex(zoomColumn * rows + rowFromTop, out column, out row);
+            FromIndex(FromZoomIndex(zoomColumn * rows + rowFromTop, rows), out column, out row);
         }
 
         public static SKPoint Centre(int zoomColumn, int rowFromTop, int rows)

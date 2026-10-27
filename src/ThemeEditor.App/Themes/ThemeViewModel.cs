@@ -44,6 +44,35 @@ namespace ThemeEditor.App.Themes
 
             SetupRules();
             ViewModelChanged += EnableFlagOnColorEdit;
+            // Subscribed last: whatever the constructor and the rules set up is not a user switching a flag on
+            ViewModelChanged += FillUnsetColorsOnFlag;
+        }
+
+        /// <summary>
+        ///     Switching a colour flag on used to show its colours as they were stored, which for a theme that never set
+        ///     them is pure black (black folders, buttons, text boxes). If the colours of that set are all still black,
+        ///     they are filled with colours matching the wallpapers (the "Light" auto colours) instead.
+        /// </summary>
+        private void FillUnsetColorsOnFlag(ViewModelChangedArgs args)
+        {
+            if (!ReferenceEquals(args.ViewModel, Flags) || Rules == null || Rules.Paused)
+                return;
+            string[] sets;
+            if (!AutoColors.SetsOfFlag.TryGetValue(args.Property, out sets))
+                return;
+            var turnedOn = args.NewValue is bool on
+                ? on && !(args.OldValue is bool was && was)
+                : Equals(args.NewValue, Localization.Enums.GameTextDrawType.Colored) && !Equals(args.OldValue, Localization.Enums.GameTextDrawType.Colored);
+            if (!turnedOn)
+                return;
+            AutoColors.Scheme scheme = null;
+            foreach (var set in sets)
+            {
+                if (!AutoColors.IsUnset(this, set))
+                    continue;
+                scheme = scheme ?? AutoColors.Suggest(this)[(int) AutoColors.Style.Light];
+                AutoColors.FillSet(this, scheme, set);
+            }
         }
 
         /// <summary>
@@ -91,6 +120,7 @@ namespace ThemeEditor.App.Themes
         public override void Dispose()
         {   
             ViewModelChanged -= EnableFlagOnColorEdit;
+            ViewModelChanged -= FillUnsetColorsOnFlag;
 
             Rules.Dispose();
             Flags.Dispose();

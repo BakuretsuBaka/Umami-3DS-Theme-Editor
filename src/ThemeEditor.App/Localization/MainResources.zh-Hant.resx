@@ -134,6 +134,24 @@
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>停止</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>自動配色</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>淺色</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>柔和</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>根據上下螢幕圖像選擇主題的所有顏色，並確保文字清晰易讀。選擇一種風格；復原可恢復原來的顏色。</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>鮮豔</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>高級</value>
   </data>

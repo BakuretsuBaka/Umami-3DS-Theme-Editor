@@ -90,6 +90,9 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 * **Never lose work:** the title bar marks unsaved changes with `*`, and New, Open and closing the window ask before discarding them.
 * **Images of any size:** pictures that don't have the exact texture size are fitted for you, by *crop to fill* or *stretch*.
   The editor picks the wide or the single-screen layout from the image's shape.
+* **Auto Colors:** one click picks every colour of the theme from the top and bottom screen images, in four styles (Light, Dark,
+  Vivid, Soft), with readable text guaranteed; Undo brings your colours back. Switching on a colour flag whose colours were never set
+  now gives matching colours instead of pitch black.
 * **Colours and Flags tabs:** collapsible colour sets, a filter box to find a setting fast (`Esc` clears it), and
   *Copy all colors* / *Paste colors* in a colour set's right-click menu to move a whole colour scheme between sets or themes.
 * **Image palette:** pick colours from the (up to) 20 most used colours of the wallpapers, or with the eyedropper from anywhere on screen.

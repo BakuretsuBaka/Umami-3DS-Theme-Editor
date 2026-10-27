@@ -134,6 +134,24 @@
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>停止</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>自动配色</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>柔和</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>根据上下屏图像选择主题的所有颜色，并确保文字清晰可读。选择一种风格；撤销可恢复原来的颜色。</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>鲜艳</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>高级</value>
   </data>

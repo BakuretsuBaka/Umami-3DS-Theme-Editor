@@ -134,6 +134,24 @@ Taxa: {1} KB/s</value>
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Parar</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Cores automáticas</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Suave</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Escolhe todas as cores do tema a partir das imagens das telas superior e inferior, com texto legível. Escolha um estilo; Desfazer traz suas cores de volta.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Vibrante</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Avançado</value>
   </data>

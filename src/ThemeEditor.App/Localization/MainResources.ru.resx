@@ -134,6 +134,24 @@
   <data name="Control_AudioPlayer_Stop" xml:space="preserve">
     <value>Стоп</value>
   </data>
+  <data name="Control_AutoColors" xml:space="preserve">
+    <value>Автоцвета</value>
+  </data>
+  <data name="Control_AutoColors_Dark" xml:space="preserve">
+    <value>Тёмный</value>
+  </data>
+  <data name="Control_AutoColors_Light" xml:space="preserve">
+    <value>Светлый</value>
+  </data>
+  <data name="Control_AutoColors_Soft" xml:space="preserve">
+    <value>Мягкий</value>
+  </data>
+  <data name="Control_AutoColors_Tip" xml:space="preserve">
+    <value>Подбирает все цвета темы по изображениям верхнего и нижнего экранов, с читаемым текстом. Выберите стиль; «Отменить» вернёт ваши цвета.</value>
+  </data>
+  <data name="Control_AutoColors_Vivid" xml:space="preserve">
+    <value>Яркий</value>
+  </data>
   <data name="Control_ColorPicker_Advanced" xml:space="preserve">
     <value>Дополнительно</value>
   </data>

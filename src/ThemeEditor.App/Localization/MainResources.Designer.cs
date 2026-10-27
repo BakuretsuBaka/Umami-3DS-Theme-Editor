@@ -339,6 +339,48 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Control_AutoColors".</summary>
+        public static string Control_AutoColors {
+            get {
+                return ResourceManager.GetString("Control_AutoColors", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_AutoColors_Dark".</summary>
+        public static string Control_AutoColors_Dark {
+            get {
+                return ResourceManager.GetString("Control_AutoColors_Dark", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_AutoColors_Light".</summary>
+        public static string Control_AutoColors_Light {
+            get {
+                return ResourceManager.GetString("Control_AutoColors_Light", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_AutoColors_Soft".</summary>
+        public static string Control_AutoColors_Soft {
+            get {
+                return ResourceManager.GetString("Control_AutoColors_Soft", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_AutoColors_Tip".</summary>
+        public static string Control_AutoColors_Tip {
+            get {
+                return ResourceManager.GetString("Control_AutoColors_Tip", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Control_AutoColors_Vivid".</summary>
+        public static string Control_AutoColors_Vivid {
+            get {
+                return ResourceManager.GetString("Control_AutoColors_Vivid", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Control_ColorPicker_Advanced".</summary>
         public static string Control_ColorPicker_Advanced {
             get {
