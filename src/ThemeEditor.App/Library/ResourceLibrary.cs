@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - ResourceLibrary.cs
 // --------------------------------------------------
 
@@ -22,6 +22,7 @@ namespace ThemeEditor.App.Library
 
         private readonly Dictionary<string, string> _rootOf = new Dictionary<string, string>();
         private readonly object _lock = new object();
+        private readonly HashSet<string> _ids = new HashSet<string>();
 
         public static ResourceLibrary Instance { get; } = new ResourceLibrary();
 
@@ -92,6 +93,9 @@ namespace ThemeEditor.App.Library
                 Items = items;
                 Sources = sources.Distinct().ToList();
                 _rootOf.Clear();
+                _ids.Clear();
+                foreach (var i in items)
+                    _ids.Add(i.Id);
                 foreach (var kv in roots)
                     _rootOf[kv.Key] = kv.Value;
             }
@@ -123,7 +127,17 @@ namespace ThemeEditor.App.Library
         public bool Contains(string id)
         {
             lock (_lock)
-                return _rootOf.ContainsKey(id) || Items.Any(i => i.Id == id);
+                return _ids.Contains(id);
+        }
+
+        /// <summary>
+        ///     Atomically reserves an id for the caller: true for the first caller only. Parallel imports use it so
+        ///     identical content is written by one thread (concurrent writes to the same file fail on Windows).
+        /// </summary>
+        public bool TryClaim(string id)
+        {
+            lock (_lock)
+                return _ids.Add(id);
         }
 
         /// <summary>Adds an item (already written under <see cref="WritableRoot" />) unless it is a duplicate.</summary>
@@ -131,8 +145,10 @@ namespace ThemeEditor.App.Library
         {
             lock (_lock)
             {
+                // The id may already be reserved by TryClaim (the importer claims it before writing the files)
                 if (Items.Any(i => i.Id == item.Id))
                     return false;
+                _ids.Add(item.Id);
                 Items.Add(item);
                 _rootOf[item.Id] = WritableRoot;
                 return true;

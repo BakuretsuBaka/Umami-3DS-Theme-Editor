@@ -1,4 +1,4 @@
-// --------------------------------------------------
+﻿// --------------------------------------------------
 // Umami 3DS Theme Editor - ThemeImporter.cs
 // --------------------------------------------------
 
@@ -161,7 +161,7 @@ namespace ThemeEditor.App.Library
             if (f.FolderTexture && Usable(tx.FolderClosed, 128, 64) && Usable(tx.FolderOpen, 128, 64))
             {
                 var id = "f-" + Hash(tx.FolderClosed.Data, tx.FolderOpen.Data);
-                if (!_library.Contains(id))
+                if (_library.TryClaim(id))
                 {
                     File.WriteAllBytes(Path.Combine(root, "tex", id + "-a.png"), Png(tx.FolderClosed));
                     File.WriteAllBytes(Path.Combine(root, "tex", id + "-b.png"), Png(tx.FolderOpen));
@@ -172,7 +172,7 @@ namespace ThemeEditor.App.Library
             if (f.FileTexture && Usable(tx.FileLarge, 64, 128) && Usable(tx.FileSmall, 32, 64))
             {
                 var id = "i-" + Hash(tx.FileLarge.Data, tx.FileSmall.Data);
-                if (!_library.Contains(id))
+                if (_library.TryClaim(id))
                 {
                     File.WriteAllBytes(Path.Combine(root, "tex", id + "-a.png"), Png(tx.FileLarge));
                     File.WriteAllBytes(Path.Combine(root, "tex", id + "-b.png"), Png(tx.FileSmall));
@@ -183,7 +183,7 @@ namespace ThemeEditor.App.Library
             if (f.SoundEffect && theme.CWAV != null && theme.CWAV.Length > 0x100)
             {
                 var id = "s-" + Hash(theme.CWAV);
-                if (!_library.Contains(id))
+                if (_library.TryClaim(id))
                 {
                     File.WriteAllBytes(Path.Combine(root, "sfx", id + ".bin"), theme.CWAV);
                     if (_library.Add(new LibraryItem { Id = id, Kind = LibraryKind.SoundEffects, Name = parts.Name, Collection = _collection, DataFile = "sfx/" + id + ".bin", Bytes = theme.CWAV.Length }))
@@ -194,7 +194,7 @@ namespace ThemeEditor.App.Library
             {
                 var bgm = BcstmCompat.Normalize(parts.Bgm);
                 var id = "m-" + Hash(bgm);
-                if (!_library.Contains(id))
+                if (_library.TryClaim(id))
                 {
                     double seconds = 0;
                     try { seconds = BcstmConverter.GetInfo(BcstmConverter.ReadBcstm(bgm)).Duration; } catch (Exception) { }
