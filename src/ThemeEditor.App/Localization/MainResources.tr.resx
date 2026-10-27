@@ -167,6 +167,9 @@ Hız: {1} KB/sn</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>İmleci taşımak için bir simgeye tıklayın; klasör açmak veya başlatmak için tekrar tıklayın ya da Aç'a basın. Ok düğmesi sayfaları çevirir, Kapat veya Geri klasörden çıkar. Ok tuşları, Enter ve Esc de çalışır. Temanın ses efektlerini çalar.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Sağ üst köşedeki iki düğme simge boyutunu değiştirir (+ ve − tuşları da); sayfa çevirmek için simgeleri yana sürükleyin.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Önizleme</value>
   </data>

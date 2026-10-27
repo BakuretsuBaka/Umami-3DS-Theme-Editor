@@ -77,6 +77,8 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 * **Interactive, like the console:** click an icon to move the cursor, click it again (or press *Open*) to open a folder or launch it,
   flip wallpaper pages with the arrow button, and leave a folder with *Close* / back. Buttons show their pressed state while you hold
   them, the cursor slides, and folders open with a short transition. Arrow keys, Enter and Esc work too.
+* **Zoom and swipe:** the two buttons in the top-right corner switch between 1 and 6 rows of icons (or `+` / `−`), and dragging the
+  icons sideways flips pages. In the one-row layout the selected title's name appears in a bubble, in the theme's *Game Text* colours.
 * **Hear it:** the theme's own **sound effects** play as you click around (cursor, launch, folder, close, page flips, lid), and
   there is a *Lid* button. Animated wallpapers can be toggled.
 * **Drop to apply:** drop an image straight onto the top or bottom screen to use it as the wallpaper, or a theme anywhere in the window to open it.

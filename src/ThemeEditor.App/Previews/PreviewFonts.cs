@@ -135,6 +135,20 @@ namespace ThemeEditor.App.Previews
             }
         }
 
+        /// <summary>
+        ///     Draws text with the middle of its actual ink (not the line box) on (cx, cy). Fonts differ between systems
+        ///     (Menlo, Consolas, DejaVu...), so fixed offsets cannot centre a letter in a button shape everywhere.
+        /// </summary>
+        public static void DrawCentered(SKCanvas c, string text, float cx, float cy, SKTypeface face, float size,
+            SKColor? fill, SKColor? stroke, float strokeWidth)
+        {
+            float w, h;
+            SKRect ink;
+            using (var path = BuildPath(text, face, size, out w, out h))
+                ink = path.TightBounds;
+            Draw(c, text, cx - ink.MidX, cy - ink.MidY, face, size, fill, stroke, strokeWidth);
+        }
+
         private static IEnumerable<string> Clusters(string text)
         {
             var e = System.Globalization.StringInfo.GetTextElementEnumerator(text);

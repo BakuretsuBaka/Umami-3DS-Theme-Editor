@@ -467,3 +467,4 @@ Library_PurgeMineButton=Mijn imports
 Library_PurgeAllButton=Alles
 Library_PresetsHidden=Op macOS staan de meegeleverde presets in de app, en ze verwijderen zou de handtekening van de app beschadigen (macOS kan de app dan weigeren te openen). Ze zijn daarom verborgen; kies "Alles" of "Meegeleverde presets" bij Tonen om ze terug te halen. Om de ruimte echt vrij te maken, verwijder je zelf Contents/Resources/Library in de app.
 Library_Show_Label=Tonen:
+Control_Preview_Hint_Zoom=De twee knoppen rechtsboven veranderen de grootte van de pictogrammen (ook + en −); sleep de pictogrammen opzij om te bladeren.

@@ -228,3 +228,4 @@ Library_PurgeMineButton=Mis importaciones
 Library_PurgeAllButton=Todo
 Library_PresetsHidden=En macOS los preajustes incluidos están dentro de la app, y borrarlos dañaría su firma (macOS podría negarse a abrirla). Se han ocultado; elige "Todo" o "Preajustes incluidos" en Mostrar para recuperarlos. Para liberar ese espacio de verdad, borra tú mismo Contents/Resources/Library dentro de la app.
 Library_Show_Label=Mostrar:
+Control_Preview_Hint_Zoom=Los dos botones de la esquina superior derecha cambian el tamaño de los iconos (también + y −); arrastra los iconos hacia un lado para pasar de página.

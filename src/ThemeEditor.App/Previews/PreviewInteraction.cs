@@ -233,6 +233,24 @@ namespace ThemeEditor.App.Previews
             if (folder && BackButton.Contains(p))
                 return PreviewTarget.Back;
 
+            if (!folder)
+            {
+                // The main grid follows the zoom level; the hit returns the stored (default layout) position
+                var rows = PreviewGrid.Rows;
+                var half = PreviewGrid.Pitch(rows) / 2;
+                for (var zc = 0; zc < PreviewGrid.Columns(rows); zc++)
+                for (var zr = 0; zr < rows; zr++)
+                {
+                    var centre = PreviewGrid.Centre(zc, zr, rows);
+                    if (Math.Abs(p.X - centre.X) <= half && Math.Abs(p.Y - centre.Y) <= half)
+                    {
+                        PreviewGrid.FromZoomCell(zc, zr, rows, out col, out row);
+                        return PreviewTarget.Cell;
+                    }
+                }
+                return PreviewTarget.None;
+            }
+
             for (var c = 0; c < Columns; c++)
             for (var r = 0; r < Rows(folder); r++)
             {
@@ -289,7 +307,47 @@ namespace ThemeEditor.App.Previews
                 case PreviewTarget.Arrow:
                     NextPage(t, s, ia);
                     break;
+                case PreviewTarget.CornerA:
+                    Zoom(t, s, -1);
+                    break;
+                case PreviewTarget.CornerB:
+                    Zoom(t, s, +1);
+                    break;
             }
+        }
+
+        /// <summary>
+        ///     The zoom buttons in the top-right corner: the big square shows fewer, larger icons, the four small squares
+        ///     more and smaller ones. Returns true when the level changed. The folder view keeps its own layout.
+        /// </summary>
+        public static bool Zoom(ThemeViewModel t, Settings s, int delta)
+        {
+            if (s.Preview_ModeToggle)
+                return false;
+            var rows = Math.Max(PreviewGrid.MinRows, Math.Min(PreviewGrid.MaxRows, s.Preview_ZoomRows + delta));
+            if (rows == s.Preview_ZoomRows)
+                return false;
+            s.Preview_ZoomRows = rows;
+            // Keep the cursor on the visible page, like the console does
+            var last = PreviewGrid.Columns(rows) * rows - 1;
+            var index = PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY);
+            if (index > last)
+            {
+                int col, row;
+                PreviewGrid.FromIndex(last, out col, out row);
+                SetCursor(s, false, col, row);
+            }
+            PreviewSounds.Play(t, CwavKind.Cursor);
+            return true;
+        }
+
+        public static void PreviousPage(ThemeViewModel t, Settings s, PreviewInteraction ia)
+        {
+            if (s.Preview_AnimationToggle)
+                s.Preview_AnimationToggle = false;
+            ia.Page--;
+            var frame = (ia.Page % 3 + 3) % 3;
+            PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
         }
 
         private static void ClickCell(ThemeViewModel t, Settings s, int col, int row)
@@ -371,8 +429,22 @@ namespace ThemeEditor.App.Previews
             var folder = s.Preview_ModeToggle;
             var cx = folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX;
             var cy = folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY;
-            var nx = Math.Max(0, Math.Min(PreviewHit.Columns - 1, cx + dx));
-            var ny = Math.Max(0, Math.Min(PreviewHit.Rows(folder) - 1, cy + dy));
+            int nx, ny;
+            if (folder)
+            {
+                nx = Math.Max(0, Math.Min(PreviewHit.Columns - 1, cx + dx));
+                ny = Math.Max(0, Math.Min(PreviewHit.Rows(folder) - 1, cy + dy));
+            }
+            else
+            {
+                // Move on the zoomed grid (dy > 0 is up), then store the result in default-layout terms
+                int zc, zr;
+                var rows = PreviewGrid.Rows;
+                PreviewGrid.ToZoomCell(cx, cy, rows, out zc, out zr);
+                zc = Math.Max(0, Math.Min(PreviewGrid.Columns(rows) - 1, zc + dx));
+                zr = Math.Max(0, Math.Min(rows - 1, zr - dy));
+                PreviewGrid.FromZoomCell(zc, zr, rows, out nx, out ny);
+            }
             if (nx == cx && ny == cy)
                 return false;
             SetCursor(s, folder, nx, ny);

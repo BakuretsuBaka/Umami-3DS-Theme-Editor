@@ -38,6 +38,7 @@ namespace ThemeEditor.App.Properties
         private string _bgmCodec = "DspAdpcm";
         private string _libraryShow = "All";
         private bool _libraryHideBundled;
+        private int _previewZoomRows = 3;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -132,6 +133,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _libraryHideBundled; }
             set { Set(ref _libraryHideBundled, value); }
+        }
+
+        /// <summary>Icon rows of the HOME Menu grid in the preview (1 = largest icons ... 6 = smallest), like the console's zoom buttons.</summary>
+        public int Preview_ZoomRows
+        {
+            get { return _previewZoomRows; }
+            set { Set(ref _previewZoomRows, Math.Max(1, Math.Min(6, value))); }
         }
 
         public double Window_Height

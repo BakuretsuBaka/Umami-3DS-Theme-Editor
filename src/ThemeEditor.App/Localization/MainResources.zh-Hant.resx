@@ -167,6 +167,9 @@
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>點擊圖示移動游標；再次點擊或按「開啟」可開啟資料夾或啟動。箭頭按鈕翻頁，「關閉」或返回按鈕離開資料夾。方向鍵、Enter 和 Esc 同樣可用。會播放主題的音效。</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>右上角的兩個按鈕可變更圖示大小（也可用 + 和 − 鍵）；將圖示向旁邊拖曳即可翻頁。</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>預覽</value>
   </data>

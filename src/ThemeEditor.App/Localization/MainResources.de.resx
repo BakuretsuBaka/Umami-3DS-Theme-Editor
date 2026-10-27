@@ -167,6 +167,9 @@ Rate: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Symbol anklicken, um den Cursor zu bewegen; erneut anklicken oder „Öffnen“ drücken, um einen Ordner zu öffnen oder zu starten. Mit dem Pfeil blätterst du Seiten, mit „Schließen“ oder Zurück verlässt du einen Ordner. Pfeiltasten, Enter und Esc funktionieren auch. Spielt die Soundeffekte des Designs ab.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Die zwei Tasten oben rechts ändern die Symbolgröße (auch mit + und −); zieh die Symbole zur Seite, um zu blättern.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Vorschau</value>
   </data>

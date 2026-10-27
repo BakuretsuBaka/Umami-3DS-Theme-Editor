@@ -167,6 +167,9 @@
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>아이콘을 클릭하면 커서가 이동합니다. 다시 클릭하거나 '열기'를 누르면 폴더를 열거나 실행합니다. 화살표 버튼은 페이지를 넘기고, '닫기'나 뒤로 버튼은 폴더에서 나갑니다. 방향키, Enter, Esc도 사용할 수 있습니다. 테마의 효과음을 재생합니다.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>오른쪽 위의 두 버튼으로 아이콘 크기를 바꿀 수 있습니다(+ 및 − 키도 가능). 아이콘을 옆으로 끌면 페이지가 넘어갑니다.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>미리보기</value>
   </data>

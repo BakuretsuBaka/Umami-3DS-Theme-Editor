@@ -167,6 +167,9 @@ Velocità: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Fai clic su un'icona per spostare il cursore; fai clic di nuovo, o premi Apri, per aprire una cartella o avviarla. La freccia cambia pagina; Chiudi o Indietro esce da una cartella. Funzionano anche frecce, Invio ed Esc. Riproduce gli effetti sonori del tema.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>I due pulsanti in alto a destra cambiano la dimensione delle icone (anche + e −); trascina le icone di lato per cambiare pagina.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Anteprima</value>
   </data>

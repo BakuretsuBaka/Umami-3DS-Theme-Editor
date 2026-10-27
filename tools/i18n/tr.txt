@@ -467,3 +467,4 @@ Library_PurgeMineButton=İçe aktardıklarım
 Library_PurgeAllButton=Her şey
 Library_PresetsHidden=macOS'ta yerleşik hazır ayarlar uygulamanın içinde saklanır ve silinmeleri uygulamanın imzasını bozar (macOS uygulamayı açmayı reddedebilir). Bu yüzden gizlendiler; geri getirmek için Göster altında "Tümü" veya "Yerleşik hazır ayarlar"ı seçin. Alanı gerçekten boşaltmak için uygulamanın içindeki Contents/Resources/Library klasörünü kendiniz silin.
 Library_Show_Label=Göster:
+Control_Preview_Hint_Zoom=Sağ üst köşedeki iki düğme simge boyutunu değiştirir (+ ve − tuşları da); sayfa çevirmek için simgeleri yana sürükleyin.

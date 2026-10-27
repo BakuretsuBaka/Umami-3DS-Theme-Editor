@@ -467,3 +467,4 @@ Library_PurgeMineButton=Mina importer
 Library_PurgeAllButton=Allt
 Library_PresetsHidden=På macOS ligger de medföljande förvalen inuti appen, och att ta bort dem skulle skada appens signatur (macOS kan då vägra öppna den). De har dolts i stället; välj "Alla" eller "Medföljande förval" under Visa för att få tillbaka dem. För att verkligen frigöra utrymmet, ta själv bort Contents/Resources/Library i appen.
 Library_Show_Label=Visa:
+Control_Preview_Hint_Zoom=De två knapparna uppe till höger ändrar ikonstorleken (även + och −); dra ikonerna åt sidan för att bläddra.

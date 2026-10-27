@@ -467,3 +467,4 @@ Library_PurgeMineButton=Meine Importe
 Library_PurgeAllButton=Alles
 Library_PresetsHidden=Unter macOS liegen die mitgelieferten Vorlagen in der App, und sie zu löschen würde die Signatur der App beschädigen (macOS könnte sie dann nicht mehr öffnen). Sie wurden stattdessen ausgeblendet; wähle unter Anzeigen „Alle“ oder „Mitgelieferte Vorlagen“, um sie zurückzuholen. Um den Platz wirklich freizugeben, lösche Contents/Resources/Library in der App selbst.
 Library_Show_Label=Anzeigen:
+Control_Preview_Hint_Zoom=Die zwei Tasten oben rechts ändern die Symbolgröße (auch mit + und −); zieh die Symbole zur Seite, um zu blättern.

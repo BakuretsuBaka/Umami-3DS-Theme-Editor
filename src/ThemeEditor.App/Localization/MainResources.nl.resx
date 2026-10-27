@@ -167,6 +167,9 @@ Snelheid: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Klik op een pictogram om de cursor te verplaatsen; klik nogmaals, of op Openen, om een map te openen of te starten. Met de pijl blader je door pagina's, met Sluiten of Terug verlaat je een map. Pijltjestoetsen, Enter en Esc werken ook. Speelt de geluidseffecten van het thema af.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>De twee knoppen rechtsboven veranderen de grootte van de pictogrammen (ook + en −); sleep de pictogrammen opzij om te bladeren.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Voorbeeld</value>
   </data>

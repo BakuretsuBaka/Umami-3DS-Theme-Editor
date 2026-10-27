@@ -124,7 +124,15 @@ namespace ThemeEditor.App.Previews
 
             // Inner area
             DrawInnerPanel(c, new SKRect(12, 39, 12 + Width, 39 + 170), 3, innerMain, innerEdge, innerGlow, innerShadow);
-            DrawSlots(c, 31, 3, innerEdge, innerGlow, 170);
+            DrawMainSlots(c, (cv, r) =>
+            {
+                using (var edgePen = SkiaHelpers.StrokePaint(innerEdge, 1))
+                using (var glowPen = SkiaHelpers.StrokePaint(innerGlow, 0.5f))
+                {
+                    cv.DrawRoundRect(r, 2, 2, edgePen);
+                    cv.DrawLine(r.Left + 2, r.Top, r.Right - 2, r.Top, glowPen);
+                }
+            });
         }
 
         /// <summary>Rounded panel with the layered soft shadow and glow line used for the folder and main areas.</summary>
@@ -211,13 +219,21 @@ namespace ThemeEditor.App.Previews
             }
 
             // Slots
-            var offset = 31 + (170 - 2 * Gap) / 2;
             using (var slot = SkiaHelpers.FillPaint(SKColors.White.WithOpacity(0.2)))
+                DrawMainSlots(c, (cv, r) => cv.DrawRoundRect(r, 2, 2, slot));
+        }
+
+        /// <summary>The empty-slot markers of the main grid at the current zoom level, plus the next page's first column.</summary>
+        private static void DrawMainSlots(SKCanvas c, Action<SKCanvas, SKRect> draw)
+        {
+            var rows = PreviewGrid.Rows;
+            var half = (float) Math.Floor(8 * Math.Max(0.65, Math.Min(1.25, PreviewGrid.Scale(rows))));
+            for (var zc = 0; zc <= PreviewGrid.Columns(rows); zc++)
+            for (var zr = 0; zr < rows; zr++)
             {
-                for (var px = 1; px < 7; px++)
-                for (var py = 0; py < 3; py++)
-                    c.DrawRoundRect(new SKRect((float) (Gap * px - 8), (float) (Gap * py + offset),
-                        (float) (Gap * px + 8), (float) (Gap * py + offset + 16)), 2, 2, slot);
+                var p = PreviewGrid.Centre(zc, zr, rows);
+                var y = (float) Math.Floor(p.Y - half);
+                draw(c, new SKRect(p.X - half, y, p.X + half, y + 2 * half));
             }
         }
 
@@ -235,16 +251,95 @@ namespace ThemeEditor.App.Previews
             if (!s.Preview_ModeToggle && s.Preview_Main_CursorEnable)
             {
                 var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false);
-                At(c, pos, cv => ItemRenderer.DrawCursor(cv, t, animate, time));
+                var scale = PreviewGrid.Scale(PreviewGrid.Rows);
+                At(c, pos, cv =>
+                {
+                    cv.Scale(scale);
+                    ItemRenderer.DrawCursor(cv, t, animate, time);
+                });
             }
+            if (!s.Preview_ModeToggle && PreviewGrid.Rows == 1)
+                DrawDescription(c, t, s);
+        }
+
+        // ================================================================ Description bubble (one-row layout)
+
+        /// <summary>The selected title's name, if the cursor is on an item.</summary>
+        private static string DescriptionText(Settings s)
+        {
+            switch (PreviewHit.ItemAt(s, s.Preview_Main_CursorX, s.Preview_Main_CursorY, false))
+            {
+                case PreviewItem.File:
+                    return "Umami 3DS Theme Editor";
+                case PreviewItem.Folder:
+                    return "Folder";
+                case PreviewItem.Cart:
+                    return "Game Card";
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        ///     In the one-row layout the HOME Menu shows the selected title's name in a bubble above the icons. It uses the
+        ///     theme's Game Text colours ("Game Text Color" flag: Enabled = custom colours, Hidden = no bubble).
+        /// </summary>
+        private static void DrawDescription(SKCanvas c, ThemeViewModel t, Settings s)
+        {
+            var mode = t?.Flags.GameTextDrawType ?? GameTextDrawType.Default;
+            if (mode == GameTextDrawType.Hidden)
+                return;
+            var text = DescriptionText(s);
+            if (text == null)
+                return;
+            int zc, zr;
+            PreviewGrid.ToZoomCell(s.Preview_Main_CursorX, s.Preview_Main_CursorY, 1, out zc, out zr);
+            if (zc >= PreviewGrid.Columns(1))
+                return;
+
+            var custom = mode == GameTextDrawType.Colored && t != null;
+            var main = custom ? t.Colors.GameText.Main.ToSk() : SkiaHelpers.Hex("#fbfbfb");
+            var light = custom ? t.Colors.GameText.Light.ToSk() : SKColors.White;
+            var fg = custom ? t.Colors.GameText.Text.ToSk() : SkiaHelpers.Hex("#4a4a4a");
+            var shadow = custom ? t.Colors.GameText.Shadow.ToSk() : SKColors.Black;
+
+            // The box shifts a little with the selected column; the tail points at the icon
+            var icon = PreviewGrid.Centre(zc, 0, 1);
+            var box = new SKRect(16 + zc * 8, 38, 16 + zc * 8 + 264, 102);
+            var tailX = Math.Max(box.Left + 18, Math.Min(box.Right - 18, icon.X));
+            using (var shape = SkiaHelpers.RoundRect(box.Left, box.Top, box.Width, box.Height, 12, 12))
+            using (var tail = new SKPath())
+            {
+                tail.MoveTo(tailX - 9, box.Bottom - 1);
+                tail.LineTo(tailX, box.Bottom + 9);
+                tail.LineTo(tailX + 9, box.Bottom - 1);
+                tail.Close();
+                using (var bubble = SkiaHelpers.Combine(shape, tail, SKPathOp.Union))
+                {
+                    SkiaHelpers.WithDropShadow(c, shadow, 0.3, 4, 0, 1, () => SkiaHelpers.FillPath(c, bubble, main));
+                    // Soft highlight on the upper half
+                    c.Save();
+                    c.ClipPath(bubble, SKClipOperation.Intersect, true);
+                    using (var shader = SkiaHelpers.VGradient(box, new Stop(0, light.WithAlpha(150)), new Stop(0.5f, light.WithAlpha(0))))
+                    using (var paint = new SKPaint { Shader = shader, IsAntialias = true })
+                        c.DrawRect(box, paint);
+                    c.Restore();
+                }
+            }
+            PreviewText.DrawCentered(c, text, box.MidX, box.MidY, PreviewFonts.SemiBold, 15, fg, null, 0);
         }
 
         /// <summary>Draws an item in its grid cell, slightly shrunk while the pointer holds it down.</summary>
         private static void AtCell(SKCanvas c, int col, int row, bool folder, PreviewInteraction ia, Action<SKCanvas> draw)
         {
+            // Main-grid items that zoomed onto a later page are not on screen
+            if (!folder && !PreviewGrid.IsVisible(col, row))
+                return;
             var p = ItemRenderer.GridPosition(col, row, folder);
             c.Save();
             c.Translate(p.X, p.Y);
+            if (!folder)
+                c.Scale(PreviewGrid.Scale(PreviewGrid.Rows));
             if (ia != null && ia.IsCellPressed(col, row))
                 c.Scale(0.93f);
             draw(c);

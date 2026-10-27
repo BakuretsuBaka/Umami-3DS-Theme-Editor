@@ -467,3 +467,4 @@ Library_PurgeMineButton=Moje importy
 Library_PurgeAllButton=Wszystko
 Library_PresetsHidden=W macOS wbudowane ustawienia są zapisane w aplikacji, a ich usunięcie uszkodziłoby jej podpis (macOS mógłby odmówić jej otwarcia). Zostały więc ukryte; wybierz „Wszystko” lub „Wbudowane ustawienia” w Pokaż, aby je przywrócić. Aby naprawdę zwolnić miejsce, usuń samodzielnie Contents/Resources/Library w aplikacji.
 Library_Show_Label=Pokaż:
+Control_Preview_Hint_Zoom=Dwa przyciski w prawym górnym rogu zmieniają rozmiar ikon (także + i −); przeciągnij ikony w bok, aby zmienić stronę.

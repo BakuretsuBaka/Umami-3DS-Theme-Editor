@@ -236,8 +236,14 @@
                             x:Name="BottomPreview"
                             Theme="{Binding ViewModel}"
                             Interaction="{x:Static previews:PreviewInteraction.Shared}"
-                            ToolTip.Tip="{x:Static locale:MainResources.Control_Preview_Hint}"
-                            Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}" />
+                            Animate="{Binding Source={x:Static props:Settings.Default}, Path=Preview_AnimationToggle}">
+                            <ToolTip.Tip>
+                                <StackPanel MaxWidth="360" Spacing="6">
+                                    <TextBlock TextWrapping="Wrap" Text="{x:Static locale:MainResources.Control_Preview_Hint}" />
+                                    <TextBlock TextWrapping="Wrap" Text="{x:Static locale:MainResources.Control_Preview_Hint_Zoom}" />
+                                </StackPanel>
+                            </ToolTip.Tip>
+                        </controls:BottomScreenPreview>
                     </Border>
 
                     <StackPanel Grid.Column="2" Margin="6,0">

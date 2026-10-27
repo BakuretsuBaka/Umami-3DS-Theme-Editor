@@ -167,6 +167,9 @@ Prędkość: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Kliknij ikonę, aby przesunąć kursor; kliknij ponownie lub naciśnij Otwórz, aby otworzyć folder lub uruchomić element. Strzałka przewraca strony, Zamknij lub Wstecz wychodzi z folderu. Działają też klawisze strzałek, Enter i Esc. Odtwarza efekty dźwiękowe motywu.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Dwa przyciski w prawym górnym rogu zmieniają rozmiar ikon (także + i −); przeciągnij ikony w bok, aby zmienić stronę.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Podgląd</value>
   </data>

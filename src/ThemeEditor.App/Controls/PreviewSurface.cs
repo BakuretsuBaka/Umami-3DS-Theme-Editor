@@ -241,6 +241,11 @@ namespace ThemeEditor.App.Controls
             BottomRenderer.Draw(canvas, theme, animate, time, Interaction);
         }
 
+        // Swiping the icon grid sideways flips pages like the arrow button
+        private const double SwipeDistance = 40;
+        private Point? _swipeStart;
+        private bool _swiping;
+
         private PreviewTarget HitTest(Point p, out int col, out int row)
         {
             return PreviewHit.Hit(Settings.Default, (float) p.X, (float) p.Y, out col, out row);
@@ -257,7 +262,12 @@ namespace ThemeEditor.App.Controls
             int col, row;
             var target = HitTest(point.Position, out col, out row);
             ia.Press(target, col, row);
-            if (target != PreviewTarget.None)
+            // A press on the grid (an item or an empty spot) may turn into a swipe
+            var onGrid = (target == PreviewTarget.Cell || target == PreviewTarget.None) && !Settings.Default.Preview_ModeToggle
+                         && point.Position.Y > 30 && point.Position.Y < 212;
+            _swipeStart = onGrid ? point.Position : (Point?) null;
+            _swiping = false;
+            if (target != PreviewTarget.None || onGrid)
                 e.Pointer.Capture(this);
             e.Handled = true;
             InvalidateVisual();
@@ -270,8 +280,19 @@ namespace ThemeEditor.App.Controls
             if (ia == null)
                 return;
             int col, row;
-            var target = HitTest(e.GetPosition(this), out col, out row);
+            var position = e.GetPosition(this);
+            var target = HitTest(position, out col, out row);
             Cursor = target != PreviewTarget.None ? Hand : null;
+            if (_swipeStart.HasValue && !_swiping && Math.Abs(position.X - _swipeStart.Value.X) > SwipeDistance / 2)
+            {
+                // Dragging sideways: no longer a click on the item it started on
+                _swiping = true;
+                ia.SetOver(false);
+                InvalidateVisual();
+                return;
+            }
+            if (_swiping)
+                return;
             if (ia.Pressed != PreviewTarget.None)
             {
                 ia.SetOver(target == ia.Pressed && col == ia.PressedCol && row == ia.PressedRow);
@@ -283,8 +304,27 @@ namespace ThemeEditor.App.Controls
         {
             base.OnPointerReleased(e);
             var ia = Interaction;
-            if (ia == null || ia.Pressed == PreviewTarget.None)
+            var start = _swipeStart;
+            var swiping = _swiping;
+            _swipeStart = null;
+            _swiping = false;
+            if (ia != null && swiping && start.HasValue && Theme != null)
+            {
+                var dx = e.GetPosition(this).X - start.Value.X;
+                ia.Release();
+                e.Pointer.Capture(null);
+                if (dx <= -SwipeDistance)
+                    PreviewActions.NextPage(Theme, Settings.Default, ia);
+                else if (dx >= SwipeDistance)
+                    PreviewActions.PreviousPage(Theme, Settings.Default, ia);
+                InvalidateVisual();
                 return;
+            }
+            if (ia == null || ia.Pressed == PreviewTarget.None)
+            {
+                e.Pointer.Capture(null);
+                return;
+            }
             var clicked = ia.PressedActive;
             var target = ia.Pressed;
             int col = ia.PressedCol, row = ia.PressedRow;
@@ -298,6 +338,8 @@ namespace ThemeEditor.App.Controls
         protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e)
         {
             base.OnPointerCaptureLost(e);
+            _swipeStart = null;
+            _swiping = false;
             Interaction?.Release();
             InvalidateVisual();
         }
@@ -322,8 +364,13 @@ namespace ThemeEditor.App.Controls
                     if (s.Preview_ModeToggle)
                         PreviewActions.Back(Theme, s);
                     break;
-                case Key.PageDown:
-                case Key.PageUp: e.Handled = true; PreviewActions.NextPage(Theme, s, Interaction); break;
+                case Key.PageDown: e.Handled = true; PreviewActions.NextPage(Theme, s, Interaction); break;
+                case Key.PageUp: e.Handled = true; PreviewActions.PreviousPage(Theme, s, Interaction); break;
+                // + shows fewer, larger icons and - more, smaller ones (the zoom buttons)
+                case Key.OemPlus:
+                case Key.Add: e.Handled = true; PreviewActions.Zoom(Theme, s, -1); break;
+                case Key.OemMinus:
+                case Key.Subtract: e.Handled = true; PreviewActions.Zoom(Theme, s, +1); break;
             }
             InvalidateVisual();
         }

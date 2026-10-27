@@ -416,6 +416,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Control_Preview_Hint_Zoom".</summary>
+        public static string Control_Preview_Hint_Zoom {
+            get {
+                return ResourceManager.GetString("Control_Preview_Hint_Zoom", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Control_Preview_Label".</summary>
         public static string Control_Preview_Label {
             get {

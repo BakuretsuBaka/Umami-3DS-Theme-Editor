@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------
+// --------------------------------------------------
 // Umami 3DS Theme Editor - TopRenderer.cs
 // --------------------------------------------------
 
@@ -271,7 +271,7 @@ namespace ThemeEditor.App.Previews
             c.Translate(52, 3);
             using (var ring = SkiaHelpers.Ellipse(8, 8, 7, 7))
                 SkiaHelpers.StrokePath(c, ring, fg, 2);
-            CornerText(c, "Y", 5, 1, fg);
+            CornerText(c, "Y", 8, 8, fg);
             c.Restore();
 
             // Right camera
@@ -293,7 +293,8 @@ namespace ThemeEditor.App.Previews
             c.Translate(349, 5);
             using (var shape = SkiaHelpers.Parse("M 0 13 Q 2 0 3 0 L 16 0 Q 15 2 13 13 Z"))
                 SkiaHelpers.StrokePath(c, shape, fg, 1.5f);
-            CornerText(c, "L", 4, -1, fg);
+            // Middle of the slanted plate (its corners are 0,13 3,0 16,0 13,13)
+            CornerText(c, "L", 8, 6.5f, fg);
             c.Restore();
 
             // R
@@ -301,20 +302,19 @@ namespace ThemeEditor.App.Previews
             c.Translate(377, 5);
             using (var shape = SkiaHelpers.Parse("M 16 13 Q 14 0 13 0 L 0 0 Q 1 2 3 13 Z"))
                 SkiaHelpers.StrokePath(c, shape, fg, 1.5f);
-            CornerText(c, "R", 5, -1, fg);
+            CornerText(c, "R", 8, 6.5f, fg);
             c.Restore();
 
-            // +
-            // between L and R: L ends at 365, R starts at 377
-            var plusW = PreviewText.Measure("+", PreviewFonts.Mono, 12);
-            CornerText(c, "+", 371 - plusW / 2, 4, fg);
+            // + between L (ends at 365) and R (starts at 377), level with the middle of the plates
+            CornerText(c, "+", 371, 11.5f, fg);
 
             c.Restore();
         }
 
-        private static void CornerText(SKCanvas c, string text, float x, float y, SKColor color)
+        /// <summary>Draws a button letter centred (by its actual outline) on (cx, cy).</summary>
+        private static void CornerText(SKCanvas c, string text, float cx, float cy, SKColor color)
         {
-            PreviewText.Draw(c, text, x, y, PreviewFonts.Mono, 12, color, color, 1);
+            PreviewText.DrawCentered(c, text, cx, cy, PreviewFonts.Mono, 12, color, color, 1);
         }
 
         // ================================================================ 3D folder

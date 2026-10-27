@@ -167,6 +167,9 @@
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>アイコンをクリックするとカーソルが移動します。もう一度クリックするか「開く」を押すと、フォルダを開く／起動します。矢印ボタンでページ切り替え、「閉じる」や戻るボタンでフォルダを出ます。矢印キー、Enter、Esc も使えます。テーマの効果音を再生します。</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>右上の2つのボタンでアイコンの大きさを変えられます（+ と − キーも可）。アイコンを横にドラッグするとページをめくれます。</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>プレビュー</value>
   </data>

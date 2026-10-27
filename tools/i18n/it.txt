@@ -228,3 +228,4 @@ Library_PurgeMineButton=Le mie importazioni
 Library_PurgeAllButton=Tutto
 Library_PresetsHidden=Su macOS i preset inclusi si trovano dentro l'app, ed eliminarli danneggerebbe la sua firma (macOS potrebbe rifiutarsi di aprirla). Sono stati nascosti; scegli "Tutto" o "Preset inclusi" in Mostra per riaverli. Per liberare davvero lo spazio, elimina tu Contents/Resources/Library dentro l'app.
 Library_Show_Label=Mostra:
+Control_Preview_Hint_Zoom=I due pulsanti in alto a destra cambiano la dimensione delle icone (anche + e −); trascina le icone di lato per cambiare pagina.

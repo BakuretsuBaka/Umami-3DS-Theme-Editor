@@ -293,14 +293,23 @@ namespace ThemeEditor.App.Previews
             return new SKColor(Mix(bg.Red, fg.Red), Mix(bg.Green, fg.Green), Mix(bg.Blue, fg.Blue), bg.Alpha);
         }
 
+        /// <summary>
+        ///     Centre of a grid cell. Positions are stored for the default 5x3 layout; in the main view they are placed
+        ///     on the grid of the current zoom level (see <see cref="PreviewGrid" />).
+        /// </summary>
         public static SKPoint GridPosition(int column, int row, bool folderMode)
         {
+            if (!folderMode)
+            {
+                int zc, zr;
+                var rows = PreviewGrid.Rows;
+                PreviewGrid.ToZoomCell(column, row, rows, out zc, out zr);
+                return PreviewGrid.Centre(zc, zr, rows);
+            }
             float[] cols = { 54, 107, 160, 213, 266 };
-            float[] mainRows = { 176, 123, 70 };
             float[] folderRows = { 164, 110 };
-            var rows = folderMode ? folderRows : mainRows;
             return new SKPoint(cols[Math.Max(0, Math.Min(cols.Length - 1, column))],
-                rows[Math.Max(0, Math.Min(rows.Length - 1, row))]);
+                folderRows[Math.Max(0, Math.Min(folderRows.Length - 1, row))]);
         }
     }
 }

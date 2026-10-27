@@ -467,3 +467,4 @@ Library_PurgeMineButton=我的导入
 Library_PurgeAllButton=全部
 Library_PresetsHidden=在 macOS 上，内置预设存放在应用内部，删除它们会破坏应用签名（macOS 可能拒绝打开应用）。因此改为隐藏；在“显示”中选择“全部”或“内置预设”即可恢复。若要真正释放空间，请自行删除应用内的 Contents/Resources/Library。
 Library_Show_Label=显示：
+Control_Preview_Hint_Zoom=右上角的两个按钮可更改图标大小（也可用 + 和 − 键）；将图标向旁边拖动即可翻页。

@@ -167,6 +167,9 @@ Hastighet: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Klicka på en ikon för att flytta markören; klicka igen, eller tryck Öppna, för att öppna en mapp eller starta den. Pilen bläddrar sidor, Stäng eller Tillbaka lämnar en mapp. Piltangenter, Enter och Esc fungerar också. Spelar temats ljudeffekter.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>De två knapparna uppe till höger ändrar ikonstorleken (även + och −); dra ikonerna åt sidan för att bläddra.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Förhandsvisning</value>
   </data>

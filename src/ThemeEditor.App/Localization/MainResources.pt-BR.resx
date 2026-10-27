@@ -167,6 +167,9 @@ Taxa: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Clique em um ícone para mover o cursor; clique de novo, ou em Abrir, para abrir uma pasta ou iniciá-lo. A seta troca de página; Fechar ou Voltar sai de uma pasta. Setas do teclado, Enter e Esc também funcionam. Toca os efeitos sonoros do tema.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Os dois botões no canto superior direito mudam o tamanho dos ícones (também + e −); arraste os ícones para o lado para virar a página.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Visualizar</value>
   </data>

@@ -910,4 +910,7 @@ This cannot be undone (reinstalling the editor brings the presets back).</value>
   <data name="Library_Show_Label" xml:space="preserve">
     <value>Show:</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>The two buttons in the top-right corner change the icon size (+ and − keys too); drag the icons sideways to flip pages.</value>
+  </data>
 </root>

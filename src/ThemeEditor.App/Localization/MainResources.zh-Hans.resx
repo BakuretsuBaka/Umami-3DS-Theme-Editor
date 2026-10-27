@@ -167,6 +167,9 @@
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>点击图标移动光标；再次点击或按“打开”可打开文件夹或启动。箭头按钮翻页，“关闭”或返回按钮退出文件夹。方向键、Enter 和 Esc 同样可用。会播放主题的音效。</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>右上角的两个按钮可更改图标大小（也可用 + 和 − 键）；将图标向旁边拖动即可翻页。</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>预览</value>
   </data>

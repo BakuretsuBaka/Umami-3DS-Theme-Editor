@@ -167,6 +167,9 @@
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Нажмите на значок, чтобы переместить курсор; нажмите ещё раз или «Открыть», чтобы открыть папку или запустить. Стрелка листает страницы, «Закрыть» или «Назад» выходит из папки. Работают также стрелки, Enter и Esc. Воспроизводит звуковые эффекты темы.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Две кнопки в правом верхнем углу меняют размер значков (также + и −); перетащите значки в сторону, чтобы перелистнуть страницу.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Предпросмотр</value>
   </data>

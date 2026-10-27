@@ -167,6 +167,9 @@ Velocidad: {1} KB/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Haz clic en un icono para mover el cursor; vuelve a hacer clic, o pulsa Abrir, para abrir una carpeta o iniciarlo. La flecha cambia de página; Cerrar o Atrás sale de una carpeta. También funcionan las flechas del teclado, Intro y Esc. Reproduce los efectos de sonido del tema.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Los dos botones de la esquina superior derecha cambian el tamaño de los iconos (también + y −); arrastra los iconos hacia un lado para pasar de página.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Vista Previa</value>
   </data>

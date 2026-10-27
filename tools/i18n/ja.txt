@@ -467,3 +467,4 @@ Library_PurgeMineButton=自分のインポート
 Library_PurgeAllButton=すべて
 Library_PresetsHidden=macOS では内蔵プリセットがアプリ内に保存されており、削除するとアプリの署名が壊れます（macOS がアプリを開けなくなる可能性があります）。そのため代わりに非表示にしました。戻すには表示で「すべて」または「内蔵プリセット」を選んでください。容量を本当に空けるには、アプリ内の Contents/Resources/Library をご自身で削除してください。
 Library_Show_Label=表示:
+Control_Preview_Hint_Zoom=右上の2つのボタンでアイコンの大きさを変えられます（+ と − キーも可）。アイコンを横にドラッグするとページをめくれます。

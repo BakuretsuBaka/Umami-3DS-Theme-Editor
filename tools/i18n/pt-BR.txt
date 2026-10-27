@@ -177,3 +177,4 @@ Library_PurgeMineButton=Minhas importações
 Library_PurgeAllButton=Tudo
 Library_PresetsHidden=No macOS as predefinições incluídas ficam dentro do app, e excluí-las danificaria a assinatura dele (o macOS poderia se recusar a abri-lo). Elas foram ocultadas; escolha "Tudo" ou "Predefinições incluídas" em Mostrar para recuperá-las. Para liberar mesmo esse espaço, exclua você mesmo Contents/Resources/Library dentro do app.
 Library_Show_Label=Mostrar:
+Control_Preview_Hint_Zoom=Os dois botões no canto superior direito mudam o tamanho dos ícones (também + e −); arraste os ícones para o lado para virar a página.

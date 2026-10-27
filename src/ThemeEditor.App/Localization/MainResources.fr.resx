@@ -167,6 +167,9 @@ Débit : {1} Ko/s</value>
   <data name="Control_Preview_Hint" xml:space="preserve">
     <value>Cliquez sur une icône pour déplacer le curseur ; cliquez à nouveau, ou sur Ouvrir, pour ouvrir un dossier ou lancer l'élément. La flèche change de page, Fermer ou Retour quitte un dossier. Les flèches du clavier, Entrée et Échap fonctionnent aussi. Joue les effets sonores du thème.</value>
   </data>
+  <data name="Control_Preview_Hint_Zoom" xml:space="preserve">
+    <value>Les deux boutons en haut à droite changent la taille des icônes (aussi + et −) ; faites glisser les icônes sur le côté pour changer de page.</value>
+  </data>
   <data name="Control_Preview_Label" xml:space="preserve">
     <value>Prévisualisation</value>
   </data>
