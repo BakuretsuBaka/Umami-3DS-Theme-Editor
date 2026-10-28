@@ -37,6 +37,7 @@ namespace ThemeEditor.Tests
             s.Preview_Folder_CursorX = 2;
             s.Preview_Folder_CursorY = 1;
             s.Preview_ZoomRows = 3;
+            PreviewInteraction.Shared.Page = 0;
             PreviewSounds.Requested += _sounds.Add;
         }
 

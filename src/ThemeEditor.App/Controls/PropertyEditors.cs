@@ -256,40 +256,42 @@ namespace ThemeEditor.App.Controls
                 VerticalContentAlignment = VerticalAlignment.Center
             };
             ToolTip.SetTip(button, new TextBlock { Text = MainResources.Control_AutoColors_Tip, TextWrapping = TextWrapping.Wrap, MaxWidth = 320 });
-            var flyout = new MenuFlyout { Placement = PlacementMode.BottomEdgeAlignedLeft };
-            // The styles are worked out when the menu opens, so they always match the current wallpapers
-            flyout.Opening += (s, e) =>
-            {
-                flyout.Items.Clear();
-                foreach (var scheme in AutoColors.Suggest(theme))
-                {
-                    var swatches = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 2, Margin = new Thickness(0, 0, 10, 0) };
-                    foreach (var color in scheme.Swatches)
-                        swatches.Children.Add(new Border
-                        {
-                            Width = 18,
-                            Height = 18,
-                            CornerRadius = new CornerRadius(4),
-                            Background = new SolidColorBrush(color),
-                            BorderBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0)),
-                            BorderThickness = new Thickness(1)
-                        });
-                    var name = MainResources.ResourceManager.GetString("Control_AutoColors_" + scheme.Style) ?? scheme.Style.ToString();
-                    var item = new MenuItem
-                    {
-                        Header = new StackPanel
-                        {
-                            Orientation = Orientation.Horizontal,
-                            Children = { swatches, new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center } }
-                        }
-                    };
-                    var chosen = scheme;
-                    item.Click += (_, __) => AutoColors.Apply(theme, chosen);
-                    flyout.Items.Add(item);
-                }
-            };
-            button.Flyout = flyout;
+            // The menu is built fresh on every click, from the current wallpapers, and opened only once it is complete.
+            // (Filling a flyout while it opens shows an empty menu: its entries are created before Opening runs.)
+            button.Click += (s, e) => BuildAutoColorsMenu(theme).ShowAt(button);
             return button;
+        }
+
+        internal static MenuFlyout BuildAutoColorsMenu(ThemeViewModel theme)
+        {
+            var flyout = new MenuFlyout { Placement = PlacementMode.BottomEdgeAlignedLeft };
+            foreach (var scheme in AutoColors.Suggest(theme))
+            {
+                var swatches = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 2, Margin = new Thickness(0, 0, 10, 0) };
+                foreach (var color in scheme.Swatches)
+                    swatches.Children.Add(new Border
+                    {
+                        Width = 18,
+                        Height = 18,
+                        CornerRadius = new CornerRadius(4),
+                        Background = new SolidColorBrush(color),
+                        BorderBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0)),
+                        BorderThickness = new Thickness(1)
+                    });
+                var name = MainResources.ResourceManager.GetString("Control_AutoColors_" + scheme.Style) ?? scheme.Style.ToString();
+                var item = new MenuItem
+                {
+                    Header = new StackPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { swatches, new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center } }
+                    }
+                };
+                var chosen = scheme;
+                item.Click += (_, __) => AutoColors.Apply(theme, chosen);
+                flyout.Items.Add(item);
+            }
+            return flyout;
         }
 
         private static bool Matches(string haystack, string filter)
@@ -514,7 +516,9 @@ namespace ThemeEditor.App.Controls
                 var on = toggle.IsChecked == true;
                 if ((bool) prop.Value != on)
                     prop.Value = on;
-                toggle.Content = on ? MainResources.Control_Toggle_True : MainResources.Control_Toggle_False;
+                // The theme rules may refuse the change (e.g. the bottom background colours only exist in solid colour
+                // mode): show what the flag really is, not what was clicked
+                sync();
             };
             prop.PropertyChanged += (s, e) => sync();
             sync();

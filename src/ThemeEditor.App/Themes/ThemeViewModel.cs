@@ -65,6 +65,11 @@ namespace ThemeEditor.App.Themes
                 : Equals(args.NewValue, Localization.Enums.GameTextDrawType.Colored) && !Equals(args.OldValue, Localization.Enums.GameTextDrawType.Colored);
             if (!turnedOn)
                 return;
+            // The rules may already have refused the change (the bottom background colours only exist in solid colour
+            // mode). Filling the colours then would switch the flag back on behind the rules' back.
+            var now = typeof(FlagsViewModel).GetProperty(args.Property)?.GetValue(Flags);
+            if (!(now is bool stillOn ? stillOn : Equals(now, Localization.Enums.GameTextDrawType.Colored)))
+                return;
             AutoColors.Scheme scheme = null;
             foreach (var set in sets)
             {

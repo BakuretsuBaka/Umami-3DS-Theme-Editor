@@ -126,16 +126,31 @@ namespace ThemeEditor.Tests
             win.FindControl<Avalonia.Controls.TabControl>("EditorTabs").SelectedIndex = 1; // Colors
             Dispatcher.UIThread.RunJobs();
 
+            // Click like a person: the button, then the first style in the menu that opens. (Raising the item's click
+            // event in code once hid a menu that opened without any clickable entries.)
+            void Pump()
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    Dispatcher.UIThread.RunJobs();
+                    Avalonia.Headless.AvaloniaHeadlessPlatform.ForceRenderTimerTick();
+                }
+            }
+            void ClickOn(Avalonia.Controls.Control control)
+            {
+                var p = Avalonia.VisualExtensions.TranslatePoint(control, new Avalonia.Point(Math.Min(20, control.Bounds.Width / 2), control.Bounds.Height / 2), win).Value;
+                Avalonia.Headless.HeadlessWindowExtensions.MouseMove(win, p);
+                Avalonia.Headless.HeadlessWindowExtensions.MouseDown(win, p, Avalonia.Input.MouseButton.Left);
+                Avalonia.Headless.HeadlessWindowExtensions.MouseUp(win, p, Avalonia.Input.MouseButton.Left);
+                Pump();
+            }
             var button = Avalonia.VisualTree.VisualExtensions.GetVisualDescendants(win).OfType<Avalonia.Controls.Button>()
                 .First(b => b.Content is string text && text.StartsWith(ThemeEditor.App.Localization.MainResources.Control_AutoColors));
-            var flyout = (Avalonia.Controls.MenuFlyout) button.Flyout;
-            flyout.ShowAt(button);
-            Dispatcher.UIThread.RunJobs();
-            Assert.Equal(4, flyout.Items.Count);
-
-            ((Avalonia.Controls.MenuItem) flyout.Items[0]).RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Avalonia.Controls.MenuItem.ClickEvent));
-            flyout.Hide();
-            Dispatcher.UIThread.RunJobs();
+            ClickOn(button);
+            var styles = Avalonia.VisualTree.VisualExtensions.GetVisualDescendants(win).OfType<Avalonia.Controls.MenuItem>()
+                .Where(m => m.Header is Avalonia.Controls.StackPanel && m.IsEffectivelyVisible).ToList();
+            Assert.Equal(4, styles.Count);
+            ClickOn(styles[0]);
             Assert.NotEqual(before, win.ViewModel.Colors.Folder.Main);
             Assert.True(win.ViewModel.Flags.CursorColor);
 

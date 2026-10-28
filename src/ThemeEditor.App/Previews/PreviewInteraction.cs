@@ -126,7 +126,7 @@ namespace ThemeEditor.App.Previews
             // Cursor: slides to the cell it is moved to; snaps when switching between the main grid and the folder
             var folder = s.Preview_ModeToggle;
             var target = ItemRenderer.GridPosition(folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX,
-                folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY, folder);
+                folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY, folder, folder ? 0 : PreviewGrid.PageOf(this));
             if (!_cursorInit || folder != _cursorFolder)
             {
                 _cursorInit = true;
@@ -205,7 +205,7 @@ namespace ThemeEditor.App.Previews
         private static readonly SKRect CornerBRect = new SKRect(293, 0, 320, 30);
         private static readonly SKRect ArrowRect = new SKRect(296, 100, 320, 146);
 
-        public static PreviewTarget Hit(Settings s, float x, float y, out int col, out int row)
+        public static PreviewTarget Hit(Settings s, float x, float y, out int col, out int row, int page = 0)
         {
             col = row = -1;
             var p = new SKPoint(x, y);
@@ -244,7 +244,7 @@ namespace ThemeEditor.App.Previews
                     var centre = PreviewGrid.Centre(zc, zr, rows);
                     if (Math.Abs(p.X - centre.X) <= half && Math.Abs(p.Y - centre.Y) <= half)
                     {
-                        PreviewGrid.FromZoomCell(zc, zr, rows, out col, out row);
+                        PreviewGrid.FromZoomCell(zc + page * PreviewGrid.Columns(rows), zr, rows, out col, out row);
                         return PreviewTarget.Cell;
                     }
                 }
@@ -328,13 +328,15 @@ namespace ThemeEditor.App.Previews
             if (rows == s.Preview_ZoomRows)
                 return false;
             s.Preview_ZoomRows = rows;
-            // Keep the cursor on the visible page, like the console does
-            var last = PreviewGrid.Columns(rows) * rows - 1;
+            // Keep the cursor on the page that is shown, like the console does
+            var perPage = PreviewGrid.PerPage(rows);
+            var first = PreviewGrid.PageOf(PreviewInteraction.Shared) * perPage;
             var index = PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
-            if (index > last)
+            var clamped = Math.Max(first, Math.Min(first + perPage - 1, index));
+            if (clamped != index)
             {
                 int col, row;
-                PreviewGrid.FromZoomCell(last / rows, last % rows, rows, out col, out row);
+                PreviewGrid.FromZoomCell(clamped / rows, clamped % rows, rows, out col, out row);
                 SetCursor(s, false, col, row);
             }
             PreviewSounds.Play(t, CwavKind.Cursor);
@@ -346,8 +348,27 @@ namespace ThemeEditor.App.Previews
             if (s.Preview_AnimationToggle)
                 s.Preview_AnimationToggle = false;
             ia.Page--;
+            MoveCursorWithPage(s, -1);
             var frame = (ia.Page % 3 + 3) % 3;
             PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
+        }
+
+        /// <summary>
+        ///     The icon grid scrolls a page with the arrow button; the cursor stays on the same spot of the screen, so it
+        ///     moves to the matching slot of the new page (wrapping around after the last page).
+        /// </summary>
+        private static void MoveCursorWithPage(Settings s, int delta)
+        {
+            if (s.Preview_ModeToggle)
+                return;
+            var rows = PreviewGrid.Rows;
+            var perPage = PreviewGrid.PerPage(rows);
+            var total = perPage * PreviewGrid.Pages;
+            var index = PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
+            var moved = ((index + delta * perPage) % total + total) % total;
+            int col, row;
+            PreviewGrid.FromZoomCell(moved / rows, moved % rows, rows, out col, out row);
+            SetCursor(s, false, col, row);
         }
 
         private static void ClickCell(ThemeViewModel t, Settings s, int col, int row)
@@ -406,6 +427,7 @@ namespace ThemeEditor.App.Previews
                 s.Preview_AnimationToggle = false;
             var frame = (ia.Page % 3 + 3) % 3;
             ia.Page++;
+            MoveCursorWithPage(s, +1);
             PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
         }
 
@@ -441,7 +463,8 @@ namespace ThemeEditor.App.Previews
                 int zc, zr;
                 var rows = PreviewGrid.Rows;
                 PreviewGrid.ToZoomCell(cx, cy, rows, out zc, out zr);
-                zc = Math.Max(0, Math.Min(PreviewGrid.Columns(rows) - 1, zc + dx));
+                var firstColumn = PreviewGrid.PageOf(PreviewInteraction.Shared) * PreviewGrid.Columns(rows);
+                zc = Math.Max(firstColumn, Math.Min(firstColumn + PreviewGrid.Columns(rows) - 1, zc + dx));
                 zr = Math.Max(0, Math.Min(rows - 1, zr - dy));
                 PreviewGrid.FromZoomCell(zc, zr, rows, out nx, out ny);
             }

@@ -297,15 +297,10 @@ namespace ThemeEditor.App.Previews
         ///     Centre of a grid cell. Positions are stored for the default 5x3 layout; in the main view they are placed
         ///     on the grid of the current zoom level (see <see cref="PreviewGrid" />).
         /// </summary>
-        public static SKPoint GridPosition(int column, int row, bool folderMode)
+        public static SKPoint GridPosition(int column, int row, bool folderMode, int page = 0)
         {
             if (!folderMode)
-            {
-                int zc, zr;
-                var rows = PreviewGrid.Rows;
-                PreviewGrid.ToZoomCell(column, row, rows, out zc, out zr);
-                return PreviewGrid.Centre(zc, zr, rows);
-            }
+                return PreviewGrid.Position(column, row, page);
             float[] cols = { 54, 107, 160, 213, 266 };
             float[] folderRows = { 164, 110 };
             return new SKPoint(cols[Math.Max(0, Math.Min(cols.Length - 1, column))],

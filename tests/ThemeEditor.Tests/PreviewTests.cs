@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Avalonia.Headless.XUnit;
 using Avalonia.Threading;
 using SkiaSharp;
@@ -37,6 +38,7 @@ namespace ThemeEditor.Tests
             try
             {
                 s.Preview_ModeToggle = false;
+                PreviewInteraction.Shared.Page = 0;
                 body(s);
             }
             finally
@@ -168,6 +170,77 @@ namespace ThemeEditor.Tests
                         differs++;
                 Assert.True(differs > 500, $"only {differs} pixels changed");
             });
+        }
+
+        [AvaloniaFact]
+        public void ArrowScrollsTheIconsAndTheCursorAPage()
+        {
+            var theme = NewTheme();
+            WithSettings(s =>
+            {
+                var ia = PreviewInteraction.Shared;
+                s.Preview_ZoomRows = 3;
+                s.Preview_Main_FileEnable = true;
+                PreviewActions.SetCursor(s, false, 2, 1); // middle of the default page
+                var spot = ItemRenderer.GridPosition(2, 1, false, PreviewGrid.PageOf(ia));
+                Assert.True(PreviewGrid.IsVisible(s.Preview_Main_FileX, s.Preview_Main_FileY, 0));
+
+                PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
+                Assert.Equal(1, PreviewGrid.PageOf(ia));
+                // Same spot on the screen, but a different slot: the cursor went along with the page
+                Assert.False(s.Preview_Main_CursorX == 2 && s.Preview_Main_CursorY == 1);
+                var moved = ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false, PreviewGrid.PageOf(ia));
+                Assert.Equal(spot.X, moved.X, 2);
+                Assert.Equal(spot.Y, moved.Y, 2);
+                // The first page's icons scrolled away
+                Assert.False(PreviewGrid.IsVisible(s.Preview_Main_FileX, s.Preview_Main_FileY, PreviewGrid.PageOf(ia)));
+                // Clicking the icon spot on this page selects this page's slot
+                int col, row;
+                Assert.Equal(PreviewTarget.Cell, PreviewHit.Hit(s, spot.X, spot.Y, out col, out row, PreviewGrid.PageOf(ia)));
+                Assert.Equal((s.Preview_Main_CursorX, s.Preview_Main_CursorY), (col, row));
+
+                // Three pages, then back to the start
+                PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
+                PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
+                Assert.Equal(0, PreviewGrid.PageOf(ia));
+                Assert.Equal((2, 1), (s.Preview_Main_CursorX, s.Preview_Main_CursorY));
+
+                // Exports always show the first page, whatever the live preview shows
+                PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
+                Assert.Equal(0, PreviewGrid.PageOf(null));
+                Assert.True(PreviewGrid.IsVisible(s.Preview_Main_FileX, s.Preview_Main_FileY, PreviewGrid.PageOf(null)));
+            });
+        }
+
+        [AvaloniaFact]
+        public void FlagTogglesShowTheRealStateWhenTheRulesRefuse()
+        {
+            var theme = NewTheme();
+            theme.Flags.BottomDrawType = ThemeEditor.App.Localization.Enums.BottomDrawType.Texture;
+            using var editors = new ThemeEditor.App.Controls.PropertyEditors();
+            var host = new Avalonia.Controls.Window { Content = editors.BuildFlags(theme), Width = 600, Height = 2000 };
+            host.Show();
+            Dispatcher.UIThread.RunJobs();
+            var name = typeof(FlagsViewModel).GetProperty(nameof(FlagsViewModel.BottomBackgroundInnerColor))
+                .GetCustomAttributes(typeof(ThemeEditor.App.Localization.DisplayNameAttribute), false)
+                .Cast<ThemeEditor.App.Localization.DisplayNameAttribute>().First().DisplayName;
+            var row = Avalonia.VisualTree.VisualExtensions.GetVisualDescendants(host).OfType<Avalonia.Controls.Grid>()
+                .First(g => g.Children.OfType<Avalonia.Controls.TextBlock>().Any(tb => tb.Text == name));
+            var toggle = row.Children.OfType<Avalonia.Controls.Primitives.ToggleButton>().Single();
+
+            toggle.IsChecked = true; // what a click does
+            Dispatcher.UIThread.RunJobs();
+            // Only solid colour backgrounds have these colours: the rules switch the flag back off, and so must the label
+            Assert.False(theme.Flags.BottomBackgroundInnerColor);
+            Assert.False(toggle.IsChecked == true);
+            Assert.Equal(ThemeEditor.App.Localization.MainResources.Control_Toggle_False, toggle.Content);
+
+            theme.Flags.BottomDrawType = ThemeEditor.App.Localization.Enums.BottomDrawType.SolidColor;
+            toggle.IsChecked = true;
+            Dispatcher.UIThread.RunJobs();
+            Assert.True(theme.Flags.BottomBackgroundInnerColor);
+            Assert.Equal(ThemeEditor.App.Localization.MainResources.Control_Toggle_True, toggle.Content);
+            host.Close();
         }
 
         [AvaloniaFact]

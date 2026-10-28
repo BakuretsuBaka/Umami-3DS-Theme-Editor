@@ -248,7 +248,7 @@ namespace ThemeEditor.App.Controls
 
         private PreviewTarget HitTest(Point p, out int col, out int row)
         {
-            return PreviewHit.Hit(Settings.Default, (float) p.X, (float) p.Y, out col, out row);
+            return PreviewHit.Hit(Settings.Default, (float) p.X, (float) p.Y, out col, out row, PreviewGrid.PageOf(Interaction));
         }
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)

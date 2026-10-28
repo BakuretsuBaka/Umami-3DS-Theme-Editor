@@ -20,6 +20,15 @@ namespace ThemeEditor.App.Previews
     public static class PreviewGrid
     {
         public const int BaseRows = 3;
+
+        /// <summary>Pages of icons the arrow button scrolls through (as many as the theme has wallpaper pages).</summary>
+        public const int Pages = 3;
+
+        /// <summary>The icon page a live preview shows (0 for exports and static previews).</summary>
+        public static int PageOf(PreviewInteraction ia) => ia == null ? 0 : (ia.Page % Pages + Pages) % Pages;
+
+        /// <summary>Slots on one page at the given zoom level.</summary>
+        public static int PerPage(int rows) => Columns(rows) * rows;
         public const int MinRows = 1;
         public const int MaxRows = 6;
 
@@ -114,13 +123,23 @@ namespace ThemeEditor.App.Previews
             return new SKPoint(x, y);
         }
 
-        /// <summary>True when a stored position lands on the first page at the current zoom level.</summary>
-        public static bool IsVisible(int column, int row)
+        /// <summary>True when a stored position is on the shown page at the current zoom level.</summary>
+        public static bool IsVisible(int column, int row, int page = 0)
         {
             int zc, zr;
             var rows = Rows;
             ToZoomCell(column, row, rows, out zc, out zr);
-            return zc < Columns(rows);
+            var first = page * Columns(rows);
+            return zc >= first && zc < first + Columns(rows);
+        }
+
+        /// <summary>Screen position of a stored position when <paramref name="page" /> is shown.</summary>
+        public static SKPoint Position(int column, int row, int page)
+        {
+            int zc, zr;
+            var rows = Rows;
+            ToZoomCell(column, row, rows, out zc, out zr);
+            return Centre(zc - page * Columns(rows), zr, rows);
         }
     }
 }

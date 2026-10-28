@@ -250,7 +250,7 @@ namespace ThemeEditor.App.Previews
             // Cursor is hidden while the folder preview is displayed
             if (!s.Preview_ModeToggle && s.Preview_Main_CursorEnable)
             {
-                var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false);
+                var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false, PreviewGrid.PageOf(ia));
                 var scale = PreviewGrid.Scale(PreviewGrid.Rows);
                 At(c, pos, cv =>
                 {
@@ -259,7 +259,7 @@ namespace ThemeEditor.App.Previews
                 });
             }
             if (!s.Preview_ModeToggle && PreviewGrid.Rows == 1)
-                DrawDescription(c, t, s);
+                DrawDescription(c, t, s, PreviewGrid.PageOf(ia));
         }
 
         // ================================================================ Description bubble (one-row layout)
@@ -284,7 +284,7 @@ namespace ThemeEditor.App.Previews
         ///     In the one-row layout the HOME Menu shows the selected title's name in a bubble above the icons. It uses the
         ///     theme's Game Text colours ("Game Text Color" flag: Enabled = custom colours, Hidden = no bubble).
         /// </summary>
-        private static void DrawDescription(SKCanvas c, ThemeViewModel t, Settings s)
+        private static void DrawDescription(SKCanvas c, ThemeViewModel t, Settings s, int page)
         {
             var mode = t?.Flags.GameTextDrawType ?? GameTextDrawType.Default;
             if (mode == GameTextDrawType.Hidden)
@@ -294,7 +294,8 @@ namespace ThemeEditor.App.Previews
                 return;
             int zc, zr;
             PreviewGrid.ToZoomCell(s.Preview_Main_CursorX, s.Preview_Main_CursorY, 1, out zc, out zr);
-            if (zc >= PreviewGrid.Columns(1))
+            zc -= page * PreviewGrid.Columns(1);
+            if (zc < 0 || zc >= PreviewGrid.Columns(1))
                 return;
 
             var custom = mode == GameTextDrawType.Colored && t != null;
@@ -334,9 +335,10 @@ namespace ThemeEditor.App.Previews
         private static void AtCell(SKCanvas c, int col, int row, bool folder, PreviewInteraction ia, Action<SKCanvas> draw)
         {
             // Main-grid items that zoomed onto a later page are not on screen
-            if (!folder && !PreviewGrid.IsVisible(col, row))
+            var page = folder ? 0 : PreviewGrid.PageOf(ia);
+            if (!folder && !PreviewGrid.IsVisible(col, row, page))
                 return;
-            var p = ItemRenderer.GridPosition(col, row, folder);
+            var p = ItemRenderer.GridPosition(col, row, folder, page);
             c.Save();
             c.Translate(p.X, p.Y);
             if (!folder)
