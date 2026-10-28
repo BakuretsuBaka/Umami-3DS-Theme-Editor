@@ -11,11 +11,12 @@ using ThemeEditor.App.Properties;
 namespace ThemeEditor.App.Previews
 {
     /// <summary>
-    ///     Layout of the HOME Menu icon grid for the console's zoom levels (1 to 6 rows). Item and cursor positions are
-    ///     stored for the default 3-row layout. At other zoom levels the preview's items (game card, the theme's file
-    ///     icon, the folder) take the first slots in their stored order and every other slot follows them; slots run
-    ///     down each column and on to the next one, like the console. That keeps all items on screen at every zoom
-    ///     (the one-row layout shows exactly three) instead of the file icon wandering off to another page.
+    ///     Layout of the HOME Menu icon grid for the console's zoom levels (1 to 6 rows), over three pages. Item and
+    ///     cursor positions are stored for the default 3-row layout; the stored positions of the preview's items (game
+    ///     card, the theme's file icon, the folder) only set their order. At every zoom level the items take the first
+    ///     slots in that order and every other slot follows them; slots run down each column and on to the next one,
+    ///     like the console. So the icons keep one order whatever the zoom (they never swap places), and all of them
+    ///     are on the first page (the one-row layout shows exactly three).
     /// </summary>
     public static class PreviewGrid
     {
@@ -25,7 +26,12 @@ namespace ThemeEditor.App.Previews
         public const int Pages = 3;
 
         /// <summary>The icon page a live preview shows (0 for exports and static previews).</summary>
-        public static int PageOf(PreviewInteraction ia) => ia == null ? 0 : (ia.Page % Pages + Pages) % Pages;
+        public static int PageOf(PreviewInteraction ia) => ia == null ? 0 : Math.Max(0, Math.Min(Pages - 1, ia.Page));
+
+        /// <summary>
+        ///     Where the grid is scrolled to, in pages: the page while it rests, a fraction while it slides or is dragged.
+        /// </summary>
+        public static double ViewOf(PreviewInteraction ia) => ia == null ? 0 : ia.GridView;
 
         /// <summary>Slots on one page at the given zoom level.</summary>
         public static int PerPage(int rows) => Columns(rows) * rows;
@@ -78,8 +84,8 @@ namespace ThemeEditor.App.Previews
         /// <summary>Slot on the zoomed grid of a stored slot: items first (in order), then every other slot in order.</summary>
         public static int ToZoomIndex(int index, int rows)
         {
-            if (rows == BaseRows || index < 0)
-                return Math.Max(0, index);
+            if (index < 0)
+                return 0;
             var items = ItemIndices();
             var pos = items.IndexOf(index);
             return pos >= 0 ? pos : items.Count + index - items.Count(i => i < index);
@@ -88,8 +94,6 @@ namespace ThemeEditor.App.Previews
         /// <summary>Inverse of <see cref="ToZoomIndex" />.</summary>
         public static int FromZoomIndex(int zoomIndex, int rows)
         {
-            if (rows == BaseRows)
-                return zoomIndex;
             var items = ItemIndices();
             if (zoomIndex < items.Count)
                 return items[zoomIndex];
@@ -133,13 +137,47 @@ namespace ThemeEditor.App.Previews
             return zc >= first && zc < first + Columns(rows);
         }
 
-        /// <summary>Screen position of a stored position when <paramref name="page" /> is shown.</summary>
-        public static SKPoint Position(int column, int row, int page)
+        /// <summary>Screen position of a stored position when the grid is scrolled to <paramref name="view" /> (in pages).</summary>
+        public static SKPoint Position(int column, int row, double view)
         {
             int zc, zr;
             var rows = Rows;
             ToZoomCell(column, row, rows, out zc, out zr);
-            return Centre(zc - page * Columns(rows), zr, rows);
+            var p = Centre(zc, zr, rows);
+            return new SKPoint((float) (p.X - view * Columns(rows) * Pitch(rows)), p.Y);
+        }
+
+        /// <summary>True when (part of) the item at a stored position is on screen at <paramref name="view" />.</summary>
+        public static bool IsOnScreen(int column, int row, double view)
+        {
+            var x = Position(column, row, view).X;
+            var half = Pitch(Rows) / 2;
+            return x > -half && x < 320 + half;
+        }
+
+        public static bool CursorIsOnPage(Settings s, int page)
+        {
+            var rows = Rows;
+            var perPage = PerPage(rows);
+            var index = ToZoomIndex(IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
+            return index >= page * perPage && index < (page + 1) * perPage;
+        }
+
+        /// <summary>Moves the main cursor onto <paramref name="page" /> when it is elsewhere (it keeps its row).</summary>
+        public static bool KeepCursorOnPage(Settings s, int page)
+        {
+            var rows = Rows;
+            var perPage = PerPage(rows);
+            var index = ToZoomIndex(IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
+            var first = page * perPage;
+            if (index >= first && index < first + perPage)
+                return false;
+            var target = first + index % rows;
+            int col, row;
+            FromZoomCell(target / rows, target % rows, rows, out col, out row);
+            s.Preview_Main_CursorX = col;
+            s.Preview_Main_CursorY = row;
+            return true;
         }
     }
 }

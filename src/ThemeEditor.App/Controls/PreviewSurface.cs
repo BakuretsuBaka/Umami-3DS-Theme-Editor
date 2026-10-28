@@ -296,11 +296,19 @@ namespace ThemeEditor.App.Controls
                 _swiping = true;
                 e.Pointer.Capture(this);
                 ia.SetOver(false);
+            }
+            if (_swiping)
+            {
+                // The grid follows the pointer, with a little give past the first and last page
+                var rows = PreviewGrid.Rows;
+                var pageWidth = PreviewGrid.Columns(rows) * PreviewGrid.Pitch(rows);
+                var drag = (position.X - _swipeStart.Value.X) / pageWidth;
+                var view = ia.GridScroll - drag;
+                view = Math.Max(-0.2, Math.Min(PreviewGrid.Pages - 1 + 0.2, view));
+                ia.DragPages = ia.GridScroll - view;
                 InvalidateVisual();
                 return;
             }
-            if (_swiping)
-                return;
             if (ia.Pressed != PreviewTarget.None)
             {
                 ia.SetOver(target == ia.Pressed && col == ia.PressedCol && row == ia.PressedRow);
@@ -321,6 +329,8 @@ namespace ThemeEditor.App.Controls
                 var dx = e.GetPosition(this).X - start.Value.X;
                 ia.Release();
                 e.Pointer.Capture(null);
+                // Let go: glide on from where the grid is to the next/previous page, or back if the drag was short
+                ia.SettleDrag();
                 if (dx <= -SwipeDistance)
                     PreviewActions.NextPage(Theme, Settings.Default, ia);
                 else if (dx >= SwipeDistance)
@@ -348,6 +358,7 @@ namespace ThemeEditor.App.Controls
             base.OnPointerCaptureLost(e);
             _swipeStart = null;
             _swiping = false;
+            Interaction?.SettleDrag();
             Interaction?.Release();
             InvalidateVisual();
         }

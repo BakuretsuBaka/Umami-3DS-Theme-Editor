@@ -36,9 +36,13 @@ namespace ThemeEditor.App.Previews
         }
 
         /// <param name="ia">Interactive state (pressed buttons, animated cursor/folder/paging); null draws the static preview.</param>
+        // Grid scroll of the frame being drawn (in pages), for the slot markers drawn with the wallpaper
+        [ThreadStatic] private static double _gridView;
+
         public static void Draw(SKCanvas c, ThemeViewModel t, bool animate, double time, PreviewInteraction ia = null)
         {
             var s = Settings.Default;
+            _gridView = PreviewGrid.ViewOf(ia);
             c.Save();
             c.ClipRect(new SKRect(0, 0, Width, Height));
 
@@ -228,12 +232,16 @@ namespace ThemeEditor.App.Previews
         {
             var rows = PreviewGrid.Rows;
             var half = (float) Math.Floor(8 * Math.Max(0.65, Math.Min(1.25, PreviewGrid.Scale(rows))));
-            for (var zc = 0; zc <= PreviewGrid.Columns(rows); zc++)
+            var pitch = PreviewGrid.Pitch(rows);
+            // The markers slide with the icons while the grid scrolls (they repeat every column)
+            var shift = (float) (_gridView * PreviewGrid.Columns(rows) * pitch % pitch);
+            for (var zc = -1; zc <= PreviewGrid.Columns(rows) + 1; zc++)
             for (var zr = 0; zr < rows; zr++)
             {
                 var p = PreviewGrid.Centre(zc, zr, rows);
+                var x = (float) Math.Round(p.X - shift);
                 var y = (float) Math.Floor(p.Y - half);
-                draw(c, new SKRect(p.X - half, y, p.X + half, y + 2 * half));
+                draw(c, new SKRect(x - half, y, x + half, y + 2 * half));
             }
         }
 
@@ -250,7 +258,7 @@ namespace ThemeEditor.App.Previews
             // Cursor is hidden while the folder preview is displayed
             if (!s.Preview_ModeToggle && s.Preview_Main_CursorEnable)
             {
-                var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false, PreviewGrid.PageOf(ia));
+                var pos = ia != null ? ia.CursorPosition : ItemRenderer.GridPosition(s.Preview_Main_CursorX, s.Preview_Main_CursorY, false);
                 var scale = PreviewGrid.Scale(PreviewGrid.Rows);
                 At(c, pos, cv =>
                 {
@@ -335,10 +343,11 @@ namespace ThemeEditor.App.Previews
         private static void AtCell(SKCanvas c, int col, int row, bool folder, PreviewInteraction ia, Action<SKCanvas> draw)
         {
             // Main-grid items that zoomed onto a later page are not on screen
-            var page = folder ? 0 : PreviewGrid.PageOf(ia);
-            if (!folder && !PreviewGrid.IsVisible(col, row, page))
+            // Main-grid items follow the scrolling grid (pages slide, drags move them live)
+            var view = folder ? 0 : PreviewGrid.ViewOf(ia);
+            if (!folder && !PreviewGrid.IsOnScreen(col, row, view))
                 return;
-            var p = ItemRenderer.GridPosition(col, row, folder, page);
+            var p = ItemRenderer.GridPosition(col, row, folder, view);
             c.Save();
             c.Translate(p.X, p.Y);
             if (!folder)
@@ -488,7 +497,15 @@ namespace ThemeEditor.App.Previews
         {
             DrawOpenClose(c, t, s, ia);
             DrawCorners(c, t, s, ia);
-            DrawArrowButton(c, t, s, ia);
+            // Page arrows: forward while there is a next page, back from the second page on (none in a folder)
+            if (!s.Preview_ModeToggle)
+            {
+                var page = PreviewGrid.PageOf(ia);
+                if (page < PreviewGrid.Pages - 1)
+                    DrawArrowButton(c, t, s, ia, false);
+                if (page > 0)
+                    DrawArrowButton(c, t, s, ia, true);
+            }
         }
 
         private static bool Held(PreviewInteraction ia, PreviewTarget target)
@@ -516,7 +533,7 @@ namespace ThemeEditor.App.Previews
 
         private static void DrawOpenClose(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
-            var closeEnabled = s.Preview_CloseToggle;
+            var closeEnabled = PreviewHit.LeftButtonShown(s);
             var flag = t != null && t.Flags.OpenCloseColor;
             var pressedOpen = s.Preview_PressedToggle || Held(ia, PreviewTarget.Open);
             var pressedClose = s.Preview_PressedToggle || Held(ia, PreviewTarget.Close);
@@ -543,15 +560,18 @@ namespace ThemeEditor.App.Previews
             c.Translate(0, 240);
             const float labelSize = 14;
             var face = PreviewFonts.Bold;
+            // The labels follow the selection like on the console: a title can be closed or started, a folder has
+            // its settings and opens; with nothing selected the bar is one wide button
+            var selected = PreviewHit.Selected(s);
             if (closeEnabled)
             {
-                // Close button: "Umami"
-                DrawLabel(c, t, "Umami", 50, 60, face, labelSize, pressedClose, flag, bothClose, true);
-                DrawLabel(c, t, "3DS Theme Editor", 111, -1, face, labelSize, pressedOpen, flag, bothOpen, false);
+                var folder = selected == PreviewItem.Folder;
+                DrawLabel(c, t, folder ? "Settings" : "Close", 0, 106, face, labelSize, pressedClose, flag, bothClose, true);
+                DrawLabel(c, t, folder ? "Open" : "Start", 106, Width - 106, face, labelSize, pressedOpen, flag, bothOpen, false);
             }
             else
             {
-                DrawLabel(c, t, "Umami 3DS Theme Editor", 0, Width, face, labelSize, pressedOpen, flag, bothOpen, false);
+                DrawLabel(c, t, selected == PreviewItem.None ? "Umami 3DS Theme Editor" : "Start", 0, Width, face, labelSize, pressedOpen, flag, bothOpen, false);
             }
             c.Restore();
         }
@@ -711,8 +731,13 @@ namespace ThemeEditor.App.Previews
                            "S 27 13 27 15 L 25 17 C 24 18 20 18 19 19 L 17 21 Q 15 21 15 19 Z"))
                     home.AddPath(hp);
 
-                DrawIcon(c, rightGlow, 271, 4, larger, 275, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerA));
-                DrawIcon(c, rightGlow, 297, 4, smaller, 301, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerB));
+                // The zoom buttons fade out where they cannot go further (and in a folder, which keeps its layout)
+                var rows = PreviewGrid.Rows;
+                var inFolder = s.Preview_ModeToggle;
+                Dimmed(c, inFolder || rows <= PreviewGrid.MinRows,
+                    () => DrawIcon(c, rightGlow, 271, 4, larger, 275, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerA)));
+                Dimmed(c, inFolder || rows >= PreviewGrid.MaxRows,
+                    () => DrawIcon(c, rightGlow, 297, 4, smaller, 301, 10, t, flag, pressed || Held(ia, PreviewTarget.CornerB)));
                 DrawIcon(c, leftGlow, 3, 3, home, 13, 5, t, flag, pressed || Held(ia, PreviewTarget.Home));
             }
 
@@ -728,6 +753,21 @@ namespace ThemeEditor.App.Previews
                     new Stop(0, new SKColor(0, 0, 0, 0)), new Stop(0.5f, new SKColor(0, 0, 0, 255)),
                     new Stop(1, new SKColor(0, 0, 0, 0))),
                 () => { using (var pen = SkiaHelpers.StrokePaint(color, 1)) c.DrawLine(x + 0.5f, 4, x + 0.5f, 27, pen); });
+        }
+
+        private static void Dimmed(SKCanvas c, bool dim, Action draw)
+        {
+            if (!dim)
+            {
+                draw();
+                return;
+            }
+            using (var layer = new SKPaint { Color = SKColors.White.WithAlpha(90) })
+            {
+                c.SaveLayer(layer);
+                draw();
+                c.Restore();
+            }
         }
 
         private static void DrawIcon(SKCanvas c, SKPath glow, float gx, float gy, SKPath icon, float ix, float iy,
@@ -787,14 +827,21 @@ namespace ThemeEditor.App.Previews
 
         // ---------------------------------------------------------------- Right arrow button
 
-        private static void DrawArrowButton(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia)
+        private static void DrawArrowButton(SKCanvas c, ThemeViewModel t, Settings s, PreviewInteraction ia, bool back)
         {
+            var target = back ? PreviewTarget.ArrowBack : PreviewTarget.Arrow;
             var flag = t != null && t.Flags.ArrowButtonColor;
             var arrowFlag = t != null && t.Flags.ArrowColor;
-            var pressed = s.Preview_PressedToggle || Held(ia, PreviewTarget.Arrow);
-            var bothOpen = t != null && t.Flags.OpenCloseColor && s.Preview_PressedToggle || arrowFlag && Held(ia, PreviewTarget.Arrow);
+            var pressed = s.Preview_PressedToggle || Held(ia, target);
+            var bothOpen = t != null && t.Flags.OpenCloseColor && s.Preview_PressedToggle || arrowFlag && Held(ia, target);
 
             c.Save();
+            // The back arrow is the same button mirrored onto the left edge
+            if (back)
+            {
+                c.Translate(Width, 0);
+                c.Scale(-1, 1);
+            }
             c.Translate(pressed ? 322 : 320, 123);
 
             using (var circle = SkiaHelpers.Ellipse(18, 0, 38, 39))

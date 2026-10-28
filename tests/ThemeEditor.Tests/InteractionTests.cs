@@ -60,6 +60,9 @@ namespace ThemeEditor.Tests
             {
                 var s = Settings.Default;
                 int c, r;
+                // The split Close | Start bar is shown while a title is selected
+                s.Preview_Main_CartEnable = true;
+                PreviewActions.SetCursor(s, false, s.Preview_Main_CartX, s.Preview_Main_CartY);
                 Assert.Equal(PreviewTarget.Close, PreviewHit.Hit(s, 40, 230, out c, out r));
                 Assert.Equal(PreviewTarget.Open, PreviewHit.Hit(s, 200, 230, out c, out r));
                 s.Preview_CloseToggle = false;
@@ -72,10 +75,12 @@ namespace ThemeEditor.Tests
                 Assert.Equal(PreviewTarget.Arrow, PreviewHit.Hit(s, 310, 123, out c, out r));
                 Assert.Equal(PreviewTarget.None, PreviewHit.Hit(s, 400, 100, out c, out r));
 
+                // A click on a cell gives the stored position that is drawn in exactly that cell
                 var cell = ItemRenderer_GridPosition(1, 2, false);
                 Assert.Equal(PreviewTarget.Cell, PreviewHit.Hit(s, cell.X, cell.Y, out c, out r));
-                Assert.Equal(1, c);
-                Assert.Equal(2, r);
+                var drawn = ItemRenderer.GridPosition(c, r, false);
+                Assert.Equal(cell.X, drawn.X, 2);
+                Assert.Equal(cell.Y, drawn.Y, 2);
 
                 // The back button exists only while a folder is open
                 Assert.NotEqual(PreviewTarget.Back, PreviewHit.Hit(s, 60, 62, out c, out r));
@@ -166,9 +171,10 @@ namespace ThemeEditor.Tests
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
-                Assert.Equal(4, ia.Page);
+                // Three pages: the arrow stops at the last one instead of wrapping around
+                Assert.Equal(2, ia.Page);
                 Assert.False(s.Preview_AnimationToggle);
-                Assert.Equal(new[] { CwavKind.Frame0, CwavKind.Frame1, CwavKind.Frame2, CwavKind.Frame0 }, g.Sounds.ToArray());
+                Assert.Equal(new[] { CwavKind.Frame0, CwavKind.Frame1 }, g.Sounds.ToArray());
             }
         }
 
@@ -179,15 +185,22 @@ namespace ThemeEditor.Tests
             {
                 var s = Settings.Default;
                 var theme = NewTheme();
+                // Positions are checked on the grid as drawn (stored positions only set the items' order)
+                (int Column, int RowFromTop) Cell()
+                {
+                    int zc, zr;
+                    PreviewGrid.ToZoomCell(s.Preview_Main_CursorX, s.Preview_Main_CursorY, PreviewGrid.Rows, out zc, out zr);
+                    return (zc, zr);
+                }
                 Assert.False(PreviewActions.MoveCursor(theme, s, 0, 1)); // already on the top row
                 Assert.True(PreviewActions.MoveCursor(theme, s, -1, 0));
-                Assert.Equal(1, s.Preview_Main_CursorX);
+                Assert.Equal(1, Cell().Column);
                 for (var i = 0; i < 6; i++)
                     PreviewActions.MoveCursor(theme, s, -1, 0);
-                Assert.Equal(0, s.Preview_Main_CursorX);
+                Assert.Equal(0, Cell().Column);
                 for (var i = 0; i < 6; i++)
                     PreviewActions.MoveCursor(theme, s, 0, -1);
-                Assert.Equal(0, s.Preview_Main_CursorY);
+                Assert.Equal(2, Cell().RowFromTop);
 
                 // The folder view has two rows only
                 s.Preview_ModeToggle = true;
@@ -255,6 +268,9 @@ namespace ThemeEditor.Tests
             using (new SettingsGuard())
             {
                 var theme = NewTheme();
+                // With a title selected the bottom bar has both buttons (Close and Start)
+                Settings.Default.Preview_Main_CartEnable = true;
+                PreviewActions.SetCursor(Settings.Default, false, Settings.Default.Preview_Main_CartX, Settings.Default.Preview_Main_CartY);
                 var plain = PreviewExporter.RenderPng(theme, PreviewKind.Bottom);
 
                 var idle = new PreviewInteraction();

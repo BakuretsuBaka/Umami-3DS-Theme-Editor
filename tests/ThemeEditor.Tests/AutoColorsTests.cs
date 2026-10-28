@@ -242,14 +242,13 @@ namespace ThemeEditor.Tests
                 s.Preview_Main_FolderX = 0; s.Preview_Main_FolderY = 1;
                 s.Preview_Main_FileX = 1; s.Preview_Main_FileY = 2;
 
-                s.Preview_ZoomRows = 3;
-                var file3 = ItemRenderer.GridPosition(1, 2, false);
-                Assert.Equal(107, file3.X, 2); // the default zoom keeps the arranged layout
-                Assert.Equal(70, file3.Y, 2);
-
                 for (var rows = 1; rows <= 6; rows++)
                 {
                     s.Preview_ZoomRows = rows;
+                    // One order at every zoom: card, folder, file in the first three slots (they never swap places)
+                    Assert.Equal(0, PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(0, 2), rows));
+                    Assert.Equal(1, PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(0, 1), rows));
+                    Assert.Equal(2, PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(1, 2), rows));
                     Assert.True(PreviewGrid.IsVisible(1, 2), $"file icon off screen with {rows} rows");
                     Assert.True(PreviewGrid.IsVisible(0, 2) && PreviewGrid.IsVisible(0, 1), $"an item is off screen with {rows} rows");
                     var cells = new[] { (0, 2), (0, 1), (1, 2) }.Select(p => ItemRenderer.GridPosition(p.Item1, p.Item2, false)).ToList();

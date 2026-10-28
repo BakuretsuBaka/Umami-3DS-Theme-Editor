@@ -22,7 +22,8 @@ namespace ThemeEditor.App.Previews
         Back,
         Home,
         CornerA,
-        CornerB
+        CornerB,
+        ArrowBack
     }
 
     /// <summary>What sits in a grid cell of the preview.</summary>
@@ -46,6 +47,7 @@ namespace ThemeEditor.App.Previews
         private const double CursorSeconds = 0.16;
 
         private double _last = -1;
+        private bool _cursorFixQueued;
         private bool _cursorInit;
         private bool _cursorFolder;
         private SKPoint _cursorFrom;
@@ -72,6 +74,22 @@ namespace ThemeEditor.App.Previews
 
         /// <summary>0 = folder closed, 1 = folder view fully open.</summary>
         public double FolderT { get; private set; }
+
+        /// <summary>Where the icon grid is scrolled to, in pages; it glides to <see cref="Page" />.</summary>
+        public double GridScroll { get; private set; }
+
+        /// <summary>How far the grid is being dragged right now, in pages (positive = towards the previous page).</summary>
+        public double DragPages { get; set; }
+
+        /// <summary>What the grid shows: the gliding page position minus the live drag.</summary>
+        public double GridView => GridScroll - DragPages;
+
+        /// <summary>Ends a drag: the grid continues from where it was let go and glides to the page from there.</summary>
+        public void SettleDrag()
+        {
+            GridScroll -= DragPages;
+            DragPages = 0;
+        }
 
         /// <summary>Horizontal wallpaper position in texture pixels when the animation is off.</summary>
         public double ScrollX { get; private set; }
@@ -123,8 +141,32 @@ namespace ThemeEditor.App.Previews
             Lid = Approach(Lid, LidOpenTarget ? 1 : 0, dt / LidSeconds, ref busy);
             FolderT = Approach(FolderT, s.Preview_ModeToggle ? 1 : 0, dt / FolderSeconds, ref busy);
 
+            // Icon pages glide like the wallpaper
+            var pageTarget = (double) PreviewGrid.PageOf(this);
+            if (Math.Abs(pageTarget - GridScroll) > 0.002)
+            {
+                GridScroll += (pageTarget - GridScroll) * Math.Min(1, dt * 10);
+                busy = true;
+            }
+            else
+            {
+                GridScroll = pageTarget;
+            }
+
             // Cursor: slides to the cell it is moved to; snaps when switching between the main grid and the folder
             var folder = s.Preview_ModeToggle;
+            if (!folder && !_cursorFixQueued && !PreviewGrid.CursorIsOnPage(s, PreviewGrid.PageOf(this)))
+            {
+                // E.g. a cursor saved at a slot the current zoom does not show. Settings must not change while a frame
+                // is being drawn (it would redraw mid-render), so the cursor is moved right after this frame.
+                _cursorFixQueued = true;
+                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                {
+                    _cursorFixQueued = false;
+                    if (!s.Preview_ModeToggle)
+                        PreviewGrid.KeepCursorOnPage(s, PreviewGrid.PageOf(this));
+                });
+            }
             var target = ItemRenderer.GridPosition(folder ? s.Preview_Folder_CursorX : s.Preview_Main_CursorX,
                 folder ? s.Preview_Folder_CursorY : s.Preview_Main_CursorY, folder, folder ? 0 : PreviewGrid.PageOf(this));
             if (!_cursorInit || folder != _cursorFolder)
@@ -205,6 +247,8 @@ namespace ThemeEditor.App.Previews
         private static readonly SKRect CornerBRect = new SKRect(293, 0, 320, 30);
         private static readonly SKRect ArrowRect = new SKRect(296, 100, 320, 146);
 
+        private static readonly SKRect BackArrowRect = new SKRect(0, 100, 24, 146);
+
         public static PreviewTarget Hit(Settings s, float x, float y, out int col, out int row, int page = 0)
         {
             col = row = -1;
@@ -213,7 +257,7 @@ namespace ThemeEditor.App.Previews
                 return PreviewTarget.None;
 
             // Controls drawn over the grid come first
-            var closeEnabled = s.Preview_CloseToggle;
+            var closeEnabled = LeftButtonShown(s);
             if (p.Y >= 215)
             {
                 if (closeEnabled && p.X < 106)
@@ -226,8 +270,11 @@ namespace ThemeEditor.App.Previews
                 return PreviewTarget.CornerA;
             if (CornerBRect.Contains(p))
                 return PreviewTarget.CornerB;
-            if (ArrowRect.Contains(p))
+            // The page arrows only exist on the main grid, and only where there is a page to go to
+            if (!s.Preview_ModeToggle && page < PreviewGrid.Pages - 1 && ArrowRect.Contains(p))
                 return PreviewTarget.Arrow;
+            if (!s.Preview_ModeToggle && page > 0 && BackArrowRect.Contains(p))
+                return PreviewTarget.ArrowBack;
 
             var folder = s.Preview_ModeToggle;
             if (folder && BackButton.Contains(p))
@@ -263,6 +310,24 @@ namespace ThemeEditor.App.Previews
                 }
             }
             return PreviewTarget.None;
+        }
+
+        /// <summary>The item under the cursor (in the open folder, or on the main grid).</summary>
+        public static PreviewItem Selected(Settings s)
+        {
+            return s.Preview_ModeToggle
+                ? ItemAt(s, s.Preview_Folder_CursorX, s.Preview_Folder_CursorY, true)
+                : ItemAt(s, s.Preview_Main_CursorX, s.Preview_Main_CursorY, false);
+        }
+
+        /// <summary>
+        ///     Whether the bottom bar is split: "Settings | Open" on a folder, "Close | Start" on a title (when the
+        ///     preview option shows Close), and one wide bar on an empty slot.
+        /// </summary>
+        public static bool LeftButtonShown(Settings s)
+        {
+            var item = Selected(s);
+            return item == PreviewItem.Folder || item != PreviewItem.None && s.Preview_CloseToggle;
         }
 
         /// <summary>What the current settings place in a grid cell.</summary>
@@ -301,11 +366,18 @@ namespace ThemeEditor.App.Previews
                     Open(t, s);
                     break;
                 case PreviewTarget.Close:
+                    // On a folder the left button is "Settings", which the preview cannot open
+                    if (PreviewHit.Selected(s) != PreviewItem.Folder)
+                        Back(t, s);
+                    break;
                 case PreviewTarget.Back:
                     Back(t, s);
                     break;
                 case PreviewTarget.Arrow:
                     NextPage(t, s, ia);
+                    break;
+                case PreviewTarget.ArrowBack:
+                    PreviousPage(t, s, ia);
                     break;
                 case PreviewTarget.CornerA:
                     Zoom(t, s, -1);
@@ -329,25 +401,19 @@ namespace ThemeEditor.App.Previews
                 return false;
             s.Preview_ZoomRows = rows;
             // Keep the cursor on the page that is shown, like the console does
-            var perPage = PreviewGrid.PerPage(rows);
-            var first = PreviewGrid.PageOf(PreviewInteraction.Shared) * perPage;
-            var index = PreviewGrid.ToZoomIndex(PreviewGrid.IndexOf(s.Preview_Main_CursorX, s.Preview_Main_CursorY), rows);
-            var clamped = Math.Max(first, Math.Min(first + perPage - 1, index));
-            if (clamped != index)
-            {
-                int col, row;
-                PreviewGrid.FromZoomCell(clamped / rows, clamped % rows, rows, out col, out row);
-                SetCursor(s, false, col, row);
-            }
+            PreviewGrid.KeepCursorOnPage(s, PreviewGrid.PageOf(PreviewInteraction.Shared));
             PreviewSounds.Play(t, CwavKind.Cursor);
             return true;
         }
 
         public static void PreviousPage(ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
+            // Pages stop at the first one (no wrapping), and the folder view has no pages
+            if (s.Preview_ModeToggle || PreviewGrid.PageOf(ia) <= 0)
+                return;
             if (s.Preview_AnimationToggle)
                 s.Preview_AnimationToggle = false;
-            ia.Page--;
+            ia.Page = PreviewGrid.PageOf(ia) - 1;
             MoveCursorWithPage(s, -1);
             var frame = (ia.Page % 3 + 3) % 3;
             PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
@@ -422,11 +488,14 @@ namespace ThemeEditor.App.Previews
 
         public static void NextPage(ThemeViewModel t, Settings s, PreviewInteraction ia)
         {
+            // Pages stop at the last one (no wrapping), and the folder view has no pages
+            if (s.Preview_ModeToggle || PreviewGrid.PageOf(ia) >= PreviewGrid.Pages - 1)
+                return;
             // Manual paging takes over from the automatic animation
             if (s.Preview_AnimationToggle)
                 s.Preview_AnimationToggle = false;
             var frame = (ia.Page % 3 + 3) % 3;
-            ia.Page++;
+            ia.Page = PreviewGrid.PageOf(ia) + 1;
             MoveCursorWithPage(s, +1);
             PreviewSounds.Play(t, (CwavKind) ((int) CwavKind.Frame0 + frame));
         }

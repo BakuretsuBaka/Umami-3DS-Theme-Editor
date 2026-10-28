@@ -35,6 +35,8 @@ namespace ThemeEditor.Tests
             var cy = s.Preview_Main_CursorY;
             var folder = s.Preview_ModeToggle;
             var cart = (s.Preview_Main_CartEnable, s.Preview_Main_CartX, s.Preview_Main_CartY);
+            var closeToggle = s.Preview_CloseToggle;
+            var enabled = (s.Preview_Main_CartEnable, s.Preview_Main_FileEnable, s.Preview_Main_FolderEnable);
             try
             {
                 s.Preview_ModeToggle = false;
@@ -47,6 +49,8 @@ namespace ThemeEditor.Tests
                 s.Preview_Main_CursorX = cx;
                 s.Preview_Main_CursorY = cy;
                 s.Preview_ModeToggle = folder;
+                s.Preview_CloseToggle = closeToggle;
+                (s.Preview_Main_CartEnable, s.Preview_Main_FileEnable, s.Preview_Main_FolderEnable) = enabled;
                 (s.Preview_Main_CartEnable, s.Preview_Main_CartX, s.Preview_Main_CartY) = cart;
             }
         }
@@ -58,6 +62,11 @@ namespace ThemeEditor.Tests
             WithSettings(s =>
             {
                 s.Preview_ZoomRows = 3;
+                // Without items the slots are exactly the default layout
+                var items = (s.Preview_Main_CartEnable, s.Preview_Main_FileEnable, s.Preview_Main_FolderEnable);
+                s.Preview_Main_CartEnable = s.Preview_Main_FileEnable = s.Preview_Main_FolderEnable = false;
+                try
+                {
                 float[] cols = { 54, 107, 160, 213, 266 };
                 float[] rows = { 176, 123, 70 };
                 for (var c = 0; c < 5; c++)
@@ -66,6 +75,11 @@ namespace ThemeEditor.Tests
                     var p = ItemRenderer.GridPosition(c, r, false);
                     Assert.Equal(cols[c], p.X, 3);
                     Assert.Equal(rows[r], p.Y, 3);
+                }
+                }
+                finally
+                {
+                    (s.Preview_Main_CartEnable, s.Preview_Main_FileEnable, s.Preview_Main_FolderEnable) = items;
                 }
             });
         }
@@ -199,16 +213,134 @@ namespace ThemeEditor.Tests
                 Assert.Equal(PreviewTarget.Cell, PreviewHit.Hit(s, spot.X, spot.Y, out col, out row, PreviewGrid.PageOf(ia)));
                 Assert.Equal((s.Preview_Main_CursorX, s.Preview_Main_CursorY), (col, row));
 
-                // Three pages, then back to the start
+                // Three pages, and no wrapping: the forward arrow is gone on the last page, the back arrow returns
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
+                Assert.Equal(2, PreviewGrid.PageOf(ia));
+                Assert.NotEqual(PreviewTarget.Arrow, PreviewHit.Hit(s, 310, 123, out col, out row, PreviewGrid.PageOf(ia)));
+                Assert.Equal(PreviewTarget.ArrowBack, PreviewHit.Hit(s, 10, 123, out col, out row, PreviewGrid.PageOf(ia)));
+                PreviewActions.Click(theme, s, ia, PreviewTarget.ArrowBack, -1, -1);
+                PreviewActions.Click(theme, s, ia, PreviewTarget.ArrowBack, -1, -1);
                 Assert.Equal(0, PreviewGrid.PageOf(ia));
+                Assert.NotEqual(PreviewTarget.ArrowBack, PreviewHit.Hit(s, 10, 123, out col, out row, 0));
                 Assert.Equal((2, 1), (s.Preview_Main_CursorX, s.Preview_Main_CursorY));
 
                 // Exports always show the first page, whatever the live preview shows
                 PreviewActions.Click(theme, s, ia, PreviewTarget.Arrow, -1, -1);
                 Assert.Equal(0, PreviewGrid.PageOf(null));
                 Assert.True(PreviewGrid.IsVisible(s.Preview_Main_FileX, s.Preview_Main_FileY, PreviewGrid.PageOf(null)));
+            });
+        }
+
+        [AvaloniaFact]
+        public void DraggingMovesTheIconsLiveAndSettlesOnAPage()
+        {
+            var theme = NewTheme();
+            WithSettings(s =>
+            {
+                var ia = new PreviewInteraction();
+                s.Preview_ZoomRows = 3;
+                s.Preview_Main_CartEnable = true;
+                var before = ItemRenderer.GridPosition(s.Preview_Main_CartX, s.Preview_Main_CartY, false, PreviewGrid.ViewOf(ia));
+
+                // Halfway through a drag to the left the icons have moved left with the pointer
+                ia.DragPages = -0.3;
+                var during = ItemRenderer.GridPosition(s.Preview_Main_CartX, s.Preview_Main_CartY, false, PreviewGrid.ViewOf(ia));
+                Assert.True(during.X < before.X - 50, $"{during.X} vs {before.X}");
+
+                // Let go far enough: the next page, reached by gliding from where the drag ended
+                ia.SettleDrag();
+                PreviewActions.NextPage(theme, s, ia);
+                Assert.Equal(1, PreviewGrid.PageOf(ia));
+                Assert.InRange(ia.GridView, 0.29, 0.31);
+                for (var t = 0.0; t < 2; t += 0.05)
+                    ia.Tick(10 + t, s, theme);
+                Assert.Equal(1.0, ia.GridView, 3);
+            });
+        }
+
+        [AvaloniaFact]
+        public void BottomBarFollowsTheSelection()
+        {
+            var theme = NewTheme();
+            WithSettings(s =>
+            {
+                s.Preview_CloseToggle = true;
+                s.Preview_Main_CartEnable = s.Preview_Main_FolderEnable = true;
+
+                PreviewActions.SetCursor(s, false, s.Preview_Main_FolderX, s.Preview_Main_FolderY);
+                Assert.Equal(PreviewItem.Folder, PreviewHit.Selected(s));
+                Assert.True(PreviewHit.LeftButtonShown(s)); // Settings | Open
+                using var folder = PreviewExporter.Render(theme, PreviewKind.Bottom);
+                // The left button is "Settings" here: clicking it does not close anything
+                PreviewActions.Click(theme, s, PreviewInteraction.Shared, PreviewTarget.Close, -1, -1);
+                Assert.False(s.Preview_ModeToggle);
+
+                PreviewActions.SetCursor(s, false, s.Preview_Main_CartX, s.Preview_Main_CartY);
+                Assert.True(PreviewHit.LeftButtonShown(s)); // Close | Start
+                using var title = PreviewExporter.Render(theme, PreviewKind.Bottom);
+
+                // An empty slot: one wide bar, the left part is the same button as the right
+                int col, row;
+                PreviewGrid.FromZoomCell(4, 0, 3, out col, out row);
+                PreviewActions.SetCursor(s, false, col, row);
+                Assert.Equal(PreviewItem.None, PreviewHit.Selected(s));
+                Assert.False(PreviewHit.LeftButtonShown(s));
+                Assert.Equal(PreviewTarget.Open, PreviewHit.Hit(s, 40, 230, out col, out row));
+                using var empty = PreviewExporter.Render(theme, PreviewKind.Bottom);
+
+                // The three bars look different (the labels change)
+                bool Differs(SKBitmap a, SKBitmap b)
+                {
+                    for (var y = 216; y < 240; y++)
+                    for (var x = 0; x < 320; x++)
+                        if (a.GetPixel(x, y) != b.GetPixel(x, y))
+                            return true;
+                    return false;
+                }
+                Assert.True(Differs(folder, title));
+                Assert.True(Differs(title, empty));
+            });
+        }
+
+        [AvaloniaFact]
+        public void ZoomButtonsFadeAtTheirLimits()
+        {
+            var theme = NewTheme();
+            WithSettings(s =>
+            {
+                SKColor Button(int x)
+                {
+                    using var b = PreviewExporter.Render(theme, PreviewKind.Bottom);
+                    return b.GetPixel(x, 15);
+                }
+                s.Preview_ZoomRows = 3;
+                var bigMiddle = Button(281);
+                var smallMiddle = Button(304);
+                s.Preview_ZoomRows = PreviewGrid.MinRows; // biggest icons: the big-square button can't go further
+                Assert.NotEqual(bigMiddle, Button(281));
+                Assert.Equal(smallMiddle, Button(304));
+                s.Preview_ZoomRows = PreviewGrid.MaxRows;
+                Assert.Equal(bigMiddle, Button(281));
+                Assert.NotEqual(smallMiddle, Button(304));
+            });
+        }
+
+        [AvaloniaFact]
+        public void ACursorSavedOffScreenIsPulledOntoThePageAfterAFrame()
+        {
+            var theme = NewTheme();
+            WithSettings(s =>
+            {
+                s.Preview_ZoomRows = 1; // three slots per page
+                int col, row;
+                PreviewGrid.FromZoomCell(7, 0, 1, out col, out row); // far beyond the first page
+                PreviewActions.SetCursor(s, false, col, row);
+                var ia = new PreviewInteraction();
+                ia.Tick(0, s, theme); // drawing a frame must not change settings mid-render...
+                Assert.False(PreviewGrid.CursorIsOnPage(s, 0));
+                Dispatcher.UIThread.RunJobs(); // ...it is fixed right after
+                Assert.True(PreviewGrid.CursorIsOnPage(s, 0));
             });
         }
 
