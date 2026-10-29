@@ -21,7 +21,6 @@ jobs:
       - name: Test
         run: dotnet test Umami3DSThemeEditor.sln --configuration Release
 
-  # Separate so that a shortage of GitHub's macOS machines only holds up the macOS downloads
   test-macos:
     runs-on: macos-latest
     steps:
@@ -32,8 +31,9 @@ jobs:
       - name: Test
         run: dotnet test Umami3DSThemeEditor.sln --configuration Release
 
+  # The release stays a draft until the macOS downloads are in, so it never goes out without them
   publish:
-    needs: test
+    needs: [test, test-macos]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
@@ -50,9 +50,10 @@ jobs:
         with:
           files: dist/*
           generate_release_notes: true
+          draft: true
 
   publish-macos:
-    needs: [publish, test-macos]
+    needs: publish
     runs-on: macos-latest
     permissions:
       contents: write
@@ -67,3 +68,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/*
+          draft: false
