@@ -818,4 +818,11 @@
   <data name="Tab_Info" xml:space="preserve">
     <value>主题信息</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>双屏一张图(_P)</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>图片为 {0}x{1}。上下两屏加上铰链遮住的部分共 {2}x{3}。
+要让编辑器自动调整吗?</value>
+  </data>
 </root>

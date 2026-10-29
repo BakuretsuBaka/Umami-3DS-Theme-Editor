@@ -28,6 +28,8 @@ namespace ThemeEditor.App
         public ICommand RemoveImageCommand { get; private set; }
         public ICommand ReplaceImageCommand { get; private set; }
         public ICommand CopyResizeSMDHIconCommand { get; private set; }
+        public ICommand LoadBothScreensCommand { get; private set; }
+        public ICommand ExportBothScreensCommand { get; private set; }
 
         private bool CanExecute_ImageExists(TargetImage args)
         {
@@ -164,6 +166,94 @@ namespace ThemeEditor.App
             LoadImage_PostExecute(result);
         }
 
+        // ---------------------------------------------------------------- One picture across both screens
+
+        private async void LoadBothScreens(string file)
+        {
+            if (!CanExecute_ViewModelLoaded() || IsBusy)
+                return;
+            PreExecute_SetBusy();
+            try
+            {
+                if (file == null)
+                {
+                    BusyText = MainResources.Busy_PickingFile;
+                    file = await Dialogs.OpenFile(this, MainResources.Menu_Image_Any_Load,
+                        Dialogs.FileType(MainResources.Filter_ImageFiles, VALID_IMAGE_EXT));
+                    if (file == null)
+                        return;
+                }
+                BusyText = MainResources.Busy_OpeningImage;
+                var path = file;
+                var image = await Task.Run(() =>
+                {
+                    try { return PixelBuffer.Load(path); }
+                    catch (Exception) { return null; }
+                });
+                if (image == null)
+                    return;
+
+                var crop = true;
+                if (image.Width != BothScreens.Width || image.Height != BothScreens.Height)
+                {
+                    IsBusy = false;
+                    var choice = await Dialogs.Choose(this,
+                        string.Format(MainResources.Message_BothScreensFit, image.Width, image.Height, BothScreens.Width, BothScreens.Height),
+                        WINDOW_TITLE, MessageKind.Information,
+                        MainResources.Dialog_FitCrop, MainResources.Dialog_FitStretch, MainResources.Dialog_Cancel);
+                    if (choice != 0 && choice != 1)
+                        return;
+                    crop = choice == 0;
+                }
+
+                PixelBuffer top = null, bottom = null;
+                await Task.Run(() => BothScreens.Split(image, crop, out top, out bottom));
+                SetBothScreens(top, bottom);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>Puts the two halves made by <see cref="BothScreens.Split" /> in as the top and bottom wallpapers.</summary>
+        internal void SetBothScreens(PixelBuffer top, PixelBuffer bottom)
+        {
+            ViewModel.Textures.Top.EncodeTexture(top, RawTexture.DataFormat.Bgr565);
+            ViewModel.Textures.Top.EdgeBleed(0, 0, BothScreens.TopWidth, BothScreens.ScreenHeight);
+            ViewModel.Textures.Bottom.EncodeTexture(bottom, RawTexture.DataFormat.Bgr565);
+            ViewModel.Textures.Bottom.EdgeBleed(0, 0, BothScreens.BottomWidth, BothScreens.ScreenHeight);
+        }
+
+        private async void ExportBothScreens()
+        {
+            if (!CanExecute_ViewModelLoaded() || IsBusy)
+                return;
+            var top = ViewModel.Textures.Top.Exists && ViewModel.Textures.Top.Width == 512 ? ViewModel.Textures.Top.Pixels : null;
+            var bottom = ViewModel.Textures.Bottom.Exists && ViewModel.Textures.Bottom.Width == 512 ? ViewModel.Textures.Bottom.Pixels : null;
+            if (top == null && bottom == null)
+                return;
+            PreExecute_SetBusy();
+            try
+            {
+                BusyText = MainResources.Busy_PickingFile;
+                var path = await Dialogs.SaveFile(this, MainResources.Menu_Image_Any_Export, "both-screens.png",
+                    Dialogs.FileType(MainResources.Filter_PngFiles, ".png"));
+                if (path == null)
+                    return;
+                BusyText = MainResources.Busy_SavingImage;
+                await Task.Run(() => BothScreens.Join(top, bottom).SavePng(path));
+            }
+            catch (Exception)
+            {
+                // Could not write the file
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         // ---------------------------------------------------------------- Export
 
         private async Task<SaveImageResults> ExportImage_Execute(TargetImage targetImage)
@@ -217,25 +307,35 @@ namespace ThemeEditor.App
             ExportImageCommand = new RelayCommandAsync<TargetImage, SaveImageResults>(ExportImage_Execute,
                 CanExecute_ImageExists, image => PreExecute_SetBusy(), r => IsBusy = false);
             CopyResizeSMDHIconCommand = new RelayCommand<bool>(CopySMDHLargeToSmall_Execute, b => CanExecute_ViewModelLoaded());
+            LoadBothScreensCommand = new RelayCommand(() => LoadBothScreens(null), CanExecute_ViewModelLoaded);
+            ExportBothScreensCommand = new RelayCommand(ExportBothScreens,
+                () => CanExecute_ImageExists(TargetImage.Top) || CanExecute_ImageExists(TargetImage.Bottom));
 
             // Drop targets in the toolbar double as buttons that open the file picker
             WireDropTarget("DropTop", TargetImage.Top);
             WireDropTarget("DropTopAlt", TargetImage.TopAlt);
             WireDropTarget("DropBottom", TargetImage.Bottom);
+            WireDropTarget("DropBoth", null);
             WireDropTarget("DropFileLarge", TargetImage.FileLarge);
             WireDropTarget("DropFileSmall", TargetImage.FileSmall);
             WireDropTarget("DropFolderClosed", TargetImage.FolderClosed);
             WireDropTarget("DropFolderOpen", TargetImage.FolderOpen);
         }
 
-        private void WireDropTarget(string name, TargetImage target)
+        private void WireDropTarget(string name, TargetImage? target)
         {
             var button = this.FindControl<Button>(name);
-            ToolTip.SetTip(button, (MainResources.ResourceManager.GetString("Menu_Image_" + target.ToString().Replace("TopAlt", "TopStatic")) ?? target.ToString()).Replace("_", ""));
+            // No target: one picture cut into both wallpapers
+            var tip = target == null
+                ? MainResources.Menu_Image_BothScreens
+                : MainResources.ResourceManager.GetString("Menu_Image_" + target.ToString().Replace("TopAlt", "TopStatic")) ?? target.ToString();
+            ToolTip.SetTip(button, tip.Replace("_", ""));
             button.Click += (s, e) =>
             {
-                if (ReplaceImageCommand.CanExecute(target))
-                    ReplaceImageCommand.Execute(target);
+                if (target == null)
+                    LoadBothScreens(null);
+                else if (ReplaceImageCommand.CanExecute(target.Value))
+                    ReplaceImageCommand.Execute(target.Value);
             };
             DragDrop.SetAllowDrop(button, true);
             button.AddHandler(DragDrop.DragOverEvent, (s, e) =>
@@ -253,8 +353,12 @@ namespace ThemeEditor.App
                 e.Handled = true;
                 var files = e.Data.GetFiles()?.ToList();
                 var file = files != null && files.Count > 0 ? files[0].TryGetLocalPath() : null;
-                if (file != null)
-                    ImportImageFile(file, target);
+                if (file == null)
+                    return;
+                if (target == null)
+                    LoadBothScreens(file);
+                else
+                    ImportImageFile(file, target.Value);
             });
         }
 

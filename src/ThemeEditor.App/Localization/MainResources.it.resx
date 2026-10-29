@@ -818,4 +818,11 @@ Controlla nella finestra "Info" per altre informazioni.</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Info tema</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Entrambi gli schermi, un'_immagine</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>L'immagine è {0}x{1}. I due schermi insieme, compresa la striscia nascosta dalla cerniera, usano {2}x{3}.
+Vuoi che l'editor la adatti?</value>
+  </data>
 </root>

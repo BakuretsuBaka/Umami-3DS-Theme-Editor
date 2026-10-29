@@ -818,4 +818,11 @@ Weitere Informationen findest du im Fenster „Über“</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Design-Infos</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Beide Bildschirme, ein _Bild</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>Das Bild ist {0}x{1} groß. Beide Bildschirme zusammen, samt dem Streifen hinter dem Scharnier, verwenden {2}x{3}.
+Soll der Editor es anpassen?</value>
+  </data>
 </root>

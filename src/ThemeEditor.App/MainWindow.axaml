@@ -176,6 +176,9 @@
                     <Image Source="avares://UmamiThemeEditor/Resources/DROP_BOTTOM.png"
                            Opacity="{Binding ViewModel.Textures.Bottom.Exists, Converter={x:Static controls:PropertyEditors.BoolToOpacity}}" />
                 </Button>
+                <Button x:Name="DropBoth" Classes="drop" Tag="Both">
+                    <Image Source="avares://UmamiThemeEditor/Resources/DROP_BOTH.png" />
+                </Button>
                 <Border Width="1" Height="40" Background="#66FFFFFF" Margin="6,0" />
                 <Button x:Name="DropFileLarge" Classes="drop" Tag="FileLarge">
                     <Image Source="avares://UmamiThemeEditor/Resources/DROP_FILELARGE.png"

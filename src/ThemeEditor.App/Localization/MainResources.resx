@@ -931,4 +931,11 @@ This cannot be undone (reinstalling the editor brings the presets back).</value>
   <data name="Control_AutoColors_Soft" xml:space="preserve">
     <value>Soft</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Both Screens, One _Picture</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>The image is {0}x{1}. Both screens together, including the strip hidden behind the hinge, use {2}x{3}.
+Should the editor fit it for you?</value>
+  </data>
 </root>

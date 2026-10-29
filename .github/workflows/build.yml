@@ -11,8 +11,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Test
+        run: dotnet test Umami3DSThemeEditor.sln --configuration Release
+
+  # Separate so that a shortage of GitHub's macOS machines only holds up the macOS downloads
+  test-macos:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
@@ -41,7 +52,7 @@ jobs:
           generate_release_notes: true
 
   publish-macos:
-    needs: publish
+    needs: [publish, test-macos]
     runs-on: macos-latest
     permissions:
       contents: write

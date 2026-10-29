@@ -818,4 +818,11 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Tab_Info" xml:space="preserve">
     <value>テーマ情報</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>両画面に1枚の画像(_P)</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>画像は {0}x{1} です。両画面とヒンジに隠れる部分を合わせると {2}x{3} になります。
+エディターで合わせますか?</value>
+  </data>
 </root>

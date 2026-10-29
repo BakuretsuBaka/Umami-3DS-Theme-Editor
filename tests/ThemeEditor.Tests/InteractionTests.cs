@@ -53,7 +53,7 @@ namespace ThemeEditor.Tests
 
     public class InteractionTests
     {
-        [Fact]
+        [AvaloniaFact]
         public void HitTestFindsControlsAndCells()
         {
             using (new SettingsGuard())
@@ -210,7 +210,7 @@ namespace ThemeEditor.Tests
             }
         }
 
-        [Fact]
+        [AvaloniaFact]
         public void AnimationsRunToCompletion()
         {
             using (new SettingsGuard())
@@ -240,7 +240,7 @@ namespace ThemeEditor.Tests
             }
         }
 
-        [Fact]
+        [AvaloniaFact]
         public void CursorSlidesToItsNewCell()
         {
             using (new SettingsGuard())

@@ -818,4 +818,11 @@ Vérifiez la fenêtre "A propos" pour plus d'informations</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Informations du Thème</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Les deux écrans, une seule _image</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>L'image fait {0}x{1}. Les deux écrans ensemble, bande cachée par la charnière comprise, utilisent {2}x{3}.
+L'éditeur doit-il l'ajuster ?</value>
+  </data>
 </root>

@@ -1606,6 +1606,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_Image_BothScreens".</summary>
+        public static string Menu_Image_BothScreens {
+            get {
+                return ResourceManager.GetString("Menu_Image_BothScreens", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Message_BothScreensFit".</summary>
+        public static string Message_BothScreensFit {
+            get {
+                return ResourceManager.GetString("Message_BothScreensFit", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_ImageFit".</summary>
         public static string Message_ImageFit {
             get {

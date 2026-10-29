@@ -95,6 +95,14 @@ namespace ThemeEditor.App
             AddImageMenu(image, TargetImage.Top, "Menu_Image_Top", "1024x256 (1008x240)", "512x256 (412x240)", "64x64");
             AddImageMenu(image, TargetImage.TopAlt, "Menu_Image_TopStatic", "64x64");
             AddImageMenu(image, TargetImage.Bottom, "Menu_Image_Bottom", "1024x256 (1008x240)", "1024x256 (960x240)", "512x256 (320x240)");
+            var both = new MenuItem {Header = MainResources.Menu_Image_BothScreens};
+            both.Items.Add(Item(MainResources.Menu_Image_Any_Load, LoadBothScreensCommand));
+            var exportBoth = Item(MainResources.Menu_Image_Any_Export, ExportBothScreensCommand);
+            exportBoth.Bind(Visual.IsVisibleProperty, exportBoth.GetObservable(IsEnabledProperty));
+            both.Items.Add(exportBoth);
+            both.Items.Add(new Separator());
+            both.Items.Add(new MenuItem {Header = $"{BothScreens.Width}x{BothScreens.Height}", IsEnabled = false});
+            image.Items.Add(both);
             AddImageMenu(image, TargetImage.FileLarge, "Menu_Image_FileLarge", "64x128 (36x72)");
             AddImageMenu(image, TargetImage.FileSmall, "Menu_Image_FileSmall", "32x64 (25x50)");
             AddImageMenu(image, TargetImage.FolderClosed, "Menu_Image_FolderClosed", "128x64 (74x64)");

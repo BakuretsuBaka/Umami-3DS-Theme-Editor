@@ -818,4 +818,11 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Info del tema</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Ambas pantallas, una _imagen</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>La imagen mide {0}x{1}. Las dos pantallas juntas, incluida la franja oculta tras la bisagra, usan {2}x{3}.
+¿Quieres que el editor la ajuste?</value>
+  </data>
 </root>

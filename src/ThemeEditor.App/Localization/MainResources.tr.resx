@@ -818,4 +818,11 @@ Daha fazla bilgi için Hakkında penceresine bakın</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Tema Bilgisi</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>İki ekran, tek _resim</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>Resim {0}x{1} boyutunda. Menteşenin arkasında kalan şerit dahil iki ekran birlikte {2}x{3} kullanır.
+Düzenleyici sizin için sığdırsın mı?</value>
+  </data>
 </root>

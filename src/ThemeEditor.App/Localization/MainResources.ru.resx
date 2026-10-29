@@ -818,4 +818,11 @@
   <data name="Tab_Info" xml:space="preserve">
     <value>О теме</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Оба экрана, одно _изображение</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>Изображение имеет размер {0}x{1}. Оба экрана вместе с полосой, скрытой шарниром, занимают {2}x{3}.
+Подогнать его?</value>
+  </data>
 </root>

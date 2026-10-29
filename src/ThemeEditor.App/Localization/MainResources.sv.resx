@@ -818,4 +818,11 @@ Se fönstret Om för mer information</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Temainfo</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Båda skärmarna, en _bild</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>Bilden är {0}x{1}. Båda skärmarna tillsammans, inklusive remsan bakom gångjärnet, använder {2}x{3}.
+Ska redigeraren anpassa den?</value>
+  </data>
 </root>

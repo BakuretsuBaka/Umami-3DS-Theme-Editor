@@ -818,4 +818,11 @@ Verifique a Janela "Sobre" para mais Informações.</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Informações</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Ambas as telas, uma _imagem</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>A imagem tem {0}x{1}. As duas telas juntas, incluindo a faixa escondida pela dobradiça, usam {2}x{3}.
+O editor deve ajustá-la para você?</value>
+  </data>
 </root>

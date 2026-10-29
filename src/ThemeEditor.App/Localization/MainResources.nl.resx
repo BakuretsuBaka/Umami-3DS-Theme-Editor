@@ -818,4 +818,11 @@ Bekijk het venster 'Info' voor meer informatie</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Thema-info</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Beide schermen, één _afbeelding</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>De afbeelding is {0}x{1}. Beide schermen samen, inclusief de strook achter het scharnier, gebruiken {2}x{3}.
+Zal de editor hem passend maken?</value>
+  </data>
 </root>

@@ -818,4 +818,11 @@
   <data name="Tab_Info" xml:space="preserve">
     <value>主題資訊</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>雙螢幕一張圖(_P)</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>圖片為 {0}x{1}。上下兩個螢幕加上轉軸遮住的部分共 {2}x{3}。
+要讓編輯器自動調整嗎?</value>
+  </data>
 </root>

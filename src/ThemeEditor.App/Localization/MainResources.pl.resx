@@ -818,4 +818,11 @@ Więcej informacji w oknie „O programie”</value>
   <data name="Tab_Info" xml:space="preserve">
     <value>Informacje o motywie</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>Oba ekrany, jeden _obraz</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>Obraz ma {0}x{1}. Oba ekrany razem, wraz z pasem ukrytym za zawiasem, zajmują {2}x{3}.
+Czy edytor ma go dopasować?</value>
+  </data>
 </root>

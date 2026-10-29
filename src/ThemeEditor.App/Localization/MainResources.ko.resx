@@ -818,4 +818,11 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Tab_Info" xml:space="preserve">
     <value>테마 정보</value>
   </data>
+  <data name="Menu_Image_BothScreens" xml:space="preserve">
+    <value>두 화면에 한 장의 이미지(_P)</value>
+  </data>
+  <data name="Message_BothScreensFit" xml:space="preserve">
+    <value>이미지 크기는 {0}x{1}입니다. 두 화면과 힌지에 가려지는 부분을 합치면 {2}x{3}입니다.
+편집기가 맞춰 드릴까요?</value>
+  </data>
 </root>
