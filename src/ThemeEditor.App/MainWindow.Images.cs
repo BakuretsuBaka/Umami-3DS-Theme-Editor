@@ -15,6 +15,7 @@ using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using Avalonia.Interactivity;
 using ThemeEditor.App.Localization;
+using ThemeEditor.App.Properties;
 using ThemeEditor.App.Themes;
 using ThemeEditor.Common.Graphics;
 
@@ -194,11 +195,12 @@ namespace ThemeEditor.App
                     return;
 
                 var crop = true;
-                if (image.Width != BothScreens.Width || image.Height != BothScreens.Height)
+                var model = BothScreens.Find(Settings.Default.BothScreens_Model);
+                if (image.Width != BothScreens.Width || image.Height != model.Height)
                 {
                     IsBusy = false;
                     var choice = await Dialogs.Choose(this,
-                        string.Format(MainResources.Message_BothScreensFit, image.Width, image.Height, BothScreens.Width, BothScreens.Height),
+                        string.Format(MainResources.Message_BothScreensFit, image.Width, image.Height, BothScreens.Width, model.Height, model.Name),
                         WINDOW_TITLE, MessageKind.Information,
                         MainResources.Dialog_FitCrop, MainResources.Dialog_FitStretch, MainResources.Dialog_Cancel);
                     if (choice != 0 && choice != 1)
@@ -207,7 +209,7 @@ namespace ThemeEditor.App
                 }
 
                 PixelBuffer top = null, bottom = null;
-                await Task.Run(() => BothScreens.Split(image, crop, out top, out bottom));
+                await Task.Run(() => BothScreens.Split(image, crop, model, out top, out bottom));
                 SetBothScreens(top, bottom);
             }
             finally
@@ -242,7 +244,8 @@ namespace ThemeEditor.App
                 if (path == null)
                     return;
                 BusyText = MainResources.Busy_SavingImage;
-                await Task.Run(() => BothScreens.Join(top, bottom).SavePng(path));
+                var model = BothScreens.Find(Settings.Default.BothScreens_Model);
+                await Task.Run(() => BothScreens.Join(top, bottom, model).SavePng(path));
             }
             catch (Exception)
             {
@@ -322,14 +325,22 @@ namespace ThemeEditor.App
             WireDropTarget("DropFolderOpen", TargetImage.FolderOpen);
         }
 
+        private void UpdateBothScreensTip()
+        {
+            var button = this.FindControl<Button>("DropBoth");
+            if (button != null)
+                ToolTip.SetTip(button, MainResources.Menu_Image_BothScreens.Replace("_", "") + " (" +
+                                       BothScreens.Find(Settings.Default.BothScreens_Model).Name + ")");
+        }
+
         private void WireDropTarget(string name, TargetImage? target)
         {
             var button = this.FindControl<Button>(name);
             // No target: one picture cut into both wallpapers
-            var tip = target == null
-                ? MainResources.Menu_Image_BothScreens
-                : MainResources.ResourceManager.GetString("Menu_Image_" + target.ToString().Replace("TopAlt", "TopStatic")) ?? target.ToString();
-            ToolTip.SetTip(button, tip.Replace("_", ""));
+            if (target == null)
+                UpdateBothScreensTip();
+            else
+                ToolTip.SetTip(button, (MainResources.ResourceManager.GetString("Menu_Image_" + target.ToString().Replace("TopAlt", "TopStatic")) ?? target.ToString()).Replace("_", ""));
             button.Click += (s, e) =>
             {
                 if (target == null)

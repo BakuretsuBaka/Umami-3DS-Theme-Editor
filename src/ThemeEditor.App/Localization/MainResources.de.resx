@@ -822,7 +822,10 @@ Weitere Informationen findest du im Fenster „Über“</value>
     <value>Beide Bildschirme, ein _Bild</value>
   </data>
   <data name="Message_BothScreensFit" xml:space="preserve">
-    <value>Das Bild ist {0}x{1} groß. Beide Bildschirme zusammen, samt dem Streifen hinter dem Scharnier, verwenden {2}x{3}.
+    <value>Das Bild ist {0}x{1} groß. Beim {4} verwenden beide Bildschirme zusammen, samt dem Streifen hinter dem Scharnier, {2}x{3}.
 Soll der Editor es anpassen?</value>
+  </data>
+  <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
+    <value>Konsole:</value>
   </data>
 </root>

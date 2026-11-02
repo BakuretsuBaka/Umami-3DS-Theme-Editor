@@ -822,7 +822,10 @@ Daha fazla bilgi için Hakkında penceresine bakın</value>
     <value>İki ekran, tek _resim</value>
   </data>
   <data name="Message_BothScreensFit" xml:space="preserve">
-    <value>Resim {0}x{1} boyutunda. Menteşenin arkasında kalan şerit dahil iki ekran birlikte {2}x{3} kullanır.
+    <value>Resim {0}x{1} boyutunda. {4} üzerinde, menteşenin arkasında kalan şerit dahil iki ekran birlikte {2}x{3} kullanır.
 Düzenleyici sizin için sığdırsın mı?</value>
+  </data>
+  <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
+    <value>Konsol:</value>
   </data>
 </root>

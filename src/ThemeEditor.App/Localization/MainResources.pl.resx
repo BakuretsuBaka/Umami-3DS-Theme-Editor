@@ -822,7 +822,10 @@ Więcej informacji w oknie „O programie”</value>
     <value>Oba ekrany, jeden _obraz</value>
   </data>
   <data name="Message_BothScreensFit" xml:space="preserve">
-    <value>Obraz ma {0}x{1}. Oba ekrany razem, wraz z pasem ukrytym za zawiasem, zajmują {2}x{3}.
+    <value>Obraz ma {0}x{1}. Na {4} oba ekrany razem, wraz z pasem ukrytym za zawiasem, zajmują {2}x{3}.
 Czy edytor ma go dopasować?</value>
+  </data>
+  <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
+    <value>Konsola:</value>
   </data>
 </root>

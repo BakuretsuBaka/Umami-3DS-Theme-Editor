@@ -1620,6 +1620,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_Image_BothScreens_Console".</summary>
+        public static string Menu_Image_BothScreens_Console {
+            get {
+                return ResourceManager.GetString("Menu_Image_BothScreens_Console", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_ImageFit".</summary>
         public static string Message_ImageFit {
             get {

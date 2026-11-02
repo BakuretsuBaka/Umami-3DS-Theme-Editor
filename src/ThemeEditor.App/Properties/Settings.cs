@@ -39,6 +39,7 @@ namespace ThemeEditor.App.Properties
         private string _libraryShow = "All";
         private bool _libraryHideBundled;
         private int _previewZoomRows = 3;
+        private string _bothScreensModel = "New 3DS XL";
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -140,6 +141,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _previewZoomRows; }
             set { Set(ref _previewZoomRows, Math.Max(1, Math.Min(6, value))); }
+        }
+
+        /// <summary>Console model whose hinge gap is used when one picture is cut into both wallpapers.</summary>
+        public string BothScreens_Model
+        {
+            get { return _bothScreensModel; }
+            set { Set(ref _bothScreensModel, BothScreens.Find(value).Name); }
         }
 
         public double Window_Height

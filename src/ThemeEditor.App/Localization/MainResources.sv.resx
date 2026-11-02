@@ -822,7 +822,10 @@ Se fönstret Om för mer information</value>
     <value>Båda skärmarna, en _bild</value>
   </data>
   <data name="Message_BothScreensFit" xml:space="preserve">
-    <value>Bilden är {0}x{1}. Båda skärmarna tillsammans, inklusive remsan bakom gångjärnet, använder {2}x{3}.
+    <value>Bilden är {0}x{1}. På {4} använder båda skärmarna tillsammans, inklusive remsan bakom gångjärnet, {2}x{3}.
 Ska redigeraren anpassa den?</value>
+  </data>
+  <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
+    <value>Konsol:</value>
   </data>
 </root>
