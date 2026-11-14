@@ -52,7 +52,20 @@ for RID in $RIDS; do
       fi
       ;;
     win-*)
-      (cd "$DIR" && zip -qr "$OUT/$NAME.zip" .)
+      # Portable zip, plus a setup.exe where Inno Setup is installed (the Windows release job)
+      if command -v zip >/dev/null; then
+        (cd "$DIR" && zip -qr "$OUT/$NAME-portable.zip" .)
+      else
+        (cd "$DIR" && 7z a -tzip -bd "$OUT/$NAME-portable.zip" . >/dev/null)
+      fi
+      ISCC="$(command -v iscc || command -v ISCC || true)"
+      [ -z "$ISCC" ] && [ -x "/c/Program Files (x86)/Inno Setup 6/ISCC.exe" ] && ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
+      if [ -n "$ISCC" ]; then
+        "$ISCC" /Q "/DVersion=$VERSION" "/DArch=${RID#win-}" "/DAppFiles=$(cygpath -w "$DIR")" \
+          "/DOutputDir=$(cygpath -w "$OUT")" "/DOutputName=$NAME-setup" "$(cygpath -w "$ROOT/packaging/umami.iss")"
+      else
+        echo "note: Inno Setup not found, building $RID without an installer"
+      fi
       ;;
     *)
       chmod +x "$DIR/UmamiThemeEditor"

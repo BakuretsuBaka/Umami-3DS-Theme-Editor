@@ -31,12 +31,22 @@ Get the package for your system from the [**latest release**](https://github.com
 
 | System | File |
 |---|---|
-| Windows 10/11 (Intel/AMD) | `…-win-x64.zip` |
-| Windows 11 on ARM | `…-win-arm64.zip` |
+| Windows 10/11 (Intel/AMD) | `…-win-x64-setup.exe` |
+| Windows 11 on ARM | `…-win-arm64-setup.exe` |
 | macOS, Apple Silicon | `…-osx-arm64.dmg` |
 | macOS, Intel | `…-osx-x64.dmg` |
 | Linux (x86-64) | `…-linux-x64.tar.gz` |
 | Linux (ARM64, e.g. Raspberry Pi 4/5) | `…-linux-arm64.tar.gz` |
+
+<details>
+<summary><b>Windows:</b> installer or portable</summary>
+
+Run the `setup.exe`: it installs for your user only (no admin rights needed), adds a Start menu entry and an uninstaller,
+and installing a newer one updates in place. Windows SmartScreen may warn about an unknown publisher (the installer is not
+code-signed): choose *More info* → *Run anyway*.
+
+Prefer no installation? Extract the `…-portable.zip` anywhere and start `UmamiThemeEditor.exe`.
+</details>
 
 <details>
 <summary><b>macOS:</b> "the app is damaged" or "unidentified developer"</summary>

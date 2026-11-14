@@ -31,9 +31,42 @@ jobs:
       - name: Test
         run: dotnet test Umami3DSThemeEditor.sln --configuration Release
 
+  # Built on every push so a broken installer shows up before a release; the release job picks the files up from here
+  package-windows:
+    needs: test
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Install Inno Setup
+        run: |
+          if [ ! -x "/c/Program Files (x86)/Inno Setup 6/ISCC.exe" ]; then choco install innosetup -y --no-progress; fi
+      - name: Download the resource library pack
+        shell: pwsh
+        run: |
+          try {
+            Invoke-WebRequest https://github.com/BakuretsuBaka/Umami-3DS-Theme-Editor/releases/download/library-pack/library-pack.zip -OutFile library-pack.zip
+            Expand-Archive library-pack.zip -DestinationPath library-pack
+            Remove-Item library-pack.zip
+          } catch { Write-Host "note: resource library pack not available, building without it" }
+      - name: Package Windows (portable zip and setup.exe)
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          [[ "$GITHUB_REF" == refs/tags/v* ]] || VERSION=0.0.0-dev
+          bash packaging/package.sh "$VERSION" "win-x64 win-arm64"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: dist/*
+
   # The release stays a draft until the macOS downloads are in, so it never goes out without them
   publish:
-    needs: [test, test-macos]
+    needs: [test, test-macos, package-windows]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
@@ -43,8 +76,12 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Package Windows and Linux
-        run: bash packaging/package.sh "${GITHUB_REF_NAME#v}" "win-x64 win-arm64 linux-x64 linux-arm64"
+      - name: Package Linux
+        run: bash packaging/package.sh "${GITHUB_REF_NAME#v}" "linux-x64 linux-arm64"
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows
+          path: dist
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
