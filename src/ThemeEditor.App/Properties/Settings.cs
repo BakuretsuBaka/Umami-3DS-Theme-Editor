@@ -40,6 +40,7 @@ namespace ThemeEditor.App.Properties
         private bool _libraryHideBundled;
         private int _previewZoomRows = 3;
         private string _bothScreensModel = "New 3DS XL";
+        private string _themezerEmail = string.Empty;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -148,6 +149,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _bothScreensModel; }
             set { Set(ref _bothScreensModel, BothScreens.Find(value).Name); }
+        }
+
+        /// <summary>Email of the last Themezer login (the password is never stored).</summary>
+        public string Themezer_Email
+        {
+            get { return _themezerEmail; }
+            set { Set(ref _themezerEmail, value ?? string.Empty); }
         }
 
         public double Window_Height

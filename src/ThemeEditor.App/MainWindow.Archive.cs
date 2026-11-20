@@ -12,6 +12,7 @@ using Avalonia.Input;
 using SkiaSharp;
 using ThemeEditor.App.Localization;
 using ThemeEditor.App.Previews;
+using ThemeEditor.App.Themes;
 
 namespace ThemeEditor.App
 {
@@ -19,11 +20,13 @@ namespace ThemeEditor.App
     {
         public ICommand ExportZipCommand => ExportZipCommandWrapper.Command;
         public GestureCommandWrapper ExportZipCommandWrapper { get; private set; }
+        public ICommand UploadThemezerCommand { get; private set; }
 
         private void SetupArchive()
         {
             ExportZipCommandWrapper = GestureCommandWrapper.Create(
                 new RelayCommand(ExportZip_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy), Key.E);
+            UploadThemezerCommand = new RelayCommand(UploadThemezer_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy);
         }
 
         private static bool IsZip(string path)
@@ -50,31 +53,9 @@ namespace ThemeEditor.App
             BusyText = MainResources.Busy_SavingTheme;
             try
             {
-                FlushPendingSnapshot();
-                byte[] bgm = BgmBcstm;
-                var themeDir = ThemePath == null ? null : Path.GetDirectoryName(ThemePath);
-                if (bgm == null && vm.Flags.BackgroundMusic && themeDir != null && File.Exists(Path.Combine(themeDir, BGM_FILE_NAME)))
-                    bgm = File.ReadAllBytes(Path.Combine(themeDir, BGM_FILE_NAME));
-
-                byte[] smdh;
-                using (var ms = new MemoryStream())
-                {
-                    vm.Info.Save(ms);
-                    smdh = ms.ToArray();
-                }
-                byte[] icon;
-                using (var img = SKImage.FromBitmap(vm.Info.LargeIcon.Pixels.Sk))
-                using (var data = img.Encode(SKEncodedImageFormat.Png, 100))
-                    icon = data.ToArray();
-
-                // The preview has to be rendered on the UI thread; compressing the theme takes a moment, so it does not
-                var preview = PreviewExporter.RenderPng(vm, PreviewKind.Both);
-                var music = vm.Flags.BackgroundMusic ? bgm : null;
-                await Task.Run(() =>
-                {
-                    var zip = ThemeArchive.Create(name, CompressTheme(vm), smdh, music, icon, preview);
-                    File.WriteAllBytes(path, zip);
-                });
+                var package = await BuildPackage(vm);
+                await Task.Run(() => File.WriteAllBytes(path, ThemeArchive.Create(name, package.Body, package.Smdh,
+                    package.Bgm, package.Icon, package.Preview)));
                 IsBusy = false;
                 await Dialogs.Show(this, MainResources.Message_ZipExported, WINDOW_TITLE);
             }
@@ -83,6 +64,54 @@ namespace ThemeEditor.App
                 IsBusy = false;
                 await Dialogs.Show(this, ex.Message, WINDOW_TITLE, MessageKind.Error);
             }
+        }
+
+        /// <summary>Opens the Themezer upload dialog for the open theme.</summary>
+        private async void UploadThemezer_Execute()
+        {
+            var vm = ViewModel;
+            if (vm == null)
+                return;
+            var hasBgm = vm.Flags.BackgroundMusic && (BgmBcstm != null || (ThemePath != null
+                && File.Exists(Path.Combine(Path.GetDirectoryName(ThemePath) ?? ".", BGM_FILE_NAME))));
+            var window = new ThemezerUploadWindow(ThemezerClient.Shared, vm.Info.ShortDescription, vm.Info.LongDescription,
+                hasBgm, () => BuildPackage(vm));
+            await window.ShowDialog(this);
+        }
+
+        /// <summary>The files of a theme package (as in the theme ZIP); <see cref="Bgm" /> is null without music.</summary>
+        internal sealed class ThemePackage
+        {
+            public byte[] Body;
+            public byte[] Smdh;
+            public byte[] Bgm;
+            public byte[] Icon;
+            public byte[] Preview;
+        }
+
+        /// <summary>Compresses the theme and renders its icon and a fresh Umami preview, for the ZIP or an upload.</summary>
+        internal async Task<ThemePackage> BuildPackage(ThemeViewModel vm)
+        {
+            FlushPendingSnapshot();
+            byte[] bgm = BgmBcstm;
+            var themeDir = ThemePath == null ? null : Path.GetDirectoryName(ThemePath);
+            if (bgm == null && vm.Flags.BackgroundMusic && themeDir != null && File.Exists(Path.Combine(themeDir, BGM_FILE_NAME)))
+                bgm = File.ReadAllBytes(Path.Combine(themeDir, BGM_FILE_NAME));
+
+            var package = new ThemePackage { Bgm = vm.Flags.BackgroundMusic ? bgm : null };
+            using (var ms = new MemoryStream())
+            {
+                vm.Info.Save(ms);
+                package.Smdh = ms.ToArray();
+            }
+            using (var img = SKImage.FromBitmap(vm.Info.LargeIcon.Pixels.Sk))
+            using (var data = img.Encode(SKEncodedImageFormat.Png, 100))
+                package.Icon = data.ToArray();
+
+            // The preview has to be rendered on the UI thread; compressing the theme takes a moment, so it does not
+            package.Preview = PreviewExporter.RenderPng(vm, PreviewKind.Both);
+            package.Body = await Task.Run(() => CompressTheme(vm));
+            return package;
         }
 
         /// <summary>

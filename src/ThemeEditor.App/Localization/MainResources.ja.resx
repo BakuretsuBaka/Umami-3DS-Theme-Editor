@@ -828,4 +828,73 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
     <value>本体:</value>
   </data>
+  <data name="Menu_File_UploadThemezer" xml:space="preserve">
+    <value>Themezer にアップロード...</value>
+  </data>
+  <data name="Themezer_Title" xml:space="preserve">
+    <value>Themezer にアップロード</value>
+  </data>
+  <data name="Themezer_Email" xml:space="preserve">
+    <value>メールアドレス</value>
+  </data>
+  <data name="Themezer_Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="Themezer_LogIn" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Themezer_LogOut" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="Themezer_LoggedInAs" xml:space="preserve">
+    <value>{0} としてログイン中</value>
+  </data>
+  <data name="Themezer_PasswordNote" xml:space="preserve">
+    <value>パスワードは Themezer にのみ送信され、保存されることはありません。Discord または Google でログインしているアカウントは、先に themezer.net でパスワードを設定してください。</value>
+  </data>
+  <data name="Themezer_Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Themezer_Description" xml:space="preserve">
+    <value>説明（任意・英語・Markdown 可）</value>
+  </data>
+  <data name="Themezer_Tags" xml:space="preserve">
+    <value>タグ（カンマ区切り）</value>
+  </data>
+  <data name="Themezer_TagsExample" xml:space="preserve">
+    <value>例: pokemon, pink, cute</value>
+  </data>
+  <data name="Themezer_BgmInfo" xml:space="preserve">
+    <value>音楽の情報（アーティスト、曲名、出典）</value>
+  </data>
+  <data name="Themezer_Private" xml:space="preserve">
+    <value>非公開（自分だけが見られます）</value>
+  </data>
+  <data name="Themezer_Nsfw" xml:space="preserve">
+    <value>成人向けコンテンツを含む</value>
+  </data>
+  <data name="Themezer_Upload" xml:space="preserve">
+    <value>アップロード</value>
+  </data>
+  <data name="Themezer_Uploading" xml:space="preserve">
+    <value>アップロード中...</value>
+  </data>
+  <data name="Themezer_LoggingIn" xml:space="preserve">
+    <value>ログイン中...</value>
+  </data>
+  <data name="Themezer_Uploaded" xml:space="preserve">
+    <value>アップロードしました！Themezer でテーマが処理されるまで少し時間がかかる場合があります。</value>
+  </data>
+  <data name="Themezer_OpenPage" xml:space="preserve">
+    <value>テーマのページを開く</value>
+  </data>
+  <data name="Themezer_NeedsName" xml:space="preserve">
+    <value>テーマに名前を付けてください。</value>
+  </data>
+  <data name="Themezer_NeedsTags" xml:space="preserve">
+    <value>タグを 1 つ以上追加してください。</value>
+  </data>
+  <data name="Themezer_Error" xml:space="preserve">
+    <value>Themezer: {0}</value>
+  </data>
 </root>

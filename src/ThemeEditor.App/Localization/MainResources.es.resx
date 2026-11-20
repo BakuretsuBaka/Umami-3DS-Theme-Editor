@@ -828,4 +828,73 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
     <value>Consola:</value>
   </data>
+  <data name="Menu_File_UploadThemezer" xml:space="preserve">
+    <value>Subir a Themezer...</value>
+  </data>
+  <data name="Themezer_Title" xml:space="preserve">
+    <value>Subir a Themezer</value>
+  </data>
+  <data name="Themezer_Email" xml:space="preserve">
+    <value>Correo electrónico</value>
+  </data>
+  <data name="Themezer_Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Themezer_LogIn" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="Themezer_LogOut" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="Themezer_LoggedInAs" xml:space="preserve">
+    <value>Sesión iniciada como {0}</value>
+  </data>
+  <data name="Themezer_PasswordNote" xml:space="preserve">
+    <value>Tu contraseña solo se envía a Themezer y nunca se guarda. Las cuentas que inician sesión con Discord o Google deben crear antes una contraseña en themezer.net.</value>
+  </data>
+  <data name="Themezer_Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Themezer_Description" xml:space="preserve">
+    <value>Descripción (opcional, en inglés, se admite Markdown)</value>
+  </data>
+  <data name="Themezer_Tags" xml:space="preserve">
+    <value>Etiquetas (separadas por comas)</value>
+  </data>
+  <data name="Themezer_TagsExample" xml:space="preserve">
+    <value>p. ej. pokemon, pink, cute</value>
+  </data>
+  <data name="Themezer_BgmInfo" xml:space="preserve">
+    <value>Información de la música (artista, canción u origen)</value>
+  </data>
+  <data name="Themezer_Private" xml:space="preserve">
+    <value>Privado (solo tú puedes verlo)</value>
+  </data>
+  <data name="Themezer_Nsfw" xml:space="preserve">
+    <value>Contiene contenido para adultos</value>
+  </data>
+  <data name="Themezer_Upload" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="Themezer_Uploading" xml:space="preserve">
+    <value>Subiendo...</value>
+  </data>
+  <data name="Themezer_LoggingIn" xml:space="preserve">
+    <value>Iniciando sesión...</value>
+  </data>
+  <data name="Themezer_Uploaded" xml:space="preserve">
+    <value>¡Subido! Themezer puede tardar un momento en procesar el tema.</value>
+  </data>
+  <data name="Themezer_OpenPage" xml:space="preserve">
+    <value>Abrir página del tema</value>
+  </data>
+  <data name="Themezer_NeedsName" xml:space="preserve">
+    <value>Ponle un nombre al tema.</value>
+  </data>
+  <data name="Themezer_NeedsTags" xml:space="preserve">
+    <value>Añade al menos una etiqueta.</value>
+  </data>
+  <data name="Themezer_Error" xml:space="preserve">
+    <value>Themezer: {0}</value>
+  </data>
 </root>

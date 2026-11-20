@@ -828,4 +828,73 @@
   <data name="Menu_Image_BothScreens_Console" xml:space="preserve">
     <value>Консоль:</value>
   </data>
+  <data name="Menu_File_UploadThemezer" xml:space="preserve">
+    <value>Загрузить на Themezer...</value>
+  </data>
+  <data name="Themezer_Title" xml:space="preserve">
+    <value>Загрузить на Themezer</value>
+  </data>
+  <data name="Themezer_Email" xml:space="preserve">
+    <value>Эл. почта</value>
+  </data>
+  <data name="Themezer_Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Themezer_LogIn" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Themezer_LogOut" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Themezer_LoggedInAs" xml:space="preserve">
+    <value>Вы вошли как {0}</value>
+  </data>
+  <data name="Themezer_PasswordNote" xml:space="preserve">
+    <value>Пароль отправляется только в Themezer и нигде не сохраняется. Аккаунтам, которые входят через Discord или Google, нужно сначала задать пароль на themezer.net.</value>
+  </data>
+  <data name="Themezer_Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Themezer_Description" xml:space="preserve">
+    <value>Описание (необязательно, на английском, можно Markdown)</value>
+  </data>
+  <data name="Themezer_Tags" xml:space="preserve">
+    <value>Теги (через запятую)</value>
+  </data>
+  <data name="Themezer_TagsExample" xml:space="preserve">
+    <value>например, pokemon, pink, cute</value>
+  </data>
+  <data name="Themezer_BgmInfo" xml:space="preserve">
+    <value>О музыке (исполнитель, песня или источник)</value>
+  </data>
+  <data name="Themezer_Private" xml:space="preserve">
+    <value>Приватная (видна только вам)</value>
+  </data>
+  <data name="Themezer_Nsfw" xml:space="preserve">
+    <value>Содержит контент для взрослых</value>
+  </data>
+  <data name="Themezer_Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Themezer_Uploading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Themezer_LoggingIn" xml:space="preserve">
+    <value>Вход...</value>
+  </data>
+  <data name="Themezer_Uploaded" xml:space="preserve">
+    <value>Загружено! Themezer может потребоваться немного времени на обработку темы.</value>
+  </data>
+  <data name="Themezer_OpenPage" xml:space="preserve">
+    <value>Открыть страницу темы</value>
+  </data>
+  <data name="Themezer_NeedsName" xml:space="preserve">
+    <value>Дайте теме название.</value>
+  </data>
+  <data name="Themezer_NeedsTags" xml:space="preserve">
+    <value>Добавьте хотя бы один тег.</value>
+  </data>
+  <data name="Themezer_Error" xml:space="preserve">
+    <value>Themezer: {0}</value>
+  </data>
 </root>

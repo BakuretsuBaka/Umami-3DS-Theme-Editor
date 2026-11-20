@@ -136,6 +136,9 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 
 * **Theme ZIP:** *File → Export Theme ZIP* (`Ctrl/Cmd+E`) writes a Theme Plaza / Themezer ready package (theme, music, icon,
   a fresh preview and the name). Open or drop such a ZIP to unpack and load it.
+* **Upload to Themezer:** *File → Upload to Themezer...* logs in with your Themezer email and password and uploads the theme
+  with name, description, tags, music info, and public or private. The password is never stored; accounts that sign in with
+  Discord or Google need to set a password on themezer.net first.
 * **Send to CHMM2:** push the theme to the console over the network.
 * **Fast saving:** the LZ11 compressor finds matches with a hash chain instead of a brute-force search, about 50× faster with
   byte-identical output, so saving, exporting and sending never freeze the window.
