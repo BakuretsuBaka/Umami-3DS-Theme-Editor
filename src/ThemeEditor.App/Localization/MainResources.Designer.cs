@@ -2076,5 +2076,12 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_File_MacMenuBar".</summary>
+        public static string Menu_File_MacMenuBar {
+            get {
+                return ResourceManager.GetString("Menu_File_MacMenuBar", resourceCulture);
+            }
+        }
+
     }
 }

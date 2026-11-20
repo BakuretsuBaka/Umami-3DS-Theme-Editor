@@ -13,6 +13,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Input;
+using Avalonia.Threading;
 using ThemeEditor.App.Localization;
 using ThemeEditor.App.Properties;
 
@@ -21,6 +22,8 @@ namespace ThemeEditor.App
     partial class MainWindow
     {
         private MenuItem _recentMenu;
+        private MenuItem _macMenuBarItem;
+        private NativeMenu _menuBar;
 
         /// <summary>Languages offered in the Language menu (culture name, native name).</summary>
         public static readonly (string Culture, string Name)[] Languages =
@@ -82,6 +85,25 @@ namespace ThemeEditor.App
             file.Items.Add(Item(MainResources.Menu_File_ShowInFolder, ShowInFolderCommand));
             file.Items.Add(sendMenu);
             file.Items.Add(new Separator());
+            if (OperatingSystem.IsMacOS())
+            {
+                var menuBar = _macMenuBarItem = new MenuItem
+                {
+                    Header = MainResources.Menu_File_MacMenuBar,
+                    ToggleType = MenuItemToggleType.CheckBox,
+                    IsChecked = Settings.Default.MacMenuBar
+                };
+                menuBar.Click += (s, e) =>
+                {
+                    // Flip the setting itself: the window menu and the menu bar tick the entry at different moments
+                    Settings.Default.MacMenuBar = !Settings.Default.MacMenuBar;
+                    Settings.Default.Save();
+                    // Not while macOS is still busy with the menu this click came from
+                    Dispatcher.UIThread.Post(PlaceMenu);
+                };
+                file.Items.Add(menuBar);
+                file.Items.Add(new Separator());
+            }
             file.Items.Add(exit);
             menu.Items.Add(file);
 
@@ -137,12 +159,24 @@ namespace ThemeEditor.App
             // ---- About
             menu.Items.Add(Item(MainResources.Menu_About, AboutCommand));
 
-            // macOS shows the menu in the menu bar at the top of the screen instead of in the window
+            PlaceMenu();
+        }
+
+        /// <summary>On macOS the menu goes into the menu bar at the top of the screen, unless the user wants it in the window.</summary>
+        private void PlaceMenu()
+        {
+            var menu = this.FindControl<Menu>("MainMenu");
+            var menuBar = OperatingSystem.IsMacOS() && Settings.Default.MacMenuBar;
+            if (_macMenuBarItem != null)
+                _macMenuBarItem.IsChecked = menuBar;
             if (OperatingSystem.IsMacOS())
             {
-                NativeMenu.SetMenu(this, NativeMenuMirror.Build(menu));
-                menu.IsVisible = false;
+                // macOS cannot swap the window's menu bar menu for another one, so there is one that is emptied or filled
+                if (_menuBar == null)
+                    NativeMenu.SetMenu(this, _menuBar = new NativeMenu());
+                NativeMenuMirror.Build(menuBar ? menu : null, _menuBar);
             }
+            menu.IsVisible = !menuBar;
         }
 
         private void AddImageMenu(MenuItem parent, TargetImage target, string headerKey, params string[] sizes)

@@ -903,4 +903,7 @@ Vuoi che l'editor la adatti?</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>La password viene inviata solo a Themezer. Con «Resta connesso» viene conservata nel portachiavi del sistema (Portachiavi, Gestione credenziali o keyring), mai nelle impostazioni di Umami. Gli account che accedono con Discord o Google devono prima impostare una password su themezer.net.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Usa la barra dei menu di macOS</value>
+  </data>
 </root>

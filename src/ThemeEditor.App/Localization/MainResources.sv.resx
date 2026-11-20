@@ -903,4 +903,7 @@ Ska redigeraren anpassa den?</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Ditt lösenord skickas bara till Themezer. Med ”Förbli inloggad” sparas det i systemets lösenordsvalv (Nyckelring, Autentiseringshanteraren eller keyring), aldrig i Umamis inställningar. Konton som loggar in med Discord eller Google måste först ange ett lösenord på themezer.net.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Använd macOS-menyraden</value>
+  </data>
 </root>

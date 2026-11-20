@@ -903,4 +903,7 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Tu contraseña solo se envía a Themezer. Con «Mantener la sesión iniciada» se guarda en el almacén de contraseñas de tu sistema (Llavero, Administrador de credenciales o keyring), nunca en los ajustes de Umami. Las cuentas que inician sesión con Discord o Google deben crear antes una contraseña en themezer.net.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Usar la barra de menús de macOS</value>
+  </data>
 </root>

@@ -903,4 +903,7 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>パスワードは Themezer にのみ送信されます。「ログインしたままにする」を選ぶと、Umami の設定ではなくシステムのパスワード保管庫（キーチェーン、資格情報マネージャー、キーリング）に保存されます。Discord または Google でログインしているアカウントは、先に themezer.net でパスワードを設定してください。</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>macOS のメニューバーを使う</value>
+  </data>
 </root>

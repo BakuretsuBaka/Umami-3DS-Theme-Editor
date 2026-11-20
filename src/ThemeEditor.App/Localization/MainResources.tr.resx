@@ -903,4 +903,7 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Parolan yalnızca Themezer'a gönderilir. "Oturumu açık tut" seçiliyse Umami ayarlarında değil, sistemin parola kasasında (Anahtar Zinciri, Kimlik Bilgileri Yöneticisi veya keyring) saklanır. Discord veya Google ile giriş yapan hesapların önce themezer.net'te bir parola belirlemesi gerekir.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>macOS menü çubuğunu kullan</value>
+  </data>
 </root>

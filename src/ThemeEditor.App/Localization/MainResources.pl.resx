@@ -903,4 +903,7 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Hasło jest wysyłane tylko do Themezer. Z opcją „Nie wylogowuj” jest przechowywane w systemowym sejfie haseł (Pęk kluczy, Menedżer poświadczeń lub keyring), nigdy w ustawieniach Umami. Konta logujące się przez Discord lub Google muszą najpierw ustawić hasło na themezer.net.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Używaj paska menu macOS</value>
+  </data>
 </root>

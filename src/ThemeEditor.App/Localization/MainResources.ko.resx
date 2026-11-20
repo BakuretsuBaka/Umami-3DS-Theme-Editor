@@ -903,4 +903,7 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>비밀번호는 Themezer에만 전송됩니다. "로그인 상태 유지"를 선택하면 Umami 설정이 아닌 시스템 비밀번호 보관소(키체인, 자격 증명 관리자 또는 키링)에 저장됩니다. Discord 또는 Google로 로그인하는 계정은 먼저 themezer.net에서 비밀번호를 설정해야 합니다.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>macOS 메뉴 막대 사용</value>
+  </data>
 </root>

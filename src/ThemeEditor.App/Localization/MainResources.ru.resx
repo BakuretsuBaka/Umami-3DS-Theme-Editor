@@ -903,4 +903,7 @@
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Пароль отправляется только в Themezer. С опцией «Не выходить» он хранится в системном хранилище паролей (Связка ключей, Диспетчер учётных данных или keyring), а не в настройках Umami. Аккаунтам, которые входят через Discord или Google, нужно сначала задать пароль на themezer.net.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Использовать строку меню macOS</value>
+  </data>
 </root>

@@ -16,9 +16,13 @@ namespace ThemeEditor.App
     /// </summary>
     internal static class NativeMenuMirror
     {
-        public static NativeMenu Build(Menu source)
+        /// <summary>Fills <paramref name="bar" /> (a new menu when null) with the menus of <paramref name="source" />; empties it when source is null.</summary>
+        public static NativeMenu Build(Menu source, NativeMenu bar = null)
         {
-            var bar = new NativeMenu();
+            bar = bar ?? new NativeMenu();
+            bar.Items.Clear();
+            if (source == null)
+                return bar;
             foreach (var top in source.Items.OfType<MenuItem>())
             {
                 // The macOS menu bar only opens menus, so an entry that is a command by itself gets a menu holding it

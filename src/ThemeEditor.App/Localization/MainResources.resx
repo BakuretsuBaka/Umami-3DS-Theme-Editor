@@ -1016,4 +1016,7 @@ Should the editor fit it for you?</value>
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>Your password is only sent to Themezer. With "Stay logged in" it is kept in your system's password vault (Keychain, Credential Manager or keyring), never in Umami's settings. Accounts that sign in with Discord or Google need to set a password on themezer.net first.</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>Use the macOS menu bar</value>
+  </data>
 </root>

@@ -903,4 +903,7 @@
   <data name="Themezer_PasswordNoteVault" xml:space="preserve">
     <value>你的密碼只會傳送給 Themezer。勾選「保持登入」後，密碼會保存在系統的密碼庫（鑰匙圈、認證管理員或金鑰圈）中，絕不會寫入 Umami 的設定。使用 Discord 或 Google 登入的帳號需要先在 themezer.net 上設定密碼。</value>
   </data>
+  <data name="Menu_File_MacMenuBar" xml:space="preserve">
+    <value>使用 macOS 選單列</value>
+  </data>
 </root>

@@ -87,10 +87,54 @@ namespace ThemeEditor.Tests
         }
 
         [AvaloniaFact]
+        public void OnMacTheMenuCanGoBackIntoTheWindow()
+        {
+            if (!OperatingSystem.IsMacOS())
+                return;
+            var settings = ThemeEditor.App.Properties.Settings.Default;
+            var saved = settings.MacMenuBar;
+            try
+            {
+                settings.MacMenuBar = true;
+                var win = new MainWindow();
+                win.Show();
+                var menu = win.FindControl<Menu>("MainMenu");
+                var file = (MenuItem) menu.Items[0];
+                var entry = file.Items.OfType<MenuItem>().Single(i => (string) i.Header == MainResources.Menu_File_MacMenuBar);
+                Assert.True(entry.IsChecked);
+
+                NativeMenuMirror.Click(entry);
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+                Assert.False(settings.MacMenuBar);
+                Assert.True(menu.IsVisible);
+                var bar = NativeMenu.GetMenu(win);
+                Assert.Empty(bar.Items);
+                Assert.False(entry.IsChecked);
+
+                NativeMenuMirror.Click(entry);
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+                Assert.True(settings.MacMenuBar);
+                Assert.False(menu.IsVisible);
+                // The same menu bar menu, filled again (macOS cannot take another one)
+                Assert.Same(bar, NativeMenu.GetMenu(win));
+                Assert.NotEmpty(bar.Items);
+                Assert.True(entry.IsChecked);
+            }
+            finally
+            {
+                settings.MacMenuBar = saved;
+            }
+        }
+
+        [AvaloniaFact]
         public void OnMacTheMenuMovesToTheMenuBar()
         {
+            var settings = ThemeEditor.App.Properties.Settings.Default;
+            var saved = settings.MacMenuBar;
+            settings.MacMenuBar = true;
             var win = new MainWindow();
             win.Show();
+            settings.MacMenuBar = saved;
             var menu = win.FindControl<Menu>("MainMenu");
             var bar = NativeMenu.GetMenu(win);
             if (OperatingSystem.IsMacOS())

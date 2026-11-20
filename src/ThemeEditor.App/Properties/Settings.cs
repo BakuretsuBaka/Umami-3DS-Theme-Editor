@@ -42,6 +42,7 @@ namespace ThemeEditor.App.Properties
         private string _bothScreensModel = "New 3DS XL";
         private string _themezerEmail = string.Empty;
         private bool _themezerStayLoggedIn = true;
+        private bool _macMenuBar = true;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -164,6 +165,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _themezerStayLoggedIn; }
             set { Set(ref _themezerStayLoggedIn, value); }
+        }
+
+        /// <summary>On macOS: menus in the system menu bar at the top of the screen (otherwise in the window, as elsewhere).</summary>
+        public bool MacMenuBar
+        {
+            get { return _macMenuBar; }
+            set { Set(ref _macMenuBar, value); }
         }
 
         public double Window_Height
