@@ -897,4 +897,10 @@ Zal de editor hem passend maken?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Ingelogd blijven</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Je wachtwoord wordt alleen naar Themezer gestuurd. Met ‘Ingelogd blijven’ wordt het bewaard in de wachtwoordkluis van je systeem (Sleutelhanger, Referentiebeheer of keyring), nooit in de instellingen van Umami. Accounts die inloggen met Discord of Google moeten eerst een wachtwoord instellen op themezer.net.</value>
+  </data>
 </root>

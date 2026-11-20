@@ -65,13 +65,22 @@ namespace ThemeEditor.App
         public static ThemezerClient Shared => _shared ?? (_shared = new ThemezerClient());
 
         private readonly HttpClient _http;
+        private readonly CookieContainer _cookies;
+        private static readonly Uri ApiUri = new Uri(ApiUrl);
+        private const string SessionCookie = "connect.sid";
 
         /// <summary>Who is logged in, or null.</summary>
         public string Username { get; private set; }
 
-        public ThemezerClient(HttpMessageHandler handler = null)
+        /// <param name="cookies">The cookies <paramref name="handler" /> keeps, when it is given (for tests).</param>
+        public ThemezerClient(HttpMessageHandler handler = null, CookieContainer cookies = null)
         {
-            handler = handler ?? new HttpClientHandler { CookieContainer = new CookieContainer(), UseCookies = true };
+            _cookies = cookies;
+            if (handler == null)
+            {
+                _cookies = new CookieContainer();
+                handler = new HttpClientHandler { CookieContainer = _cookies, UseCookies = true };
+            }
             _http = new HttpClient(handler) { Timeout = TimeSpan.FromMinutes(3) };
             _http.DefaultRequestHeaders.UserAgent.ParseAdd("UmamiThemeEditor/" + Update.AppVersion);
             // Apollo's CSRF protection lets file uploads through only with this header
@@ -84,6 +93,23 @@ namespace ThemeEditor.App
                 "mutation($d:LoginUserInput!){ auth { login(data:$d) { username } } }",
                 new JObject { ["d"] = new JObject { ["email"] = email, ["password"] = password } }));
             Username = (string) data.SelectToken("auth.login.username");
+            return Username;
+        }
+
+        /// <summary>The login session, to be kept in the password vault and resumed on the next start (null when none).</summary>
+        public string Session => _cookies?.GetCookies(ApiUri)[SessionCookie]?.Value;
+
+        /// <summary>
+        ///     Resumes a saved session; returns who is logged in, or null when Themezer no longer knows the session (it
+        ///     expired or was logged out elsewhere).
+        /// </summary>
+        public async Task<string> Resume(string session)
+        {
+            if (string.IsNullOrEmpty(session))
+                return null;
+            _cookies?.Add(ApiUri, new Cookie(SessionCookie, session, "/"));
+            var data = await Send(Json("{ auth { me { username } } }", null));
+            Username = (string) data.SelectToken("auth.me.username");
             return Username;
         }
 

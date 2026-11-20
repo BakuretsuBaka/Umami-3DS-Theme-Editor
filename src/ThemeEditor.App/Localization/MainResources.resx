@@ -1010,4 +1010,10 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Stay logged in</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Your password is only sent to Themezer. With "Stay logged in" it is kept in your system's password vault (Keychain, Credential Manager or keyring), never in Umami's settings. Accounts that sign in with Discord or Google need to set a password on themezer.net first.</value>
+  </data>
 </root>

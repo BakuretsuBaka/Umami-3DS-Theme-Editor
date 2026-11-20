@@ -897,4 +897,10 @@ Ska redigeraren anpassa den?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Förbli inloggad</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Ditt lösenord skickas bara till Themezer. Med ”Förbli inloggad” sparas det i systemets lösenordsvalv (Nyckelring, Autentiseringshanteraren eller keyring), aldrig i Umamis inställningar. Konton som loggar in med Discord eller Google måste först ange ett lösenord på themezer.net.</value>
+  </data>
 </root>

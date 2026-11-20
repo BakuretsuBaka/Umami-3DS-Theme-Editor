@@ -2062,5 +2062,19 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Themezer_StayLoggedIn".</summary>
+        public static string Themezer_StayLoggedIn {
+            get {
+                return ResourceManager.GetString("Themezer_StayLoggedIn", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_PasswordNoteVault".</summary>
+        public static string Themezer_PasswordNoteVault {
+            get {
+                return ResourceManager.GetString("Themezer_PasswordNoteVault", resourceCulture);
+            }
+        }
+
     }
 }

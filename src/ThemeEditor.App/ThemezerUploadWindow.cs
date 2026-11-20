@@ -17,12 +17,14 @@ namespace ThemeEditor.App
     internal sealed class ThemezerUploadWindow : Window
     {
         private readonly ThemezerClient _client;
+        private readonly ICredentialStore _vault;
         private readonly Func<Task<MainWindow.ThemePackage>> _buildPackage;
 
         private readonly StackPanel _loginPanel;
         private readonly TextBox _email;
         private readonly TextBox _password;
         private readonly Button _logIn;
+        private readonly CheckBox _stay;
         private readonly StackPanel _accountPanel;
         private readonly TextBlock _account;
 
@@ -42,10 +44,12 @@ namespace ThemeEditor.App
 
         /// <param name="hasBgm">Whether the theme has music (then the music info field is shown).</param>
         /// <param name="buildPackage">Compresses the theme and renders its preview and icon when the upload starts.</param>
-        public ThemezerUploadWindow(ThemezerClient client, string name, string description, bool hasBgm,
+        /// <param name="vault">Where "Stay logged in" keeps the password and session (the system's password vault).</param>
+        public ThemezerUploadWindow(ThemezerClient client, ICredentialStore vault, string name, string description, bool hasBgm,
             Func<Task<MainWindow.ThemePackage>> buildPackage)
         {
             _client = client;
+            _vault = vault;
             _buildPackage = buildPackage;
             Title = MainResources.Themezer_Title;
             Width = 480;
@@ -57,7 +61,7 @@ namespace ThemeEditor.App
             // ---- Account
             _email = new TextBox {Text = Settings.Default.Themezer_Email, Watermark = MainResources.Themezer_Email};
             _password = new TextBox {PasswordChar = '•', Watermark = MainResources.Themezer_Password};
-            _logIn = new Button {Content = MainResources.Themezer_LogIn, HorizontalAlignment = HorizontalAlignment.Right, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center};
+            _logIn = new Button {Content = MainResources.Themezer_LogIn, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center};
             _logIn.Click += async (s, e) => await LogIn();
             _password.KeyDown += async (s, e) =>
             {
@@ -67,14 +71,19 @@ namespace ThemeEditor.App
                     await LogIn();
                 }
             };
+            _stay = new CheckBox {Content = MainResources.Themezer_StayLoggedIn, IsChecked = Settings.Default.Themezer_StayLoggedIn, IsVisible = vault.IsAvailable};
+            var logInRow = new DockPanel();
+            DockPanel.SetDock(_logIn, Dock.Right);
+            logInRow.Children.Add(_logIn);
+            logInRow.Children.Add(_stay);
             _loginPanel = new StackPanel
             {
                 Spacing = 6,
                 Children =
                 {
                     _email, _password,
-                    new TextBlock {Text = MainResources.Themezer_PasswordNote, TextWrapping = TextWrapping.Wrap, Opacity = 0.7, FontSize = 12},
-                    _logIn
+                    new TextBlock {Text = vault.IsAvailable ? MainResources.Themezer_PasswordNoteVault : MainResources.Themezer_PasswordNote, TextWrapping = TextWrapping.Wrap, Opacity = 0.7, FontSize = 12},
+                    logInRow
                 }
             };
 
@@ -137,8 +146,14 @@ namespace ThemeEditor.App
                 }
             };
             Refresh();
-            Opened += (s, e) =>
+            Opened += async (s, e) =>
             {
+                if (_client.Username == null && Saved)
+                    await Run(MainResources.Themezer_LoggingIn, async () =>
+                    {
+                        await Resume();
+                        ShowStatus(null, false);
+                    });
                 if (_client.Username != null)
                     _tags.Focus();
                 else if (string.IsNullOrEmpty(_email.Text))
@@ -198,6 +213,52 @@ namespace ThemeEditor.App
             }
         }
 
+        private static string Email => Settings.Default.Themezer_Email;
+        private static string SessionAccount => Email + "#session";
+
+        /// <summary>Whether "Stay logged in" left a login in the password vault.</summary>
+        private bool Saved => _vault.IsAvailable && Settings.Default.Themezer_StayLoggedIn && !string.IsNullOrEmpty(Email);
+
+        /// <summary>Logs in from the vault: the saved session if Themezer still knows it, otherwise the saved password.</summary>
+        internal async Task<bool> Resume()
+        {
+            if (!Saved)
+                return false;
+            var session = _vault.Read(SessionAccount);
+            if (session != null && await _client.Resume(session) != null)
+                return true;
+            var password = _vault.Read(Email);
+            if (password == null)
+                return false;
+            try
+            {
+                await _client.LogIn(Email, password);
+            }
+            catch (ThemezerException ex) when (ex.Code == "INVALID_CREDENTIALS")
+            {
+                // The password was changed on Themezer: forget it, so the user types the new one
+                Forget();
+                throw;
+            }
+            KeepSession();
+            return true;
+        }
+
+        private void KeepSession()
+        {
+            var session = _client.Session;
+            if (Saved && session != null)
+                _vault.Write(SessionAccount, session);
+        }
+
+        private void Forget()
+        {
+            if (!_vault.IsAvailable || string.IsNullOrEmpty(Email))
+                return;
+            _vault.Delete(Email);
+            _vault.Delete(SessionAccount);
+        }
+
         private async Task LogIn()
         {
             if (_busy || _client.Username != null)
@@ -205,11 +266,19 @@ namespace ThemeEditor.App
             var email = (_email.Text ?? string.Empty).Trim();
             if (email.Length == 0 || string.IsNullOrEmpty(_password.Text))
                 return;
+            var password = _password.Text;
             await Run(MainResources.Themezer_LoggingIn, async () =>
             {
-                await _client.LogIn(email, _password.Text);
+                await _client.LogIn(email, password);
+                Forget();
                 Settings.Default.Themezer_Email = email;
+                Settings.Default.Themezer_StayLoggedIn = _stay.IsChecked == true;
                 Settings.Default.Save();
+                if (Saved)
+                {
+                    _vault.Write(email, password);
+                    KeepSession();
+                }
                 ShowStatus(null, false);
             });
             _password.Text = string.Empty;
@@ -221,6 +290,7 @@ namespace ThemeEditor.App
         {
             if (_busy)
                 return;
+            Forget();
             await Run(null, () => _client.LogOut());
             ShowStatus(null, false);
         }
@@ -249,7 +319,7 @@ namespace ThemeEditor.App
             await Run(MainResources.Themezer_Uploading, async () =>
             {
                 var package = await _buildPackage();
-                var theme = await _client.UploadTheme(new ThemezerUpload
+                var upload = new ThemezerUpload
                 {
                     Name = _name.Text.Trim(),
                     Description = _description.Text,
@@ -261,7 +331,20 @@ namespace ThemeEditor.App
                     Bgm = package.Bgm,
                     Preview = package.Preview,
                     Icon = package.Icon
-                });
+                };
+                ThemezerTheme theme;
+                try
+                {
+                    theme = await _client.UploadTheme(upload);
+                }
+                catch (ThemezerException ex) when (ex.Code == "UNAUTHENTICATED" && Saved)
+                {
+                    // The session ran out while the dialog was open: log in again from the vault and try once more
+                    if (!await Resume())
+                        throw;
+                    theme = await _client.UploadTheme(upload);
+                }
+                KeepSession();
                 _pageUrl = string.IsNullOrEmpty(theme.PageUrl) ? ThemezerClient.SiteUrl : theme.PageUrl;
                 ShowStatus(MainResources.Themezer_Uploaded, false);
             });

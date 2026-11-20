@@ -897,4 +897,10 @@
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Не выходить</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Пароль отправляется только в Themezer. С опцией «Не выходить» он хранится в системном хранилище паролей (Связка ключей, Диспетчер учётных данных или keyring), а не в настройках Umami. Аккаунтам, которые входят через Discord или Google, нужно сначала задать пароль на themezer.net.</value>
+  </data>
 </root>

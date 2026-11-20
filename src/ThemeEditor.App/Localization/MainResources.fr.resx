@@ -897,4 +897,10 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer : {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Rester connecté</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Ton mot de passe est envoyé uniquement à Themezer. Avec « Rester connecté », il est conservé dans le coffre à mots de passe de ton système (Trousseau, Gestionnaire d'identification ou keyring), jamais dans les réglages d'Umami. Les comptes qui se connectent avec Discord ou Google doivent d'abord définir un mot de passe sur themezer.net.</value>
+  </data>
 </root>

@@ -41,6 +41,7 @@ namespace ThemeEditor.App.Properties
         private int _previewZoomRows = 3;
         private string _bothScreensModel = "New 3DS XL";
         private string _themezerEmail = string.Empty;
+        private bool _themezerStayLoggedIn = true;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -151,11 +152,18 @@ namespace ThemeEditor.App.Properties
             set { Set(ref _bothScreensModel, BothScreens.Find(value).Name); }
         }
 
-        /// <summary>Email of the last Themezer login (the password is never stored).</summary>
+        /// <summary>Email of the last Themezer login (the password and session only ever go into the system's password vault).</summary>
         public string Themezer_Email
         {
             get { return _themezerEmail; }
             set { Set(ref _themezerEmail, value ?? string.Empty); }
+        }
+
+        /// <summary>Whether the Themezer login is kept in the system's password vault and resumed on the next start.</summary>
+        public bool Themezer_StayLoggedIn
+        {
+            get { return _themezerStayLoggedIn; }
+            set { Set(ref _themezerStayLoggedIn, value); }
         }
 
         public double Window_Height

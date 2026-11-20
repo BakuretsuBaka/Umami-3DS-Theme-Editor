@@ -897,4 +897,10 @@ O editor deve ajustá-la para você?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Manter conectado</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Sua senha é enviada apenas ao Themezer. Com "Manter conectado", ela fica no cofre de senhas do sistema (Chaves, Gerenciador de Credenciais ou keyring), nunca nas configurações do Umami. Contas que entram com Discord ou Google precisam definir uma senha em themezer.net primeiro.</value>
+  </data>
 </root>

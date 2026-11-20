@@ -897,4 +897,10 @@ Soll der Editor es anpassen?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Angemeldet bleiben</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Dein Passwort wird nur an Themezer gesendet. Mit „Angemeldet bleiben“ liegt es im Passwortspeicher deines Systems (Schlüsselbund, Anmeldeinformationsverwaltung oder Keyring), nie in Umamis Einstellungen. Konten, die sich mit Discord oder Google anmelden, müssen zuerst auf themezer.net ein Passwort festlegen.</value>
+  </data>
 </root>

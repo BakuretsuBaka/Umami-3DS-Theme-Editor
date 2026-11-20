@@ -897,4 +897,10 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
+  <data name="Themezer_StayLoggedIn" xml:space="preserve">
+    <value>Nie wylogowuj</value>
+  </data>
+  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
+    <value>Hasło jest wysyłane tylko do Themezer. Z opcją „Nie wylogowuj” jest przechowywane w systemowym sejfie haseł (Pęk kluczy, Menedżer poświadczeń lub keyring), nigdy w ustawieniach Umami. Konta logujące się przez Discord lub Google muszą najpierw ustawić hasło na themezer.net.</value>
+  </data>
 </root>

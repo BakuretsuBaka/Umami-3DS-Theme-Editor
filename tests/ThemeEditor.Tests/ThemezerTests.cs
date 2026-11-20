@@ -25,6 +25,9 @@ namespace ThemeEditor.Tests
             public readonly List<JObject> Operations = new List<JObject>();
             public readonly List<Dictionary<string, (string FileName, byte[] Data)>> Parts = new List<Dictionary<string, (string, byte[])>>();
             public Func<JObject, string> Answer = op => "{\"data\":{}}";
+            /// <summary>When set, a successful login hands out this session cookie, as the real server does.</summary>
+            public CookieContainer Cookies;
+            public string NewSession = "fresh-session";
 
             protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
             {
@@ -44,11 +47,118 @@ namespace ThemeEditor.Tests
                     operation = JObject.Parse(await request.Content.ReadAsStringAsync());
                 Operations.Add(operation);
                 Parts.Add(parts);
+                var answer = Answer(operation);
+                if (Cookies != null && answer.Contains("\"login\":{"))
+                    Cookies.Add(new Uri(ThemezerClient.ApiUrl), new Cookie("connect.sid", NewSession, "/"));
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new StringContent(Answer(operation), Encoding.UTF8, "application/json")
+                    Content = new StringContent(answer, Encoding.UTF8, "application/json")
                 };
             }
+        }
+
+        /// <summary>A password vault in memory.</summary>
+        private sealed class MemoryVault : ICredentialStore
+        {
+            public readonly Dictionary<string, string> Secrets = new Dictionary<string, string>();
+            public bool IsAvailable => true;
+            public string Read(string account) => Secrets.TryGetValue(account, out var s) ? s : null;
+            public bool Write(string account, string secret) { Secrets[account] = secret; return true; }
+            public void Delete(string account) => Secrets.Remove(account);
+        }
+
+        private const string Me = "{\"data\":{\"auth\":{\"me\":{\"username\":\"Tester\"}}}}";
+        private const string NoOne = "{\"data\":{\"auth\":{\"me\":null}}}";
+        private const string LoginOk = "{\"data\":{\"auth\":{\"login\":{\"username\":\"Tester\"}}}}";
+        private const string LoginWrong = "{\"errors\":[{\"message\":\"Invalid email or password\",\"extensions\":{\"code\":\"INVALID_CREDENTIALS\"}}]}";
+
+        /// <summary>Runs <paramref name="test" /> with a remembered Themezer login for me@example.com, then restores the settings.</summary>
+        private static async Task WithSavedLogin(Func<Task> test)
+        {
+            var s = ThemeEditor.App.Properties.Settings.Default;
+            var (email, stay) = (s.Themezer_Email, s.Themezer_StayLoggedIn);
+            s.Themezer_Email = "me@example.com";
+            s.Themezer_StayLoggedIn = true;
+            try
+            {
+                await test();
+            }
+            finally
+            {
+                s.Themezer_Email = email;
+                s.Themezer_StayLoggedIn = stay;
+            }
+        }
+
+        private static ThemezerUploadWindow Dialog(ThemezerClient client, ICredentialStore vault) =>
+            new ThemezerUploadWindow(client, vault, "Pink Clouds", "", false, () => Task.FromResult(new MainWindow.ThemePackage()));
+
+        [AvaloniaFact]
+        public Task AStillValidSessionLogsInWithoutThePassword() => WithSavedLogin(async () =>
+        {
+            var fake = new FakeThemezer {Answer = op => ((string) op["query"]).Contains("me {") ? Me : LoginOk};
+            var vault = new MemoryVault {Secrets = {["me@example.com"] = "secret", ["me@example.com#session"] = "old-session"}};
+            var client = new ThemezerClient(fake);
+            Assert.True(await Dialog(client, vault).Resume());
+            Assert.Equal("Tester", client.Username);
+            Assert.DoesNotContain(fake.Operations, op => ((string) op["query"]).Contains("login"));
+        });
+
+        [AvaloniaFact]
+        public Task AnExpiredSessionLogsInWithTheSavedPasswordAndKeepsTheNewSession() => WithSavedLogin(async () =>
+        {
+            var cookies = new CookieContainer();
+            var fake = new FakeThemezer {Cookies = cookies, Answer = op => ((string) op["query"]).Contains("me {") ? NoOne : LoginOk};
+            var vault = new MemoryVault {Secrets = {["me@example.com"] = "secret", ["me@example.com#session"] = "old-session"}};
+            var client = new ThemezerClient(fake, cookies);
+            Assert.True(await Dialog(client, vault).Resume());
+            Assert.Equal("Tester", client.Username);
+            Assert.Equal("secret", (string) fake.Operations.Last()["variables"]["d"]["password"]);
+            Assert.Equal("fresh-session", vault.Read("me@example.com#session"));
+        });
+
+        [AvaloniaFact]
+        public Task APasswordChangedOnThemezerIsForgotten() => WithSavedLogin(async () =>
+        {
+            var fake = new FakeThemezer {Answer = op => ((string) op["query"]).Contains("me {") ? NoOne : LoginWrong};
+            var vault = new MemoryVault {Secrets = {["me@example.com"] = "old-password", ["me@example.com#session"] = "old-session"}};
+            var client = new ThemezerClient(fake);
+            await Assert.ThrowsAsync<ThemezerException>(() => Dialog(client, vault).Resume());
+            Assert.Null(client.Username);
+            Assert.Empty(vault.Secrets);
+        });
+
+        [AvaloniaFact]
+        public Task WithoutStayLoggedInNothingIsResumed() => WithSavedLogin(async () =>
+        {
+            ThemeEditor.App.Properties.Settings.Default.Themezer_StayLoggedIn = false;
+            var fake = new FakeThemezer();
+            var vault = new MemoryVault {Secrets = {["me@example.com"] = "secret"}};
+            Assert.False(await Dialog(new ThemezerClient(fake), vault).Resume());
+            Assert.Empty(fake.Operations);
+        });
+
+        /// <summary>Writes, reads and deletes a test entry in the real password vault (opt in: UMAMI_TEST_VAULT=1).</summary>
+        [Fact]
+        public void TheSystemVaultKeepsAndForgetsASecret()
+        {
+            if (Environment.GetEnvironmentVariable("UMAMI_TEST_VAULT") != "1")
+                return;
+            var vault = CredentialStore.System;
+            Assert.True(vault.IsAvailable);
+            const string account = "umami-test@example.invalid";
+            try
+            {
+                Assert.True(vault.Write(account, "first"));
+                Assert.Equal("first", vault.Read(account));
+                Assert.True(vault.Write(account, "second ünïcode"));
+                Assert.Equal("second ünïcode", vault.Read(account));
+            }
+            finally
+            {
+                vault.Delete(account);
+            }
+            Assert.Null(vault.Read(account));
         }
 
         private static async Task<(ThemezerClient, FakeThemezer)> LoggedIn()
@@ -178,7 +288,7 @@ namespace ThemeEditor.Tests
         public void TheDialogAsksToLogInAndNeedsATag()
         {
             var client = new ThemezerClient(new FakeThemezer());
-            var window = new ThemezerUploadWindow(client, "Pink Clouds", "", true,
+            var window = new ThemezerUploadWindow(client, new MemoryVault(), "Pink Clouds", "", true,
                 () => Task.FromResult(new MainWindow.ThemePackage()));
             window.Show();
             var texts = window.GetLogicalDescendants().OfType<TextBox>().ToList();
