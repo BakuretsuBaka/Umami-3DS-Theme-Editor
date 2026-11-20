@@ -136,6 +136,13 @@ namespace ThemeEditor.App
 
             // ---- About
             menu.Items.Add(Item(MainResources.Menu_About, AboutCommand));
+
+            // macOS shows the menu in the menu bar at the top of the screen instead of in the window
+            if (OperatingSystem.IsMacOS())
+            {
+                NativeMenu.SetMenu(this, NativeMenuMirror.Build(menu));
+                menu.IsVisible = false;
+            }
         }
 
         private void AddImageMenu(MenuItem parent, TargetImage target, string headerKey, params string[] sizes)

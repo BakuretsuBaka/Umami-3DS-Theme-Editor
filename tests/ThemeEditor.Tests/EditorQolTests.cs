@@ -151,9 +151,11 @@ namespace ThemeEditor.Tests
                     var win = new MainWindow();
                     win.Width = win.MinWidth;
                     win.Show();
+                    // On macOS the menu lives in the menu bar; the window menu is what Windows and Linux show, so measure it anyway
+                    var menu = win.FindControl<Avalonia.Controls.Menu>("MainMenu");
+                    menu.IsVisible = true;
                     Dispatcher.UIThread.RunJobs();
                     Avalonia.Headless.AvaloniaHeadlessPlatform.ForceRenderTimerTick();
-                    var menu = win.FindControl<Avalonia.Controls.Menu>("MainMenu");
                     // Items that run past the menu bar end up hidden under the preview panel or the window edge
                     var menuRight = menu.TranslatePoint(new Avalonia.Point(menu.Bounds.Width, 0), win).Value.X;
                     Assert.True(menuRight <= win.Bounds.Width + 0.5);
