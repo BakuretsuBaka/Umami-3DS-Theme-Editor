@@ -1019,4 +1019,34 @@ Should the editor fit it for you?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Use the macOS menu bar</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Download the resource pack ({0} MB) – ready-made folders, icons, sound effects and music</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>A newer resource pack is available ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Downloading the resource pack... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Resource pack installed.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>The resource pack could not be installed: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Remove resource pack</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Remove the downloaded resource pack? Your own imports stay. You can download it again any time.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Resource pack removed.</value>
+  </data>
 </root>

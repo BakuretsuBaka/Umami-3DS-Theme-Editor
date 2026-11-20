@@ -31,7 +31,7 @@
     <ProjectReference Include="..\ThemeEditor.Common\ThemeEditor.Common.csproj" />
   </ItemGroup>
 
-  <!-- The resource library data pack (textures, sound effects, music) is downloaded by packaging/package.sh into library-pack/ and shipped next to the executable -->
+  <!-- Releases do not ship the resource library pack (the editor downloads it on request); an unpacked copy in library-pack/ is still copied next to a local build -->
   <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\library-pack\index.json')">
     <Content Include="..\..\library-pack\**\*" Link="Library\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

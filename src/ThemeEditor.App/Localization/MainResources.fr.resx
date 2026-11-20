@@ -906,4 +906,34 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Utiliser la barre des menus de macOS</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Télécharger le pack de ressources ({0} Mo) – dossiers, icônes, effets sonores et musiques prêts à l'emploi</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Télécharger</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Un pack de ressources plus récent est disponible ({0} Mo).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Téléchargement du pack de ressources... {0} %</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Pack de ressources installé.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Impossible d'installer le pack de ressources : {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Supprimer le pack de ressources</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Supprimer le pack de ressources téléchargé ? Tes propres imports sont conservés. Tu peux le retélécharger à tout moment.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Pack de ressources supprimé.</value>
+  </data>
 </root>

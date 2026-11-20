@@ -906,4 +906,34 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS のメニューバーを使う</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>リソースパックをダウンロード（{0} MB）– 既製のフォルダー、アイコン、効果音、音楽</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>ダウンロード</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>新しいリソースパックがあります（{0} MB）。</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>リソースパックをダウンロード中... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>リソースパックをインストールしました。</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>リソースパックをインストールできませんでした: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>リソースパックを削除</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>ダウンロードしたリソースパックを削除しますか？自分でインポートしたものは残ります。いつでも再ダウンロードできます。</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>リソースパックを削除しました。</value>
+  </data>
 </root>

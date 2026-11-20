@@ -906,4 +906,34 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS menü çubuğunu kullan</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Kaynak paketini indir ({0} MB) – hazır klasörler, simgeler, ses efektleri ve müzik</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>İndir</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Daha yeni bir kaynak paketi var ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Kaynak paketi indiriliyor... %{0}</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Kaynak paketi yüklendi.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Kaynak paketi yüklenemedi: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Kaynak paketini kaldır</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>İndirilen kaynak paketi kaldırılsın mı? Kendi içe aktardıkların kalır. İstediğin zaman yeniden indirebilirsin.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Kaynak paketi kaldırıldı.</value>
+  </data>
 </root>

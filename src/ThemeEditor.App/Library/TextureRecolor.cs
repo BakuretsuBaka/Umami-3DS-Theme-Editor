@@ -19,7 +19,8 @@ namespace ThemeEditor.App.Library
 
         /// <summary>
         ///     Returns a recoloured copy. <paramref name="hue" /> is in degrees, <paramref name="saturation" /> a factor
-        ///     (1 = unchanged) and <paramref name="brightness" /> an offset in [-1, 1].
+        ///     (1 = unchanged) and <paramref name="brightness" /> in [-1, 1]: below 0 the colours are scaled towards black,
+        ///     above 0 blended towards white, so nothing clips and the contrast within the texture is kept.
         /// </summary>
         public static SKBitmap Apply(SKBitmap src, float hue, float saturation = 1f, float brightness = 0f)
         {
@@ -50,12 +51,17 @@ namespace ThemeEditor.App.Library
             for (var c = 0; c < 3; c++)
                 m[r * 3 + c] = sat[r * 3] * h[c] + sat[r * 3 + 1] * h[3 + c] + sat[r * 3 + 2] * h[6 + c];
 
-            var b = brightness * 255f;
+            // c * scale + offset: darker is c * (1 + b), lighter is c * (1 - b) + b (Skia's colour matrix offsets are 0..1,
+            // not 0..255: scaling them by 255 turned the slightest nudge into a white or black texture)
+            var scale = brightness < 0 ? 1 + brightness : 1 - brightness;
+            var offset = brightness > 0 ? brightness : 0f;
+            for (var i = 0; i < 9; i++)
+                m[i] *= scale;
             var matrix = new[]
             {
-                m[0], m[1], m[2], 0, b,
-                m[3], m[4], m[5], 0, b,
-                m[6], m[7], m[8], 0, b,
+                m[0], m[1], m[2], 0, offset,
+                m[3], m[4], m[5], 0, offset,
+                m[6], m[7], m[8], 0, offset,
                 0, 0, 0, 1, 0
             };
             var result = new SKBitmap(src.Width, src.Height, SKColorType.Bgra8888, SKAlphaType.Premul);

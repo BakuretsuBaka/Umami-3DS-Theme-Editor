@@ -67,9 +67,16 @@ namespace ThemeEditor.App.Library
         private SKBitmap _srcA, _srcB;
         private bool _updatingSliders;
         private CancellationTokenSource _importCts;
+        private readonly LibraryPack _pack;
+        private readonly TextBlock _packText = new TextBlock { VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap };
+        private readonly Button _packButton = new Button { MinWidth = 110, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
+        private readonly Border _packBar = new Border { Padding = new Thickness(12, 8), Margin = new Thickness(10, 0, 10, 6), CornerRadius = new CornerRadius(4), IsVisible = false };
+        private PackRelease _latest;
+        private CancellationTokenSource _packCts;
 
-        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target)
+        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target, LibraryPack pack = null)
         {
+            _pack = pack ?? LibraryPack.Default;
             _lib = lib;
             _target = target;
             Title = MainResources.Library_Title;
@@ -98,7 +105,11 @@ namespace ThemeEditor.App.Library
             importThemes.Click += async (_, __) => await ImportFolder();
             var purge = new MenuItem { Header = MainResources.Library_PurgeMenu };
             purge.Click += async (_, __) => await PurgeLibrary();
-            _import.Flyout = new MenuFlyout { Items = { importPack, importFiles, new Separator(), importThemes, new Separator(), purge } };
+            var removePack = new MenuItem { Header = MainResources.Library_Pack_RemoveMenu };
+            removePack.Click += async (_, __) => await RemovePack();
+            var importMenu = new MenuFlyout { Items = { importPack, importFiles, new Separator(), importThemes, new Separator(), removePack, purge } };
+            importMenu.Opening += (_, __) => removePack.IsVisible = _pack.IsInstalled;
+            _import.Flyout = importMenu;
 
             // Presets only / my own imports only (remembered)
             _show.ItemsSource = new[] { MainResources.Library_Show_All, MainResources.Library_Show_Presets, MainResources.Library_Show_Mine };
@@ -161,16 +172,30 @@ namespace ThemeEditor.App.Library
             bottom.Children.Add(_status);
             bottom.Children.Add(_progress);
 
+            // The ready-made presets are a separate download: offered here until installed, and when there is a newer one
+            var packRow = new DockPanel();
+            DockPanel.SetDock(_packButton, Dock.Right);
+            _packButton.Margin = new Thickness(12, 0, 0, 0);
+            packRow.Children.Add(_packButton);
+            packRow.Children.Add(_packText);
+            _packBar.Child = packRow;
+            _packBar.Background = new SolidColorBrush(Color.FromArgb(40, 70, 130, 180));
+            _packButton.Click += async (_, __) => await DownloadPack();
+
             var root = new DockPanel();
             DockPanel.SetDock(toolbar, Dock.Top);
+            DockPanel.SetDock(_packBar, Dock.Top);
             DockPanel.SetDock(bottom, Dock.Bottom);
             root.Children.Add(toolbar);
+            root.Children.Add(_packBar);
             root.Children.Add(bottom);
             root.Children.Add(body);
             Content = root;
 
+            Opened += async (_, __) => await CheckPack();
             Closed += (_, __) =>
             {
+                _packCts?.Cancel();
                 _importCts?.Cancel();
                 _player.Dispose();
             };
@@ -348,7 +373,7 @@ namespace ThemeEditor.App.Library
 
             _hue = new Slider { Minimum = -180, Maximum = 180, Value = 0, Width = 280 };
             _sat = new Slider { Minimum = 0, Maximum = 2, Value = 1, Width = 280 };
-            _bright = new Slider { Minimum = -0.5, Maximum = 0.5, Value = 0, Width = 280 };
+            _bright = new Slider { Minimum = -0.4, Maximum = 0.4, Value = 0, Width = 280 };
             foreach (var s in new[] { _hue, _sat, _bright })
                 s.PropertyChanged += (_, e) => { if (e.Property == Avalonia.Controls.Primitives.RangeBase.ValueProperty && !_updatingSliders) UpdateTexturePreview(); };
             Control Row(string label, Slider s)
@@ -625,6 +650,89 @@ namespace ThemeEditor.App.Library
             Refresh();
         }
 
+        // ---------------------------------------------------------------- Resource pack
+
+        private static string Megabytes(long bytes) => (bytes / (1024.0 * 1024.0)).ToString("0");
+
+        /// <summary>Shows the download offer when the pack is missing, and the update offer when GitHub has a newer one.</summary>
+        internal async Task CheckPack()
+        {
+            ShowPackState();
+            _latest = await _pack.Latest();
+            ShowPackState();
+        }
+
+        private void ShowPackState()
+        {
+            if (_packCts != null)
+                return;
+            var update = _pack.IsUpdate(_latest);
+            _packBar.IsVisible = !_pack.IsInstalled || update;
+            var size = _latest != null && _latest.Size > 0 ? Megabytes(_latest.Size) : "~175";
+            _packText.Text = update ? string.Format(MainResources.Library_Pack_Update, size) : string.Format(MainResources.Library_Pack_Offer, size);
+            _packButton.Content = update ? MainResources.Library_Pack_UpdateButton : MainResources.Library_Pack_Download;
+        }
+
+        private async Task DownloadPack()
+        {
+            if (_packCts != null)
+            {
+                _packCts.Cancel();
+                return;
+            }
+            _packCts = new CancellationTokenSource();
+            _packButton.Content = MainResources.Dialog_Cancel;
+            _progress.Value = 0;
+            _progress.IsVisible = true;
+            var progress = new Progress<double>(p =>
+            {
+                _progress.Value = p;
+                _packText.Text = string.Format(MainResources.Library_Pack_Downloading, (int) (p * 100));
+            });
+            string message = null;
+            try
+            {
+                var release = _latest ?? await _pack.Latest() ?? new PackRelease { Url = LibraryPackFallbackUrl };
+                await _pack.Install(release, progress, _packCts.Token);
+                _lib.Load(!Properties.Settings.Default.Library_HideBundled);
+                message = MainResources.Library_Pack_Installed;
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            catch (Exception ex)
+            {
+                message = string.Format(MainResources.Library_Pack_Failed, ex.Message);
+            }
+            _packCts = null;
+            _progress.IsVisible = false;
+            ShowPackState();
+            Refresh();
+            if (message != null)
+                _status.Text = message;
+        }
+
+        private const string LibraryPackFallbackUrl = "https://github.com/BakuretsuBaka/Umami-3DS-Theme-Editor/releases/download/library-pack/" + LibraryPack.AssetName;
+
+        private async Task RemovePack()
+        {
+            if (!_pack.IsInstalled || !await Dialogs.Confirm(this, MainResources.Library_Pack_RemoveConfirm, Title))
+                return;
+            try
+            {
+                await Task.Run(() => _pack.Remove());
+            }
+            catch (Exception ex)
+            {
+                _status.Text = ex.Message;
+                return;
+            }
+            _lib.Load(!Properties.Settings.Default.Library_HideBundled);
+            ShowPackState();
+            Refresh();
+            _status.Text = MainResources.Library_Pack_Removed;
+        }
+
         /// <summary>Frees disk space: deletes what the user imported, or everything including the presets that ship with the editor.</summary>
         private async Task PurgeLibrary()
         {
@@ -648,7 +756,16 @@ namespace ThemeEditor.App.Library
             var hidden = false;
             if (choice == 1 && bundled.Count > 0)
             {
-                if (ResourceLibrary.CanDeleteBundled())
+                if (_pack.IsInstalled && ResourceLibrary.BundledRoot == _pack.Root)
+                {
+                    // The downloaded pack goes as a whole, so the download is offered again
+                    await Task.Run(() => _pack.Remove());
+                    _lib.Load(!Properties.Settings.Default.Library_HideBundled);
+                    removed += bundled.Count;
+                    freed += bundledMb;
+                    ShowPackState();
+                }
+                else if (ResourceLibrary.CanDeleteBundled())
                 {
                     removed += await Task.Run(() => _lib.PurgeBundled());
                     freed += bundledMb;

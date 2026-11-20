@@ -906,4 +906,34 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Usar la barra de menús de macOS</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Descargar el paquete de recursos ({0} MB): carpetas, iconos, efectos de sonido y música listos para usar</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Hay un paquete de recursos más reciente ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Descargando el paquete de recursos... {0} %</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Paquete de recursos instalado.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>No se pudo instalar el paquete de recursos: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Quitar paquete de recursos</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>¿Quitar el paquete de recursos descargado? Tus importaciones se conservan. Puedes volver a descargarlo cuando quieras.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Paquete de recursos quitado.</value>
+  </data>
 </root>

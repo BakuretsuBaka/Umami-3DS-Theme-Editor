@@ -906,4 +906,34 @@
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Использовать строку меню macOS</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Скачать пакет ресурсов ({0} МБ) – готовые папки, значки, звуковые эффекты и музыка</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Доступен более новый пакет ресурсов ({0} МБ).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Загрузка пакета ресурсов... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Пакет ресурсов установлен.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Не удалось установить пакет ресурсов: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Удалить пакет ресурсов</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Удалить скачанный пакет ресурсов? Ваши собственные импорты останутся. Его можно скачать снова в любое время.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Пакет ресурсов удалён.</value>
+  </data>
 </root>

@@ -906,4 +906,34 @@
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>使用 macOS 菜单栏</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>下载资源包（{0} MB）– 现成的文件夹、图标、音效和音乐</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>有更新的资源包（{0} MB）。</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>正在下载资源包... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>资源包已安装。</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>无法安装资源包：{0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>移除资源包</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>要移除已下载的资源包吗？你自己导入的内容会保留，随时可以重新下载。</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>资源包已移除。</value>
+  </data>
 </root>

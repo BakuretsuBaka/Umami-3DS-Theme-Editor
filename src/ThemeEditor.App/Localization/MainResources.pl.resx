@@ -906,4 +906,34 @@ Czy edytor ma go dopasować?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Używaj paska menu macOS</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Pobierz pakiet zasobów ({0} MB) – gotowe foldery, ikony, efekty dźwiękowe i muzyka</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Pobierz</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Dostępny jest nowszy pakiet zasobów ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Aktualizuj</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Pobieranie pakietu zasobów... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Pakiet zasobów zainstalowany.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Nie udało się zainstalować pakietu zasobów: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Usuń pakiet zasobów</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Usunąć pobrany pakiet zasobów? Twoje własne importy zostaną. Możesz go pobrać ponownie w każdej chwili.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Pakiet zasobów usunięty.</value>
+  </data>
 </root>

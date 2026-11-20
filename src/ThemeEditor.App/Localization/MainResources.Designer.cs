@@ -2083,5 +2083,75 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_Pack_Offer".</summary>
+        public static string Library_Pack_Offer {
+            get {
+                return ResourceManager.GetString("Library_Pack_Offer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Download".</summary>
+        public static string Library_Pack_Download {
+            get {
+                return ResourceManager.GetString("Library_Pack_Download", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Update".</summary>
+        public static string Library_Pack_Update {
+            get {
+                return ResourceManager.GetString("Library_Pack_Update", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_UpdateButton".</summary>
+        public static string Library_Pack_UpdateButton {
+            get {
+                return ResourceManager.GetString("Library_Pack_UpdateButton", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Downloading".</summary>
+        public static string Library_Pack_Downloading {
+            get {
+                return ResourceManager.GetString("Library_Pack_Downloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Installed".</summary>
+        public static string Library_Pack_Installed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Installed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Failed".</summary>
+        public static string Library_Pack_Failed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Failed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_RemoveMenu".</summary>
+        public static string Library_Pack_RemoveMenu {
+            get {
+                return ResourceManager.GetString("Library_Pack_RemoveMenu", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_RemoveConfirm".</summary>
+        public static string Library_Pack_RemoveConfirm {
+            get {
+                return ResourceManager.GetString("Library_Pack_RemoveConfirm", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Removed".</summary>
+        public static string Library_Pack_Removed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Removed", resourceCulture);
+            }
+        }
+
     }
 }

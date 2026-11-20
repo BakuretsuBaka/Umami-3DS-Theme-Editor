@@ -906,4 +906,34 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS 메뉴 막대 사용</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>리소스 팩 다운로드({0} MB) – 기본 제공 폴더, 아이콘, 효과음, 음악</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>새 리소스 팩이 있습니다({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>리소스 팩 다운로드 중... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>리소스 팩을 설치했습니다.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>리소스 팩을 설치할 수 없습니다: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>리소스 팩 제거</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>다운로드한 리소스 팩을 제거할까요? 직접 가져온 항목은 유지됩니다. 언제든지 다시 다운로드할 수 있습니다.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>리소스 팩을 제거했습니다.</value>
+  </data>
 </root>

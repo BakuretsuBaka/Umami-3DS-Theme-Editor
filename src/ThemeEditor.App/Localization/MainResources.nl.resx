@@ -906,4 +906,34 @@ Zal de editor hem passend maken?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>De menubalk van macOS gebruiken</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Resourcepakket downloaden ({0} MB) – kant-en-klare mappen, pictogrammen, geluidseffecten en muziek</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Downloaden</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Er is een nieuwer resourcepakket beschikbaar ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Bijwerken</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Resourcepakket downloaden... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Resourcepakket geïnstalleerd.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Het resourcepakket kon niet worden geïnstalleerd: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Resourcepakket verwijderen</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Het gedownloade resourcepakket verwijderen? Je eigen imports blijven bewaard. Je kunt het altijd opnieuw downloaden.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Resourcepakket verwijderd.</value>
+  </data>
 </root>

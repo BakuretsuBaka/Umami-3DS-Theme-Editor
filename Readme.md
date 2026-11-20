@@ -117,12 +117,14 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 
 * Ready-made **folder textures, icon textures, sound effect sets and music**, applied to the open theme with one click, with search,
   audio preview and **colour variations** (hue / saturation / brightness, plus 8 one-click hue presets) for textures.
+* The ready-made presets are an **optional download** (the resource pack, about 175 MB), so the editor itself stays small: the
+  library window offers it with one click, checks it against its SHA-256 checksum, keeps it in your settings folder across updates,
+  and tells you when a newer pack is out. *Import → Remove resource pack* deletes it again.
 * **Build your own:** *Add themes folder...* imports everything from a folder of theme ZIPs or theme folders. Textures and sound
   effects are de-duplicated and music is copied in, so the library is self-contained and the source ZIPs can be deleted afterwards.
 * **Share:** export and import resources as `.umamipack` files (validated on import) or as plain files (BCSTM, sound BIN, PNG textures).
 * **Tidy up:** *Show* lists everything, only the built-in presets, or only your own imports. Your own items can be removed one by one,
-  and *Import → Free Up Space...* deletes your imports, or everything including the built-in presets. (On macOS the presets live
-  inside the signed app, so there they are hidden instead of deleted.)
+  and *Import → Free Up Space...* deletes your imports, or everything including the presets.
 
 ### Music and sound effects
 

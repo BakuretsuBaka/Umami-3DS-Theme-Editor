@@ -906,4 +906,34 @@ Ska redigeraren anpassa den?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Använd macOS-menyraden</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Ladda ner resurspaketet ({0} MB) – färdiga mappar, ikoner, ljudeffekter och musik</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Ladda ner</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Ett nyare resurspaket finns ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Uppdatera</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Laddar ner resurspaketet... {0} %</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Resurspaketet är installerat.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Resurspaketet kunde inte installeras: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Ta bort resurspaketet</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Ta bort det nedladdade resurspaketet? Dina egna importer finns kvar. Du kan ladda ner det igen när som helst.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Resurspaketet har tagits bort.</value>
+  </data>
 </root>

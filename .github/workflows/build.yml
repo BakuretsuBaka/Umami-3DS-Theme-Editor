@@ -46,14 +46,6 @@ jobs:
       - name: Install Inno Setup
         run: |
           if [ ! -x "/c/Program Files (x86)/Inno Setup 6/ISCC.exe" ]; then choco install innosetup -y --no-progress; fi
-      - name: Download the resource library pack
-        shell: pwsh
-        run: |
-          try {
-            Invoke-WebRequest https://github.com/BakuretsuBaka/Umami-3DS-Theme-Editor/releases/download/library-pack/library-pack.zip -OutFile library-pack.zip
-            Expand-Archive library-pack.zip -DestinationPath library-pack
-            Remove-Item library-pack.zip
-          } catch { Write-Host "note: resource library pack not available, building without it" }
       - name: Package Windows (portable zip and setup.exe)
         run: |
           VERSION="${GITHUB_REF_NAME#v}"

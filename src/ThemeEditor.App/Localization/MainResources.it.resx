@@ -906,4 +906,34 @@ Vuoi che l'editor la adatti?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Usa la barra dei menu di macOS</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Scarica il pacchetto risorse ({0} MB) – cartelle, icone, effetti sonori e musica già pronti</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Scarica</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>È disponibile un pacchetto risorse più recente ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Download del pacchetto risorse... {0}%</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Pacchetto risorse installato.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Impossibile installare il pacchetto risorse: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Rimuovi pacchetto risorse</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Rimuovere il pacchetto risorse scaricato? Le tue importazioni restano. Puoi riscaricarlo in qualsiasi momento.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Pacchetto risorse rimosso.</value>
+  </data>
 </root>

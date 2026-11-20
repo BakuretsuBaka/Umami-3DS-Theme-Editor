@@ -26,11 +26,16 @@ namespace ThemeEditor.App.Library
 
         public static ResourceLibrary Instance { get; } = new ResourceLibrary();
 
-        /// <summary>Folder of the pack shipped with the editor (may not exist, e.g. in tests).</summary>
+        /// <summary>
+        ///     Folder of the ready-made presets: the downloaded resource pack, or for builds that still ship it, the pack next
+        ///     to the editor (may not exist, e.g. in tests or before the pack is downloaded).
+        /// </summary>
         public static string BundledRoot
         {
             get
             {
+                if (LibraryPack.Default.IsInstalled)
+                    return LibraryPack.Default.Root;
                 // Next to the executable; inside a macOS .app the pack lives in Contents/Resources (thousands of data files
                 // inside Contents/MacOS would be signed and verified as code, which takes minutes on first launch)
                 var beside = Path.Combine(AppContext.BaseDirectory, "Library");

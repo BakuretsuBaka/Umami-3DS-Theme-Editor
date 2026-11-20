@@ -906,4 +906,34 @@ Soll der Editor es anpassen?</value>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS-Menüleiste verwenden</value>
   </data>
+  <data name="Library_Pack_Offer" xml:space="preserve">
+    <value>Ressourcenpaket herunterladen ({0} MB) – fertige Ordner, Symbole, Soundeffekte und Musik</value>
+  </data>
+  <data name="Library_Pack_Download" xml:space="preserve">
+    <value>Herunterladen</value>
+  </data>
+  <data name="Library_Pack_Update" xml:space="preserve">
+    <value>Ein neueres Ressourcenpaket ist verfügbar ({0} MB).</value>
+  </data>
+  <data name="Library_Pack_UpdateButton" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="Library_Pack_Downloading" xml:space="preserve">
+    <value>Ressourcenpaket wird heruntergeladen... {0} %</value>
+  </data>
+  <data name="Library_Pack_Installed" xml:space="preserve">
+    <value>Ressourcenpaket installiert.</value>
+  </data>
+  <data name="Library_Pack_Failed" xml:space="preserve">
+    <value>Das Ressourcenpaket konnte nicht installiert werden: {0}</value>
+  </data>
+  <data name="Library_Pack_RemoveMenu" xml:space="preserve">
+    <value>Ressourcenpaket entfernen</value>
+  </data>
+  <data name="Library_Pack_RemoveConfirm" xml:space="preserve">
+    <value>Das heruntergeladene Ressourcenpaket entfernen? Deine eigenen Importe bleiben erhalten. Du kannst es jederzeit wieder herunterladen.</value>
+  </data>
+  <data name="Library_Pack_Removed" xml:space="preserve">
+    <value>Ressourcenpaket entfernt.</value>
+  </data>
 </root>
