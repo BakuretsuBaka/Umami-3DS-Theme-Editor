@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -18,6 +19,7 @@ namespace ThemeEditor.App
     {
         private readonly ThemezerClient _client;
         private readonly ICredentialStore _vault;
+        private readonly string _sessionFolder;
         private readonly Func<Task<MainWindow.ThemePackage>> _buildPackage;
 
         private readonly StackPanel _loginPanel;
@@ -45,9 +47,11 @@ namespace ThemeEditor.App
         /// <param name="hasBgm">Whether the theme has music (then the music info field is shown).</param>
         /// <param name="buildPackage">Compresses the theme and renders its preview and icon when the upload starts.</param>
         /// <param name="vault">Where "Stay logged in" keeps the password and session (the system's password vault).</param>
+        /// <param name="sessionFolder">Where "Stay logged in" keeps the session file (the settings folder when null).</param>
         public ThemezerUploadWindow(ThemezerClient client, ICredentialStore vault, string name, string description, bool hasBgm,
-            Func<Task<MainWindow.ThemePackage>> buildPackage)
+            Func<Task<MainWindow.ThemePackage>> buildPackage, string sessionFolder = null)
         {
+            _sessionFolder = sessionFolder;
             _client = client;
             _vault = vault;
             _buildPackage = buildPackage;
@@ -214,9 +218,8 @@ namespace ThemeEditor.App
         }
 
         private static string Email => Settings.Default.Themezer_Email;
-        private static string SessionAccount => Email + "#session";
 
-        /// <summary>Whether "Stay logged in" left a login in the password vault.</summary>
+        /// <summary>Whether "Stay logged in" keeps the login in the password vault.</summary>
         private bool Saved => _vault.IsAvailable && Settings.Default.Themezer_StayLoggedIn && !string.IsNullOrEmpty(Email);
 
         /// <summary>Logs in from the vault: the saved session if Themezer still knows it, otherwise the saved password.</summary>
@@ -224,15 +227,14 @@ namespace ThemeEditor.App
         {
             if (!Saved)
                 return false;
-            var session = _vault.Read(SessionAccount);
-            if (session != null && await _client.Resume(session) != null)
+            var saved = SavedLogin.For(_vault, Email, _sessionFolder);
+            if (saved.Session != null && await _client.Resume(saved.Session) != null)
                 return true;
-            var password = _vault.Read(Email);
-            if (password == null)
+            if (saved.Password == null)
                 return false;
             try
             {
-                await _client.LogIn(Email, password);
+                await _client.LogIn(Email, saved.Password);
             }
             catch (ThemezerException ex) when (ex.Code == "INVALID_CREDENTIALS")
             {
@@ -246,17 +248,14 @@ namespace ThemeEditor.App
 
         private void KeepSession()
         {
-            var session = _client.Session;
-            if (Saved && session != null)
-                _vault.Write(SessionAccount, session);
+            if (Saved && _client.Session != null)
+                SavedLogin.For(_vault, Email, _sessionFolder).Keep(null, _client.Session);
         }
 
         private void Forget()
         {
-            if (!_vault.IsAvailable || string.IsNullOrEmpty(Email))
-                return;
-            _vault.Delete(Email);
-            _vault.Delete(SessionAccount);
+            if (_vault.IsAvailable && !string.IsNullOrEmpty(Email))
+                SavedLogin.For(_vault, Email, _sessionFolder).Forget();
         }
 
         private async Task LogIn()
@@ -275,10 +274,7 @@ namespace ThemeEditor.App
                 Settings.Default.Themezer_StayLoggedIn = _stay.IsChecked == true;
                 Settings.Default.Save();
                 if (Saved)
-                {
-                    _vault.Write(email, password);
-                    KeepSession();
-                }
+                    SavedLogin.For(_vault, email, _sessionFolder).Keep(password, _client.Session);
                 ShowStatus(null, false);
             });
             _password.Text = string.Empty;
@@ -348,6 +344,142 @@ namespace ThemeEditor.App
                 _pageUrl = string.IsNullOrEmpty(theme.PageUrl) ? ThemezerClient.SiteUrl : theme.PageUrl;
                 ShowStatus(MainResources.Themezer_Uploaded, false);
             });
+        }
+    }
+
+    /// <summary>
+    ///     The "Stay logged in" login of one account. The session sits in a file in the settings folder that only the user
+    ///     can read (as browsers keep cookies), so resuming it never involves the Keychain; the password is in the system's
+    ///     password vault and only read when Themezer no longer accepts the session, at most once while the editor runs.
+    /// </summary>
+    internal sealed class SavedLogin
+    {
+        private static readonly System.Collections.Generic.Dictionary<string, SavedLogin> Cache = new System.Collections.Generic.Dictionary<string, SavedLogin>();
+
+        private readonly ICredentialStore _vault;
+        private readonly string _email;
+        private readonly string _sessionFile;
+        private bool _passwordLoaded, _sessionLoaded;
+        private string _password;
+        private string _session;
+
+        private SavedLogin(ICredentialStore vault, string email, string folder)
+        {
+            _vault = vault;
+            _email = email;
+            _sessionFile = Path.Combine(folder, "themezer-session.json");
+        }
+
+        /// <param name="folder">Where the session file goes (the settings folder when null).</param>
+        public static SavedLogin For(ICredentialStore vault, string email, string folder = null)
+        {
+            folder = folder ?? Settings.SettingsDirectory;
+            var key = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(vault) + "|" + folder + "|" + email;
+            lock (Cache)
+            {
+                if (!Cache.TryGetValue(key, out var login) || login._vault != vault)
+                    Cache[key] = login = new SavedLogin(vault, email, folder);
+                return login;
+            }
+        }
+
+        private string Account => _email + "#login";
+
+        public string Session
+        {
+            get
+            {
+                if (!_sessionLoaded)
+                {
+                    _sessionLoaded = true;
+                    try
+                    {
+                        var o = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(_sessionFile));
+                        _session = (string) o["email"] == _email ? (string) o["session"] : null;
+                    }
+                    catch (Exception)
+                    {
+                        _session = null;
+                    }
+                }
+                return _session;
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                if (!_passwordLoaded)
+                {
+                    _passwordLoaded = true;
+                    try
+                    {
+                        var json = _vault.Read(Account);
+                        _password = json == null ? null : (string) Newtonsoft.Json.Linq.JObject.Parse(json)["password"];
+                    }
+                    catch (Exception)
+                    {
+                        // A damaged entry counts as none: the user simply logs in again
+                        _password = null;
+                    }
+                }
+                return _password;
+            }
+        }
+
+        /// <summary>Stores what changed: the password (null keeps the saved one) in the vault, the session in its file.</summary>
+        public void Keep(string password, string session)
+        {
+            if (password != null && (!_passwordLoaded || password != _password))
+            {
+                _vault.Write(Account, new Newtonsoft.Json.Linq.JObject {["password"] = password}.ToString(Newtonsoft.Json.Formatting.None));
+                _password = password;
+                _passwordLoaded = true;
+            }
+            if (session != Session)
+            {
+                _session = session;
+                WriteSession(session);
+            }
+        }
+
+        private void WriteSession(string session)
+        {
+            try
+            {
+                if (session == null)
+                {
+                    File.Delete(_sessionFile);
+                    return;
+                }
+                Directory.CreateDirectory(Path.GetDirectoryName(_sessionFile) ?? ".");
+                var json = new Newtonsoft.Json.Linq.JObject {["email"] = _email, ["session"] = session}.ToString(Newtonsoft.Json.Formatting.None);
+                var options = new FileStreamOptions {Mode = FileMode.Create, Access = FileAccess.Write};
+                if (!OperatingSystem.IsWindows())
+                    options.UnixCreateMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
+                using (var stream = new FileStream(_sessionFile, options))
+                using (var writer = new StreamWriter(stream))
+                    writer.Write(json);
+                // An older file keeps its mode when overwritten
+                if (!OperatingSystem.IsWindows())
+                    File.SetUnixFileMode(_sessionFile, UnixFileMode.UserRead | UnixFileMode.UserWrite);
+            }
+            catch (Exception)
+            {
+                // Without the file the next start falls back to the password
+            }
+        }
+
+        public void Forget()
+        {
+            _passwordLoaded = _sessionLoaded = true;
+            _password = _session = null;
+            WriteSession(null);
+            _vault.Delete(Account);
+            // Entries from v2.3.14, which kept the password and the session apart in the vault
+            _vault.Delete(_email);
+            _vault.Delete(_email + "#session");
         }
     }
 }

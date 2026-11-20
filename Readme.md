@@ -139,9 +139,9 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 * **Theme ZIP:** *File → Export Theme ZIP* (`Ctrl/Cmd+E`) writes a Theme Plaza / Themezer ready package (theme, music, icon,
   a fresh preview and the name). Open or drop such a ZIP to unpack and load it.
 * **Upload to Themezer:** *File → Upload to Themezer...* logs in with your Themezer email and password and uploads the theme
-  with name, description, tags, music info, and public or private. With *Stay logged in* the password and session are kept
-  in the system's password vault (Keychain, Credential Manager or the Secret Service on Linux), never in Umami's settings, so
-  the next start logs in by itself. Accounts that sign in with Discord or Google need to set a password on themezer.net first.
+  with name, description, tags, music info, and public or private. With *Stay logged in* the next start logs in by itself: the
+  session is kept in a file only your user account can read (like browser cookies), and the password in the system's password
+  vault (Keychain, Credential Manager or the Secret Service on Linux), which is only opened when the session has expired. Accounts that sign in with Discord or Google need to set a password on themezer.net first.
 * **Send to CHMM2:** push the theme to the console over the network.
 * **Fast saving:** the LZ11 compressor finds matches with a hash chain instead of a brute-force search, about 50× faster with
   byte-identical output, so saving, exporting and sending never freeze the window.

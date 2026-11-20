@@ -50,6 +50,11 @@ namespace ThemeEditor.App
             private static extern int SecKeychainFindGenericPassword(IntPtr keychain, uint serviceLength, byte[] service,
                 uint accountLength, byte[] account, out uint passwordLength, out IntPtr password, out IntPtr item);
 
+            // The same call without asking for the secret: finding an entry this way never makes macOS ask for access
+            [DllImport(Security, EntryPoint = "SecKeychainFindGenericPassword")]
+            private static extern int SecKeychainFindGenericPasswordItem(IntPtr keychain, uint serviceLength, byte[] service,
+                uint accountLength, byte[] account, IntPtr passwordLength, IntPtr password, out IntPtr item);
+
             [DllImport(Security)]
             private static extern int SecKeychainAddGenericPassword(IntPtr keychain, uint serviceLength, byte[] service,
                 uint accountLength, byte[] account, uint passwordLength, byte[] password, IntPtr item);
@@ -84,6 +89,14 @@ namespace ThemeEditor.App
                 return true;
             }
 
+            /// <summary>The entry without its secret.</summary>
+            private static bool FindItem(string account, out IntPtr item)
+            {
+                var name = Encoding.UTF8.GetBytes(account);
+                return SecKeychainFindGenericPasswordItem(IntPtr.Zero, (uint) ServiceBytes.Length, ServiceBytes, (uint) name.Length, name,
+                    IntPtr.Zero, IntPtr.Zero, out item) == 0;
+            }
+
             public string Read(string account)
             {
                 if (!Find(account, out var item, out var secret))
@@ -95,7 +108,7 @@ namespace ThemeEditor.App
             public bool Write(string account, string secret)
             {
                 var data = Encoding.UTF8.GetBytes(secret);
-                if (Find(account, out var item, out _))
+                if (FindItem(account, out var item))
                 {
                     var status = SecKeychainItemModifyAttributesAndData(item, IntPtr.Zero, (uint) data.Length, data);
                     CFRelease(item);
@@ -108,7 +121,7 @@ namespace ThemeEditor.App
 
             public void Delete(string account)
             {
-                if (!Find(account, out var item, out _))
+                if (!FindItem(account, out var item))
                     return;
                 SecKeychainItemDelete(item);
                 CFRelease(item);
