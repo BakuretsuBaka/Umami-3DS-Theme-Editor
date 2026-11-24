@@ -834,23 +834,11 @@
   <data name="Themezer_Title" xml:space="preserve">
     <value>上传到 Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>电子邮件</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>登录</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>退出登录</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>已登录为 {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>你的密码只会发送给 Themezer，不会被保存。使用 Discord 或 Google 登录的账号需要先在 themezer.net 上设置密码。</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>名称</value>
@@ -897,12 +885,6 @@
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer：{0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>保持登录</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>你的密码只会发送给 Themezer。勾选“保持登录”后，密码会保存在系统的密码库（钥匙串、凭据管理器或密钥环）中，绝不会写入 Umami 的设置。使用 Discord 或 Google 登录的账号需要先在 themezer.net 上设置密码。</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>使用 macOS 菜单栏</value>
   </data>
@@ -935,5 +917,41 @@
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>资源包已移除。</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>使用 Themezer 登录</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>将在浏览器中打开 Themezer：在那里登录并允许 Umami。Discord 和 Google 账号也可以使用，Umami 永远看不到你的密码。</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>正在等待浏览器... 请在 Themezer 登录并允许 Umami。</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>已登录。你可以关闭此标签页并返回 Umami。</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>登录已取消。你可以关闭此标签页。</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>登录已在浏览器中取消。</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>你的 Themezer 登录已失效，请重新登录。</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer 每个账号每小时最多接受 20 次上传。请一小时后再试。</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezer 的图片检查认为预览可能包含成人内容。请勾选“包含成人内容”或修改主题。</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezer 的图片检查暂时不可用。未上传任何内容，请稍后再试。</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>只有在 Themezer 账号设置中开启成人内容后，Themezer 才接受标记为成人内容的上传。请在那里开启，或取消勾选“包含成人内容”。</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>你的 Themezer 账号目前无法上传。</value>
   </data>
 </root>

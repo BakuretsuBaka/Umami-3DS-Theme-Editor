@@ -834,23 +834,11 @@ Vuoi che l'editor la adatti?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Carica su Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Accedi</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Esci</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Accesso come {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>La password viene inviata solo a Themezer e non viene mai salvata. Gli account che accedono con Discord o Google devono prima impostare una password su themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Nome</value>
@@ -897,12 +885,6 @@ Vuoi che l'editor la adatti?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Resta connesso</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>La password viene inviata solo a Themezer. Con «Resta connesso» viene conservata nel portachiavi del sistema (Portachiavi, Gestione credenziali o keyring), mai nelle impostazioni di Umami. Gli account che accedono con Discord o Google devono prima impostare una password su themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Usa la barra dei menu di macOS</value>
   </data>
@@ -935,5 +917,41 @@ Vuoi che l'editor la adatti?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Pacchetto risorse rimosso.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Accedi con Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Apre Themezer nel browser: accedi lì e autorizza Umami. Funzionano anche gli account Discord e Google, e Umami non vede mai la tua password.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>In attesa del browser... Accedi a Themezer e autorizza Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Accesso effettuato. Puoi chiudere questa scheda e tornare a Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Accesso annullato. Puoi chiudere questa scheda.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>L'accesso è stato annullato nel browser.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>L'accesso a Themezer è scaduto. Accedi di nuovo.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer accetta 20 caricamenti all'ora per account. Riprova tra un'ora.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Il controllo immagini di Themezer ritiene che l'anteprima possa contenere contenuti per adulti. Spunta «Contiene contenuti per adulti» o modifica il tema.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Il controllo immagini di Themezer non è disponibile ora. Non è stato caricato nulla; riprova più tardi.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer accetta caricamenti segnati come contenuti per adulti solo se li attivi nelle impostazioni del tuo account Themezer. Attivali lì o togli la spunta da «Contiene contenuti per adulti».</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Il tuo account Themezer non può caricare al momento.</value>
   </data>
 </root>

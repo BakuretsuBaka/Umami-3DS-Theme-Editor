@@ -834,23 +834,11 @@ Ska redigeraren anpassa den?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Ladda upp till Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>E-post</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Lösenord</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Logga in</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Logga ut</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Inloggad som {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Ditt lösenord skickas bara till Themezer och sparas aldrig. Konton som loggar in med Discord eller Google måste först ange ett lösenord på themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Namn</value>
@@ -897,12 +885,6 @@ Ska redigeraren anpassa den?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Förbli inloggad</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Ditt lösenord skickas bara till Themezer. Med ”Förbli inloggad” sparas det i systemets lösenordsvalv (Nyckelring, Autentiseringshanteraren eller keyring), aldrig i Umamis inställningar. Konton som loggar in med Discord eller Google måste först ange ett lösenord på themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Använd macOS-menyraden</value>
   </data>
@@ -935,5 +917,41 @@ Ska redigeraren anpassa den?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Resurspaketet har tagits bort.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Logga in med Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Öppnar Themezer i webbläsaren: logga in där och tillåt Umami. Discord- och Google-konton fungerar också, och Umami ser aldrig ditt lösenord.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Väntar på webbläsaren... Logga in på Themezer och tillåt Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Inloggad. Du kan stänga den här fliken och gå tillbaka till Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Inloggningen avbröts. Du kan stänga den här fliken.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>Inloggningen avbröts i webbläsaren.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Din Themezer-inloggning har upphört. Logga in igen.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer tar emot 20 uppladdningar per timme och konto. Försök igen om en timme.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezers bildkontroll tror att förhandsvisningen kan innehålla vuxeninnehåll. Kryssa i ”Innehåller vuxeninnehåll” eller ändra temat.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezers bildkontroll är inte tillgänglig just nu. Inget laddades upp; försök igen senare.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer tar bara emot uppladdningar märkta som vuxeninnehåll om det är påslaget i dina Themezer-kontoinställningar. Slå på det där eller kryssa ur ”Innehåller vuxeninnehåll”.</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Ditt Themezer-konto kan inte ladda upp just nu.</value>
   </data>
 </root>

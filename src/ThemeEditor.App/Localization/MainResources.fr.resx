@@ -834,23 +834,11 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Publier sur Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Mot de passe</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Se connecter</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Se déconnecter</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Connecté en tant que {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Ton mot de passe est envoyé uniquement à Themezer et n'est jamais enregistré. Les comptes qui se connectent avec Discord ou Google doivent d'abord définir un mot de passe sur themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Nom</value>
@@ -897,12 +885,6 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer : {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Rester connecté</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Ton mot de passe est envoyé uniquement à Themezer. Avec « Rester connecté », il est conservé dans le coffre à mots de passe de ton système (Trousseau, Gestionnaire d'identification ou keyring), jamais dans les réglages d'Umami. Les comptes qui se connectent avec Discord ou Google doivent d'abord définir un mot de passe sur themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Utiliser la barre des menus de macOS</value>
   </data>
@@ -935,5 +917,41 @@ L'éditeur doit-il l'ajuster ?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Pack de ressources supprimé.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Se connecter avec Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Ouvre Themezer dans ton navigateur : connecte-toi et autorise Umami. Les comptes Discord et Google fonctionnent aussi, et Umami ne voit jamais ton mot de passe.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>En attente du navigateur... Connecte-toi sur Themezer et autorise Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Connecté. Tu peux fermer cet onglet et revenir à Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Connexion annulée. Tu peux fermer cet onglet.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>La connexion a été annulée dans le navigateur.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Ta connexion à Themezer a pris fin. Reconnecte-toi.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer accepte 20 envois par heure et par compte. Réessaie dans une heure.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>La vérification d'images de Themezer pense que l'aperçu peut contenir du contenu pour adultes. Coche « Contient du contenu pour adultes » ou modifie le thème.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>La vérification d'images de Themezer est indisponible pour le moment. Rien n'a été envoyé ; réessaie plus tard.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer n'accepte les envois marqués comme contenu pour adultes que si ce contenu est activé dans les réglages de ton compte Themezer. Active-le là-bas ou décoche « Contient du contenu pour adultes ».</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Ton compte Themezer ne peut rien envoyer pour le moment.</value>
   </data>
 </root>

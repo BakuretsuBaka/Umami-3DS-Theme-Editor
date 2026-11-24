@@ -834,23 +834,11 @@
   <data name="Themezer_Title" xml:space="preserve">
     <value>上傳到 Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>電子郵件</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>密碼</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>登入</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>登出</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>已登入為 {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>你的密碼只會傳送給 Themezer，不會被儲存。使用 Discord 或 Google 登入的帳號需要先在 themezer.net 上設定密碼。</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>名稱</value>
@@ -897,12 +885,6 @@
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer：{0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>保持登入</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>你的密碼只會傳送給 Themezer。勾選「保持登入」後，密碼會保存在系統的密碼庫（鑰匙圈、認證管理員或金鑰圈）中，絕不會寫入 Umami 的設定。使用 Discord 或 Google 登入的帳號需要先在 themezer.net 上設定密碼。</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>使用 macOS 選單列</value>
   </data>
@@ -935,5 +917,41 @@
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>資源包已移除。</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>使用 Themezer 登入</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>將在瀏覽器中開啟 Themezer：在那裡登入並允許 Umami。Discord 和 Google 帳號也可以使用，Umami 永遠看不到你的密碼。</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>正在等待瀏覽器... 請在 Themezer 登入並允許 Umami。</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>已登入。你可以關閉此分頁並返回 Umami。</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>登入已取消。你可以關閉此分頁。</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>登入已在瀏覽器中取消。</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>你的 Themezer 登入已失效，請重新登入。</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer 每個帳號每小時最多接受 20 次上傳。請一小時後再試。</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezer 的圖片檢查認為預覽可能包含成人內容。請勾選「包含成人內容」或修改主題。</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezer 的圖片檢查暫時無法使用。未上傳任何內容，請稍後再試。</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>只有在 Themezer 帳號設定中開啟成人內容後，Themezer 才接受標記為成人內容的上傳。請在那裡開啟，或取消勾選「包含成人內容」。</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>你的 Themezer 帳號目前無法上傳。</value>
   </data>
 </root>

@@ -834,23 +834,11 @@ O editor deve ajustá-la para você?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Enviar para o Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Senha</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Entrar</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Sair</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Conectado como {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Sua senha é enviada apenas ao Themezer e nunca é salva. Contas que entram com Discord ou Google precisam definir uma senha em themezer.net primeiro.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Nome</value>
@@ -897,12 +885,6 @@ O editor deve ajustá-la para você?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Manter conectado</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Sua senha é enviada apenas ao Themezer. Com "Manter conectado", ela fica no cofre de senhas do sistema (Chaves, Gerenciador de Credenciais ou keyring), nunca nas configurações do Umami. Contas que entram com Discord ou Google precisam definir uma senha em themezer.net primeiro.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Usar a barra de menus do macOS</value>
   </data>
@@ -935,5 +917,41 @@ O editor deve ajustá-la para você?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Pacote de recursos removido.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Entrar com o Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Abre o Themezer no navegador: entre lá e permita o Umami. Contas do Discord e do Google também funcionam, e o Umami nunca vê sua senha.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Aguardando o navegador... Entre no Themezer e permita o Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Conectado. Você pode fechar esta aba e voltar ao Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Login cancelado. Você pode fechar esta aba.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>O login foi cancelado no navegador.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Seu login no Themezer expirou. Entre novamente.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>O Themezer aceita 20 envios por hora por conta. Tente de novo daqui a uma hora.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>A verificação de imagens do Themezer acha que a prévia pode ter conteúdo adulto. Marque "Contém conteúdo adulto" ou altere o tema.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>A verificação de imagens do Themezer está indisponível agora. Nada foi enviado; tente mais tarde.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>O Themezer só aceita envios marcados como conteúdo adulto se ele estiver ativado nas configurações da sua conta do Themezer. Ative lá ou desmarque "Contém conteúdo adulto".</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Sua conta do Themezer não pode enviar nada agora.</value>
   </data>
 </root>

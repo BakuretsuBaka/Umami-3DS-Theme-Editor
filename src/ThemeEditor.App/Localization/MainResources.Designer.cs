@@ -1915,27 +1915,6 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Email".</summary>
-        public static string Themezer_Email {
-            get {
-                return ResourceManager.GetString("Themezer_Email", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Password".</summary>
-        public static string Themezer_Password {
-            get {
-                return ResourceManager.GetString("Themezer_Password", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_LogIn".</summary>
-        public static string Themezer_LogIn {
-            get {
-                return ResourceManager.GetString("Themezer_LogIn", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Themezer_LogOut".</summary>
         public static string Themezer_LogOut {
             get {
@@ -1947,13 +1926,6 @@ namespace ThemeEditor.App.Localization {
         public static string Themezer_LoggedInAs {
             get {
                 return ResourceManager.GetString("Themezer_LoggedInAs", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_PasswordNote".</summary>
-        public static string Themezer_PasswordNote {
-            get {
-                return ResourceManager.GetString("Themezer_PasswordNote", resourceCulture);
             }
         }
 
@@ -2062,20 +2034,6 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_StayLoggedIn".</summary>
-        public static string Themezer_StayLoggedIn {
-            get {
-                return ResourceManager.GetString("Themezer_StayLoggedIn", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_PasswordNoteVault".</summary>
-        public static string Themezer_PasswordNoteVault {
-            get {
-                return ResourceManager.GetString("Themezer_PasswordNoteVault", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Menu_File_MacMenuBar".</summary>
         public static string Menu_File_MacMenuBar {
             get {
@@ -2150,6 +2108,90 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Pack_Removed {
             get {
                 return ResourceManager.GetString("Library_Pack_Removed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignIn".</summary>
+        public static string Themezer_SignIn {
+            get {
+                return ResourceManager.GetString("Themezer_SignIn", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInNote".</summary>
+        public static string Themezer_SignInNote {
+            get {
+                return ResourceManager.GetString("Themezer_SignInNote", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_WaitingForBrowser".</summary>
+        public static string Themezer_WaitingForBrowser {
+            get {
+                return ResourceManager.GetString("Themezer_WaitingForBrowser", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_BrowserDone".</summary>
+        public static string Themezer_BrowserDone {
+            get {
+                return ResourceManager.GetString("Themezer_BrowserDone", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_BrowserDenied".</summary>
+        public static string Themezer_BrowserDenied {
+            get {
+                return ResourceManager.GetString("Themezer_BrowserDenied", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInDenied".</summary>
+        public static string Themezer_SignInDenied {
+            get {
+                return ResourceManager.GetString("Themezer_SignInDenied", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInEnded".</summary>
+        public static string Themezer_SignInEnded {
+            get {
+                return ResourceManager.GetString("Themezer_SignInEnded", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_RateLimited".</summary>
+        public static string Themezer_RateLimited {
+            get {
+                return ResourceManager.GetString("Themezer_RateLimited", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_UnmarkedNsfw".</summary>
+        public static string Themezer_UnmarkedNsfw {
+            get {
+                return ResourceManager.GetString("Themezer_UnmarkedNsfw", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_NsfwCheckDown".</summary>
+        public static string Themezer_NsfwCheckDown {
+            get {
+                return ResourceManager.GetString("Themezer_NsfwCheckDown", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_NsfwNotAllowed".</summary>
+        public static string Themezer_NsfwNotAllowed {
+            get {
+                return ResourceManager.GetString("Themezer_NsfwNotAllowed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Blocked".</summary>
+        public static string Themezer_Blocked {
+            get {
+                return ResourceManager.GetString("Themezer_Blocked", resourceCulture);
             }
         }
 

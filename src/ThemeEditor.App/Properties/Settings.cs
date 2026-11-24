@@ -41,7 +41,6 @@ namespace ThemeEditor.App.Properties
         private int _previewZoomRows = 3;
         private string _bothScreensModel = "New 3DS XL";
         private string _themezerEmail = string.Empty;
-        private bool _themezerStayLoggedIn = true;
         private bool _macMenuBar = true;
         private bool _bgmMono;
         private int _bgmSampleRate;
@@ -153,18 +152,11 @@ namespace ThemeEditor.App.Properties
             set { Set(ref _bothScreensModel, BothScreens.Find(value).Name); }
         }
 
-        /// <summary>Email of the last Themezer login (the password and session only ever go into the system's password vault).</summary>
+        /// <summary>Email of the password sign-in of earlier versions; set only until what that kept is cleaned up.</summary>
         public string Themezer_Email
         {
             get { return _themezerEmail; }
             set { Set(ref _themezerEmail, value ?? string.Empty); }
-        }
-
-        /// <summary>Whether the Themezer login is kept in the system's password vault and resumed on the next start.</summary>
-        public bool Themezer_StayLoggedIn
-        {
-            get { return _themezerStayLoggedIn; }
-            set { Set(ref _themezerStayLoggedIn, value); }
         }
 
         /// <summary>On macOS: menus in the system menu bar at the top of the screen (otherwise in the window, as elsewhere).</summary>

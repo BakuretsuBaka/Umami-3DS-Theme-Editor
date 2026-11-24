@@ -834,23 +834,11 @@
   <data name="Themezer_Title" xml:space="preserve">
     <value>Загрузить на Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>Эл. почта</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Пароль</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Войти</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Выйти</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Вы вошли как {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Пароль отправляется только в Themezer и нигде не сохраняется. Аккаунтам, которые входят через Discord или Google, нужно сначала задать пароль на themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Название</value>
@@ -897,12 +885,6 @@
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Не выходить</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Пароль отправляется только в Themezer. С опцией «Не выходить» он хранится в системном хранилище паролей (Связка ключей, Диспетчер учётных данных или keyring), а не в настройках Umami. Аккаунтам, которые входят через Discord или Google, нужно сначала задать пароль на themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Использовать строку меню macOS</value>
   </data>
@@ -935,5 +917,41 @@
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Пакет ресурсов удалён.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Войти через Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Откроет Themezer в браузере: войдите там и разрешите доступ Umami. Аккаунты Discord и Google тоже подходят, а Umami никогда не видит ваш пароль.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Ожидание браузера... Войдите в Themezer и разрешите доступ Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Вход выполнен. Можно закрыть эту вкладку и вернуться в Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Вход отменён. Эту вкладку можно закрыть.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>Вход был отменён в браузере.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Срок входа в Themezer истёк. Войдите снова.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer принимает 20 загрузок в час на аккаунт. Попробуйте снова через час.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Проверка изображений Themezer считает, что превью может содержать контент для взрослых. Отметьте «Содержит контент для взрослых» или измените тему.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Проверка изображений Themezer сейчас недоступна. Ничего не загружено; попробуйте позже.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer принимает загрузки, отмеченные как контент для взрослых, только если он включён в настройках вашего аккаунта Themezer. Включите его там или снимите отметку «Содержит контент для взрослых».</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Ваш аккаунт Themezer сейчас не может загружать.</value>
   </data>
 </root>

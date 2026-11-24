@@ -834,23 +834,11 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Prześlij do Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Hasło</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Zaloguj</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Wyloguj</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Zalogowano jako {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Hasło jest wysyłane tylko do Themezer i nigdy nie jest zapisywane. Konta logujące się przez Discord lub Google muszą najpierw ustawić hasło na themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Nazwa</value>
@@ -897,12 +885,6 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Nie wylogowuj</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Hasło jest wysyłane tylko do Themezer. Z opcją „Nie wylogowuj” jest przechowywane w systemowym sejfie haseł (Pęk kluczy, Menedżer poświadczeń lub keyring), nigdy w ustawieniach Umami. Konta logujące się przez Discord lub Google muszą najpierw ustawić hasło na themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Używaj paska menu macOS</value>
   </data>
@@ -935,5 +917,41 @@ Czy edytor ma go dopasować?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Pakiet zasobów usunięty.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Zaloguj przez Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Otwiera Themezer w przeglądarce: zaloguj się tam i zezwól Umami. Konta Discord i Google też działają, a Umami nigdy nie widzi twojego hasła.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Czekanie na przeglądarkę... Zaloguj się w Themezer i zezwól Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Zalogowano. Możesz zamknąć tę kartę i wrócić do Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Logowanie anulowane. Możesz zamknąć tę kartę.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>Logowanie zostało anulowane w przeglądarce.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Twoje logowanie do Themezer wygasło. Zaloguj się ponownie.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer przyjmuje 20 przesłań na godzinę na konto. Spróbuj ponownie za godzinę.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Kontrola obrazów Themezer uznała, że podgląd może zawierać treści dla dorosłych. Zaznacz „Zawiera treści dla dorosłych” lub zmień motyw.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Kontrola obrazów Themezer jest teraz niedostępna. Nic nie przesłano; spróbuj później.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer przyjmuje przesłania oznaczone jako treści dla dorosłych tylko wtedy, gdy są włączone w ustawieniach konta Themezer. Włącz je tam lub odznacz „Zawiera treści dla dorosłych”.</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Twoje konto Themezer nie może teraz niczego przesyłać.</value>
   </data>
 </root>

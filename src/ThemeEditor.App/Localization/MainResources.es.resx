@@ -834,23 +834,11 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Subir a Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>Correo electrónico</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Contraseña</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Iniciar sesión</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Sesión iniciada como {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Tu contraseña solo se envía a Themezer y nunca se guarda. Las cuentas que inician sesión con Discord o Google deben crear antes una contraseña en themezer.net.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Nombre</value>
@@ -897,12 +885,6 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Mantener la sesión iniciada</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Tu contraseña solo se envía a Themezer. Con «Mantener la sesión iniciada» se guarda en el almacén de contraseñas de tu sistema (Llavero, Administrador de credenciales o keyring), nunca en los ajustes de Umami. Las cuentas que inician sesión con Discord o Google deben crear antes una contraseña en themezer.net.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Usar la barra de menús de macOS</value>
   </data>
@@ -935,5 +917,41 @@ Verifica la Ventana "Acerca de" para mas información</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Paquete de recursos quitado.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Iniciar sesión con Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Abre Themezer en tu navegador: inicia sesión allí y permite el acceso a Umami. También funcionan las cuentas de Discord y Google, y Umami nunca ve tu contraseña.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Esperando al navegador... Inicia sesión en Themezer y permite el acceso a Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Sesión iniciada. Puedes cerrar esta pestaña y volver a Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Inicio de sesión cancelado. Puedes cerrar esta pestaña.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>El inicio de sesión se canceló en el navegador.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Tu sesión de Themezer ha terminado. Vuelve a iniciar sesión.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer acepta 20 subidas por hora y cuenta. Vuelve a intentarlo dentro de una hora.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>La comprobación de imágenes de Themezer cree que la vista previa puede tener contenido para adultos. Marca «Contiene contenido para adultos» o cambia el tema.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>La comprobación de imágenes de Themezer no está disponible ahora. No se subió nada; inténtalo más tarde.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer solo acepta subidas marcadas como contenido para adultos si lo activas en los ajustes de tu cuenta de Themezer. Actívalo allí o desmarca «Contiene contenido para adultos».</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Tu cuenta de Themezer no puede subir nada ahora mismo.</value>
   </data>
 </root>

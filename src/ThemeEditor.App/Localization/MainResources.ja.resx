@@ -834,23 +834,11 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Themezer_Title" xml:space="preserve">
     <value>Themezer にアップロード</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>メールアドレス</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>パスワード</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>ログイン</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>ログアウト</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>{0} としてログイン中</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>パスワードは Themezer にのみ送信され、保存されることはありません。Discord または Google でログインしているアカウントは、先に themezer.net でパスワードを設定してください。</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>名前</value>
@@ -897,12 +885,6 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>ログインしたままにする</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>パスワードは Themezer にのみ送信されます。「ログインしたままにする」を選ぶと、Umami の設定ではなくシステムのパスワード保管庫（キーチェーン、資格情報マネージャー、キーリング）に保存されます。Discord または Google でログインしているアカウントは、先に themezer.net でパスワードを設定してください。</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS のメニューバーを使う</value>
   </data>
@@ -935,5 +917,41 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>リソースパックを削除しました。</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Themezer でサインイン</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>ブラウザーで Themezer を開きます。そこでサインインして Umami を許可してください。Discord や Google のアカウントも使え、Umami がパスワードを見ることはありません。</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>ブラウザーを待っています... Themezer にサインインして Umami を許可してください。</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>サインインしました。このタブを閉じて Umami に戻れます。</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>サインインはキャンセルされました。このタブを閉じてかまいません。</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>ブラウザーでサインインがキャンセルされました。</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Themezer のサインインが切れました。もう一度サインインしてください。</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer へのアップロードはアカウントごとに 1 時間 20 件までです。1 時間後にもう一度お試しください。</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezer の画像チェックで、プレビューに成人向けの内容が含まれる可能性があると判断されました。「成人向けコンテンツを含む」にチェックを入れるか、テーマを変更してください。</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezer の画像チェックは現在利用できません。何もアップロードされていません。後でもう一度お試しください。</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>成人向けとして指定したアップロードは、Themezer のアカウント設定で成人向けコンテンツを有効にしている場合のみ受け付けられます。そこで有効にするか、「成人向けコンテンツを含む」のチェックを外してください。</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>お使いの Themezer アカウントは現在アップロードできません。</value>
   </data>
 </root>

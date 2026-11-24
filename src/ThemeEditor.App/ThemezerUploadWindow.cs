@@ -4,6 +4,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -14,21 +15,19 @@ using ThemeEditor.App.Properties;
 
 namespace ThemeEditor.App
 {
-    /// <summary>Logs in to Themezer and uploads the open theme (name, description, tags, music info, visibility).</summary>
+    /// <summary>Signs in to Themezer and uploads the open theme (name, description, tags, music info, visibility).</summary>
     internal sealed class ThemezerUploadWindow : Window
     {
         private readonly ThemezerClient _client;
         private readonly ICredentialStore _vault;
-        private readonly string _sessionFolder;
         private readonly Func<Task<MainWindow.ThemePackage>> _buildPackage;
+        private readonly Action<string> _openBrowser;
 
-        private readonly StackPanel _loginPanel;
-        private readonly TextBox _email;
-        private readonly TextBox _password;
-        private readonly Button _logIn;
-        private readonly CheckBox _stay;
+        private readonly StackPanel _signInPanel;
+        private readonly Button _signIn;
         private readonly StackPanel _accountPanel;
         private readonly TextBlock _account;
+        private CancellationTokenSource _signInCts;
 
         private readonly TextBox _name;
         private readonly TextBox _description;
@@ -44,17 +43,17 @@ namespace ThemeEditor.App
         private string _pageUrl;
         private bool _busy;
 
+        /// <param name="vault">Where the sign-in is kept between starts (the system's password vault).</param>
         /// <param name="hasBgm">Whether the theme has music (then the music info field is shown).</param>
         /// <param name="buildPackage">Compresses the theme and renders its preview and icon when the upload starts.</param>
-        /// <param name="vault">Where "Stay logged in" keeps the password and session (the system's password vault).</param>
-        /// <param name="sessionFolder">Where "Stay logged in" keeps the session file (the settings folder when null).</param>
+        /// <param name="openBrowser">Opens Themezer's sign-in page (the default browser when null).</param>
         public ThemezerUploadWindow(ThemezerClient client, ICredentialStore vault, string name, string description, bool hasBgm,
-            Func<Task<MainWindow.ThemePackage>> buildPackage, string sessionFolder = null)
+            Func<Task<MainWindow.ThemePackage>> buildPackage, Action<string> openBrowser = null)
         {
-            _sessionFolder = sessionFolder;
             _client = client;
             _vault = vault;
             _buildPackage = buildPackage;
+            _openBrowser = openBrowser ?? Update.OpenUrl;
             Title = MainResources.Themezer_Title;
             Width = 480;
             SizeToContent = SizeToContent.Height;
@@ -62,41 +61,25 @@ namespace ThemeEditor.App
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             ShowInTaskbar = false;
 
-            // ---- Account
-            _email = new TextBox {Text = Settings.Default.Themezer_Email, Watermark = MainResources.Themezer_Email};
-            _password = new TextBox {PasswordChar = '•', Watermark = MainResources.Themezer_Password};
-            _logIn = new Button {Content = MainResources.Themezer_LogIn, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center};
-            _logIn.Click += async (s, e) => await LogIn();
-            _password.KeyDown += async (s, e) =>
-            {
-                if (e.Key == Avalonia.Input.Key.Enter)
-                {
-                    e.Handled = true;
-                    await LogIn();
-                }
-            };
-            _stay = new CheckBox {Content = MainResources.Themezer_StayLoggedIn, IsChecked = Settings.Default.Themezer_StayLoggedIn, IsVisible = vault.IsAvailable};
-            var logInRow = new DockPanel();
-            DockPanel.SetDock(_logIn, Dock.Right);
-            logInRow.Children.Add(_logIn);
-            logInRow.Children.Add(_stay);
-            _loginPanel = new StackPanel
+            // ---- Account: signing in happens on Themezer's own page, in the browser
+            _signIn = new Button {Content = MainResources.Themezer_SignIn, HorizontalAlignment = HorizontalAlignment.Left, Padding = new Thickness(14, 6)};
+            _signIn.Click += async (s, e) => await SignIn();
+            _signInPanel = new StackPanel
             {
                 Spacing = 6,
                 Children =
                 {
-                    _email, _password,
-                    new TextBlock {Text = vault.IsAvailable ? MainResources.Themezer_PasswordNoteVault : MainResources.Themezer_PasswordNote, TextWrapping = TextWrapping.Wrap, Opacity = 0.7, FontSize = 12},
-                    logInRow
+                    new TextBlock {Text = MainResources.Themezer_SignInNote, TextWrapping = TextWrapping.Wrap, Opacity = 0.7, FontSize = 12},
+                    _signIn
                 }
             };
 
             _account = new TextBlock {VerticalAlignment = VerticalAlignment.Center};
-            var logOut = new Button {Content = MainResources.Themezer_LogOut, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center};
-            logOut.Click += async (s, e) => await LogOut();
+            var signOut = new Button {Content = MainResources.Themezer_LogOut, MinWidth = 90, HorizontalContentAlignment = HorizontalAlignment.Center};
+            signOut.Click += async (s, e) => await SignOut();
             var accountRow = new DockPanel {LastChildFill = true};
-            DockPanel.SetDock(logOut, Dock.Right);
-            accountRow.Children.Add(logOut);
+            DockPanel.SetDock(signOut, Dock.Right);
+            accountRow.Children.Add(signOut);
             accountRow.Children.Add(_account);
             _accountPanel = new StackPanel {Children = {accountRow}};
 
@@ -141,7 +124,7 @@ namespace ThemeEditor.App
                 Children =
                 {
                     new TextBlock {Text = "Themezer", FontSize = 18, FontWeight = FontWeight.SemiBold},
-                    _loginPanel,
+                    _signInPanel,
                     _accountPanel,
                     new Separator(),
                     _details,
@@ -152,7 +135,8 @@ namespace ThemeEditor.App
             Refresh();
             Opened += async (s, e) =>
             {
-                if (_client.Username == null && Saved)
+                SavedToken.CleanUpPasswordLogin(_vault);
+                if (_client.Username == null && SavedToken.Read(_vault) != null)
                     await Run(MainResources.Themezer_LoggingIn, async () =>
                     {
                         await Resume();
@@ -160,11 +144,10 @@ namespace ThemeEditor.App
                     });
                 if (_client.Username != null)
                     _tags.Focus();
-                else if (string.IsNullOrEmpty(_email.Text))
-                    _email.Focus();
                 else
-                    _password.Focus();
+                    _signIn.Focus();
             };
+            Closed += (s, e) => _signInCts?.Cancel();
         }
 
         private static TextBlock Label(string text)
@@ -174,14 +157,15 @@ namespace ThemeEditor.App
 
         private void Refresh()
         {
-            var loggedIn = _client.Username != null;
-            _loginPanel.IsVisible = !loggedIn;
-            _accountPanel.IsVisible = loggedIn;
-            _account.Text = loggedIn ? string.Format(MainResources.Themezer_LoggedInAs, _client.Username) : string.Empty;
-            _logIn.IsDefault = !loggedIn;
-            _upload.IsDefault = loggedIn;
-            _logIn.IsEnabled = !_busy;
-            _upload.IsEnabled = loggedIn && !_busy;
+            var signedIn = _client.Username != null;
+            _signInPanel.IsVisible = !signedIn;
+            _accountPanel.IsVisible = signedIn;
+            _account.Text = signedIn ? string.Format(MainResources.Themezer_LoggedInAs, _client.Username) : string.Empty;
+            _signIn.Content = _signInCts != null ? MainResources.Dialog_Cancel : MainResources.Themezer_SignIn;
+            _signIn.IsDefault = !signedIn;
+            _upload.IsDefault = signedIn;
+            _signIn.IsEnabled = !_busy || _signInCts != null;
+            _upload.IsEnabled = signedIn && !_busy;
             _details.IsEnabled = !_busy;
             _openPage.IsVisible = _pageUrl != null;
         }
@@ -202,9 +186,20 @@ namespace ThemeEditor.App
             {
                 await work();
             }
+            catch (OperationCanceledException)
+            {
+                ShowStatus(null, false);
+            }
             catch (ThemezerException ex)
             {
-                ShowStatus(string.Format(MainResources.Themezer_Error, ex.Message), true);
+                if (ex.Code == "NOT_AUTHENTICATED")
+                {
+                    // The token was revoked or the app disabled: back to signing in
+                    SavedToken.Delete(_vault);
+                    ShowStatus(MainResources.Themezer_SignInEnded, true);
+                }
+                else
+                    ShowStatus(Explain(ex), true);
             }
             catch (Exception ex)
             {
@@ -217,77 +212,74 @@ namespace ThemeEditor.App
             }
         }
 
-        private static string Email => Settings.Default.Themezer_Email;
+        /// <summary>What to tell the user about an error Themezer reported; its own message for anything else.</summary>
+        internal string Explain(ThemezerException ex)
+        {
+            switch (ex.Code)
+            {
+                case "RATE_LIMITED":
+                    return MainResources.Themezer_RateLimited;
+                case "INVALID_THEME_CONTENTS" when ex.Reason == "UNMARKED_NSFW":
+                    return MainResources.Themezer_UnmarkedNsfw;
+                case "INVALID_THEME_CONTENTS" when ex.Reason == "NSFW_CHECK_UNAVAILABLE":
+                    return MainResources.Themezer_NsfwCheckDown;
+                case "NOT_PERMITTED" when _nsfw.IsChecked == true:
+                    return MainResources.Themezer_NsfwNotAllowed;
+                case "USER_TEMPORARILY_BLOCKED":
+                    return MainResources.Themezer_Blocked;
+                default:
+                    return string.Format(MainResources.Themezer_Error, ex.Message);
+            }
+        }
 
-        /// <summary>Whether "Stay logged in" keeps the login in the password vault.</summary>
-        private bool Saved => _vault.IsAvailable && Settings.Default.Themezer_StayLoggedIn && !string.IsNullOrEmpty(Email);
-
-        /// <summary>Logs in from the vault: the saved session if Themezer still knows it, otherwise the saved password.</summary>
+        /// <summary>Signs in with the token kept from an earlier start; forgets it when Themezer no longer accepts it.</summary>
         internal async Task<bool> Resume()
         {
-            if (!Saved)
+            var token = SavedToken.Read(_vault);
+            if (token == null)
                 return false;
-            var saved = SavedLogin.For(_vault, Email, _sessionFolder);
-            if (saved.Session != null && await _client.Resume(saved.Session) != null)
+            if (await _client.Use(token) != null)
                 return true;
-            if (saved.Password == null)
-                return false;
-            try
+            SavedToken.Delete(_vault);
+            return false;
+        }
+
+        private async Task SignIn()
+        {
+            if (_signInCts != null)
             {
-                await _client.LogIn(Email, saved.Password);
+                _signInCts.Cancel();
+                return;
             }
-            catch (ThemezerException ex) when (ex.Code == "INVALID_CREDENTIALS")
-            {
-                // The password was changed on Themezer: forget it, so the user types the new one
-                Forget();
-                throw;
-            }
-            KeepSession();
-            return true;
-        }
-
-        private void KeepSession()
-        {
-            if (Saved && _client.Session != null)
-                SavedLogin.For(_vault, Email, _sessionFolder).Keep(null, _client.Session);
-        }
-
-        private void Forget()
-        {
-            if (_vault.IsAvailable && !string.IsNullOrEmpty(Email))
-                SavedLogin.For(_vault, Email, _sessionFolder).Forget();
-        }
-
-        private async Task LogIn()
-        {
             if (_busy || _client.Username != null)
                 return;
-            var email = (_email.Text ?? string.Empty).Trim();
-            if (email.Length == 0 || string.IsNullOrEmpty(_password.Text))
-                return;
-            var password = _password.Text;
-            await Run(MainResources.Themezer_LoggingIn, async () =>
+            // Five minutes to sign in; closing the browser or refusing leaves the dialog as it was
+            _signInCts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+            try
             {
-                await _client.LogIn(email, password);
-                Forget();
-                Settings.Default.Themezer_Email = email;
-                Settings.Default.Themezer_StayLoggedIn = _stay.IsChecked == true;
-                Settings.Default.Save();
-                if (Saved)
-                    SavedLogin.For(_vault, email, _sessionFolder).Keep(password, _client.Session);
-                ShowStatus(null, false);
-            });
-            _password.Text = string.Empty;
+                await Run(MainResources.Themezer_WaitingForBrowser, async () =>
+                {
+                    await _client.SignIn(_openBrowser, _signInCts.Token);
+                    SavedToken.Write(_vault, _client.Token);
+                    ShowStatus(null, false);
+                });
+            }
+            finally
+            {
+                _signInCts.Dispose();
+                _signInCts = null;
+                Refresh();
+            }
             if (_client.Username != null)
                 _tags.Focus();
         }
 
-        private async Task LogOut()
+        private async Task SignOut()
         {
             if (_busy)
                 return;
-            Forget();
-            await Run(null, () => _client.LogOut());
+            SavedToken.Delete(_vault);
+            await Run(null, () => _client.SignOut());
             ShowStatus(null, false);
         }
 
@@ -315,7 +307,7 @@ namespace ThemeEditor.App
             await Run(MainResources.Themezer_Uploading, async () =>
             {
                 var package = await _buildPackage();
-                var upload = new ThemezerUpload
+                var theme = await _client.UploadTheme(new ThemezerUpload
                 {
                     Name = _name.Text.Trim(),
                     Description = _description.Text,
@@ -327,20 +319,7 @@ namespace ThemeEditor.App
                     Bgm = package.Bgm,
                     Preview = package.Preview,
                     Icon = package.Icon
-                };
-                ThemezerTheme theme;
-                try
-                {
-                    theme = await _client.UploadTheme(upload);
-                }
-                catch (ThemezerException ex) when (ex.Code == "UNAUTHENTICATED" && Saved)
-                {
-                    // The session ran out while the dialog was open: log in again from the vault and try once more
-                    if (!await Resume())
-                        throw;
-                    theme = await _client.UploadTheme(upload);
-                }
-                KeepSession();
+                });
                 _pageUrl = string.IsNullOrEmpty(theme.PageUrl) ? ThemezerClient.SiteUrl : theme.PageUrl;
                 ShowStatus(MainResources.Themezer_Uploaded, false);
             });
@@ -348,138 +327,76 @@ namespace ThemeEditor.App
     }
 
     /// <summary>
-    ///     The "Stay logged in" login of one account. The session sits in a file in the settings folder that only the user
-    ///     can read (as browsers keep cookies), so resuming it never involves the Keychain; the password is in the system's
-    ///     password vault and only read when Themezer no longer accepts the session, at most once while the editor runs.
+    ///     The Themezer access token, kept in the system's password vault so the next start is signed in already. It is
+    ///     read at most once while the editor runs (on macOS each read of a Keychain entry can ask for permission).
     /// </summary>
-    internal sealed class SavedLogin
+    internal static class SavedToken
     {
-        private static readonly System.Collections.Generic.Dictionary<string, SavedLogin> Cache = new System.Collections.Generic.Dictionary<string, SavedLogin>();
+        private const string Account = "themezer-token";
+        private static ICredentialStore _readFrom;
+        private static string _token;
 
-        private readonly ICredentialStore _vault;
-        private readonly string _email;
-        private readonly string _sessionFile;
-        private bool _passwordLoaded, _sessionLoaded;
-        private string _password;
-        private string _session;
-
-        private SavedLogin(ICredentialStore vault, string email, string folder)
+        public static string Read(ICredentialStore vault)
         {
-            _vault = vault;
-            _email = email;
-            _sessionFile = Path.Combine(folder, "themezer-session.json");
+            if (!vault.IsAvailable)
+                return null;
+            if (_readFrom != vault)
+            {
+                _readFrom = vault;
+                _token = vault.Read(Account);
+            }
+            return _token;
         }
 
-        /// <param name="folder">Where the session file goes (the settings folder when null).</param>
-        public static SavedLogin For(ICredentialStore vault, string email, string folder = null)
+        public static void Write(ICredentialStore vault, string token)
         {
-            folder = folder ?? Settings.SettingsDirectory;
-            var key = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(vault) + "|" + folder + "|" + email;
-            lock (Cache)
-            {
-                if (!Cache.TryGetValue(key, out var login) || login._vault != vault)
-                    Cache[key] = login = new SavedLogin(vault, email, folder);
-                return login;
-            }
+            if (!vault.IsAvailable || token == null)
+                return;
+            if (_readFrom == vault && _token == token)
+                return;
+            vault.Write(Account, token);
+            _readFrom = vault;
+            _token = token;
         }
 
-        private string Account => _email + "#login";
-
-        public string Session
+        public static void Delete(ICredentialStore vault)
         {
-            get
-            {
-                if (!_sessionLoaded)
-                {
-                    _sessionLoaded = true;
-                    try
-                    {
-                        var o = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(_sessionFile));
-                        _session = (string) o["email"] == _email ? (string) o["session"] : null;
-                    }
-                    catch (Exception)
-                    {
-                        _session = null;
-                    }
-                }
-                return _session;
-            }
+            if (!vault.IsAvailable)
+                return;
+            if (_readFrom == vault && _token == null)
+                return;
+            vault.Delete(Account);
+            _readFrom = vault;
+            _token = null;
         }
 
-        public string Password
+        /// <summary>
+        ///     Removes what the email and password sign-in of earlier versions kept (the password in the vault, the session in a
+        ///     file), once: Themezer asks apps to sign in through OAuth instead.
+        /// </summary>
+        public static void CleanUpPasswordLogin(ICredentialStore vault)
         {
-            get
-            {
-                if (!_passwordLoaded)
-                {
-                    _passwordLoaded = true;
-                    try
-                    {
-                        var json = _vault.Read(Account);
-                        _password = json == null ? null : (string) Newtonsoft.Json.Linq.JObject.Parse(json)["password"];
-                    }
-                    catch (Exception)
-                    {
-                        // A damaged entry counts as none: the user simply logs in again
-                        _password = null;
-                    }
-                }
-                return _password;
-            }
-        }
-
-        /// <summary>Stores what changed: the password (null keeps the saved one) in the vault, the session in its file.</summary>
-        public void Keep(string password, string session)
-        {
-            if (password != null && (!_passwordLoaded || password != _password))
-            {
-                _vault.Write(Account, new Newtonsoft.Json.Linq.JObject {["password"] = password}.ToString(Newtonsoft.Json.Formatting.None));
-                _password = password;
-                _passwordLoaded = true;
-            }
-            if (session != Session)
-            {
-                _session = session;
-                WriteSession(session);
-            }
-        }
-
-        private void WriteSession(string session)
-        {
+            var settings = Settings.Default;
+            var email = settings.Themezer_Email;
+            if (string.IsNullOrEmpty(email))
+                return;
             try
             {
-                if (session == null)
-                {
-                    File.Delete(_sessionFile);
-                    return;
-                }
-                Directory.CreateDirectory(Path.GetDirectoryName(_sessionFile) ?? ".");
-                var json = new Newtonsoft.Json.Linq.JObject {["email"] = _email, ["session"] = session}.ToString(Newtonsoft.Json.Formatting.None);
-                var options = new FileStreamOptions {Mode = FileMode.Create, Access = FileAccess.Write};
-                if (!OperatingSystem.IsWindows())
-                    options.UnixCreateMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
-                using (var stream = new FileStream(_sessionFile, options))
-                using (var writer = new StreamWriter(stream))
-                    writer.Write(json);
-                // An older file keeps its mode when overwritten
-                if (!OperatingSystem.IsWindows())
-                    File.SetUnixFileMode(_sessionFile, UnixFileMode.UserRead | UnixFileMode.UserWrite);
+                var session = Path.Combine(Settings.SettingsDirectory, "themezer-session.json");
+                if (File.Exists(session))
+                    File.Delete(session);
+                // On macOS deleting Keychain entries an earlier build made can ask for permission each time, so they stay
+                // there unused (Keychain Access lists them under "Umami 3DS Theme Editor")
+                if (vault.IsAvailable && !OperatingSystem.IsMacOS())
+                    foreach (var account in new[] {email, email + "#session", email + "#login"})
+                        vault.Delete(account);
             }
             catch (Exception)
             {
-                // Without the file the next start falls back to the password
+                // Best effort: what is left is never read again
             }
-        }
-
-        public void Forget()
-        {
-            _passwordLoaded = _sessionLoaded = true;
-            _password = _session = null;
-            WriteSession(null);
-            _vault.Delete(Account);
-            // Entries from v2.3.14, which kept the password and the session apart in the vault
-            _vault.Delete(_email);
-            _vault.Delete(_email + "#session");
+            settings.Themezer_Email = string.Empty;
+            settings.Save();
         }
     }
 }

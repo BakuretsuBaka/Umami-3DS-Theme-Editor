@@ -947,23 +947,11 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Upload to Themezer</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Log in</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Log out</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Logged in as {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Your password is only sent to Themezer and never saved. Accounts that sign in with Discord or Google need to set a password on themezer.net first.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Name</value>
@@ -1010,12 +998,6 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Stay logged in</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Your password is only sent to Themezer. With "Stay logged in" it is kept in your system's password vault (Keychain, Credential Manager or keyring), never in Umami's settings. Accounts that sign in with Discord or Google need to set a password on themezer.net first.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>Use the macOS menu bar</value>
   </data>
@@ -1048,5 +1030,41 @@ Should the editor fit it for you?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Resource pack removed.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Sign in with Themezer</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Opens Themezer in your browser: sign in there and allow Umami. Discord and Google accounts work too, and Umami never sees your password.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Waiting for the browser... Sign in on Themezer and allow Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Signed in. You can close this tab and go back to Umami.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Sign-in cancelled. You can close this tab.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>Sign-in was cancelled in the browser.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Your Themezer sign-in has ended. Please sign in again.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer takes 20 uploads an hour per account. Please try again in an hour.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezer's image check found the preview may contain adult content. Tick "Contains adult content" or change the theme.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezer's image check is unavailable right now. Nothing was uploaded; please try again later.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer only accepts uploads marked as adult content when adult content is turned on in your Themezer account settings. Turn it on there, or untick "Contains adult content".</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Your Themezer account can't upload right now.</value>
   </data>
 </root>

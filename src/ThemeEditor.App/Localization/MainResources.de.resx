@@ -834,23 +834,11 @@ Soll der Editor es anpassen?</value>
   <data name="Themezer_Title" xml:space="preserve">
     <value>Auf Themezer hochladen</value>
   </data>
-  <data name="Themezer_Email" xml:space="preserve">
-    <value>E-Mail</value>
-  </data>
-  <data name="Themezer_Password" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
-  <data name="Themezer_LogIn" xml:space="preserve">
-    <value>Anmelden</value>
-  </data>
   <data name="Themezer_LogOut" xml:space="preserve">
     <value>Abmelden</value>
   </data>
   <data name="Themezer_LoggedInAs" xml:space="preserve">
     <value>Angemeldet als {0}</value>
-  </data>
-  <data name="Themezer_PasswordNote" xml:space="preserve">
-    <value>Dein Passwort wird nur an Themezer gesendet und nie gespeichert. Konten, die sich mit Discord oder Google anmelden, müssen zuerst auf themezer.net ein Passwort festlegen.</value>
   </data>
   <data name="Themezer_Name" xml:space="preserve">
     <value>Name</value>
@@ -897,12 +885,6 @@ Soll der Editor es anpassen?</value>
   <data name="Themezer_Error" xml:space="preserve">
     <value>Themezer: {0}</value>
   </data>
-  <data name="Themezer_StayLoggedIn" xml:space="preserve">
-    <value>Angemeldet bleiben</value>
-  </data>
-  <data name="Themezer_PasswordNoteVault" xml:space="preserve">
-    <value>Dein Passwort wird nur an Themezer gesendet. Mit „Angemeldet bleiben“ liegt es im Passwortspeicher deines Systems (Schlüsselbund, Anmeldeinformationsverwaltung oder Keyring), nie in Umamis Einstellungen. Konten, die sich mit Discord oder Google anmelden, müssen zuerst auf themezer.net ein Passwort festlegen.</value>
-  </data>
   <data name="Menu_File_MacMenuBar" xml:space="preserve">
     <value>macOS-Menüleiste verwenden</value>
   </data>
@@ -935,5 +917,41 @@ Soll der Editor es anpassen?</value>
   </data>
   <data name="Library_Pack_Removed" xml:space="preserve">
     <value>Ressourcenpaket entfernt.</value>
+  </data>
+  <data name="Themezer_SignIn" xml:space="preserve">
+    <value>Mit Themezer anmelden</value>
+  </data>
+  <data name="Themezer_SignInNote" xml:space="preserve">
+    <value>Öffnet Themezer in deinem Browser: Melde dich dort an und erlaube Umami den Zugriff. Discord- und Google-Konten funktionieren auch, und Umami sieht dein Passwort nie.</value>
+  </data>
+  <data name="Themezer_WaitingForBrowser" xml:space="preserve">
+    <value>Warte auf den Browser... Melde dich bei Themezer an und erlaube Umami den Zugriff.</value>
+  </data>
+  <data name="Themezer_BrowserDone" xml:space="preserve">
+    <value>Angemeldet. Du kannst diesen Tab schließen und zu Umami zurückkehren.</value>
+  </data>
+  <data name="Themezer_BrowserDenied" xml:space="preserve">
+    <value>Anmeldung abgebrochen. Du kannst diesen Tab schließen.</value>
+  </data>
+  <data name="Themezer_SignInDenied" xml:space="preserve">
+    <value>Die Anmeldung wurde im Browser abgebrochen.</value>
+  </data>
+  <data name="Themezer_SignInEnded" xml:space="preserve">
+    <value>Deine Themezer-Anmeldung ist abgelaufen. Bitte melde dich erneut an.</value>
+  </data>
+  <data name="Themezer_RateLimited" xml:space="preserve">
+    <value>Themezer nimmt 20 Uploads pro Stunde und Konto an. Bitte versuch es in einer Stunde erneut.</value>
+  </data>
+  <data name="Themezer_UnmarkedNsfw" xml:space="preserve">
+    <value>Themezers Bildprüfung meint, die Vorschau könnte Inhalte für Erwachsene zeigen. Setz den Haken bei „Enthält Inhalte für Erwachsene“ oder ändere das Design.</value>
+  </data>
+  <data name="Themezer_NsfwCheckDown" xml:space="preserve">
+    <value>Themezers Bildprüfung ist gerade nicht erreichbar. Es wurde nichts hochgeladen; bitte versuch es später erneut.</value>
+  </data>
+  <data name="Themezer_NsfwNotAllowed" xml:space="preserve">
+    <value>Themezer nimmt als Erwachseneninhalt markierte Uploads nur an, wenn Erwachseneninhalte in deinen Themezer-Kontoeinstellungen eingeschaltet sind. Schalte sie dort ein oder entferne den Haken bei „Enthält Inhalte für Erwachsene“.</value>
+  </data>
+  <data name="Themezer_Blocked" xml:space="preserve">
+    <value>Dein Themezer-Konto kann gerade nichts hochladen.</value>
   </data>
 </root>
