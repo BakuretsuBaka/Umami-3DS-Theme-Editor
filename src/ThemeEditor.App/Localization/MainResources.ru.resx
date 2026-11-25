@@ -954,4 +954,52 @@
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Ваш аккаунт Themezer сейчас не может загружать.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Открыть с Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Открыть с Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Ссылка или быстрый ID темы 3DS на Themezer (например, T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Это не ссылка и не быстрый ID темы 3DS на Themezer (T и ID темы, например T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>На Themezer нет темы 3DS с таким ID (или это чья-то приватная тема).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Загрузка с Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Открыто с Themezer, ещё не сохранено</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Доступен Umami {0} (у вас {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Эта копия не может обновиться сама (портативная или Linux): скачайте новую версию со страницы выпусков.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Обновить сейчас</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Позже</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Открыть страницу загрузки</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Загрузка обновления... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Не удалось установить обновление: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>Новая версия открыта в Finder. Перетащите приложение в папку «Программы», чтобы заменить старое, и запустите его снова.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Не удалось проверить обновления (GitHub недоступен). Попробуйте позже.</value>
+  </data>
 </root>

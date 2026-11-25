@@ -954,4 +954,52 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>현재 Themezer 계정으로 업로드할 수 없습니다.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Themezer에서 열기...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Themezer에서 열기</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Themezer 3DS 테마의 링크 또는 빠른 ID (예: T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Themezer 3DS 테마의 링크나 빠른 ID가 아닙니다 (T 뒤에 테마 ID, 예: T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer에 해당 ID의 3DS 테마가 없습니다 (또는 다른 사람의 비공개 테마입니다).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Themezer에서 다운로드 중...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Themezer에서 열림, 아직 저장 안 됨</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0}을(를) 사용할 수 있습니다 (현재 {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>이 사본은 스스로 업데이트할 수 없습니다 (포터블 또는 Linux). 릴리스 페이지에서 새 버전을 다운로드하세요.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>지금 업데이트</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>나중에</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>다운로드 페이지 열기</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>업데이트 다운로드 중... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>업데이트를 설치할 수 없습니다: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>새 버전이 Finder에 열렸습니다. 앱을 응용 프로그램 폴더로 드래그해 이전 버전을 바꾼 다음 다시 실행하세요.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>업데이트를 확인할 수 없습니다 (GitHub에 연결할 수 없음). 나중에 다시 시도하세요.</value>
+  </data>
 </root>

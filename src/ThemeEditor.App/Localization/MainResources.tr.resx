@@ -954,4 +954,52 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Themezer hesabın şu anda yükleme yapamıyor.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Themezer'dan aç...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Themezer'dan aç</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Themezer'daki bir 3DS temasının bağlantısı veya hızlı kimliği (örneğin T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Bu bir Themezer 3DS teması bağlantısı veya hızlı kimliği değil (T ve tema kimliği, örneğin T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer'da bu kimliğe sahip bir 3DS teması yok (ya da birinin özel teması).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Themezer'dan indiriliyor...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Themezer'dan açıldı, henüz kaydedilmedi</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} çıktı (sende {1} var).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Bu kopya kendini güncelleyemez (taşınabilir veya Linux): yeni sürümü sürüm sayfasından indir.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Şimdi güncelle</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Daha sonra</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>İndirme sayfasını aç</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Güncelleme indiriliyor... %{0}</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Güncelleme yüklenemedi: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>Yeni sürüm Finder'da açıldı. Eskisinin yerine geçmesi için uygulamayı Uygulamalar klasörüne sürükle, sonra yeniden başlat.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Güncellemeler denetlenemedi (GitHub'a ulaşılamıyor). Daha sonra tekrar dene.</value>
+  </data>
 </root>

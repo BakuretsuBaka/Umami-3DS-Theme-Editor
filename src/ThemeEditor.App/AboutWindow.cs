@@ -19,6 +19,7 @@ namespace ThemeEditor.App
     {
         private readonly TextBlock _latest;
         private readonly TextBlock _status;
+        private readonly Button _updateNow;
 
         public AboutWindow()
         {
@@ -41,6 +42,13 @@ namespace ThemeEditor.App
             _latest = new TextBlock {Text = MainResources.About_Checking};
             _status = new TextBlock();
 
+            _updateNow = new Button {Content = MainResources.Update_Now, HorizontalAlignment = HorizontalAlignment.Left, IsVisible = false};
+            _updateNow.Click += async (s, e) =>
+            {
+                Close();
+                if (Dialogs.MainWindow is MainWindow main)
+                    await main.OfferUpdate(false);
+            };
             var link = new Button {Content = MainResources.About_OpenReleases, HorizontalAlignment = HorizontalAlignment.Left};
             link.Click += (s, e) => Update.OpenUrl(Update.ReleasesUrl);
             var repo = new Button {Content = Update.RepositoryUrl, HorizontalAlignment = HorizontalAlignment.Left, Background = Brushes.Transparent, Foreground = Brushes.DodgerBlue, Padding = new Thickness(0)};
@@ -78,6 +86,7 @@ namespace ThemeEditor.App
                     check,
                     _latest,
                     _status,
+                    _updateNow,
                     link
                 }
             };
@@ -94,8 +103,16 @@ namespace ThemeEditor.App
         private async System.Threading.Tasks.Task CheckLatest()
         {
             var has = await Update.CheckUpdateAvailable();
+            if (Update.CheckFailed)
+            {
+                // Not reaching GitHub says nothing about updates: no "up to date" then
+                _latest.Text = MainResources.About_CheckFailed;
+                _status.Text = string.Empty;
+                return;
+            }
             _latest.Text = string.Format(MainResources.About_Latest, Update.UpdateVersion);
             _status.Text = has ? MainResources.About_UpdateAvailable : MainResources.About_UpToDate;
+            _updateNow.IsVisible = has && Update.AssetFor(Update.Latest, Update.Kind, System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture) != null;
         }
     }
 }

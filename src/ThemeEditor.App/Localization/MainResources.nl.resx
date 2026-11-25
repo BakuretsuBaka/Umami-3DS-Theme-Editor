@@ -954,4 +954,52 @@ Zal de editor hem passend maken?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Je Themezer-account kan nu niets uploaden.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Openen vanaf Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Openen vanaf Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Link of snelle ID van een 3DS-thema op Themezer (bijvoorbeeld T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Dat is geen link of snelle ID van een 3DS-thema op Themezer (T gevolgd door de thema-ID, bijvoorbeeld T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer heeft geen 3DS-thema met die ID (of het is een privéthema van iemand anders).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Downloaden van Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Geopend vanaf Themezer, nog niet opgeslagen</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} is beschikbaar (je hebt {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Deze kopie kan zichzelf niet bijwerken (draagbaar of Linux): download de nieuwe versie van de releasepagina.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Nu bijwerken</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Downloadpagina openen</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Update downloaden... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>De update kon niet worden geïnstalleerd: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>De nieuwe versie is geopend in de Finder. Sleep de app naar je map Apps om de oude te vervangen en start hem daarna opnieuw.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Kon niet op updates controleren (GitHub niet bereikbaar). Probeer het later opnieuw.</value>
+  </data>
 </root>

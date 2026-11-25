@@ -38,6 +38,10 @@ Get the package for your system from the [**latest release**](https://github.com
 | Linux (x86-64) | `…-linux-x64.tar.gz` |
 | Linux (ARM64, e.g. Raspberry Pi 4/5) | `…-linux-arm64.tar.gz` |
 
+**Updates:** the installed Windows version and the macOS app update themselves: Umami offers new versions at start (or in
+*About*), downloads the right file, checks its SHA-256 checksum and restarts as the new version. Portable and Linux copies
+point you to the download page.
+
 <details>
 <summary><b>Windows:</b> installer or portable</summary>
 
@@ -143,6 +147,8 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
   so Discord and Google accounts work too and Umami never sees your password. The access token is kept in the system's password
   vault (Keychain, Credential Manager or the Secret Service on Linux) for the next start; *Log out* revokes it, and you can also
   remove Umami under connected apps in your Themezer account.
+* **Open from Themezer:** *File → Open from Themezer...* takes a theme link or quick ID (e.g. `T1A20D`), downloads the 3DS
+  theme into a temporary folder and opens it; *Save* then asks where to keep it, and the download is deleted when you move on.
 * **Send to CHMM2:** push the theme to the console over the network.
 * **Fast saving:** the LZ11 compressor finds matches with a hash chain instead of a brute-force search, about 50× faster with
   byte-identical output, so saving, exporting and sending never freeze the window.

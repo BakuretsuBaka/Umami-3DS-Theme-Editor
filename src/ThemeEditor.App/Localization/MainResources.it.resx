@@ -954,4 +954,52 @@ Vuoi che l'editor la adatti?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Il tuo account Themezer non può caricare al momento.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Apri da Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Apri da Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Link o ID rapido di un tema 3DS di Themezer (per esempio T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Non è un link né un ID rapido di un tema 3DS di Themezer (T seguita dall'ID del tema, per esempio T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer non ha alcun tema 3DS con quell'ID (oppure è il tema privato di qualcuno).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Download da Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Aperto da Themezer, non ancora salvato</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} è disponibile (hai la {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Questa copia non può aggiornarsi da sola (portabile o Linux): scarica la nuova versione dalla pagina delle versioni.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Aggiorna ora</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Più tardi</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Apri pagina di download</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Download dell'aggiornamento... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Impossibile installare l'aggiornamento: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>La nuova versione è aperta nel Finder. Trascina l'app nella cartella Applicazioni per sostituire quella vecchia, poi riavviala.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Impossibile cercare aggiornamenti (GitHub non raggiungibile). Riprova più tardi.</value>
+  </data>
 </root>

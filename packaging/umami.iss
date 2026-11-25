@@ -94,3 +94,5 @@ Name: "{autodesktop}\Umami 3DS Theme Editor"; Filename: "{app}\UmamiThemeEditor.
 
 [Run]
 Filename: "{app}\UmamiThemeEditor.exe"; Description: "{cm:LaunchProgram,Umami 3DS Theme Editor}"; Flags: nowait postinstall skipifsilent
+; An update the editor started runs silently: start the editor again afterwards
+Filename: "{app}\UmamiThemeEditor.exe"; Flags: nowait skipifnotsilent

@@ -21,12 +21,14 @@ namespace ThemeEditor.App
         public ICommand ExportZipCommand => ExportZipCommandWrapper.Command;
         public GestureCommandWrapper ExportZipCommandWrapper { get; private set; }
         public ICommand UploadThemezerCommand { get; private set; }
+        public ICommand OpenThemezerCommand { get; private set; }
 
         private void SetupArchive()
         {
             ExportZipCommandWrapper = GestureCommandWrapper.Create(
                 new RelayCommand(ExportZip_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy), Key.E);
             UploadThemezerCommand = new RelayCommand(UploadThemezer_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy);
+            OpenThemezerCommand = new RelayCommand(OpenThemezer_Execute, () => !IsBusy);
         }
 
         private static bool IsZip(string path)
@@ -63,6 +65,87 @@ namespace ThemeEditor.App
             {
                 IsBusy = false;
                 await Dialogs.Show(this, ex.Message, WINDOW_TITLE, MessageKind.Error);
+            }
+        }
+
+        /// <summary>Asks for a Themezer link or quick ID, downloads that 3DS theme and opens it.</summary>
+        private async void OpenThemezer_Execute()
+        {
+            var input = await Dialogs.Prompt(this, MainResources.Themezer_OpenTitle, MainResources.Themezer_OpenPrompt, string.Empty);
+            if (input == null)
+                return;
+            var id = ThemezerClient.ThemeIdOf(input);
+            if (id == null)
+            {
+                await Dialogs.Show(this, MainResources.Themezer_OpenInvalid, WINDOW_TITLE, MessageKind.Warning);
+                return;
+            }
+            string zip;
+            IsBusy = true;
+            BusyText = MainResources.Busy_DownloadingThemezer;
+            try
+            {
+                zip = await ThemezerClient.Shared.DownloadTheme(id, Path.Combine(TemporaryRoot, Guid.NewGuid().ToString("N")));
+            }
+            catch (Exception ex)
+            {
+                IsBusy = false;
+                await Dialogs.Show(this, ex is ThemezerException && ((ThemezerException) ex).Code == "NOT_FOUND"
+                    ? ex.Message : string.Format(MainResources.Themezer_Error, ex.Message), WINDOW_TITLE, MessageKind.Error);
+                return;
+            }
+            IsBusy = false;
+            // Opens like any theme ZIP: unpacked into a folder next to it, then loaded
+            LoadThemeCommandWrapper.Command.Execute(zip);
+        }
+
+        // ---- Themes opened from Themezer live in a temporary folder until they are saved somewhere
+
+        /// <summary>Where themes opened from Themezer are unpacked (a folder per download).</summary>
+        internal static string TemporaryRoot => Path.Combine(Path.GetTempPath(), "UmamiThemeEditor");
+
+        /// <summary>Whether <paramref name="path" /> lies in a temporary folder of <see cref="TemporaryRoot" />.</summary>
+        internal static bool IsTemporary(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return false;
+            var root = Path.GetFullPath(TemporaryRoot).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+            return Path.GetFullPath(path).StartsWith(root, StringComparison.Ordinal);
+        }
+
+        /// <summary>Deletes the temporary folder <paramref name="path" /> is in (the folder of one download).</summary>
+        internal static void DeleteTemporary(string path)
+        {
+            if (!IsTemporary(path))
+                return;
+            var root = Path.GetFullPath(TemporaryRoot);
+            var dir = Path.GetFullPath(path);
+            while (Path.GetDirectoryName(dir) is string parent && !string.Equals(parent.TrimEnd(Path.DirectorySeparatorChar), root.TrimEnd(Path.DirectorySeparatorChar), StringComparison.Ordinal))
+                dir = parent;
+            try
+            {
+                if (Directory.Exists(dir))
+                    Directory.Delete(dir, true);
+            }
+            catch (Exception)
+            {
+                // Still in use: cleared on a later start
+            }
+        }
+
+        /// <summary>Removes temporary folders that an earlier run left behind (e.g. after a crash).</summary>
+        internal static void CleanUpTemporary(TimeSpan olderThan)
+        {
+            try
+            {
+                if (!Directory.Exists(TemporaryRoot))
+                    return;
+                foreach (var dir in Directory.GetDirectories(TemporaryRoot))
+                    if (DateTime.UtcNow - Directory.GetLastWriteTimeUtc(dir) > olderThan)
+                        try { Directory.Delete(dir, true); } catch (Exception) { }
+            }
+            catch (Exception)
+            {
             }
         }
 

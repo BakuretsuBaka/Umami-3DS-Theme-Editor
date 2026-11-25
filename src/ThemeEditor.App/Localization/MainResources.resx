@@ -1067,4 +1067,52 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Your Themezer account can't upload right now.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Open from Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Open from Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Link or quick ID of a Themezer 3DS theme (for example T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>That is not a Themezer 3DS theme link or quick ID (T followed by the theme's ID, for example T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer has no 3DS theme with that ID (or it is someone's private theme).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Downloading from Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Opened from Themezer, not saved yet</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} is available (you have {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>This copy can't update itself (portable or Linux): download the new version from the release page.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Update now</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Open download page</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Downloading the update... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>The update could not be installed: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>The new version is open in Finder. Drag the app into your Applications folder to replace the old one, then start it again.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Couldn't check for updates (GitHub not reachable). Try again later.</value>
+  </data>
 </root>

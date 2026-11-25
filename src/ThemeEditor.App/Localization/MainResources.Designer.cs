@@ -2195,5 +2195,117 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_File_OpenThemezer".</summary>
+        public static string Menu_File_OpenThemezer {
+            get {
+                return ResourceManager.GetString("Menu_File_OpenThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_OpenTitle".</summary>
+        public static string Themezer_OpenTitle {
+            get {
+                return ResourceManager.GetString("Themezer_OpenTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_OpenPrompt".</summary>
+        public static string Themezer_OpenPrompt {
+            get {
+                return ResourceManager.GetString("Themezer_OpenPrompt", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_OpenInvalid".</summary>
+        public static string Themezer_OpenInvalid {
+            get {
+                return ResourceManager.GetString("Themezer_OpenInvalid", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_OpenNotFound".</summary>
+        public static string Themezer_OpenNotFound {
+            get {
+                return ResourceManager.GetString("Themezer_OpenNotFound", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Busy_DownloadingThemezer".</summary>
+        public static string Busy_DownloadingThemezer {
+            get {
+                return ResourceManager.GetString("Busy_DownloadingThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_FromThemezer".</summary>
+        public static string Status_FromThemezer {
+            get {
+                return ResourceManager.GetString("Status_FromThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Available".</summary>
+        public static string Update_Available {
+            get {
+                return ResourceManager.GetString("Update_Available", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Manual".</summary>
+        public static string Update_Manual {
+            get {
+                return ResourceManager.GetString("Update_Manual", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Now".</summary>
+        public static string Update_Now {
+            get {
+                return ResourceManager.GetString("Update_Now", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Later".</summary>
+        public static string Update_Later {
+            get {
+                return ResourceManager.GetString("Update_Later", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_OpenPage".</summary>
+        public static string Update_OpenPage {
+            get {
+                return ResourceManager.GetString("Update_OpenPage", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Downloading".</summary>
+        public static string Update_Downloading {
+            get {
+                return ResourceManager.GetString("Update_Downloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Failed".</summary>
+        public static string Update_Failed {
+            get {
+                return ResourceManager.GetString("Update_Failed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_DragApp".</summary>
+        public static string Update_DragApp {
+            get {
+                return ResourceManager.GetString("Update_DragApp", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "About_CheckFailed".</summary>
+        public static string About_CheckFailed {
+            get {
+                return ResourceManager.GetString("About_CheckFailed", resourceCulture);
+            }
+        }
+
     }
 }

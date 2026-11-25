@@ -954,4 +954,52 @@
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>你的 Themezer 账号目前无法上传。</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>从 Themezer 打开...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>从 Themezer 打开</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Themezer 上 3DS 主题的链接或快速 ID（例如 T1A20D）：</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>这不是 Themezer 3DS 主题的链接或快速 ID（T 加主题 ID，例如 T1A20D）。</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer 上没有该 ID 的 3DS 主题（或者是别人的私密主题）。</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>正在从 Themezer 下载...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>从 Themezer 打开，尚未保存</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} 已发布（你当前是 {1}）。</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>此副本无法自动更新（便携版或 Linux）：请从发布页面下载新版本。</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>立即更新</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>以后</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>打开下载页面</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>正在下载更新... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>无法安装更新：{0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>新版本已在访达中打开。把应用拖到“应用程序”文件夹以替换旧版本，然后重新打开。</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>无法检查更新（无法连接 GitHub），请稍后再试。</value>
+  </data>
 </root>

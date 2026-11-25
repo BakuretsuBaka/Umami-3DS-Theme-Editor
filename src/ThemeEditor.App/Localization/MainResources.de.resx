@@ -954,4 +954,52 @@ Soll der Editor es anpassen?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Dein Themezer-Konto kann gerade nichts hochladen.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Von Themezer öffnen...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Von Themezer öffnen</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Link oder Quick-ID eines 3DS-Designs auf Themezer (z. B. T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Das ist kein Link und keine Quick-ID eines 3DS-Designs auf Themezer (T gefolgt von der Design-ID, z. B. T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer hat kein 3DS-Design mit dieser ID (oder es ist ein privates Design einer anderen Person).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Wird von Themezer heruntergeladen...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Von Themezer geöffnet, noch nicht gespeichert</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} ist verfügbar (du hast {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Diese Kopie kann sich nicht selbst aktualisieren (portabel oder Linux): Lade die neue Version von der Release-Seite herunter.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Jetzt aktualisieren</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Später</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Download-Seite öffnen</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Update wird heruntergeladen... {0} %</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Das Update konnte nicht installiert werden: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>Die neue Version ist im Finder geöffnet. Zieh die App in deinen Programme-Ordner, um die alte zu ersetzen, und starte sie dann neu.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Konnte nicht nach Updates suchen (GitHub nicht erreichbar). Versuch es später noch einmal.</value>
+  </data>
 </root>

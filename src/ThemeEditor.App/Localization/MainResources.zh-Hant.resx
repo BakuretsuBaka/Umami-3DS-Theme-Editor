@@ -954,4 +954,52 @@
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>你的 Themezer 帳號目前無法上傳。</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>從 Themezer 開啟...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>從 Themezer 開啟</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Themezer 上 3DS 主題的連結或快速 ID（例如 T1A20D）：</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>這不是 Themezer 3DS 主題的連結或快速 ID（T 加主題 ID，例如 T1A20D）。</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer 上沒有該 ID 的 3DS 主題（或是別人的私人主題）。</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>正在從 Themezer 下載...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>從 Themezer 開啟，尚未儲存</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} 已發布（你目前是 {1}）。</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>此副本無法自動更新（可攜版或 Linux）：請從發布頁面下載新版本。</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>立即更新</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>稍後</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>開啟下載頁面</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>正在下載更新... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>無法安裝更新：{0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>新版本已在 Finder 中開啟。把 App 拖到「應用程式」資料夾以取代舊版本，然後重新開啟。</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>無法檢查更新（無法連線到 GitHub），請稍後再試。</value>
+  </data>
 </root>

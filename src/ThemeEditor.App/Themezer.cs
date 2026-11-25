@@ -354,6 +354,59 @@ namespace ThemeEditor.App
             };
         }
 
+        /// <summary>
+        ///     The ID of a 3DS theme from what a user pastes: its page link (themezer.net/3ds/themes/name-1A20D), its quick ID
+        ///     (T1A20D) or the bare ID; null when it is none of these.
+        /// </summary>
+        public static string ThemeIdOf(string input)
+        {
+            var text = (input ?? string.Empty).Trim();
+            var page = System.Text.RegularExpressions.Regex.Match(text, @"themezer\.net/3ds/themes/(?:[^/?#]*-)?([0-9A-Fa-f]+)(?:[/?#]|$)");
+            if (page.Success)
+                return page.Groups[1].Value.ToUpperInvariant();
+            var quick = System.Text.RegularExpressions.Regex.Match(text, @"^T?([0-9A-Fa-f]{1,12})$", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            return quick.Success ? quick.Groups[1].Value.ToUpperInvariant() : null;
+        }
+
+        /// <summary>
+        ///     Downloads the theme ZIP of a 3DS theme into <paramref name="folder" /> and returns its path. Signed in, the user's
+        ///     own private themes download too.
+        /// </summary>
+        public async Task<string> DownloadTheme(string id, string folder, CancellationToken cancel = default)
+        {
+            var url = "https://api.themezer.net/3ds/themes/" + id + "/download";
+            try
+            {
+                using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+                {
+                    // HttpClient drops the token when the download is redirected to the file storage
+                    if (Token != null)
+                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
+                    using (var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancel))
+                    {
+                        if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
+                            throw new ThemezerException(Localization.MainResources.Themezer_OpenNotFound, "NOT_FOUND");
+                        response.EnsureSuccessStatusCode();
+                        var name = response.Content.Headers.ContentDisposition?.FileNameStar ?? response.Content.Headers.ContentDisposition?.FileName;
+                        name = string.IsNullOrWhiteSpace(name) ? "Themezer-T" + id + ".zip" : name.Trim('"');
+                        foreach (var c in Path.GetInvalidFileNameChars())
+                            name = name.Replace(c, '_');
+                        if (!name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
+                            name += ".zip";
+                        Directory.CreateDirectory(folder);
+                        var path = Path.Combine(folder, name);
+                        using (var file = File.Create(path))
+                            await response.Content.CopyToAsync(file);
+                        return path;
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new ThemezerException(ex.Message, "NETWORK", ex);
+            }
+        }
+
         /// <summary>Tags as typed: separated by commas, trimmed, without empty ones and duplicates.</summary>
         public static List<string> ParseTags(string text)
         {

@@ -54,6 +54,9 @@ namespace ThemeEditor.App
             {
                 if (value == _themePath)
                     return;
+                // A theme opened from Themezer that is saved elsewhere or replaced by another one: its download goes
+                if (IsTemporary(_themePath) && !IsTemporary(value))
+                    DeleteTemporary(_themePath);
                 _themePath = value;
                 OnPropertyChanged(nameof(ThemePath));
                 UpdateTitleAndStatus();
@@ -184,7 +187,9 @@ namespace ThemeEditor.App
             if (result.Loaded)
             {
                 ViewModel = new ThemeViewModel(result.Theme, result.Info);
-                UpdateRecentsList(result.Path);
+                // A temporary download is gone after this session, so it is no recent file
+                if (!IsTemporary(result.Path))
+                    UpdateRecentsList(result.Path);
 
                 if (result.Info == null)
                 {
@@ -498,7 +503,8 @@ namespace ThemeEditor.App
             var saveAsCommand = new RelayCommandAsync<string, SaveThemeResults>(p => SaveTheme_Execute(null),
                 str => CanExecute_ViewModelLoaded(), str => PreExecute_SetBusy(), SaveTheme_PostExecute);
 
-            var saveCommand = new RelayCommandAsync<SaveThemeResults>(() => SaveTheme_Execute(ThemePath),
+            // A theme opened from Themezer sits in a temporary folder: saving it asks where to, like Save As
+            var saveCommand = new RelayCommandAsync<SaveThemeResults>(() => SaveTheme_Execute(IsTemporary(ThemePath) ? null : ThemePath),
                 CanExecute_ViewModelLoaded, PreExecute_SetBusy, SaveTheme_PostExecute);
 
             var newCommand = new RelayCommandAsync<LoadThemeResults>(LoadNullTheme_Execute,

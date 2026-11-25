@@ -163,7 +163,10 @@ namespace ThemeEditor.App
             _account.Text = signedIn ? string.Format(MainResources.Themezer_LoggedInAs, _client.Username) : string.Empty;
             _signIn.Content = _signInCts != null ? MainResources.Dialog_Cancel : MainResources.Themezer_SignIn;
             _signIn.IsDefault = !signedIn;
-            _upload.IsDefault = signedIn;
+            // Once uploaded, the theme page takes the upload button's place, so the theme is not sent twice by accident
+            _upload.IsVisible = _pageUrl == null;
+            _upload.IsDefault = signedIn && _pageUrl == null;
+            _openPage.IsDefault = _pageUrl != null;
             _signIn.IsEnabled = !_busy || _signInCts != null;
             _upload.IsEnabled = signedIn && !_busy;
             _details.IsEnabled = !_busy;
@@ -293,7 +296,7 @@ namespace ThemeEditor.App
             return null;
         }
 
-        private async Task UploadTheme()
+        internal async Task UploadTheme()
         {
             if (_busy || _client.Username == null)
                 return;

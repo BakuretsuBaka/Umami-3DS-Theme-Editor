@@ -354,6 +354,153 @@ namespace ThemeEditor.Tests
         }
 
         [AvaloniaFact]
+        public async Task AfterUploadingTheThemePageReplacesTheUploadButton()
+        {
+            var (client, fake) = await SignedIn();
+            fake.Answer = op => Created;
+            var window = Dialog(client, new MemoryVault());
+            window.Show();
+            window.GetLogicalDescendants().OfType<TextBox>().First(t => t.Watermark == MainResources.Themezer_TagsExample).Text = "pink";
+            var buttons = window.GetLogicalDescendants().OfType<Button>().ToList();
+            var upload = buttons.Single(b => (string) b.Content == MainResources.Themezer_Upload);
+            var page = buttons.Single(b => (string) b.Content == MainResources.Themezer_OpenPage);
+            Assert.True(upload.IsVisible);
+            Assert.False(page.IsVisible);
+
+            await window.UploadTheme();
+            Assert.False(upload.IsVisible);
+            Assert.True(page.IsVisible);
+            Assert.True(page.IsDefault);
+            Assert.Single(fake.Operations, op => ((string) op["query"]).Contains("createTheme"));
+            window.Close();
+        }
+
+        [Theory]
+        [InlineData("T1A20D", "1A20D")]
+        [InlineData("t1a20d", "1A20D")]
+        [InlineData("1A20D", "1A20D")]
+        [InlineData(" https://themezer.net/3ds/themes/yarn-yoshi-1A20D ", "1A20D")]
+        [InlineData("themezer.net/3ds/themes/tloz-breath-of-the-wild-1A20E?ref=x", "1A20E")]
+        [InlineData("https://themezer.net/3ds/themes/1A20D", "1A20D")]
+        [InlineData("https://themezer.net/switch/themes/some-theme-1A20D", null)]
+        [InlineData("yarn yoshi", null)]
+        [InlineData("", null)]
+        public void ThemeLinksAndQuickIdsAreRecognised(string input, string id)
+        {
+            Assert.Equal(id, ThemezerClient.ThemeIdOf(input));
+        }
+
+        /// <summary>Stands in for Themezer's theme download (the file a download link leads to).</summary>
+        private sealed class FakeDownload : HttpMessageHandler
+        {
+            public HttpRequestMessage Request;
+
+            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+            {
+                Request = request;
+                if (!request.RequestUri.ToString().Contains("/3ds/themes/1A20D/"))
+                    return Task.FromResult(new HttpResponseMessage(HttpStatusCode.NotFound));
+                var content = new ByteArrayContent(new byte[] {80, 75, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+                content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment")
+                    {FileName = "\"Yarn Yoshi Theme by Gatto (Themezer-T1A20D).zip\""};
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) {Content = content});
+            }
+        }
+
+        [Fact]
+        public async Task AThemeIsDownloadedUnderItsOwnName()
+        {
+            var folder = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "umami-dl-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var download = new FakeDownload();
+                var client = new ThemezerClient(download);
+                var path = await client.DownloadTheme("1A20D", folder);
+                Assert.Equal(System.IO.Path.Combine(folder, "Yarn Yoshi Theme by Gatto (Themezer-T1A20D).zip"), path);
+                Assert.True(System.IO.File.Exists(path));
+                Assert.Equal("https://api.themezer.net/3ds/themes/1A20D/download", download.Request.RequestUri.ToString());
+                Assert.Null(download.Request.Headers.Authorization);
+
+                var missing = await Assert.ThrowsAsync<ThemezerException>(() => client.DownloadTheme("FFFFF", folder));
+                Assert.Equal("NOT_FOUND", missing.Code);
+            }
+            finally
+            {
+                if (System.IO.Directory.Exists(folder))
+                    System.IO.Directory.Delete(folder, true);
+            }
+        }
+
+        private static void WaitFor(Func<bool> done)
+        {
+            for (var i = 0; i < 300 && !done(); i++)
+            {
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+                Thread.Sleep(10);
+            }
+        }
+
+        [AvaloniaFact]
+        public async Task AThemeFromThemezerStaysOutOfRecentsAndItsFolderGoesWithIt()
+        {
+            var win = new MainWindow();
+            win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            WaitFor(() => win.ViewModel != null);
+            var body = (await win.BuildPackage(win.ViewModel)).Body;
+
+            // As a download unpacks: a folder of its own under the temporary root
+            var download = System.IO.Path.Combine(MainWindow.TemporaryRoot, "test-" + Guid.NewGuid().ToString("N"));
+            var theme = System.IO.Path.Combine(download, "Yarn Yoshi", "body_LZ.bin");
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(theme));
+            System.IO.File.WriteAllBytes(theme, body);
+            Assert.True(MainWindow.IsTemporary(theme));
+            Assert.False(MainWindow.IsTemporary(System.IO.Path.GetTempPath()));
+
+            win.LoadThemeCommandWrapper.Command.Execute(theme);
+            WaitFor(() => win.ThemePath == theme);
+            Assert.Equal(theme, win.ThemePath);
+            Assert.DoesNotContain(theme, win.RecentsList);
+            Assert.StartsWith(MainResources.Status_FromThemezer, win.StatusText);
+
+            // Opening another theme lets the download go
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            WaitFor(() => win.ThemePath == null);
+            Assert.False(System.IO.Directory.Exists(download));
+        }
+
+        [Fact]
+        public void LeftoverDownloadsAreClearedOnTheNextStart()
+        {
+            var old = System.IO.Path.Combine(MainWindow.TemporaryRoot, "old-" + Guid.NewGuid().ToString("N"));
+            var fresh = System.IO.Path.Combine(MainWindow.TemporaryRoot, "fresh-" + Guid.NewGuid().ToString("N"));
+            System.IO.Directory.CreateDirectory(old);
+            System.IO.Directory.CreateDirectory(fresh);
+            System.IO.Directory.SetLastWriteTimeUtc(old, DateTime.UtcNow.AddDays(-2));
+            try
+            {
+                MainWindow.CleanUpTemporary(TimeSpan.FromDays(1));
+                Assert.False(System.IO.Directory.Exists(old));
+                // Another Umami that is open right now may still use a recent one
+                Assert.True(System.IO.Directory.Exists(fresh));
+            }
+            finally
+            {
+                if (System.IO.Directory.Exists(fresh))
+                    System.IO.Directory.Delete(fresh, true);
+            }
+        }
+
+        [AvaloniaFact]
+        public void TheFileMenuOffersOpeningFromThemezer()
+        {
+            var win = new MainWindow();
+            win.Show();
+            var file = (MenuItem) win.FindControl<Menu>("MainMenu").Items[0];
+            Assert.Contains(file.Items.OfType<MenuItem>(), i => (string) i.Header == MainResources.Menu_File_OpenThemezer && i.Command != null);
+        }
+
+        [AvaloniaFact]
         public void TheFileMenuOffersTheUpload()
         {
             var win = new MainWindow();

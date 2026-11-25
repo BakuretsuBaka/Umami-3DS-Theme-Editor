@@ -143,11 +143,12 @@ namespace ThemeEditor.App
             else
                 NewThemeCommandWrapper.Command.Execute(null);
 
+            CleanUpTemporary(TimeSpan.FromDays(1));
             if (Settings.Default.CheckUpdatesOnStartup)
             {
                 var hasUpdates = await Update.CheckUpdateAvailable();
                 if (hasUpdates)
-                    await Dialogs.Show(this, MainResources.Message_UpdateAvailable, WINDOW_TITLE);
+                    await OfferUpdate();
             }
         }
 
@@ -189,6 +190,7 @@ namespace ThemeEditor.App
             Settings.Default.Save();
             AudioPlayer.Instance.ClearAudioData();
             ViewModelBase.ViewModelChanged -= OnAnyViewModelChanged;
+            DeleteTemporary(ThemePath);
         }
 
         // ---------------------------------------------------------------- Commands

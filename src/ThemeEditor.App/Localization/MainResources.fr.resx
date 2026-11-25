@@ -954,4 +954,52 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Ton compte Themezer ne peut rien envoyer pour le moment.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Ouvrir depuis Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Ouvrir depuis Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Lien ou ID rapide d'un thème 3DS de Themezer (par exemple T1A20D) :</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>Ce n'est ni un lien ni un ID rapide de thème 3DS de Themezer (T suivi de l'ID du thème, par exemple T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer n'a aucun thème 3DS avec cet ID (ou c'est le thème privé de quelqu'un).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Téléchargement depuis Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Ouvert depuis Themezer, pas encore enregistré</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Umami {0} est disponible (tu as {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Cette copie ne peut pas se mettre à jour seule (portable ou Linux) : télécharge la nouvelle version depuis la page des versions.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Plus tard</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Ouvrir la page de téléchargement</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Téléchargement de la mise à jour... {0} %</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>La mise à jour n'a pas pu être installée : {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>La nouvelle version est ouverte dans le Finder. Fais glisser l'app dans ton dossier Applications pour remplacer l'ancienne, puis relance-la.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Impossible de vérifier les mises à jour (GitHub injoignable). Réessaie plus tard.</value>
+  </data>
 </root>

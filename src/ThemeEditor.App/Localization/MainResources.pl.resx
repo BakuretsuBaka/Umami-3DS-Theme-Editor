@@ -954,4 +954,52 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Twoje konto Themezer nie może teraz niczego przesyłać.</value>
   </data>
+  <data name="Menu_File_OpenThemezer" xml:space="preserve">
+    <value>Otwórz z Themezer...</value>
+  </data>
+  <data name="Themezer_OpenTitle" xml:space="preserve">
+    <value>Otwórz z Themezer</value>
+  </data>
+  <data name="Themezer_OpenPrompt" xml:space="preserve">
+    <value>Link lub szybki identyfikator motywu 3DS z Themezer (np. T1A20D):</value>
+  </data>
+  <data name="Themezer_OpenInvalid" xml:space="preserve">
+    <value>To nie jest link ani szybki identyfikator motywu 3DS z Themezer (T i identyfikator motywu, np. T1A20D).</value>
+  </data>
+  <data name="Themezer_OpenNotFound" xml:space="preserve">
+    <value>Themezer nie ma motywu 3DS o tym identyfikatorze (albo jest to czyjś prywatny motyw).</value>
+  </data>
+  <data name="Busy_DownloadingThemezer" xml:space="preserve">
+    <value>Pobieranie z Themezer...</value>
+  </data>
+  <data name="Status_FromThemezer" xml:space="preserve">
+    <value>Otwarto z Themezer, jeszcze nie zapisano</value>
+  </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Dostępny jest Umami {0} (masz {1}).</value>
+  </data>
+  <data name="Update_Manual" xml:space="preserve">
+    <value>Ta kopia nie może zaktualizować się sama (przenośna lub Linux): pobierz nową wersję ze strony wydań.</value>
+  </data>
+  <data name="Update_Now" xml:space="preserve">
+    <value>Aktualizuj teraz</value>
+  </data>
+  <data name="Update_Later" xml:space="preserve">
+    <value>Później</value>
+  </data>
+  <data name="Update_OpenPage" xml:space="preserve">
+    <value>Otwórz stronę pobierania</value>
+  </data>
+  <data name="Update_Downloading" xml:space="preserve">
+    <value>Pobieranie aktualizacji... {0}%</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>Nie udało się zainstalować aktualizacji: {0}</value>
+  </data>
+  <data name="Update_DragApp" xml:space="preserve">
+    <value>Nowa wersja jest otwarta w Finderze. Przeciągnij aplikację do folderu Programy, aby zastąpić starą, a potem uruchom ją ponownie.</value>
+  </data>
+  <data name="About_CheckFailed" xml:space="preserve">
+    <value>Nie udało się sprawdzić aktualizacji (GitHub niedostępny). Spróbuj później.</value>
+  </data>
 </root>

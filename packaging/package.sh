@@ -66,4 +66,7 @@ for RID in $RIDS; do
       ;;
   esac
 done
+# A checksum next to every download, so the editor can verify an update without GitHub's rate-limited API
+if command -v sha256sum >/dev/null; then SHA="sha256sum"; else SHA="shasum -a 256"; fi
+(cd "$OUT" && for f in *; do case "$f" in *.sha256) ;; *) $SHA "$f" > "$f.sha256" ;; esac; done)
 ls -lh "$OUT"
