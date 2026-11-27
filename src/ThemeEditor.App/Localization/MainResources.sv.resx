@@ -954,26 +954,8 @@ Ska redigeraren anpassa den?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Ditt Themezer-konto kan inte ladda upp just nu.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Öppna från Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Öppna från Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Länk eller snabb-ID för ett 3DS-tema på Themezer (till exempel T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Det är varken en länk eller ett snabb-ID för ett 3DS-tema på Themezer (T följt av temats ID, till exempel T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer har inget 3DS-tema med det ID:t (eller så är det någons privata tema).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Laddar ner från Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Öppnat från Themezer, inte sparat än</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} finns (du har {1}).</value>
@@ -1001,5 +983,41 @@ Ska redigeraren anpassa den?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Kunde inte söka efter uppdateringar (GitHub går inte att nå). Försök igen senare.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Öppna från webben...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Öppna från webben</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es eller Theme Plaza: klistra in en länk, ett snabb-ID från Themezer (som T1A20D) eller ett temanummer.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Numren är från:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0}-tema {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Ännu ingen länk, inget snabb-ID och inget temanummer.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Öppna</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Laddar ner från {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} har inget tema {1} (eller så har arkivet det inte).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza-tema {1} är inte arkiverat: varken kopian på archive.org eller Wayback Machine har nedladdningen.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Nedladdningen misslyckades: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Öppnat från webben, inte sparat än</value>
   </data>
 </root>

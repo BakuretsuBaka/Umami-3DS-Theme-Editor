@@ -378,7 +378,7 @@ namespace ThemeEditor.Tests
         [Theory]
         [InlineData("T1A20D", "1A20D")]
         [InlineData("t1a20d", "1A20D")]
-        [InlineData("1A20D", "1A20D")]
+        [InlineData("1A20D", null)]
         [InlineData(" https://themezer.net/3ds/themes/yarn-yoshi-1A20D ", "1A20D")]
         [InlineData("themezer.net/3ds/themes/tloz-breath-of-the-wild-1A20E?ref=x", "1A20E")]
         [InlineData("https://themezer.net/3ds/themes/1A20D", "1A20D")]
@@ -461,7 +461,7 @@ namespace ThemeEditor.Tests
             WaitFor(() => win.ThemePath == theme);
             Assert.Equal(theme, win.ThemePath);
             Assert.DoesNotContain(theme, win.RecentsList);
-            Assert.StartsWith(MainResources.Status_FromThemezer, win.StatusText);
+            Assert.StartsWith(MainResources.Status_FromWeb, win.StatusText);
 
             // Opening another theme lets the download go
             win.NewThemeCommandWrapper.Command.Execute(null);
@@ -497,7 +497,7 @@ namespace ThemeEditor.Tests
             var win = new MainWindow();
             win.Show();
             var file = (MenuItem) win.FindControl<Menu>("MainMenu").Items[0];
-            Assert.Contains(file.Items.OfType<MenuItem>(), i => (string) i.Header == MainResources.Menu_File_OpenThemezer && i.Command != null);
+            Assert.Contains(file.Items.OfType<MenuItem>(), i => (string) i.Header == MainResources.Menu_File_OpenWeb && i.Command != null);
         }
 
         [AvaloniaFact]

@@ -42,6 +42,7 @@ namespace ThemeEditor.App.Properties
         private string _bothScreensModel = "New 3DS XL";
         private string _themezerEmail = string.Empty;
         private bool _macMenuBar = true;
+        private string _webNumberSource = "ThreeDsThemes";
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -164,6 +165,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _macMenuBar; }
             set { Set(ref _macMenuBar, value); }
+        }
+
+        /// <summary>Which site a bare theme number in "Open from the Web" belongs to (ThreeDsThemes or ThemePlaza).</summary>
+        public string Web_NumberSource
+        {
+            get { return _webNumberSource; }
+            set { Set(ref _webNumberSource, value ?? "ThreeDsThemes"); }
         }
 
         public double Window_Height

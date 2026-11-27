@@ -954,26 +954,8 @@ Soll der Editor es anpassen?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Dein Themezer-Konto kann gerade nichts hochladen.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Von Themezer öffnen...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Von Themezer öffnen</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Link oder Quick-ID eines 3DS-Designs auf Themezer (z. B. T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Das ist kein Link und keine Quick-ID eines 3DS-Designs auf Themezer (T gefolgt von der Design-ID, z. B. T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer hat kein 3DS-Design mit dieser ID (oder es ist ein privates Design einer anderen Person).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Wird von Themezer heruntergeladen...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Von Themezer geöffnet, noch nicht gespeichert</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} ist verfügbar (du hast {1}).</value>
@@ -1001,5 +983,41 @@ Soll der Editor es anpassen?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Konnte nicht nach Updates suchen (GitHub nicht erreichbar). Versuch es später noch einmal.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Aus dem Web öffnen...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Aus dem Web öffnen</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es oder Theme Plaza: Füge einen Link, eine Themezer-Quick-ID (z. B. T1A20D) oder eine Design-Nummer ein.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Nummern sind von:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0}-Design {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Noch kein Link, keine Quick-ID und keine Design-Nummer.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Wird von {0} heruntergeladen...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} hat kein Design {1} (oder das Archiv hat es nicht).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme-Plaza-Design {1} ist nicht archiviert: Weder die archive.org-Kopie noch die Wayback Machine hat seinen Download.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Download fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Aus dem Web geöffnet, noch nicht gespeichert</value>
   </data>
 </root>

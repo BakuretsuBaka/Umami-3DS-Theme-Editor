@@ -21,7 +21,10 @@ jobs:
       - name: Test
         run: dotnet test Umami3DSThemeEditor.sln --configuration Release
 
+  # GitHub is often out of macOS runners, which turned master builds red for no fault of the code. Releases (which wait for
+  # these tests) and pull requests still run them; pushes to master test on Linux and Windows only.
   test-macos:
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'pull_request'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4

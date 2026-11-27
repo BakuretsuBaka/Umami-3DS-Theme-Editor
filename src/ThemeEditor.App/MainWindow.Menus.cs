@@ -74,7 +74,7 @@ namespace ThemeEditor.App
             var file = new MenuItem {Header = MainResources.Menu_File};
             file.Items.Add(Item(MainResources.Menu_File_New, NewThemeCommandWrapper.Command, null, NewThemeCommandWrapper.Gesture));
             file.Items.Add(Item(MainResources.Menu_File_Open, LoadThemeCommandWrapper.Command, null, LoadThemeCommandWrapper.Gesture));
-            file.Items.Add(Item(MainResources.Menu_File_OpenThemezer, OpenThemezerCommand));
+            file.Items.Add(Item(MainResources.Menu_File_OpenWeb, OpenThemezerCommand));
             file.Items.Add(_recentMenu);
             file.Items.Add(new Separator());
             file.Items.Add(Item(MainResources.Menu_File_Save, SaveThemeCommandWrapper.Command, null, SaveThemeCommandWrapper.Gesture));

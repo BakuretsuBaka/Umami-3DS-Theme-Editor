@@ -954,26 +954,8 @@ Zal de editor hem passend maken?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Je Themezer-account kan nu niets uploaden.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Openen vanaf Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Openen vanaf Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Link of snelle ID van een 3DS-thema op Themezer (bijvoorbeeld T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Dat is geen link of snelle ID van een 3DS-thema op Themezer (T gevolgd door de thema-ID, bijvoorbeeld T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer heeft geen 3DS-thema met die ID (of het is een privéthema van iemand anders).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Downloaden van Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Geopend vanaf Themezer, nog niet opgeslagen</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} is beschikbaar (je hebt {1}).</value>
@@ -1001,5 +983,41 @@ Zal de editor hem passend maken?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Kon niet op updates controleren (GitHub niet bereikbaar). Probeer het later opnieuw.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Openen van het web...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Openen van het web</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es of Theme Plaza: plak een link, een snelle ID van Themezer (zoals T1A20D) of een themanummer.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Nummers zijn van:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0}-thema {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Nog geen link, snelle ID of themanummer.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Downloaden van {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} heeft geen thema {1} (of het archief heeft het niet).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza-thema {1} is niet gearchiveerd: noch de archive.org-kopie noch de Wayback Machine heeft de download.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Downloaden mislukt: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Geopend van het web, nog niet opgeslagen</value>
   </data>
 </root>

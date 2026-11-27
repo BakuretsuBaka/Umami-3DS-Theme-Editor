@@ -954,26 +954,8 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Ton compte Themezer ne peut rien envoyer pour le moment.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Ouvrir depuis Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Ouvrir depuis Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Lien ou ID rapide d'un thème 3DS de Themezer (par exemple T1A20D) :</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Ce n'est ni un lien ni un ID rapide de thème 3DS de Themezer (T suivi de l'ID du thème, par exemple T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer n'a aucun thème 3DS avec cet ID (ou c'est le thème privé de quelqu'un).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Téléchargement depuis Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Ouvert depuis Themezer, pas encore enregistré</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} est disponible (tu as {1}).</value>
@@ -1001,5 +983,41 @@ L'éditeur doit-il l'ajuster ?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Impossible de vérifier les mises à jour (GitHub injoignable). Réessaie plus tard.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Ouvrir depuis le web...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Ouvrir depuis le web</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es ou Theme Plaza : colle un lien, un ID rapide Themezer (comme T1A20D) ou un numéro de thème.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Les numéros viennent de :</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>Thème {0} {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Pas encore un lien, un ID rapide ou un numéro de thème.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Téléchargement depuis {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} n'a pas de thème {1} (ou son archive ne l'a pas).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Le thème {1} de Theme Plaza n'est pas archivé : ni la copie archive.org ni la Wayback Machine n'ont son téléchargement.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Échec du téléchargement : {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Ouvert depuis le web, pas encore enregistré</value>
   </data>
 </root>

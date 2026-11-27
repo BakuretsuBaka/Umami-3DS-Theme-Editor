@@ -1067,26 +1067,8 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Your Themezer account can't upload right now.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Open from Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Open from Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Link or quick ID of a Themezer 3DS theme (for example T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>That is not a Themezer 3DS theme link or quick ID (T followed by the theme's ID, for example T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer has no 3DS theme with that ID (or it is someone's private theme).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Downloading from Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Opened from Themezer, not saved yet</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} is available (you have {1}).</value>
@@ -1114,5 +1096,41 @@ Should the editor fit it for you?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Couldn't check for updates (GitHub not reachable). Try again later.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Open from the Web...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Open from the Web</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es or Theme Plaza: paste a link, a Themezer quick ID (like T1A20D) or a theme number.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Numbers are from:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0} theme {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Not a link, quick ID or theme number yet.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Downloading from {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} has no theme {1} (or its archive doesn't).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza theme {1} isn't archived: neither the archive.org copy nor the Wayback Machine has its download.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Download failed: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Opened from the web, not saved yet</value>
   </data>
 </root>

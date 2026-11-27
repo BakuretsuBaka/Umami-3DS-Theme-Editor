@@ -2195,52 +2195,10 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Menu_File_OpenThemezer".</summary>
-        public static string Menu_File_OpenThemezer {
-            get {
-                return ResourceManager.GetString("Menu_File_OpenThemezer", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_OpenTitle".</summary>
-        public static string Themezer_OpenTitle {
-            get {
-                return ResourceManager.GetString("Themezer_OpenTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_OpenPrompt".</summary>
-        public static string Themezer_OpenPrompt {
-            get {
-                return ResourceManager.GetString("Themezer_OpenPrompt", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_OpenInvalid".</summary>
-        public static string Themezer_OpenInvalid {
-            get {
-                return ResourceManager.GetString("Themezer_OpenInvalid", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Themezer_OpenNotFound".</summary>
         public static string Themezer_OpenNotFound {
             get {
                 return ResourceManager.GetString("Themezer_OpenNotFound", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Busy_DownloadingThemezer".</summary>
-        public static string Busy_DownloadingThemezer {
-            get {
-                return ResourceManager.GetString("Busy_DownloadingThemezer", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Status_FromThemezer".</summary>
-        public static string Status_FromThemezer {
-            get {
-                return ResourceManager.GetString("Status_FromThemezer", resourceCulture);
             }
         }
 
@@ -2304,6 +2262,90 @@ namespace ThemeEditor.App.Localization {
         public static string About_CheckFailed {
             get {
                 return ResourceManager.GetString("About_CheckFailed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_File_OpenWeb".</summary>
+        public static string Menu_File_OpenWeb {
+            get {
+                return ResourceManager.GetString("Menu_File_OpenWeb", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Title".</summary>
+        public static string Web_Title {
+            get {
+                return ResourceManager.GetString("Web_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Hint".</summary>
+        public static string Web_Hint {
+            get {
+                return ResourceManager.GetString("Web_Hint", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_NumbersFrom".</summary>
+        public static string Web_NumbersFrom {
+            get {
+                return ResourceManager.GetString("Web_NumbersFrom", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Recognised".</summary>
+        public static string Web_Recognised {
+            get {
+                return ResourceManager.GetString("Web_Recognised", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_NotRecognised".</summary>
+        public static string Web_NotRecognised {
+            get {
+                return ResourceManager.GetString("Web_NotRecognised", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Open".</summary>
+        public static string Web_Open {
+            get {
+                return ResourceManager.GetString("Web_Open", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Downloading".</summary>
+        public static string Web_Downloading {
+            get {
+                return ResourceManager.GetString("Web_Downloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_NotFound".</summary>
+        public static string Web_NotFound {
+            get {
+                return ResourceManager.GetString("Web_NotFound", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_NotArchivedPlaza".</summary>
+        public static string Web_NotArchivedPlaza {
+            get {
+                return ResourceManager.GetString("Web_NotArchivedPlaza", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Error".</summary>
+        public static string Web_Error {
+            get {
+                return ResourceManager.GetString("Web_Error", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Status_FromWeb".</summary>
+        public static string Status_FromWeb {
+            get {
+                return ResourceManager.GetString("Status_FromWeb", resourceCulture);
             }
         }
 

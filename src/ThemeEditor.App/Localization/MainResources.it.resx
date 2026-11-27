@@ -954,26 +954,8 @@ Vuoi che l'editor la adatti?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Il tuo account Themezer non può caricare al momento.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Apri da Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Apri da Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Link o ID rapido di un tema 3DS di Themezer (per esempio T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Non è un link né un ID rapido di un tema 3DS di Themezer (T seguita dall'ID del tema, per esempio T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer non ha alcun tema 3DS con quell'ID (oppure è il tema privato di qualcuno).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Download da Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Aperto da Themezer, non ancora salvato</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} è disponibile (hai la {1}).</value>
@@ -1001,5 +983,41 @@ Vuoi che l'editor la adatti?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Impossibile cercare aggiornamenti (GitHub non raggiungibile). Riprova più tardi.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Apri dal web...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Apri dal web</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es o Theme Plaza: incolla un link, un ID rapido di Themezer (come T1A20D) o un numero di tema.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>I numeri sono di:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>Tema {0} {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Non è ancora un link, un ID rapido o un numero di tema.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Download da {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} non ha il tema {1} (oppure il suo archivio non lo ha).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Il tema {1} di Theme Plaza non è archiviato: né la copia su archive.org né la Wayback Machine hanno il suo download.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Download non riuscito: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Aperto dal web, non ancora salvato</value>
   </data>
 </root>

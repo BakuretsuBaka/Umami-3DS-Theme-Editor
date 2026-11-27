@@ -954,26 +954,8 @@
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>你的 Themezer 帳號目前無法上傳。</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>從 Themezer 開啟...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>從 Themezer 開啟</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Themezer 上 3DS 主題的連結或快速 ID（例如 T1A20D）：</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>這不是 Themezer 3DS 主題的連結或快速 ID（T 加主題 ID，例如 T1A20D）。</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer 上沒有該 ID 的 3DS 主題（或是別人的私人主題）。</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>正在從 Themezer 下載...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>從 Themezer 開啟，尚未儲存</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} 已發布（你目前是 {1}）。</value>
@@ -1001,5 +983,41 @@
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>無法檢查更新（無法連線到 GitHub），請稍後再試。</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>從網路開啟...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>從網路開啟</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer、3DSThem.es 或 Theme Plaza：貼上連結、Themezer 快速 ID（例如 T1A20D）或主題編號。</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>編號來自：</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0} 主題 {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>還不是連結、快速 ID 或主題編號。</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>正在從 {0} 下載...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} 沒有主題 {1}（或其封存中沒有）。</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza 主題 {1} 未被封存：archive.org 副本和 Wayback Machine 都沒有它的下載。</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>下載失敗：{0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>從網路開啟，尚未儲存</value>
   </data>
 </root>

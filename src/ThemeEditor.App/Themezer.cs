@@ -355,8 +355,8 @@ namespace ThemeEditor.App
         }
 
         /// <summary>
-        ///     The ID of a 3DS theme from what a user pastes: its page link (themezer.net/3ds/themes/name-1A20D), its quick ID
-        ///     (T1A20D) or the bare ID; null when it is none of these.
+        ///     The ID of a 3DS theme from what a user pastes: its page link (themezer.net/3ds/themes/name-1A20D) or its quick ID
+        ///     (T1A20D; the T is what tells it apart from the theme numbers of other sites); null when it is neither.
         /// </summary>
         public static string ThemeIdOf(string input)
         {
@@ -364,7 +364,7 @@ namespace ThemeEditor.App
             var page = System.Text.RegularExpressions.Regex.Match(text, @"themezer\.net/3ds/themes/(?:[^/?#]*-)?([0-9A-Fa-f]+)(?:[/?#]|$)");
             if (page.Success)
                 return page.Groups[1].Value.ToUpperInvariant();
-            var quick = System.Text.RegularExpressions.Regex.Match(text, @"^T?([0-9A-Fa-f]{1,12})$", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            var quick = System.Text.RegularExpressions.Regex.Match(text, @"^T([0-9A-Fa-f]{1,12})$", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             return quick.Success ? quick.Groups[1].Value.ToUpperInvariant() : null;
         }
 

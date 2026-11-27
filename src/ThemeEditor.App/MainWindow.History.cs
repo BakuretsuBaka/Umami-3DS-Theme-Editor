@@ -213,7 +213,7 @@ namespace ThemeEditor.App
                 : Path.GetFileName(Path.GetDirectoryName(ThemePath) ?? string.Empty) + Path.DirectorySeparatorChar + Path.GetFileName(ThemePath);
             Title = (dirty ? "* " : string.Empty) + (name == null ? WINDOW_TITLE : WINDOW_TITLE + " - " + name);
 
-            var location = IsTemporary(ThemePath) ? MainResources.Status_FromThemezer : ThemePath ?? MainResources.Status_NewTheme;
+            var location = IsTemporary(ThemePath) ? MainResources.Status_FromWeb : ThemePath ?? MainResources.Status_NewTheme;
             StatusText = dirty ? location + "  •  " + MainResources.Status_Unsaved : location;
 
             var parts = new List<string>();

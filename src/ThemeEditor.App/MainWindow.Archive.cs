@@ -68,30 +68,29 @@ namespace ThemeEditor.App
             }
         }
 
-        /// <summary>Asks for a Themezer link or quick ID, downloads that 3DS theme and opens it.</summary>
+        /// <summary>Asks which theme to open from Themezer, 3DSThem.es or Theme Plaza, downloads it and opens it.</summary>
         private async void OpenThemezer_Execute()
         {
-            var input = await Dialogs.Prompt(this, MainResources.Themezer_OpenTitle, MainResources.Themezer_OpenPrompt, string.Empty);
-            if (input == null)
+            var dialog = new WebThemeWindow();
+            await dialog.ShowDialog(this);
+            var theme = dialog.Result;
+            if (theme == null)
                 return;
-            var id = ThemezerClient.ThemeIdOf(input);
-            if (id == null)
-            {
-                await Dialogs.Show(this, MainResources.Themezer_OpenInvalid, WINDOW_TITLE, MessageKind.Warning);
-                return;
-            }
             string zip;
             IsBusy = true;
-            BusyText = MainResources.Busy_DownloadingThemezer;
+            BusyText = string.Format(MainResources.Web_Downloading, WebThemes.SiteName(theme.Source));
             try
             {
-                zip = await ThemezerClient.Shared.DownloadTheme(id, Path.Combine(TemporaryRoot, Guid.NewGuid().ToString("N")));
+                var folder = Path.Combine(TemporaryRoot, Guid.NewGuid().ToString("N"));
+                zip = theme.Source == WebThemeSource.Themezer
+                    ? await ThemezerClient.Shared.DownloadTheme(theme.Id, folder)
+                    : await WebThemes.Download(theme, folder);
             }
             catch (Exception ex)
             {
                 IsBusy = false;
                 await Dialogs.Show(this, ex is ThemezerException && ((ThemezerException) ex).Code == "NOT_FOUND"
-                    ? ex.Message : string.Format(MainResources.Themezer_Error, ex.Message), WINDOW_TITLE, MessageKind.Error);
+                    ? ex.Message : string.Format(MainResources.Web_Error, ex.Message), WINDOW_TITLE, MessageKind.Error);
                 return;
             }
             IsBusy = false;
@@ -99,9 +98,9 @@ namespace ThemeEditor.App
             LoadThemeCommandWrapper.Command.Execute(zip);
         }
 
-        // ---- Themes opened from Themezer live in a temporary folder until they are saved somewhere
+        // ---- Themes opened from the web live in a temporary folder until they are saved somewhere
 
-        /// <summary>Where themes opened from Themezer are unpacked (a folder per download).</summary>
+        /// <summary>Where themes opened from the web are unpacked (a folder per download).</summary>
         internal static string TemporaryRoot => Path.Combine(Path.GetTempPath(), "UmamiThemeEditor");
 
         /// <summary>Whether <paramref name="path" /> lies in a temporary folder of <see cref="TemporaryRoot" />.</summary>

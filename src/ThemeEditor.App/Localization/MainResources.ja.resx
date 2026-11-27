@@ -954,26 +954,8 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>お使いの Themezer アカウントは現在アップロードできません。</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Themezer から開く...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Themezer から開く</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Themezer の 3DS テーマのリンクまたはクイック ID（例: T1A20D）:</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Themezer の 3DS テーマのリンクでもクイック ID でもありません（T とテーマ ID、例: T1A20D）。</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer にその ID の 3DS テーマはありません（または他の人の非公開テーマです）。</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Themezer からダウンロード中...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Themezer から開いた（未保存）</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} が利用できます（現在 {1}）。</value>
@@ -1001,5 +983,41 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>アップデートを確認できませんでした（GitHub に接続できません）。後でもう一度お試しください。</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Web から開く...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Web から開く</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer、3DSThem.es、Theme Plaza：リンク、Themezer のクイック ID（例: T1A20D）、またはテーマ番号を貼り付けてください。</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>番号の出典:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0} のテーマ {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>まだリンク、クイック ID、テーマ番号のいずれでもありません。</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>{0} からダウンロード中...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} にテーマ {1} はありません（またはアーカイブにありません）。</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza のテーマ {1} はアーカイブされていません。archive.org のコピーにも Wayback Machine にもダウンロードがありません。</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>ダウンロードに失敗しました: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Web から開いた（未保存）</value>
   </data>
 </root>

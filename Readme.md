@@ -147,8 +147,12 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
   so Discord and Google accounts work too and Umami never sees your password. The access token is kept in the system's password
   vault (Keychain, Credential Manager or the Secret Service on Linux) for the next start; *Log out* revokes it, and you can also
   remove Umami under connected apps in your Themezer account.
-* **Open from Themezer:** *File → Open from Themezer...* takes a theme link or quick ID (e.g. `T1A20D`), downloads the 3DS
-  theme into a temporary folder and opens it; *Save* then asks where to keep it, and the download is deleted when you move on.
+* **Open from the Web:** *File → Open from the Web...* downloads a theme from **Themezer** (quick ID like `T1A20D` or a link),
+  **3DSThem.es** or **Theme Plaza** (theme number or link) and opens it. 3DSThem.es themes come from its
+  [archive.org copy](https://archive.org/details/3dsthem.es-archive); Theme Plaza themes from the
+  [archive.org copy](https://archive.org/details/3ds-theme-plaza-archive) of its adult section, otherwise from the Wayback
+  Machine's copy of the download (only themes someone archived). The theme sits in a temporary folder: *Save* asks where to
+  keep it, and the download is deleted when you move on.
 * **Send to CHMM2:** push the theme to the console over the network.
 * **Fast saving:** the LZ11 compressor finds matches with a hash chain instead of a brute-force search, about 50× faster with
   byte-identical output, so saving, exporting and sending never freeze the window.

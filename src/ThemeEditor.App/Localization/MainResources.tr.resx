@@ -954,26 +954,8 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Themezer hesabın şu anda yükleme yapamıyor.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Themezer'dan aç...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Themezer'dan aç</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Themezer'daki bir 3DS temasının bağlantısı veya hızlı kimliği (örneğin T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Bu bir Themezer 3DS teması bağlantısı veya hızlı kimliği değil (T ve tema kimliği, örneğin T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer'da bu kimliğe sahip bir 3DS teması yok (ya da birinin özel teması).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Themezer'dan indiriliyor...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Themezer'dan açıldı, henüz kaydedilmedi</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0} çıktı (sende {1} var).</value>
@@ -1001,5 +983,41 @@ Düzenleyici sizin için sığdırsın mı?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Güncellemeler denetlenemedi (GitHub'a ulaşılamıyor). Daha sonra tekrar dene.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Web'den aç...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Web'den aç</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es veya Theme Plaza: bir bağlantı, Themezer hızlı kimliği (örneğin T1A20D) ya da tema numarası yapıştır.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Numaralar şuradan:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0} teması {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>Henüz bağlantı, hızlı kimlik veya tema numarası değil.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Aç</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>{0} üzerinden indiriliyor...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} üzerinde {1} teması yok (ya da arşivinde yok).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza teması {1} arşivlenmemiş: ne archive.org kopyasında ne de Wayback Machine'de indirmesi var.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>İndirme başarısız: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Web'den açıldı, henüz kaydedilmedi</value>
   </data>
 </root>

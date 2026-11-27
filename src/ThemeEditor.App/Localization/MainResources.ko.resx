@@ -954,26 +954,8 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>현재 Themezer 계정으로 업로드할 수 없습니다.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Themezer에서 열기...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Themezer에서 열기</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Themezer 3DS 테마의 링크 또는 빠른 ID (예: T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>Themezer 3DS 테마의 링크나 빠른 ID가 아닙니다 (T 뒤에 테마 ID, 예: T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer에 해당 ID의 3DS 테마가 없습니다 (또는 다른 사람의 비공개 테마입니다).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Themezer에서 다운로드 중...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Themezer에서 열림, 아직 저장 안 됨</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Umami {0}을(를) 사용할 수 있습니다 (현재 {1}).</value>
@@ -1001,5 +983,41 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>업데이트를 확인할 수 없습니다 (GitHub에 연결할 수 없음). 나중에 다시 시도하세요.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>웹에서 열기...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>웹에서 열기</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es 또는 Theme Plaza: 링크, Themezer 빠른 ID(예: T1A20D) 또는 테마 번호를 붙여 넣으세요.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>번호 출처:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>{0} 테마 {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>아직 링크, 빠른 ID 또는 테마 번호가 아닙니다.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>열기</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>{0}에서 다운로드 중...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0}에 테마 {1}이(가) 없습니다 (또는 아카이브에 없습니다).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Theme Plaza 테마 {1}은(는) 보관되지 않았습니다. archive.org 사본과 Wayback Machine 모두 다운로드가 없습니다.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>다운로드 실패: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>웹에서 열림, 아직 저장 안 됨</value>
   </data>
 </root>

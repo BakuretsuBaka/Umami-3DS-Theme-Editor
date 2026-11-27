@@ -954,26 +954,8 @@ Czy edytor ma go dopasować?</value>
   <data name="Themezer_Blocked" xml:space="preserve">
     <value>Twoje konto Themezer nie może teraz niczego przesyłać.</value>
   </data>
-  <data name="Menu_File_OpenThemezer" xml:space="preserve">
-    <value>Otwórz z Themezer...</value>
-  </data>
-  <data name="Themezer_OpenTitle" xml:space="preserve">
-    <value>Otwórz z Themezer</value>
-  </data>
-  <data name="Themezer_OpenPrompt" xml:space="preserve">
-    <value>Link lub szybki identyfikator motywu 3DS z Themezer (np. T1A20D):</value>
-  </data>
-  <data name="Themezer_OpenInvalid" xml:space="preserve">
-    <value>To nie jest link ani szybki identyfikator motywu 3DS z Themezer (T i identyfikator motywu, np. T1A20D).</value>
-  </data>
   <data name="Themezer_OpenNotFound" xml:space="preserve">
     <value>Themezer nie ma motywu 3DS o tym identyfikatorze (albo jest to czyjś prywatny motyw).</value>
-  </data>
-  <data name="Busy_DownloadingThemezer" xml:space="preserve">
-    <value>Pobieranie z Themezer...</value>
-  </data>
-  <data name="Status_FromThemezer" xml:space="preserve">
-    <value>Otwarto z Themezer, jeszcze nie zapisano</value>
   </data>
   <data name="Update_Available" xml:space="preserve">
     <value>Dostępny jest Umami {0} (masz {1}).</value>
@@ -1001,5 +983,41 @@ Czy edytor ma go dopasować?</value>
   </data>
   <data name="About_CheckFailed" xml:space="preserve">
     <value>Nie udało się sprawdzić aktualizacji (GitHub niedostępny). Spróbuj później.</value>
+  </data>
+  <data name="Menu_File_OpenWeb" xml:space="preserve">
+    <value>Otwórz z sieci...</value>
+  </data>
+  <data name="Web_Title" xml:space="preserve">
+    <value>Otwórz z sieci</value>
+  </data>
+  <data name="Web_Hint" xml:space="preserve">
+    <value>Themezer, 3DSThem.es lub Theme Plaza: wklej link, szybki identyfikator Themezer (np. T1A20D) albo numer motywu.</value>
+  </data>
+  <data name="Web_NumbersFrom" xml:space="preserve">
+    <value>Numery pochodzą z:</value>
+  </data>
+  <data name="Web_Recognised" xml:space="preserve">
+    <value>Motyw {0} {1}</value>
+  </data>
+  <data name="Web_NotRecognised" xml:space="preserve">
+    <value>To jeszcze nie link, szybki identyfikator ani numer motywu.</value>
+  </data>
+  <data name="Web_Open" xml:space="preserve">
+    <value>Otwórz</value>
+  </data>
+  <data name="Web_Downloading" xml:space="preserve">
+    <value>Pobieranie z {0}...</value>
+  </data>
+  <data name="Web_NotFound" xml:space="preserve">
+    <value>{0} nie ma motywu {1} (albo nie ma go w archiwum).</value>
+  </data>
+  <data name="Web_NotArchivedPlaza" xml:space="preserve">
+    <value>Motyw {1} z Theme Plaza nie jest zarchiwizowany: ani kopia na archive.org, ani Wayback Machine nie ma jego pliku.</value>
+  </data>
+  <data name="Web_Error" xml:space="preserve">
+    <value>Pobieranie nie powiodło się: {0}</value>
+  </data>
+  <data name="Status_FromWeb" xml:space="preserve">
+    <value>Otwarto z sieci, jeszcze nie zapisano</value>
   </data>
 </root>
