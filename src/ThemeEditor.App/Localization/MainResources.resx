@@ -1104,7 +1104,7 @@ Should the editor fit it for you?</value>
     <value>Open from the Web</value>
   </data>
   <data name="Web_Hint" xml:space="preserve">
-    <value>Themezer, 3DSThem.es or Theme Plaza: paste a link, a Themezer quick ID (like T1A20D) or a theme number.</value>
+    <value>Themezer, 3DSThem.es, Theme Plaza or Nintendo's official themes: paste a link, a Themezer quick ID (like T1A20D) or a theme number, or search by name below.</value>
   </data>
   <data name="Web_NumbersFrom" xml:space="preserve">
     <value>Numbers are from:</value>
@@ -1113,7 +1113,22 @@ Should the editor fit it for you?</value>
     <value>{0} theme {1}</value>
   </data>
   <data name="Web_NotRecognised" xml:space="preserve">
-    <value>Not a link, quick ID or theme number yet.</value>
+    <value>Not a link, quick ID, theme number or official theme name yet.</value>
+  </data>
+  <data name="Web_Official" xml:space="preserve">
+    <value>Official</value>
+  </data>
+  <data name="Web_SearchLabel" xml:space="preserve">
+    <value>Search by name:</value>
+  </data>
+  <data name="Web_SearchingThemezer" xml:space="preserve">
+    <value>Also searching Themezer...</value>
+  </data>
+  <data name="Web_NothingFound" xml:space="preserve">
+    <value>No theme by that name.</value>
+  </data>
+  <data name="Web_ThemezerSearchFailed" xml:space="preserve">
+    <value>Themezer couldn't be searched: {0}</value>
   </data>
   <data name="Web_Open" xml:space="preserve">
     <value>Open</value>

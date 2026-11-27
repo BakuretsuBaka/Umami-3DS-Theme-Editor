@@ -498,6 +498,24 @@ namespace ThemeEditor.App
             return found;
         }
 
+        /// <summary>Searches 3DS themes by name (keeping those whose name matches, see <see cref="MusicMatches" />).</summary>
+        public async Task<List<WebThemeId>> SearchThemes(string query, CancellationToken cancel = default)
+        {
+            var data = await Send(Json(
+                "query($q:String){ threeDs { theme { themes(query:$q, paginationArgs:{limit:50}) { nodes { hexId name creator { username } } } } } }",
+                new JObject { ["q"] = query }), cancel);
+            var found = new List<WebThemeId>();
+            foreach (var n in data.SelectToken("threeDs.theme.themes.nodes") ?? new JArray())
+            {
+                var name = (string) n["name"];
+                if (!MusicMatches(name, query))
+                    continue;
+                var creator = (string) n.SelectToken("creator.username");
+                found.Add(new WebThemeId { Source = WebThemeSource.Themezer, Id = (string) n["hexId"], Title = creator != null ? name + " by " + creator : name });
+            }
+            return found;
+        }
+
         /// <summary>
         ///     Whether every word of <paramref name="query" /> starts a word of <paramref name="bgmInfo" />, ignoring case,
         ///     accents and punctuation ("gwyn cinder" and "Gwy" both match "Gwyn, Lord of Cinder").

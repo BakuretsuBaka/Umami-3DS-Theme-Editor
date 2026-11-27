@@ -38,6 +38,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "About_CheckFailed".</summary>
+        public static string About_CheckFailed {
+            get {
+                return ResourceManager.GetString("About_CheckFailed", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "About_CheckUpdates".</summary>
         public static string About_CheckUpdates {
             get {
@@ -766,6 +773,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_AddToLibrary".</summary>
+        public static string Library_AddToLibrary {
+            get {
+                return ResourceManager.GetString("Library_AddToLibrary", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_AddedToLibrary".</summary>
+        public static string Library_AddedToLibrary {
+            get {
+                return ResourceManager.GetString("Library_AddedToLibrary", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Applied".</summary>
         public static string Library_Applied {
             get {
@@ -791,6 +812,76 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Brightness {
             get {
                 return ResourceManager.GetString("Library_Brightness", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ByCreator".</summary>
+        public static string Library_ByCreator {
+            get {
+                return ResourceManager.GetString("Library_ByCreator", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ChangesHint".</summary>
+        public static string Library_ChangesHint {
+            get {
+                return ResourceManager.GetString("Library_ChangesHint", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Blue".</summary>
+        public static string Library_Color_Blue {
+            get {
+                return ResourceManager.GetString("Library_Color_Blue", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Green".</summary>
+        public static string Library_Color_Green {
+            get {
+                return ResourceManager.GetString("Library_Color_Green", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Orange".</summary>
+        public static string Library_Color_Orange {
+            get {
+                return ResourceManager.GetString("Library_Color_Orange", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Pink".</summary>
+        public static string Library_Color_Pink {
+            get {
+                return ResourceManager.GetString("Library_Color_Pink", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Purple".</summary>
+        public static string Library_Color_Purple {
+            get {
+                return ResourceManager.GetString("Library_Color_Purple", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Red".</summary>
+        public static string Library_Color_Red {
+            get {
+                return ResourceManager.GetString("Library_Color_Red", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Turquoise".</summary>
+        public static string Library_Color_Turquoise {
+            get {
+                return ResourceManager.GetString("Library_Color_Turquoise", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Yellow".</summary>
+        public static string Library_Color_Yellow {
+            get {
+                return ResourceManager.GetString("Library_Color_Yellow", resourceCulture);
             }
         }
 
@@ -885,10 +976,31 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_FromTheme".</summary>
+        public static string Library_FromTheme {
+            get {
+                return ResourceManager.GetString("Library_FromTheme", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Hue".</summary>
         public static string Library_Hue {
             get {
                 return ResourceManager.GetString("Library_Hue", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_HueAll".</summary>
+        public static string Library_HueAll {
+            get {
+                return ResourceManager.GetString("Library_HueAll", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_HueTarget".</summary>
+        public static string Library_HueTarget {
+            get {
+                return ResourceManager.GetString("Library_HueTarget", resourceCulture);
             }
         }
 
@@ -934,10 +1046,94 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_NoMainColor".</summary>
+        public static string Library_NoMainColor {
+            get {
+                return ResourceManager.GetString("Library_NoMainColor", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_NoTheme".</summary>
         public static string Library_NoTheme {
             get {
                 return ResourceManager.GetString("Library_NoTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_OpenOnThemezer".</summary>
+        public static string Library_OpenOnThemezer {
+            get {
+                return ResourceManager.GetString("Library_OpenOnThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Download".</summary>
+        public static string Library_Pack_Download {
+            get {
+                return ResourceManager.GetString("Library_Pack_Download", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Downloading".</summary>
+        public static string Library_Pack_Downloading {
+            get {
+                return ResourceManager.GetString("Library_Pack_Downloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Failed".</summary>
+        public static string Library_Pack_Failed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Failed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Installed".</summary>
+        public static string Library_Pack_Installed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Installed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Offer".</summary>
+        public static string Library_Pack_Offer {
+            get {
+                return ResourceManager.GetString("Library_Pack_Offer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_RemoveConfirm".</summary>
+        public static string Library_Pack_RemoveConfirm {
+            get {
+                return ResourceManager.GetString("Library_Pack_RemoveConfirm", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_RemoveMenu".</summary>
+        public static string Library_Pack_RemoveMenu {
+            get {
+                return ResourceManager.GetString("Library_Pack_RemoveMenu", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Removed".</summary>
+        public static string Library_Pack_Removed {
+            get {
+                return ResourceManager.GetString("Library_Pack_Removed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_Update".</summary>
+        public static string Library_Pack_Update {
+            get {
+                return ResourceManager.GetString("Library_Pack_Update", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Pack_UpdateButton".</summary>
+        public static string Library_Pack_UpdateButton {
+            get {
+                return ResourceManager.GetString("Library_Pack_UpdateButton", resourceCulture);
             }
         }
 
@@ -1029,6 +1225,13 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Search {
             get {
                 return ResourceManager.GetString("Library_Search", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_SearchThemezer".</summary>
+        public static string Library_SearchThemezer {
+            get {
+                return ResourceManager.GetString("Library_SearchThemezer", resourceCulture);
             }
         }
 
@@ -1137,6 +1340,48 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_ThemezerCount".</summary>
+        public static string Library_ThemezerCount {
+            get {
+                return ResourceManager.GetString("Library_ThemezerCount", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerDownloading".</summary>
+        public static string Library_ThemezerDownloading {
+            get {
+                return ResourceManager.GetString("Library_ThemezerDownloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerNoMusic".</summary>
+        public static string Library_ThemezerNoMusic {
+            get {
+                return ResourceManager.GetString("Library_ThemezerNoMusic", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerNoPart".</summary>
+        public static string Library_ThemezerNoPart {
+            get {
+                return ResourceManager.GetString("Library_ThemezerNoPart", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerOffline".</summary>
+        public static string Library_ThemezerOffline {
+            get {
+                return ResourceManager.GetString("Library_ThemezerOffline", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerSearching".</summary>
+        public static string Library_ThemezerSearching {
+            get {
+                return ResourceManager.GetString("Library_ThemezerSearching", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Library_Title".</summary>
         public static string Library_Title {
             get {
@@ -1155,6 +1400,13 @@ namespace ThemeEditor.App.Localization {
         public static string Library_Transfer_Error {
             get {
                 return ResourceManager.GetString("Library_Transfer_Error", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_UseInTheme".</summary>
+        public static string Library_UseInTheme {
+            get {
+                return ResourceManager.GetString("Library_UseInTheme", resourceCulture);
             }
         }
 
@@ -1270,6 +1522,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_File_MacMenuBar".</summary>
+        public static string Menu_File_MacMenuBar {
+            get {
+                return ResourceManager.GetString("Menu_File_MacMenuBar", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_File_New".</summary>
         public static string Menu_File_New {
             get {
@@ -1281,6 +1540,13 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_File_Open {
             get {
                 return ResourceManager.GetString("Menu_File_Open", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_File_OpenWeb".</summary>
+        public static string Menu_File_OpenWeb {
+            get {
+                return ResourceManager.GetString("Menu_File_OpenWeb", resourceCulture);
             }
         }
 
@@ -1340,6 +1606,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_File_UploadThemezer".</summary>
+        public static string Menu_File_UploadThemezer {
+            get {
+                return ResourceManager.GetString("Menu_File_UploadThemezer", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_Image".</summary>
         public static string Menu_Image {
             get {
@@ -1365,6 +1638,20 @@ namespace ThemeEditor.App.Localization {
         public static string Menu_Image_Any_Remove {
             get {
                 return ResourceManager.GetString("Menu_Image_Any_Remove", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_Image_BothScreens".</summary>
+        public static string Menu_Image_BothScreens {
+            get {
+                return ResourceManager.GetString("Menu_Image_BothScreens", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Menu_Image_BothScreens_Console".</summary>
+        public static string Menu_Image_BothScreens_Console {
+            get {
+                return ResourceManager.GetString("Menu_Image_BothScreens_Console", resourceCulture);
             }
         }
 
@@ -1592,6 +1879,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Message_BothScreensFit".</summary>
+        public static string Message_BothScreensFit {
+            get {
+                return ResourceManager.GetString("Message_BothScreensFit", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Message_CommandError".</summary>
         public static string Message_CommandError {
             get {
@@ -1603,27 +1897,6 @@ namespace ThemeEditor.App.Localization {
         public static string Message_Error {
             get {
                 return ResourceManager.GetString("Message_Error", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Menu_Image_BothScreens".</summary>
-        public static string Menu_Image_BothScreens {
-            get {
-                return ResourceManager.GetString("Menu_Image_BothScreens", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Message_BothScreensFit".</summary>
-        public static string Message_BothScreensFit {
-            get {
-                return ResourceManager.GetString("Message_BothScreensFit", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Menu_Image_BothScreens_Console".</summary>
-        public static string Menu_Image_BothScreens_Console {
-            get {
-                return ResourceManager.GetString("Menu_Image_BothScreens_Console", resourceCulture);
             }
         }
 
@@ -1851,6 +2124,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Status_FromWeb".</summary>
+        public static string Status_FromWeb {
+            get {
+                return ResourceManager.GetString("Status_FromWeb", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Status_NewTheme".</summary>
         public static string Status_NewTheme {
             get {
@@ -1900,18 +2180,45 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-
-        /// <summary>Looks up the localized string "Menu_File_UploadThemezer".</summary>
-        public static string Menu_File_UploadThemezer {
+        /// <summary>Looks up the localized string "Themezer_BgmInfo".</summary>
+        public static string Themezer_BgmInfo {
             get {
-                return ResourceManager.GetString("Menu_File_UploadThemezer", resourceCulture);
+                return ResourceManager.GetString("Themezer_BgmInfo", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Title".</summary>
-        public static string Themezer_Title {
+        /// <summary>Looks up the localized string "Themezer_Blocked".</summary>
+        public static string Themezer_Blocked {
             get {
-                return ResourceManager.GetString("Themezer_Title", resourceCulture);
+                return ResourceManager.GetString("Themezer_Blocked", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_BrowserDenied".</summary>
+        public static string Themezer_BrowserDenied {
+            get {
+                return ResourceManager.GetString("Themezer_BrowserDenied", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_BrowserDone".</summary>
+        public static string Themezer_BrowserDone {
+            get {
+                return ResourceManager.GetString("Themezer_BrowserDone", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Description".</summary>
+        public static string Themezer_Description {
+            get {
+                return ResourceManager.GetString("Themezer_Description", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Error".</summary>
+        public static string Themezer_Error {
+            get {
+                return ResourceManager.GetString("Themezer_Error", resourceCulture);
             }
         }
 
@@ -1929,69 +2236,6 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Name".</summary>
-        public static string Themezer_Name {
-            get {
-                return ResourceManager.GetString("Themezer_Name", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Description".</summary>
-        public static string Themezer_Description {
-            get {
-                return ResourceManager.GetString("Themezer_Description", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Tags".</summary>
-        public static string Themezer_Tags {
-            get {
-                return ResourceManager.GetString("Themezer_Tags", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_TagsExample".</summary>
-        public static string Themezer_TagsExample {
-            get {
-                return ResourceManager.GetString("Themezer_TagsExample", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_BgmInfo".</summary>
-        public static string Themezer_BgmInfo {
-            get {
-                return ResourceManager.GetString("Themezer_BgmInfo", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Private".</summary>
-        public static string Themezer_Private {
-            get {
-                return ResourceManager.GetString("Themezer_Private", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Nsfw".</summary>
-        public static string Themezer_Nsfw {
-            get {
-                return ResourceManager.GetString("Themezer_Nsfw", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Upload".</summary>
-        public static string Themezer_Upload {
-            get {
-                return ResourceManager.GetString("Themezer_Upload", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_Uploading".</summary>
-        public static string Themezer_Uploading {
-            get {
-                return ResourceManager.GetString("Themezer_Uploading", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Themezer_LoggingIn".</summary>
         public static string Themezer_LoggingIn {
             get {
@@ -1999,17 +2243,10 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Uploaded".</summary>
-        public static string Themezer_Uploaded {
+        /// <summary>Looks up the localized string "Themezer_Name".</summary>
+        public static string Themezer_Name {
             get {
-                return ResourceManager.GetString("Themezer_Uploaded", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_OpenPage".</summary>
-        public static string Themezer_OpenPage {
-            get {
-                return ResourceManager.GetString("Themezer_OpenPage", resourceCulture);
+                return ResourceManager.GetString("Themezer_Name", resourceCulture);
             }
         }
 
@@ -2027,150 +2264,10 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Error".</summary>
-        public static string Themezer_Error {
+        /// <summary>Looks up the localized string "Themezer_Nsfw".</summary>
+        public static string Themezer_Nsfw {
             get {
-                return ResourceManager.GetString("Themezer_Error", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Menu_File_MacMenuBar".</summary>
-        public static string Menu_File_MacMenuBar {
-            get {
-                return ResourceManager.GetString("Menu_File_MacMenuBar", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Offer".</summary>
-        public static string Library_Pack_Offer {
-            get {
-                return ResourceManager.GetString("Library_Pack_Offer", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Download".</summary>
-        public static string Library_Pack_Download {
-            get {
-                return ResourceManager.GetString("Library_Pack_Download", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Update".</summary>
-        public static string Library_Pack_Update {
-            get {
-                return ResourceManager.GetString("Library_Pack_Update", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_UpdateButton".</summary>
-        public static string Library_Pack_UpdateButton {
-            get {
-                return ResourceManager.GetString("Library_Pack_UpdateButton", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Downloading".</summary>
-        public static string Library_Pack_Downloading {
-            get {
-                return ResourceManager.GetString("Library_Pack_Downloading", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Installed".</summary>
-        public static string Library_Pack_Installed {
-            get {
-                return ResourceManager.GetString("Library_Pack_Installed", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Failed".</summary>
-        public static string Library_Pack_Failed {
-            get {
-                return ResourceManager.GetString("Library_Pack_Failed", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_RemoveMenu".</summary>
-        public static string Library_Pack_RemoveMenu {
-            get {
-                return ResourceManager.GetString("Library_Pack_RemoveMenu", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_RemoveConfirm".</summary>
-        public static string Library_Pack_RemoveConfirm {
-            get {
-                return ResourceManager.GetString("Library_Pack_RemoveConfirm", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Pack_Removed".</summary>
-        public static string Library_Pack_Removed {
-            get {
-                return ResourceManager.GetString("Library_Pack_Removed", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_SignIn".</summary>
-        public static string Themezer_SignIn {
-            get {
-                return ResourceManager.GetString("Themezer_SignIn", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_SignInNote".</summary>
-        public static string Themezer_SignInNote {
-            get {
-                return ResourceManager.GetString("Themezer_SignInNote", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_WaitingForBrowser".</summary>
-        public static string Themezer_WaitingForBrowser {
-            get {
-                return ResourceManager.GetString("Themezer_WaitingForBrowser", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_BrowserDone".</summary>
-        public static string Themezer_BrowserDone {
-            get {
-                return ResourceManager.GetString("Themezer_BrowserDone", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_BrowserDenied".</summary>
-        public static string Themezer_BrowserDenied {
-            get {
-                return ResourceManager.GetString("Themezer_BrowserDenied", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_SignInDenied".</summary>
-        public static string Themezer_SignInDenied {
-            get {
-                return ResourceManager.GetString("Themezer_SignInDenied", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_SignInEnded".</summary>
-        public static string Themezer_SignInEnded {
-            get {
-                return ResourceManager.GetString("Themezer_SignInEnded", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_RateLimited".</summary>
-        public static string Themezer_RateLimited {
-            get {
-                return ResourceManager.GetString("Themezer_RateLimited", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Themezer_UnmarkedNsfw".</summary>
-        public static string Themezer_UnmarkedNsfw {
-            get {
-                return ResourceManager.GetString("Themezer_UnmarkedNsfw", resourceCulture);
+                return ResourceManager.GetString("Themezer_Nsfw", resourceCulture);
             }
         }
 
@@ -2188,13 +2285,6 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Themezer_Blocked".</summary>
-        public static string Themezer_Blocked {
-            get {
-                return ResourceManager.GetString("Themezer_Blocked", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Themezer_OpenNotFound".</summary>
         public static string Themezer_OpenNotFound {
             get {
@@ -2202,10 +2292,143 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Themezer_OpenPage".</summary>
+        public static string Themezer_OpenPage {
+            get {
+                return ResourceManager.GetString("Themezer_OpenPage", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Private".</summary>
+        public static string Themezer_Private {
+            get {
+                return ResourceManager.GetString("Themezer_Private", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_RateLimited".</summary>
+        public static string Themezer_RateLimited {
+            get {
+                return ResourceManager.GetString("Themezer_RateLimited", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignIn".</summary>
+        public static string Themezer_SignIn {
+            get {
+                return ResourceManager.GetString("Themezer_SignIn", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInDenied".</summary>
+        public static string Themezer_SignInDenied {
+            get {
+                return ResourceManager.GetString("Themezer_SignInDenied", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInEnded".</summary>
+        public static string Themezer_SignInEnded {
+            get {
+                return ResourceManager.GetString("Themezer_SignInEnded", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_SignInNote".</summary>
+        public static string Themezer_SignInNote {
+            get {
+                return ResourceManager.GetString("Themezer_SignInNote", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Tags".</summary>
+        public static string Themezer_Tags {
+            get {
+                return ResourceManager.GetString("Themezer_Tags", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_TagsExample".</summary>
+        public static string Themezer_TagsExample {
+            get {
+                return ResourceManager.GetString("Themezer_TagsExample", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Title".</summary>
+        public static string Themezer_Title {
+            get {
+                return ResourceManager.GetString("Themezer_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_UnmarkedNsfw".</summary>
+        public static string Themezer_UnmarkedNsfw {
+            get {
+                return ResourceManager.GetString("Themezer_UnmarkedNsfw", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Upload".</summary>
+        public static string Themezer_Upload {
+            get {
+                return ResourceManager.GetString("Themezer_Upload", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Uploaded".</summary>
+        public static string Themezer_Uploaded {
+            get {
+                return ResourceManager.GetString("Themezer_Uploaded", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Uploading".</summary>
+        public static string Themezer_Uploading {
+            get {
+                return ResourceManager.GetString("Themezer_Uploading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_WaitingForBrowser".</summary>
+        public static string Themezer_WaitingForBrowser {
+            get {
+                return ResourceManager.GetString("Themezer_WaitingForBrowser", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Update_Available".</summary>
         public static string Update_Available {
             get {
                 return ResourceManager.GetString("Update_Available", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Downloading".</summary>
+        public static string Update_Downloading {
+            get {
+                return ResourceManager.GetString("Update_Downloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_DragApp".</summary>
+        public static string Update_DragApp {
+            get {
+                return ResourceManager.GetString("Update_DragApp", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Failed".</summary>
+        public static string Update_Failed {
+            get {
+                return ResourceManager.GetString("Update_Failed", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Update_Later".</summary>
+        public static string Update_Later {
+            get {
+                return ResourceManager.GetString("Update_Later", resourceCulture);
             }
         }
 
@@ -2223,94 +2446,10 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Update_Later".</summary>
-        public static string Update_Later {
-            get {
-                return ResourceManager.GetString("Update_Later", resourceCulture);
-            }
-        }
-
         /// <summary>Looks up the localized string "Update_OpenPage".</summary>
         public static string Update_OpenPage {
             get {
                 return ResourceManager.GetString("Update_OpenPage", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Update_Downloading".</summary>
-        public static string Update_Downloading {
-            get {
-                return ResourceManager.GetString("Update_Downloading", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Update_Failed".</summary>
-        public static string Update_Failed {
-            get {
-                return ResourceManager.GetString("Update_Failed", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Update_DragApp".</summary>
-        public static string Update_DragApp {
-            get {
-                return ResourceManager.GetString("Update_DragApp", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "About_CheckFailed".</summary>
-        public static string About_CheckFailed {
-            get {
-                return ResourceManager.GetString("About_CheckFailed", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Menu_File_OpenWeb".</summary>
-        public static string Menu_File_OpenWeb {
-            get {
-                return ResourceManager.GetString("Menu_File_OpenWeb", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_Title".</summary>
-        public static string Web_Title {
-            get {
-                return ResourceManager.GetString("Web_Title", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_Hint".</summary>
-        public static string Web_Hint {
-            get {
-                return ResourceManager.GetString("Web_Hint", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_NumbersFrom".</summary>
-        public static string Web_NumbersFrom {
-            get {
-                return ResourceManager.GetString("Web_NumbersFrom", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_Recognised".</summary>
-        public static string Web_Recognised {
-            get {
-                return ResourceManager.GetString("Web_Recognised", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_NotRecognised".</summary>
-        public static string Web_NotRecognised {
-            get {
-                return ResourceManager.GetString("Web_NotRecognised", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Web_Open".</summary>
-        public static string Web_Open {
-            get {
-                return ResourceManager.GetString("Web_Open", resourceCulture);
             }
         }
 
@@ -2321,10 +2460,17 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Web_NotFound".</summary>
-        public static string Web_NotFound {
+        /// <summary>Looks up the localized string "Web_Error".</summary>
+        public static string Web_Error {
             get {
-                return ResourceManager.GetString("Web_NotFound", resourceCulture);
+                return ResourceManager.GetString("Web_Error", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Web_Hint".</summary>
+        public static string Web_Hint {
+            get {
+                return ResourceManager.GetString("Web_Hint", resourceCulture);
             }
         }
 
@@ -2335,192 +2481,80 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
-        /// <summary>Looks up the localized string "Web_Error".</summary>
-        public static string Web_Error {
+        /// <summary>Looks up the localized string "Web_NotFound".</summary>
+        public static string Web_NotFound {
             get {
-                return ResourceManager.GetString("Web_Error", resourceCulture);
+                return ResourceManager.GetString("Web_NotFound", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Status_FromWeb".</summary>
-        public static string Status_FromWeb {
+        /// <summary>Looks up the localized string "Web_NotRecognised".</summary>
+        public static string Web_NotRecognised {
             get {
-                return ResourceManager.GetString("Status_FromWeb", resourceCulture);
+                return ResourceManager.GetString("Web_NotRecognised", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_SearchThemezer".</summary>
-        public static string Library_SearchThemezer {
+        /// <summary>Looks up the localized string "Web_NothingFound".</summary>
+        public static string Web_NothingFound {
             get {
-                return ResourceManager.GetString("Library_SearchThemezer", resourceCulture);
+                return ResourceManager.GetString("Web_NothingFound", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_ThemezerSearching".</summary>
-        public static string Library_ThemezerSearching {
+        /// <summary>Looks up the localized string "Web_NumbersFrom".</summary>
+        public static string Web_NumbersFrom {
             get {
-                return ResourceManager.GetString("Library_ThemezerSearching", resourceCulture);
+                return ResourceManager.GetString("Web_NumbersFrom", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_ThemezerOffline".</summary>
-        public static string Library_ThemezerOffline {
+        /// <summary>Looks up the localized string "Web_Official".</summary>
+        public static string Web_Official {
             get {
-                return ResourceManager.GetString("Library_ThemezerOffline", resourceCulture);
+                return ResourceManager.GetString("Web_Official", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_ThemezerCount".</summary>
-        public static string Library_ThemezerCount {
+        /// <summary>Looks up the localized string "Web_Open".</summary>
+        public static string Web_Open {
             get {
-                return ResourceManager.GetString("Library_ThemezerCount", resourceCulture);
+                return ResourceManager.GetString("Web_Open", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_FromTheme".</summary>
-        public static string Library_FromTheme {
+        /// <summary>Looks up the localized string "Web_Recognised".</summary>
+        public static string Web_Recognised {
             get {
-                return ResourceManager.GetString("Library_FromTheme", resourceCulture);
+                return ResourceManager.GetString("Web_Recognised", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_UseInTheme".</summary>
-        public static string Library_UseInTheme {
+        /// <summary>Looks up the localized string "Web_SearchLabel".</summary>
+        public static string Web_SearchLabel {
             get {
-                return ResourceManager.GetString("Library_UseInTheme", resourceCulture);
+                return ResourceManager.GetString("Web_SearchLabel", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_AddToLibrary".</summary>
-        public static string Library_AddToLibrary {
+        /// <summary>Looks up the localized string "Web_SearchingThemezer".</summary>
+        public static string Web_SearchingThemezer {
             get {
-                return ResourceManager.GetString("Library_AddToLibrary", resourceCulture);
+                return ResourceManager.GetString("Web_SearchingThemezer", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_AddedToLibrary".</summary>
-        public static string Library_AddedToLibrary {
+        /// <summary>Looks up the localized string "Web_ThemezerSearchFailed".</summary>
+        public static string Web_ThemezerSearchFailed {
             get {
-                return ResourceManager.GetString("Library_AddedToLibrary", resourceCulture);
+                return ResourceManager.GetString("Web_ThemezerSearchFailed", resourceCulture);
             }
         }
 
-        /// <summary>Looks up the localized string "Library_OpenOnThemezer".</summary>
-        public static string Library_OpenOnThemezer {
+        /// <summary>Looks up the localized string "Web_Title".</summary>
+        public static string Web_Title {
             get {
-                return ResourceManager.GetString("Library_OpenOnThemezer", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_ThemezerDownloading".</summary>
-        public static string Library_ThemezerDownloading {
-            get {
-                return ResourceManager.GetString("Library_ThemezerDownloading", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_ThemezerNoMusic".</summary>
-        public static string Library_ThemezerNoMusic {
-            get {
-                return ResourceManager.GetString("Library_ThemezerNoMusic", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_ChangesHint".</summary>
-        public static string Library_ChangesHint {
-            get {
-                return ResourceManager.GetString("Library_ChangesHint", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_NoMainColor".</summary>
-        public static string Library_NoMainColor {
-            get {
-                return ResourceManager.GetString("Library_NoMainColor", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Red".</summary>
-        public static string Library_Color_Red {
-            get {
-                return ResourceManager.GetString("Library_Color_Red", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Orange".</summary>
-        public static string Library_Color_Orange {
-            get {
-                return ResourceManager.GetString("Library_Color_Orange", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Yellow".</summary>
-        public static string Library_Color_Yellow {
-            get {
-                return ResourceManager.GetString("Library_Color_Yellow", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Green".</summary>
-        public static string Library_Color_Green {
-            get {
-                return ResourceManager.GetString("Library_Color_Green", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Turquoise".</summary>
-        public static string Library_Color_Turquoise {
-            get {
-                return ResourceManager.GetString("Library_Color_Turquoise", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Blue".</summary>
-        public static string Library_Color_Blue {
-            get {
-                return ResourceManager.GetString("Library_Color_Blue", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Purple".</summary>
-        public static string Library_Color_Purple {
-            get {
-                return ResourceManager.GetString("Library_Color_Purple", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_Color_Pink".</summary>
-        public static string Library_Color_Pink {
-            get {
-                return ResourceManager.GetString("Library_Color_Pink", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_HueAll".</summary>
-        public static string Library_HueAll {
-            get {
-                return ResourceManager.GetString("Library_HueAll", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_HueTarget".</summary>
-        public static string Library_HueTarget {
-            get {
-                return ResourceManager.GetString("Library_HueTarget", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_ByCreator".</summary>
-        public static string Library_ByCreator {
-            get {
-                return ResourceManager.GetString("Library_ByCreator", resourceCulture);
-            }
-        }
-
-        /// <summary>Looks up the localized string "Library_ThemezerNoPart".</summary>
-        public static string Library_ThemezerNoPart {
-            get {
-                return ResourceManager.GetString("Library_ThemezerNoPart", resourceCulture);
+                return ResourceManager.GetString("Web_Title", resourceCulture);
             }
         }
 

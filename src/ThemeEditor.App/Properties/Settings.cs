@@ -168,7 +168,7 @@ namespace ThemeEditor.App.Properties
             set { Set(ref _macMenuBar, value); }
         }
 
-        /// <summary>Which site a bare theme number in "Open from the Web" belongs to (ThreeDsThemes or ThemePlaza).</summary>
+        /// <summary>What a bare theme number in "Open from the Web" belongs to: ThreeDsThemes, ThemePlaza or Official-EU/JP/US.</summary>
         public string Web_NumberSource
         {
             get { return _webNumberSource; }

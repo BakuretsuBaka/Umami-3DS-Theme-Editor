@@ -78,7 +78,7 @@ namespace ThemeEditor.App
                 return;
             string zip;
             IsBusy = true;
-            BusyText = string.Format(MainResources.Web_Downloading, WebThemes.SiteName(theme.Source));
+            BusyText = string.Format(MainResources.Web_Downloading, theme.Source == WebThemeSource.Official ? "archive.org" : WebThemes.SiteName(theme.Source));
             try
             {
                 var folder = Path.Combine(TemporaryRoot, Guid.NewGuid().ToString("N"));

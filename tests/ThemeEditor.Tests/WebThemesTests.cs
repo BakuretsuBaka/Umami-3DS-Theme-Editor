@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Avalonia.LogicalTree;
+using Newtonsoft.Json.Linq;
 using ThemeEditor.App;
 using ThemeEditor.App.Localization;
 using Xunit;
@@ -39,6 +40,40 @@ namespace ThemeEditor.Tests
         }
 
         [Fact]
+        public void ThemesAreFoundByNameNumberOrLink()
+        {
+            // The same official theme came out in every region; official themes come first
+            var hits = WebThemes.Search("yoshi springtime");
+            Assert.Equal(new[] { "EU-0117", "JP-0362", "US-0114" }, hits.Where(h => h.Source == WebThemeSource.Official).Select(h => h.Id));
+            Assert.Equal(WebThemeSource.Official, hits[0].Source);
+            Assert.Equal("Yoshi's Springtime Siesta (EU)", hits[0].ToString());
+            Assert.Equal(WebThemes.OfficialArchive + "European%20Themes/0117%20-%20Yoshi_s%20Springtime%20Siesta.zip", WebThemes.SourcesOf(hits[0]).Single());
+            Assert.Empty(WebThemes.Search("m"));
+            Assert.Equal("Stripes (Black & White) (EU)", WebThemes.TitleOf(WebThemeSource.Official, "EU-0012"));
+
+            // The other archives by name too, with their section
+            var rawk = Assert.Single(WebThemes.Search("rawk hawk fayne"));
+            Assert.Equal(WebThemeSource.ThreeDsThemes, rawk.Source);
+            Assert.Equal("1", rawk.Id);
+            Assert.Equal("Rawk Hawk by Fayne_Aldan", rawk.ToString());
+            var plaza = WebThemes.Search("new thanos").Single(t => t.Source == WebThemeSource.ThemePlaza);
+            Assert.Equal("38872", plaza.Id);
+            Assert.Equal("Sketchy", plaza.Section);
+            Assert.True(WebThemes.Search("mario").Count(t => t.Source == WebThemeSource.Official) <= 50);
+
+            // Numbers: per region, or with the region in front
+            Assert.Equal("JP-0362", WebThemes.Parse("362", WebThemeSource.Official, "JP").Id);
+            Assert.Equal("EU-0006", WebThemes.Parse("eu-6", WebThemeSource.ThreeDsThemes).Id);
+            Assert.Equal("US-0114", WebThemes.Parse("US 0114", WebThemeSource.ThemePlaza).Id);
+            Assert.Null(WebThemes.Parse("99999", WebThemeSource.Official, "EU"));
+
+            var linked = WebThemes.Parse("https://archive.org/download/3ds-official-themes-archive/European%20Themes/0006%20-%20Mighty%20Mushrooms.zip", WebThemeSource.ThreeDsThemes);
+            Assert.Equal(WebThemeSource.Official, linked.Source);
+            Assert.Equal("EU-0006", linked.Id);
+            Assert.Equal("US-0001", WebThemes.Parse("https://archive.org/download/3ds-official-themes-archive/North American Themes/0001 - x.zip", WebThemeSource.ThemePlaza)?.Id);
+        }
+
+        [Fact]
         public void NumbersFollowThePickedSiteAndNonsenseIsNothing()
         {
             Assert.Equal(WebThemeSource.ThemePlaza, WebThemes.Parse("10001", WebThemeSource.ThemePlaza).Source);
@@ -66,6 +101,40 @@ namespace ThemeEditor.Tests
         }
 
         /// <summary>Stands in for archive.org and the Wayback Machine.</summary>
+        /// <summary>Themezer answering every search with one "Mighty Mushrooms" theme and one that only matches elsewhere.</summary>
+        private sealed class NoSearch : HttpMessageHandler
+        {
+            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+            {
+                var nodes = new JArray(
+                    new JObject {["hexId"] = "1A20D", ["name"] = "Mighty Mushrooms Remix", ["creator"] = new JObject {["username"] = "Someone"}},
+                    new JObject {["hexId"] = "1B000", ["name"] = "Sunny Day", ["creator"] = new JObject {["username"] = "Other"}});
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(new JObject {["data"] = new JObject {["threeDs"] = new JObject {["theme"] = new JObject {["themes"] = new JObject {["nodes"] = nodes}}}}}.ToString())
+                });
+            }
+        }
+
+        [AvaloniaFact]
+        public async Task TheSearchAlsoFindsThemezerThemes()
+        {
+            var window = new WebThemeWindow(new ThemezerClient(new NoSearch()));
+            window.Show();
+            var search = window.GetLogicalDescendants().OfType<TextBox>().Single(t => t.Name == "Search");
+            search.Text = "mighty mushrooms";
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            await window.OnlineSearch;
+            var list = window.GetLogicalDescendants().OfType<ListBox>().Single();
+            var found = list.Items.Cast<WebThemeId>().ToList();
+            // Themezer's (only the name that matches) first, then the archives'
+            Assert.Equal(WebThemeSource.Themezer, found[0].Source);
+            Assert.Equal("Mighty Mushrooms Remix by Someone", found[0].ToString());
+            Assert.DoesNotContain(found, t => t.Id == "1B000");
+            Assert.Contains(found, t => t.Id == "EU-0006");
+            window.Close();
+        }
+
         private sealed class FakeArchives : HttpMessageHandler
         {
             public readonly Dictionary<string, byte[]> Files = new Dictionary<string, byte[]>();
@@ -118,11 +187,11 @@ namespace ThemeEditor.Tests
         [AvaloniaFact]
         public void TheDialogNamesThemezerAndShowsWhatItRecognised()
         {
-            var window = new WebThemeWindow();
+            var window = new WebThemeWindow(new ThemezerClient(new NoSearch()));
             window.Show();
             var texts = window.GetLogicalDescendants().OfType<TextBlock>().ToList();
             Assert.Contains(texts, t => t.Text == MainResources.Web_Hint && t.Text.Contains("Themezer"));
-            var input = window.GetLogicalDescendants().OfType<TextBox>().Single();
+            var input = window.GetLogicalDescendants().OfType<TextBox>().Single(t => t.Name == "Code");
             var open = window.GetLogicalDescendants().OfType<Button>().Single(b => (string) b.Content == MainResources.Web_Open);
             Assert.False(open.IsEnabled);
 
@@ -130,10 +199,23 @@ namespace ThemeEditor.Tests
             Avalonia.Threading.Dispatcher.UIThread.RunJobs();
             Assert.True(open.IsEnabled);
             Assert.Contains(texts, t => t.Text == "→ " + string.Format(MainResources.Web_Recognised, "Themezer", "T1A20D"));
-            input.Text = "hello";
+            input.Text = "qqzx";
             Avalonia.Threading.Dispatcher.UIThread.RunJobs();
             Assert.False(open.IsEnabled);
             Assert.Contains(texts, t => t.Text == MainResources.Web_NotRecognised);
+
+            // The search box finds themes by name, the first one picked; the link box no longer counts then
+            var search = window.GetLogicalDescendants().OfType<TextBox>().Single(t => t.Name == "Search");
+            search.Text = "mighty mushrooms";
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            Assert.True(open.IsEnabled);
+            var list = window.GetLogicalDescendants().OfType<ListBox>().Single();
+            Assert.True(list.IsVisible);
+            Assert.Equal("EU-0006", ((WebThemeId) list.SelectedItem).Id);
+            // Typing in the link box again goes back to it
+            input.Text = "qqzy";
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            Assert.False(open.IsEnabled);
             window.Close();
         }
     }
