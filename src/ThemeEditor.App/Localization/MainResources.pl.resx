@@ -1020,4 +1020,37 @@ Czy edytor ma go dopasować?</value>
   <data name="Status_FromWeb" xml:space="preserve">
     <value>Otwarto z sieci, jeszcze nie zapisano</value>
   </data>
+  <data name="Library_SearchThemezer" xml:space="preserve">
+    <value>Szukaj też w Themezer</value>
+  </data>
+  <data name="Library_ThemezerSearching" xml:space="preserve">
+    <value>Wyszukiwanie w Themezer...</value>
+  </data>
+  <data name="Library_ThemezerOffline" xml:space="preserve">
+    <value>Nie można połączyć się z Themezer.</value>
+  </data>
+  <data name="Library_ThemezerCount" xml:space="preserve">
+    <value>{0} w twojej bibliotece · {1} w Themezer</value>
+  </data>
+  <data name="Library_FromTheme" xml:space="preserve">
+    <value>z „{0}” autorstwa {1}</value>
+  </data>
+  <data name="Library_UseInTheme" xml:space="preserve">
+    <value>Użyj w motywie</value>
+  </data>
+  <data name="Library_AddToLibrary" xml:space="preserve">
+    <value>Dodaj do biblioteki</value>
+  </data>
+  <data name="Library_AddedToLibrary" xml:space="preserve">
+    <value>Dodano do twojej biblioteki.</value>
+  </data>
+  <data name="Library_OpenOnThemezer" xml:space="preserve">
+    <value>Otwórz w Themezer</value>
+  </data>
+  <data name="Library_ThemezerDownloading" xml:space="preserve">
+    <value>Pobieranie z Themezer...</value>
+  </data>
+  <data name="Library_ThemezerNoMusic" xml:space="preserve">
+    <value>Plik tego motywu nie zawiera muzyki.</value>
+  </data>
 </root>

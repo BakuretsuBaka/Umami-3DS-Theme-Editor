@@ -1020,4 +1020,37 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Status_FromWeb" xml:space="preserve">
     <value>Web から開いた（未保存）</value>
   </data>
+  <data name="Library_SearchThemezer" xml:space="preserve">
+    <value>Themezer でも検索</value>
+  </data>
+  <data name="Library_ThemezerSearching" xml:space="preserve">
+    <value>Themezer を検索中...</value>
+  </data>
+  <data name="Library_ThemezerOffline" xml:space="preserve">
+    <value>Themezer に接続できません。</value>
+  </data>
+  <data name="Library_ThemezerCount" xml:space="preserve">
+    <value>ライブラリ {0} 件 · Themezer {1} 件</value>
+  </data>
+  <data name="Library_FromTheme" xml:space="preserve">
+    <value>「{0}」（{1}）より</value>
+  </data>
+  <data name="Library_UseInTheme" xml:space="preserve">
+    <value>テーマで使う</value>
+  </data>
+  <data name="Library_AddToLibrary" xml:space="preserve">
+    <value>ライブラリに追加</value>
+  </data>
+  <data name="Library_AddedToLibrary" xml:space="preserve">
+    <value>ライブラリに追加しました。</value>
+  </data>
+  <data name="Library_OpenOnThemezer" xml:space="preserve">
+    <value>Themezer で開く</value>
+  </data>
+  <data name="Library_ThemezerDownloading" xml:space="preserve">
+    <value>Themezer からダウンロード中...</value>
+  </data>
+  <data name="Library_ThemezerNoMusic" xml:space="preserve">
+    <value>このテーマのダウンロードには音楽がありません。</value>
+  </data>
 </root>

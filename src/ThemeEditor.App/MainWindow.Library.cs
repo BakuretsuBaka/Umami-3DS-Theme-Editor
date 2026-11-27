@@ -93,7 +93,12 @@ namespace ThemeEditor.App
 
             public void ApplyMusic(LibraryItem item)
             {
-                var bytes = BcstmCompat.Normalize(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile));
+                ApplyMusicData(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile));
+            }
+
+            public void ApplyMusicData(byte[] bcstm)
+            {
+                var bytes = BcstmCompat.Normalize(bcstm);
                 if (bytes.Length > BcstmConverter.MaxThemeBgmBytes)
                     throw new InvalidOperationException(string.Format(Localization.MainResources.Message_BgmTooLarge, bytes.Length / 1024, BcstmConverter.MaxThemeBgmBytes / 1024));
                 _w.BgmBcstm = bytes;

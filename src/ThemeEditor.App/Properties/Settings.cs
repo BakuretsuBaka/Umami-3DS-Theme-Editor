@@ -43,6 +43,7 @@ namespace ThemeEditor.App.Properties
         private string _themezerEmail = string.Empty;
         private bool _macMenuBar = true;
         private string _webNumberSource = "ThreeDsThemes";
+        private bool _librarySearchThemezer;
         private bool _bgmMono;
         private int _bgmSampleRate;
         private bool _bgmLoop;
@@ -172,6 +173,13 @@ namespace ThemeEditor.App.Properties
         {
             get { return _webNumberSource; }
             set { Set(ref _webNumberSource, value ?? "ThreeDsThemes"); }
+        }
+
+        /// <summary>Whether the resource library's music search also looks on Themezer.</summary>
+        public bool Library_SearchThemezer
+        {
+            get { return _librarySearchThemezer; }
+            set { Set(ref _librarySearchThemezer, value); }
         }
 
         public double Window_Height

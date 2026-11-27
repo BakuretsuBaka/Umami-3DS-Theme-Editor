@@ -1020,4 +1020,37 @@ Vuoi che l'editor la adatti?</value>
   <data name="Status_FromWeb" xml:space="preserve">
     <value>Aperto dal web, non ancora salvato</value>
   </data>
+  <data name="Library_SearchThemezer" xml:space="preserve">
+    <value>Cerca anche su Themezer</value>
+  </data>
+  <data name="Library_ThemezerSearching" xml:space="preserve">
+    <value>Ricerca su Themezer...</value>
+  </data>
+  <data name="Library_ThemezerOffline" xml:space="preserve">
+    <value>Impossibile raggiungere Themezer.</value>
+  </data>
+  <data name="Library_ThemezerCount" xml:space="preserve">
+    <value>{0} nella tua libreria · {1} su Themezer</value>
+  </data>
+  <data name="Library_FromTheme" xml:space="preserve">
+    <value>da «{0}» di {1}</value>
+  </data>
+  <data name="Library_UseInTheme" xml:space="preserve">
+    <value>Usa nel tema</value>
+  </data>
+  <data name="Library_AddToLibrary" xml:space="preserve">
+    <value>Aggiungi alla libreria</value>
+  </data>
+  <data name="Library_AddedToLibrary" xml:space="preserve">
+    <value>Aggiunto alla tua libreria.</value>
+  </data>
+  <data name="Library_OpenOnThemezer" xml:space="preserve">
+    <value>Apri su Themezer</value>
+  </data>
+  <data name="Library_ThemezerDownloading" xml:space="preserve">
+    <value>Download da Themezer...</value>
+  </data>
+  <data name="Library_ThemezerNoMusic" xml:space="preserve">
+    <value>Il download di questo tema non contiene musica.</value>
+  </data>
 </root>

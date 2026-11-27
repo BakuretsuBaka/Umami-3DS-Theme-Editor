@@ -124,6 +124,8 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 * The ready-made presets are an **optional download** (the resource pack, about 175 MB), so the editor itself stays small: the
   library window offers it with one click, checks it against its SHA-256 checksum, keeps it in your settings folder across updates,
   and tells you when a newer pack is out. *Import → Remove resource pack* deletes it again.
+* **Music from Themezer:** in the *Music* tab, *Also search Themezer* finds theme music on Themezer by its BGM info (only
+  themes whose music matches, not just their name), plays its preview, and puts the music into your theme or your library.
 * **Build your own:** *Add themes folder...* imports everything from a folder of theme ZIPs or theme folders. Textures and sound
   effects are de-duplicated and music is copied in, so the library is self-contained and the source ZIPs can be deleted afterwards.
 * **Share:** export and import resources as `.umamipack` files (validated on import) or as plain files (BCSTM, sound BIN, PNG textures).

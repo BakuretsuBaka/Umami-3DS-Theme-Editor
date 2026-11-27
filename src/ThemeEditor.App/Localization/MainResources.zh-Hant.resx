@@ -1020,4 +1020,37 @@
   <data name="Status_FromWeb" xml:space="preserve">
     <value>從網路開啟，尚未儲存</value>
   </data>
+  <data name="Library_SearchThemezer" xml:space="preserve">
+    <value>同時搜尋 Themezer</value>
+  </data>
+  <data name="Library_ThemezerSearching" xml:space="preserve">
+    <value>正在搜尋 Themezer...</value>
+  </data>
+  <data name="Library_ThemezerOffline" xml:space="preserve">
+    <value>無法連線到 Themezer。</value>
+  </data>
+  <data name="Library_ThemezerCount" xml:space="preserve">
+    <value>資源庫中 {0} 個 · Themezer 上 {1} 個</value>
+  </data>
+  <data name="Library_FromTheme" xml:space="preserve">
+    <value>來自 {1} 的「{0}」</value>
+  </data>
+  <data name="Library_UseInTheme" xml:space="preserve">
+    <value>在主題中使用</value>
+  </data>
+  <data name="Library_AddToLibrary" xml:space="preserve">
+    <value>加入資源庫</value>
+  </data>
+  <data name="Library_AddedToLibrary" xml:space="preserve">
+    <value>已加入你的資源庫。</value>
+  </data>
+  <data name="Library_OpenOnThemezer" xml:space="preserve">
+    <value>在 Themezer 上開啟</value>
+  </data>
+  <data name="Library_ThemezerDownloading" xml:space="preserve">
+    <value>正在從 Themezer 下載...</value>
+  </data>
+  <data name="Library_ThemezerNoMusic" xml:space="preserve">
+    <value>此主題的下載中沒有音樂。</value>
+  </data>
 </root>

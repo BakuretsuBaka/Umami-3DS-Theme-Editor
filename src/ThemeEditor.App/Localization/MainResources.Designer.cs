@@ -2349,5 +2349,82 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_SearchThemezer".</summary>
+        public static string Library_SearchThemezer {
+            get {
+                return ResourceManager.GetString("Library_SearchThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerSearching".</summary>
+        public static string Library_ThemezerSearching {
+            get {
+                return ResourceManager.GetString("Library_ThemezerSearching", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerOffline".</summary>
+        public static string Library_ThemezerOffline {
+            get {
+                return ResourceManager.GetString("Library_ThemezerOffline", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerCount".</summary>
+        public static string Library_ThemezerCount {
+            get {
+                return ResourceManager.GetString("Library_ThemezerCount", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_FromTheme".</summary>
+        public static string Library_FromTheme {
+            get {
+                return ResourceManager.GetString("Library_FromTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_UseInTheme".</summary>
+        public static string Library_UseInTheme {
+            get {
+                return ResourceManager.GetString("Library_UseInTheme", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_AddToLibrary".</summary>
+        public static string Library_AddToLibrary {
+            get {
+                return ResourceManager.GetString("Library_AddToLibrary", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_AddedToLibrary".</summary>
+        public static string Library_AddedToLibrary {
+            get {
+                return ResourceManager.GetString("Library_AddedToLibrary", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_OpenOnThemezer".</summary>
+        public static string Library_OpenOnThemezer {
+            get {
+                return ResourceManager.GetString("Library_OpenOnThemezer", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerDownloading".</summary>
+        public static string Library_ThemezerDownloading {
+            get {
+                return ResourceManager.GetString("Library_ThemezerDownloading", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerNoMusic".</summary>
+        public static string Library_ThemezerNoMusic {
+            get {
+                return ResourceManager.GetString("Library_ThemezerNoMusic", resourceCulture);
+            }
+        }
+
     }
 }

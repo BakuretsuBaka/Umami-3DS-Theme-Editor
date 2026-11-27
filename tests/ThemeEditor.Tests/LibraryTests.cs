@@ -131,6 +131,7 @@ namespace ThemeEditor.Tests
         private sealed class NullTarget : ILibraryTarget
         {
             public bool HasTheme => true;
+            public void ApplyMusicData(byte[] bcstm) {}
             public void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness) {}
             public void ApplySoundEffects(LibraryItem item) {}
             public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}

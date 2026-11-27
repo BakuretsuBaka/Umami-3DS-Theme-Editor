@@ -155,6 +155,30 @@ namespace ThemeEditor.App.Library
                 return _ids.Add(id);
         }
 
+        /// <summary>
+        ///     Adds a piece of music (a BCSTM) to the user's library under <paramref name="name" />, as importing a theme does;
+        ///     returns the item, or the one already there when the same music was added before.
+        /// </summary>
+        public LibraryItem AddMusic(byte[] bcstm, string name)
+        {
+            var bgm = ThemeEditor.Common.Audio.BcstmCompat.Normalize(bcstm);
+            var id = "m-" + ThemeImporter.Hash(bgm);
+            lock (_lock)
+            {
+                var existing = Items.FirstOrDefault(i => i.Id == id);
+                if (existing != null)
+                    return existing;
+            }
+            double seconds = 0;
+            try { seconds = ThemeEditor.Common.Audio.BcstmConverter.GetInfo(ThemeEditor.Common.Audio.BcstmConverter.ReadBcstm(bgm)).Duration; } catch (Exception) { }
+            Directory.CreateDirectory(Path.Combine(WritableRoot, "bgm"));
+            File.WriteAllBytes(Path.Combine(WritableRoot, "bgm", id + ".bcstm"), bgm);
+            var item = new LibraryItem { Id = id, Kind = LibraryKind.Music, Name = name, Collection = "Imported", DataFile = "bgm/" + id + ".bcstm", Bytes = bgm.Length, Seconds = seconds };
+            Add(item);
+            Save();
+            return item;
+        }
+
         /// <summary>Adds an item (already written under <see cref="WritableRoot" />) unless it is a duplicate.</summary>
         public bool Add(LibraryItem item)
         {

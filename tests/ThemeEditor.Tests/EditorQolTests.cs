@@ -217,6 +217,7 @@ namespace ThemeEditor.Tests
         private sealed class NoTarget : ThemeEditor.App.Library.ILibraryTarget
         {
             public bool HasTheme => true;
+            public void ApplyMusicData(byte[] bcstm) {}
             public void ApplyTextures(ThemeEditor.App.Library.LibraryItem item, float hue, float saturation, float brightness) {}
             public void ApplySoundEffects(ThemeEditor.App.Library.LibraryItem item) {}
             public void ApplySound(ThemeEditor.App.Library.LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}

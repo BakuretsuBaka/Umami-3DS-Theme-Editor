@@ -31,6 +31,8 @@ namespace ThemeEditor.App.Library
         void ApplySoundEffects(LibraryItem item);
         void ApplySound(LibraryItem item, CwavKind kind);
         void ApplyMusic(LibraryItem item);
+        /// <summary>Music that is not in the library (e.g. found on Themezer), as a BCSTM.</summary>
+        void ApplyMusicData(byte[] bcstm);
     }
 
     /// <summary>Browse ready-made folder/icon textures, sound effects and music and apply them to the open theme.</summary>
@@ -74,9 +76,21 @@ namespace ThemeEditor.App.Library
         private PackRelease _latest;
         private CancellationTokenSource _packCts;
 
-        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target, LibraryPack pack = null)
+        // Music found on Themezer (only in the Music tab, only with "Also search Themezer")
+        private readonly ThemezerClient _themezer;
+        private readonly CheckBox _online = new CheckBox { Content = MainResources.Library_SearchThemezer, Margin = new Thickness(0, 6, 0, 0) };
+        private readonly DispatcherTimer _searchDelay = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
+        private CancellationTokenSource _searchCts;
+        private List<ThemezerMusic> _hits = new List<ThemezerMusic>();
+        private string _hitsFor;
+        private bool _searching, _offline;
+        private ThemezerMusic _previewHit;
+
+        /// <param name="themezer">Searches music on Themezer (the editor's shared client when null).</param>
+        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target, LibraryPack pack = null, ThemezerClient themezer = null)
         {
             _pack = pack ?? LibraryPack.Default;
+            _themezer = themezer ?? ThemezerClient.Shared;
             _lib = lib;
             _target = target;
             Title = MainResources.Library_Title;
@@ -92,7 +106,7 @@ namespace ThemeEditor.App.Library
             {
                 var kind = (LibraryKind) i;
                 var rb = new RadioButton { GroupName = "lib-kind", IsChecked = i == 0, Content = names[i] + "  (" + lib.Count(kind) + ")", Margin = new Thickness(0, 0, 6, 0) };
-                rb.Click += (_, __) => { _kind = kind; Refresh(); };
+                rb.Click += (_, __) => { _kind = kind; Refresh(); SearchOnline(); };
                 _tabs[i] = rb;
                 tabs.Children.Add(rb);
             }
@@ -130,9 +144,27 @@ namespace ThemeEditor.App.Library
             _exportItemFiles.Click += async (_, __) => await ExportSelected(false);
             _exportShown.Click += async (_, __) => await ExportShownPack();
             _export.Flyout = new MenuFlyout { Items = { _exportItemPack, _exportItemFiles, new Separator(), _exportShown } };
-            _search.TextChanged += (_, __) => Refresh();
-            _list.SelectionChanged += (_, __) => Select(_list.SelectedItem as LibraryItem);
-            _list.ItemTemplate = new FuncDataTemplate<LibraryItem>((item, _) => BuildRow(item));
+            _search.TextChanged += (_, __) => { Refresh(); SearchOnline(); };
+            _online.IsChecked = Properties.Settings.Default.Library_SearchThemezer;
+            _online.IsCheckedChanged += (_, __) =>
+            {
+                Properties.Settings.Default.Library_SearchThemezer = _online.IsChecked == true;
+                SearchOnline();
+                Refresh();
+            };
+            _searchDelay.Tick += async (_, __) =>
+            {
+                _searchDelay.Stop();
+                await RunOnlineSearch();
+            };
+            _list.SelectionChanged += (_, __) =>
+            {
+                if (_list.SelectedItem is ThemezerMusic hit)
+                    SelectHit(hit);
+                else
+                    Select(_list.SelectedItem as LibraryItem);
+            };
+            _list.ItemTemplate = new FuncDataTemplate<object>((item, _) => item is ThemezerMusic hit ? BuildHitRow(hit) : BuildRow(item as LibraryItem));
 
             // Top: what kind of resource, and import/export. The filters sit right above the list they filter.
             var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto"), Margin = new Thickness(10, 8) };
@@ -144,14 +176,17 @@ namespace ThemeEditor.App.Library
             toolbar.Children.Add(_export);
 
             var showLabel = new TextBlock { Text = MainResources.Library_Show_Label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 6, 0) };
-            var filters = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*"), RowDefinitions = new RowDefinitions("Auto,Auto"), Margin = new Thickness(6, 0, 6, 6) };
+            var filters = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*"), RowDefinitions = new RowDefinitions("Auto,Auto,Auto"), Margin = new Thickness(6, 0, 6, 6) };
             Grid.SetColumn(_show, 1);
             Grid.SetRow(_search, 1);
             Grid.SetColumnSpan(_search, 2);
             _search.Margin = new Thickness(0, 6, 0, 0);
+            Grid.SetRow(_online, 2);
+            Grid.SetColumnSpan(_online, 2);
             filters.Children.Add(showLabel);
             filters.Children.Add(_show);
             filters.Children.Add(_search);
+            filters.Children.Add(_online);
             var listPane = new DockPanel();
             DockPanel.SetDock(filters, Dock.Top);
             listPane.Children.Add(filters);
@@ -195,6 +230,8 @@ namespace ThemeEditor.App.Library
             Opened += async (_, __) => await CheckPack();
             Closed += (_, __) =>
             {
+                _searchDelay.Stop();
+                _searchCts?.Cancel();
                 _packCts?.Cancel();
                 _importCts?.Cancel();
                 _player.Dispose();
@@ -250,8 +287,15 @@ namespace ThemeEditor.App.Library
                 .Where(i => show == "All" || _lib.IsRemovable(i) == (show == "Mine"))
                 .Where(i => q.Length == 0 || i.Name.IndexOf(q, StringComparison.OrdinalIgnoreCase) >= 0)
                 .OrderBy(i => i.Collection == "Umami" ? 0 : 1).ThenBy(i => i.Name, StringComparer.CurrentCultureIgnoreCase).ToList();
-            _list.ItemsSource = items;
-            _status.Text = items.Count == 0 ? MainResources.Library_Empty : string.Format(MainResources.Library_Count, items.Count);
+            // Music found on Themezer comes after the user's own library
+            var online = OnlineActive && _hitsFor == OnlineQuery;
+            _list.ItemsSource = online ? items.Cast<object>().Concat(_hits).ToList() : items.Cast<object>().ToList();
+            _online.IsVisible = _kind == LibraryKind.Music;
+            _status.Text = items.Count == 0 && !online ? MainResources.Library_Empty : string.Format(MainResources.Library_Count, items.Count);
+            if (OnlineActive)
+                _status.Text = _searching ? MainResources.Library_ThemezerSearching
+                    : _offline ? MainResources.Library_ThemezerOffline
+                    : online ? string.Format(MainResources.Library_ThemezerCount, items.Count, _hits.Count) : _status.Text;
             for (var i = 0; i < 4; i++)
             {
                 var kind = (LibraryKind) i;
@@ -259,6 +303,178 @@ namespace ThemeEditor.App.Library
                 _tabs[i].Content = new[] { MainResources.Library_Folders, MainResources.Library_Icons, MainResources.Library_Sounds, MainResources.Library_Music }[i] + "  (" + count + ")";
             }
             Select(null);
+        }
+
+        // ---------------------------------------------------------------- Music on Themezer
+
+        private string OnlineQuery => (_search.Text ?? string.Empty).Trim();
+
+        /// <summary>Whether a Themezer search belongs to what is shown: the Music tab, the box ticked, three letters typed.</summary>
+        private bool OnlineActive => _kind == LibraryKind.Music && _online.IsChecked == true && OnlineQuery.Length >= 3;
+
+        /// <summary>Searches Themezer half a second after the last change, so typing does not send a search per key.</summary>
+        private void SearchOnline()
+        {
+            _searchDelay.Stop();
+            _searchCts?.Cancel();
+            _searching = _offline = false;
+            if (!OnlineActive)
+            {
+                _hits = new List<ThemezerMusic>();
+                _hitsFor = null;
+                return;
+            }
+            _searching = true;
+            _searchDelay.Start();
+        }
+
+        internal async Task RunOnlineSearch()
+        {
+            var query = OnlineQuery;
+            if (!OnlineActive)
+                return;
+            var cts = _searchCts = new CancellationTokenSource();
+            _searching = true;
+            Refresh();
+            try
+            {
+                var hits = await _themezer.SearchMusic(query, cts.Token);
+                if (cts.IsCancellationRequested || query != OnlineQuery)
+                    return;
+                _hits = hits;
+                _hitsFor = query;
+                _offline = false;
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+            catch (Exception)
+            {
+                if (cts.IsCancellationRequested)
+                    return;
+                _hits = new List<ThemezerMusic>();
+                _hitsFor = null;
+                _offline = true;
+            }
+            _searching = false;
+            Refresh();
+        }
+
+        private Control BuildHitRow(ThemezerMusic hit)
+        {
+            var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center, Spacing = 1 };
+            text.Children.Add(new TextBlock { Text = hit.BgmInfo, TextTrimming = TextTrimming.CharacterEllipsis });
+            text.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_FromTheme, hit.ThemeName, hit.Creator), FontSize = 11, Opacity = 0.6, TextTrimming = TextTrimming.CharacterEllipsis });
+            var tag = new Border
+            {
+                Background = new SolidColorBrush(Color.FromArgb(60, 70, 130, 180)),
+                CornerRadius = new CornerRadius(3),
+                Padding = new Thickness(4, 1),
+                VerticalAlignment = VerticalAlignment.Center,
+                Child = new TextBlock { Text = "Themezer", FontSize = 10 }
+            };
+            return new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Margin = new Thickness(2), Children = { tag, text } };
+        }
+
+        private void SelectHit(ThemezerMusic hit)
+        {
+            Select(null);
+            _detail.Children.Add(new TextBlock { Text = hit.BgmInfo, FontSize = 18, FontWeight = FontWeight.SemiBold, TextWrapping = TextWrapping.Wrap });
+            _detail.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_FromTheme, hit.ThemeName, hit.Creator), Opacity = 0.7, TextWrapping = TextWrapping.Wrap });
+
+            // The preview is Themezer's OGG of the music, streamed without downloading the theme
+            var play = new Button { MinWidth = 100, IsEnabled = !string.IsNullOrEmpty(hit.PreviewUrl) };
+            Action showState = () => play.Content = _player.IsPlaying && _previewHit == hit
+                ? "■ " + MainResources.Control_AudioPlayer_Stop
+                : "▶ " + MainResources.Control_AudioPlayer_Play;
+            _previewStateChanged = (_, e) =>
+            {
+                if (e.PropertyName == nameof(AudioPlayer.IsPlaying))
+                    Dispatcher.UIThread.Post(showState);
+            };
+            _player.PropertyChanged += _previewStateChanged;
+            showState();
+            play.Click += async (_, __) =>
+            {
+                if (_player.IsPlaying && _previewHit == hit)
+                {
+                    _player.StopCommand.Execute(null);
+                    return;
+                }
+                if (_player.HasData && _previewHit == hit)
+                {
+                    _player.PlayCommand.Execute(null);
+                    return;
+                }
+                play.IsEnabled = false;
+                try
+                {
+                    var ogg = await _themezer.DownloadBytes(hit.PreviewUrl);
+                    var audio = await Task.Run(() => BcstmConverter.Load(new MemoryStream(ogg), ".ogg"));
+                    _player.SetAudio(audio);
+                    _previewItem = null;
+                    _previewHit = hit;
+                    _player.PlayCommand.Execute(null);
+                }
+                catch (Exception ex)
+                {
+                    _status.Text = string.Format(MainResources.Themezer_Error, ex.Message);
+                }
+                play.IsEnabled = true;
+                showState();
+            };
+            var vol = new Slider { Minimum = 0, Maximum = 1, Value = _player.Volume, Width = 140 };
+            vol.PropertyChanged += (_, e) => { if (e.Property == Avalonia.Controls.Primitives.RangeBase.ValueProperty) _player.Volume = (float) vol.Value; };
+            _detail.Children.Add(new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Children = { play, vol } });
+
+            var use = new Button { Content = MainResources.Library_UseInTheme, IsEnabled = _target.HasTheme, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 10, 0, 0) };
+            var keep = new Button { Content = MainResources.Library_AddToLibrary, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
+            var page = new Button { Content = MainResources.Library_OpenOnThemezer, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
+            use.Click += async (_, __) => await TakeHit(hit, false, use, keep);
+            keep.Click += async (_, __) => await TakeHit(hit, true, use, keep);
+            page.Click += (_, __) => Update.OpenUrl(hit.PageUrl);
+            _detail.Children.Add(use);
+            _detail.Children.Add(keep);
+            _detail.Children.Add(page);
+            if (!_target.HasTheme)
+                _detail.Children.Add(new TextBlock { Text = MainResources.Library_NoTheme, Opacity = 0.7 });
+        }
+
+        /// <summary>Downloads the theme of a hit and uses its music in the open theme, or keeps it in the user's library.</summary>
+        internal async Task TakeHit(ThemezerMusic hit, bool keep, params Button[] buttons)
+        {
+            foreach (var b in buttons)
+                b.IsEnabled = false;
+            _status.Text = MainResources.Library_ThemezerDownloading;
+            try
+            {
+                var bcstm = await _themezer.DownloadMusic(hit.HexId);
+                if (bcstm == null)
+                    throw new InvalidOperationException(MainResources.Library_ThemezerNoMusic);
+                if (keep)
+                {
+                    var item = await Task.Run(() => _lib.AddMusic(bcstm, hit.BgmInfo));
+                    Refresh();
+                    _list.SelectedItem = item;
+                    _status.Text = MainResources.Library_AddedToLibrary;
+                }
+                else
+                {
+                    _target.ApplyMusicData(bcstm);
+                    _status.Text = MainResources.Library_Applied;
+                }
+            }
+            catch (Exception ex)
+            {
+                _status.Text = ex is ThemezerException ? string.Format(MainResources.Themezer_Error, ex.Message) : ex.Message;
+            }
+            finally
+            {
+                buttons[0].IsEnabled = _target.HasTheme;
+                for (var i = 1; i < buttons.Length; i++)
+                    buttons[i].IsEnabled = true;
+            }
         }
 
         // ---------------------------------------------------------------- Detail
@@ -513,6 +729,7 @@ namespace ThemeEditor.App.Library
                 {
                     _player.SetAudio(audio);
                     _previewItem = item;
+                    _previewHit = null;
                     _player.PlayCommand.Execute(null);
                     showState();
                 }

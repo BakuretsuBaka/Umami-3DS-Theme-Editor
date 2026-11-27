@@ -42,6 +42,21 @@ namespace ThemeEditor.App
         public string PageUrl;
     }
 
+    /// <summary>A piece of music found on Themezer: the BGM of one of its 3DS themes.</summary>
+    public sealed class ThemezerMusic
+    {
+        public string HexId;
+        /// <summary>What the uploader wrote about the music (title, artist, source).</summary>
+        public string BgmInfo;
+        public string ThemeName;
+        public string Creator;
+        /// <summary>An OGG preview of the music, to listen to before downloading the theme.</summary>
+        public string PreviewUrl;
+        public string PageUrl;
+
+        public override string ToString() => BgmInfo;
+    }
+
     /// <summary>An error Themezer reported (a field it rejected, the hourly upload limit...) or a connection problem.</summary>
     public sealed class ThemezerException : Exception
     {
@@ -407,6 +422,84 @@ namespace ThemeEditor.App
             }
         }
 
+        /// <summary>
+        ///     Searches 3DS theme music: Themezer's search covers theme names, descriptions and tags too, so only themes whose
+        ///     BGM info itself matches are kept (see <see cref="MusicMatches" />). Needs no sign-in.
+        /// </summary>
+        public async Task<List<ThemezerMusic>> SearchMusic(string query, CancellationToken cancel = default)
+        {
+            var data = await Send(Json(
+                "query($q:String){ threeDs { theme { themes(query:$q, hasBgm:true, paginationArgs:{limit:50}) " +
+                "{ nodes { hexId name bgmInfo bgmPreviewUrl pageUrl creator { username } } } } } }",
+                new JObject { ["q"] = query }), cancel);
+            var found = new List<ThemezerMusic>();
+            foreach (var n in data.SelectToken("threeDs.theme.themes.nodes") ?? new JArray())
+            {
+                var info = (string) n["bgmInfo"];
+                if (!MusicMatches(info, query))
+                    continue;
+                found.Add(new ThemezerMusic
+                {
+                    HexId = (string) n["hexId"],
+                    BgmInfo = info.Trim(),
+                    ThemeName = (string) n["name"],
+                    Creator = (string) n.SelectToken("creator.username"),
+                    PreviewUrl = (string) n["bgmPreviewUrl"],
+                    PageUrl = (string) n["pageUrl"]
+                });
+            }
+            return found;
+        }
+
+        /// <summary>
+        ///     Whether every word of <paramref name="query" /> starts a word of <paramref name="bgmInfo" />, ignoring case,
+        ///     accents and punctuation ("gwyn cinder" and "Gwy" both match "Gwyn, Lord of Cinder").
+        /// </summary>
+        public static bool MusicMatches(string bgmInfo, string query)
+        {
+            var words = Words(bgmInfo);
+            var terms = Words(query);
+            return terms.Count > 0 && terms.All(t => words.Any(w => w.StartsWith(t, StringComparison.Ordinal)));
+        }
+
+        private static List<string> Words(string text)
+        {
+            var plain = new StringBuilder();
+            foreach (var c in (text ?? string.Empty).Normalize(NormalizationForm.FormD))
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                    plain.Append(char.IsLetterOrDigit(c) ? char.ToLowerInvariant(c) : ' ');
+            return plain.ToString().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        /// <summary>The music of a 3DS theme (its bgm.bcstm), taken out of the theme's download; null when it has none.</summary>
+        public async Task<byte[]> DownloadMusic(string id, CancellationToken cancel = default)
+        {
+            var folder = Path.Combine(Path.GetTempPath(), "UmamiThemeEditor", "music-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var zip = await DownloadTheme(id, folder, cancel);
+                return ThemeArchive.Read(File.ReadAllBytes(zip))?.Bgm;
+            }
+            finally
+            {
+                try { Directory.Delete(folder, true); } catch (Exception) { }
+            }
+        }
+
+        /// <summary>Downloads a file (e.g. a music preview) into memory.</summary>
+        public async Task<byte[]> DownloadBytes(string url, CancellationToken cancel = default)
+        {
+            try
+            {
+                using (var response = await _http.GetAsync(url, cancel))
+                    return await response.EnsureSuccessStatusCode().Content.ReadAsByteArrayAsync();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new ThemezerException(ex.Message, "NETWORK", ex);
+            }
+        }
+
         /// <summary>Tags as typed: separated by commas, trimmed, without empty ones and duplicates.</summary>
         public static List<string> ParseTags(string text)
         {
@@ -424,7 +517,7 @@ namespace ThemeEditor.App
         }
 
         /// <summary>Posts to the API and returns its "data", or throws the first error it reports.</summary>
-        private async Task<JToken> Send(HttpContent content)
+        private async Task<JToken> Send(HttpContent content, CancellationToken cancel = default)
         {
             string text;
             HttpStatusCode status;
@@ -434,14 +527,14 @@ namespace ThemeEditor.App
                 {
                     if (Token != null)
                         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                    using (var response = await _http.SendAsync(request))
+                    using (var response = await _http.SendAsync(request, cancel))
                     {
                         status = response.StatusCode;
                         text = await response.Content.ReadAsStringAsync();
                     }
                 }
             }
-            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            catch (Exception ex) when ((ex is HttpRequestException || ex is TaskCanceledException) && !cancel.IsCancellationRequested)
             {
                 throw new ThemezerException(ex.Message, "NETWORK", ex);
             }
