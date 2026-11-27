@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleName</key><string>Umami 3DS Theme Editor</string>
-  <key>CFBundleDisplayName</key><string>Umami 3DS Theme Editor</string>
+  <!-- The short name in the menu bar. Finder and the Dock show the bundle's file name, which stays
+       "Umami 3DS Theme Editor.app": the updates of every installed copy look for the app by that name. -->
+  <key>CFBundleName</key><string>Umami 3DS</string>
+  <key>CFBundleDisplayName</key><string>Umami 3DS</string>
   <key>CFBundleIdentifier</key><string>io.github.bakuretsuBaka.umami3dsthemeeditor</string>
   <key>CFBundleVersion</key><string>@VERSION@</string>
   <key>CFBundleShortVersionString</key><string>@VERSION@</string>

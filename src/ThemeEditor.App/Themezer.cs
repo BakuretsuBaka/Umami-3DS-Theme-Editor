@@ -44,6 +44,15 @@ namespace ThemeEditor.App
         public DateTime? UpdatedAt;
     }
 
+    /// <summary>A theme put on Themezer for a moment, to install on a 3DS: its download link and short code.</summary>
+    public sealed class ThemezerRemoteInstall
+    {
+        public string Uuid;
+        public string Code;
+        public string QuickId;
+        public string DownloadUrl;
+    }
+
     /// <summary>A piece of music found on Themezer: the BGM of one of its 3DS themes.</summary>
     public sealed class ThemezerMusic
     {
@@ -438,6 +447,66 @@ namespace ThemeEditor.App
         }
 
         /// <summary>
+        ///     Puts a theme ZIP on Themezer for a short while (not published: no page, not listed) and returns the link a 3DS
+        ///     downloads it from, for a QR code. Works signed in or not; the theme's author is the signed-in user, otherwise
+        ///     "Themezer", as Themezer requires.
+        /// </summary>
+        public async Task<ThemezerRemoteInstall> RemoteInstall(string name, byte[] zip, CancellationToken cancel = default)
+        {
+            string md5;
+            using (var hash = MD5.Create())
+                md5 = Convert.ToBase64String(hash.ComputeHash(zip));
+            var started = (await Send(Json(
+                "mutation($d:InitializeRemoteInstallThreeDsThemeData!){ threeDs { theme { initializeRemoteInstallTheme(data:$d) " +
+                "{ uuid uploadUrl uploadContentType uploadContentMd5 } } } }",
+                new JObject
+                {
+                    ["d"] = new JObject
+                    {
+                        ["name"] = string.IsNullOrWhiteSpace(name) ? "Theme" : name.Trim(),
+                        ["declaredAuthor"] = Token != null && Username != null ? Username : "Themezer",
+                        ["expectedContentLength"] = zip.Length,
+                        ["expectedContentMd5"] = md5
+                    }
+                }), cancel)).SelectToken("threeDs.theme.initializeRemoteInstallTheme");
+            var uuid = (string) started?["uuid"];
+            var uploadUrl = (string) started?["uploadUrl"];
+            if (uuid == null || uploadUrl == null)
+                throw new ThemezerException("Themezer did not start the install");
+
+            // The file goes straight to Themezer's storage, without the sign-in
+            try
+            {
+                using (var request = new HttpRequestMessage(HttpMethod.Put, uploadUrl))
+                {
+                    request.Content = new ByteArrayContent(zip);
+                    request.Content.Headers.ContentType = new MediaTypeHeaderValue((string) started["uploadContentType"] ?? "application/zip");
+                    request.Content.Headers.ContentMD5 = Convert.FromBase64String((string) started["uploadContentMd5"] ?? md5);
+                    using (var response = await _http.SendAsync(request, cancel))
+                        if (!response.IsSuccessStatusCode)
+                            throw new ThemezerException("The upload was refused (HTTP " + (int) response.StatusCode + ")", "HTTP_" + (int) response.StatusCode);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new ThemezerException(ex.Message, "NETWORK", ex);
+            }
+
+            var done = (await Send(Json(
+                "mutation($u:UUID!){ threeDs { theme { completeRemoteInstallTheme(uuid:$u) { uuid code quickId downloadUrl } } } }",
+                new JObject { ["u"] = uuid }), cancel)).SelectToken("threeDs.theme.completeRemoteInstallTheme");
+            if (done == null || done.Type == JTokenType.Null)
+                throw new ThemezerException("Themezer did not finish the install");
+            return new ThemezerRemoteInstall
+            {
+                Uuid = (string) done["uuid"],
+                Code = (string) done["code"],
+                QuickId = (string) done["quickId"],
+                DownloadUrl = (string) done["downloadUrl"]
+            };
+        }
+
+        /// <summary>
         ///     The ID of a 3DS theme from what a user pastes: its page link (themezer.net/3ds/themes/name-1A20D) or its quick ID
         ///     (T1A20D; the T is what tells it apart from the theme numbers of other sites); null when it is neither.
         /// </summary>
@@ -558,6 +627,21 @@ namespace ThemeEditor.App
                 });
             }
             return found;
+        }
+
+        /// <summary>A 3DS theme's name, creator and page, or null when Themezer has no such theme.</summary>
+        public async Task<ThemezerPart> ThemeInfo(string hexId, CancellationToken cancel = default)
+        {
+            var data = await Read(() => Json("query($h:Hexadecimal!){ threeDs { theme { theme(hexId:$h) { hexId name pageUrl creator { username } } } } }",
+                new JObject { ["h"] = hexId }), cancel);
+            var n = data.SelectToken("threeDs.theme.theme");
+            return n == null || n.Type == JTokenType.Null ? null : new ThemezerPart
+            {
+                HexId = (string) n["hexId"],
+                ThemeName = (string) n["name"],
+                Creator = (string) n.SelectToken("creator.username"),
+                PageUrl = (string) n["pageUrl"]
+            };
         }
 
         /// <summary>Searches 3DS themes by name (keeping those whose name matches, see <see cref="MusicMatches" />).</summary>

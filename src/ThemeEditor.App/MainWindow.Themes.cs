@@ -188,6 +188,15 @@ namespace ThemeEditor.App
             {
                 ViewModel = new ThemeViewModel(result.Theme, result.Info);
                 _credits.Clear();
+                _acknowledgedProblems.Clear();
+                // Opened from the web: whoever made it is credited when it is uploaded again
+                if (_pendingBase is { } pending && result.Path != null
+                    && Path.GetFullPath(result.Path).StartsWith(Path.GetFullPath(pending.Folder), StringComparison.Ordinal))
+                {
+                    pending.Credit.Base = true;
+                    _credits.Add(pending.Credit);
+                }
+                _pendingBase = null;
                 // A temporary download is gone after this session, so it is no recent file
                 if (!IsTemporary(result.Path))
                     UpdateRecentsList(result.Path);
@@ -223,6 +232,8 @@ namespace ThemeEditor.App
         {
             var viewModel = ViewModel;
             var result = new SaveThemeResults { Saved = false, Path = path };
+            if (!await ConfirmThemeProblems())
+                return result;
 
             if (string.IsNullOrEmpty(result.Path))
             {
@@ -529,6 +540,8 @@ namespace ThemeEditor.App
 
         private async Task<SendThemeResults> SendTheme_Prompt(string ip)
         {
+            if (!await ConfirmThemeProblems())
+                return new SendThemeResults { Sent = false };
             if (string.IsNullOrEmpty(ip))
                 ip = await Dialogs.Prompt(this, WINDOW_TITLE, MainResources.Menu_SendTo_Prompt, Settings.Default.SocketIP);
             if (string.IsNullOrEmpty(ip))

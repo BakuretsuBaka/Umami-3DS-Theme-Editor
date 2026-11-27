@@ -304,6 +304,48 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Check_BgmMono".</summary>
+        public static string Check_BgmMono {
+            get {
+                return ResourceManager.GetString("Check_BgmMono", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Check_BgmNotLooped".</summary>
+        public static string Check_BgmNotLooped {
+            get {
+                return ResourceManager.GetString("Check_BgmNotLooped", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Check_BgmTooLarge".</summary>
+        public static string Check_BgmTooLarge {
+            get {
+                return ResourceManager.GetString("Check_BgmTooLarge", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Check_Continue".</summary>
+        public static string Check_Continue {
+            get {
+                return ResourceManager.GetString("Check_Continue", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Check_Intro".</summary>
+        public static string Check_Intro {
+            get {
+                return ResourceManager.GetString("Check_Intro", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Check_SfxTooLarge".</summary>
+        public static string Check_SfxTooLarge {
+            get {
+                return ResourceManager.GetString("Check_SfxTooLarge", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Control_AudioPlayer_Label".</summary>
         public static string Control_AudioPlayer_Label {
             get {
@@ -1522,6 +1564,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Menu_File_InstallQr".</summary>
+        public static string Menu_File_InstallQr {
+            get {
+                return ResourceManager.GetString("Menu_File_InstallQr", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Menu_File_MacMenuBar".</summary>
         public static string Menu_File_MacMenuBar {
             get {
@@ -2114,6 +2163,41 @@ namespace ThemeEditor.App.Localization {
         public static string Preview_Options_Title {
             get {
                 return ResourceManager.GetString("Preview_Options_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Remote_Code".</summary>
+        public static string Remote_Code {
+            get {
+                return ResourceManager.GetString("Remote_Code", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Remote_Hint".</summary>
+        public static string Remote_Hint {
+            get {
+                return ResourceManager.GetString("Remote_Hint", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Remote_Ready".</summary>
+        public static string Remote_Ready {
+            get {
+                return ResourceManager.GetString("Remote_Ready", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Remote_Title".</summary>
+        public static string Remote_Title {
+            get {
+                return ResourceManager.GetString("Remote_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Remote_Uploading".</summary>
+        public static string Remote_Uploading {
+            get {
+                return ResourceManager.GetString("Remote_Uploading", resourceCulture);
             }
         }
 

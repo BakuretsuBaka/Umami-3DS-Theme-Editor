@@ -249,6 +249,32 @@ namespace ThemeEditor.App
             return index;
         }
 
+        /// <summary>
+        ///     Who made a theme and where it is, to credit it when an edit of it is uploaded: Themezer is asked (null when it
+        ///     can't be), the archives' file names say "Title by Author", and Nintendo made the official ones.
+        /// </summary>
+        public static async Task<Library.ThemeCredit> CreditOf(WebThemeId theme, ThemezerClient themezer)
+        {
+            if (theme.Source == WebThemeSource.Themezer)
+            {
+                try
+                {
+                    var info = await themezer.ThemeInfo(theme.Id);
+                    return info?.Creator == null ? null : new Library.ThemeCredit { ThemeName = info.ThemeName, Creator = info.Creator, Url = info.PageUrl };
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            var title = TitleOf(theme.Source, theme.Id);
+            var url = SourcesOf(theme).Count > 0 ? SourcesOf(theme)[0] : null;
+            if (theme.Source == WebThemeSource.Official)
+                return new Library.ThemeCredit { ThemeName = Regex.Replace(title, @"\s*\((EU|JP|US)\)$", ""), Creator = "Nintendo", Url = url };
+            var by = title.LastIndexOf(" by ", StringComparison.Ordinal);
+            return by <= 0 ? null : new Library.ThemeCredit { ThemeName = title.Substring(0, by), Creator = title.Substring(by + 4), Url = url };
+        }
+
         /// <summary>The addresses a theme can be downloaded from, the most reliable first.</summary>
         public static List<string> SourcesOf(WebThemeId theme)
         {

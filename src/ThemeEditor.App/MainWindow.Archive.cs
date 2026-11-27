@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 using System;
+using ThemeEditor.App.Library;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace ThemeEditor.App
             ExportZipCommandWrapper = GestureCommandWrapper.Create(
                 new RelayCommand(ExportZip_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy), Key.E);
             UploadThemezerCommand = new RelayCommand(UploadThemezer_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy);
+            InstallQrCommand = new RelayCommand(InstallQr_Execute, () => CanExecute_ViewModelLoaded() && !IsBusy);
             OpenThemezerCommand = new RelayCommand(OpenThemezer_Execute, () => !IsBusy);
         }
 
@@ -40,7 +42,7 @@ namespace ThemeEditor.App
         private async void ExportZip_Execute()
         {
             var vm = ViewModel;
-            if (vm == null)
+            if (vm == null || !await ConfirmThemeProblems())
                 return;
             var name = vm.Info.ShortDescription;
             if (string.IsNullOrWhiteSpace(name))
@@ -77,6 +79,7 @@ namespace ThemeEditor.App
             if (theme == null)
                 return;
             string zip;
+            ThemeCredit credit = null;
             IsBusy = true;
             BusyText = string.Format(MainResources.Web_Downloading, theme.Source == WebThemeSource.Official ? "archive.org" : WebThemes.SiteName(theme.Source));
             try
@@ -85,6 +88,8 @@ namespace ThemeEditor.App
                 zip = theme.Source == WebThemeSource.Themezer
                     ? await ThemezerClient.Shared.DownloadTheme(theme.Id, folder)
                     : await WebThemes.Download(theme, folder);
+                credit = await WebThemes.CreditOf(theme, ThemezerClient.Shared);
+                _pendingBase = credit != null ? (folder, credit) : ((string, ThemeCredit)?) null;
             }
             catch (Exception ex)
             {
@@ -149,10 +154,29 @@ namespace ThemeEditor.App
         }
 
         /// <summary>Opens the Themezer upload dialog for the open theme.</summary>
+        public ICommand InstallQrCommand { get; private set; }
+
+        /// <summary>Puts the theme on Themezer for a moment and shows a QR code for Anemone3DS to install it from.</summary>
+        private async void InstallQr_Execute()
+        {
+            var vm = ViewModel;
+            if (vm == null || !await ConfirmThemeProblems())
+                return;
+            var name = string.IsNullOrWhiteSpace(vm.Info.ShortDescription) ? "Theme" : vm.Info.ShortDescription;
+            // Signed in, the theme carries the user's name; otherwise Themezer's
+            await SavedToken.ResumeQuietly(ThemezerClient.Shared, CredentialStore.System);
+            var window = new RemoteInstallWindow(ThemezerClient.Shared, name, async () =>
+            {
+                var package = await BuildPackage(vm);
+                return await Task.Run(() => ThemeArchive.Create(name, package.Body, package.Smdh, package.Bgm, package.Icon, package.Preview));
+            });
+            await window.ShowDialog(this);
+        }
+
         private async void UploadThemezer_Execute()
         {
             var vm = ViewModel;
-            if (vm == null)
+            if (vm == null || !await ConfirmThemeProblems())
                 return;
             var hasBgm = vm.Flags.BackgroundMusic && (BgmBcstm != null || (ThemePath != null
                 && File.Exists(Path.Combine(Path.GetDirectoryName(ThemePath) ?? ".", BGM_FILE_NAME))));

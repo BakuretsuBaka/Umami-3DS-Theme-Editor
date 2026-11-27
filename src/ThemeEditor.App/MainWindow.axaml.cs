@@ -93,6 +93,7 @@ namespace ThemeEditor.App
         {
             InitializeComponent();
             RestoreWindowState();
+            AskThemeProblems = AskThemeProblemsDialog;
 
             AboutCommand = new RelayCommand(AboutCommand_Execute);
             CWavManagerCommand = new RelayCommand(CWavManager_Execute, CanExecute_ViewModelLoaded);
@@ -144,12 +145,15 @@ namespace ThemeEditor.App
                 NewThemeCommandWrapper.Command.Execute(null);
 
             CleanUpTemporary(TimeSpan.FromDays(1));
+#if !DEBUG
+            // Built from the source to try something out: it is no release, so there is nothing to update
             if (Settings.Default.CheckUpdatesOnStartup)
             {
                 var hasUpdates = await Update.CheckUpdateAvailable();
                 if (hasUpdates)
                     await OfferUpdate();
             }
+#endif
         }
 
         private void RestoreWindowState()

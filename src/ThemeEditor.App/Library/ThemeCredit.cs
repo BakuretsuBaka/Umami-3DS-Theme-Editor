@@ -18,6 +18,8 @@ namespace ThemeEditor.App.Library
         public string Url;
         /// <summary>What the part looked or sounded like right after it was taken: the credit only counts while it still does.</summary>
         public string Fingerprint;
+        /// <summary>The whole theme was started from this one (opened from the web): credited however much it changed.</summary>
+        public bool Base;
 
         public static ThemeCredit Of(LibraryItem item) =>
             item?.CreditCreator == null ? null : new ThemeCredit { Part = item.Kind, ThemeName = item.CreditTheme, Creator = item.CreditCreator, Url = item.CreditUrl };
@@ -30,11 +32,11 @@ namespace ThemeEditor.App.Library
         {
             var lines = credits
                 .Where(c => c?.Creator != null && !string.Equals(c.Creator, self, StringComparison.OrdinalIgnoreCase))
-                .OrderBy(c => Order(c.Part))
+                .OrderBy(c => c.Base ? -1 : Order(c.Part))
                 .Select(c =>
                 {
                     var theme = c.Url != null ? "[" + c.ThemeName + "](" + c.Url + ")" : "\"" + c.ThemeName + "\"";
-                    return "- " + PartName(c.Part) + " from " + theme + " by " + c.Creator;
+                    return "- " + (c.Base ? "Based on " : PartName(c.Part) + " from ") + theme + " by " + c.Creator;
                 })
                 .Distinct()
                 .ToList();

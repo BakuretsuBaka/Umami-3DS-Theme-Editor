@@ -26,7 +26,7 @@ namespace ThemeEditor.App
 
         /// <summary>The credits for the parts that are still as they were taken (edited or replaced parts need none).</summary>
         internal List<ThemeCredit> CurrentCredits() =>
-            ViewModel == null ? new List<ThemeCredit>() : _credits.Where(c => c.Fingerprint == Fingerprint(c.Part)).ToList();
+            ViewModel == null ? new List<ThemeCredit>() : _credits.Where(c => c.Base || c.Fingerprint == Fingerprint(c.Part)).ToList();
 
         /// <summary>A hash of what the theme's part of this kind is now (the folder or icon pictures, sound effects, music).</summary>
         internal string Fingerprint(LibraryKind part)
@@ -72,12 +72,12 @@ namespace ThemeEditor.App
         {
             var fingerprint = Fingerprint(part);
             if (whole)
-                _credits.RemoveAll(c => c.Part == part);
+                _credits.RemoveAll(c => !c.Base && c.Part == part);
             else
             {
                 // The others' fingerprints were of the sounds before this one came in
-                _credits.RemoveAll(c => c.Part == part && c.Fingerprint != _creditBefore);
-                foreach (var c in _credits.Where(c => c.Part == part))
+                _credits.RemoveAll(c => !c.Base && c.Part == part && c.Fingerprint != _creditBefore);
+                foreach (var c in _credits.Where(c => !c.Base && c.Part == part))
                     c.Fingerprint = fingerprint;
             }
             if (credit != null)
@@ -87,6 +87,9 @@ namespace ThemeEditor.App
                 _credits.Add(credit);
             }
         }
+
+        /// <summary>The theme being downloaded from the web (its folder) and who to credit for it once it is open.</summary>
+        private (string Folder, ThemeCredit Credit)? _pendingBase;
 
         /// <summary>The fingerprint of a part right before a single sound effect is swapped in (see <see cref="Credit" />).</summary>
         private string _creditBefore;

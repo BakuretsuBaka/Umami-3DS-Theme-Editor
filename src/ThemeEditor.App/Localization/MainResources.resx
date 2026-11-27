@@ -977,6 +977,42 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Upload" xml:space="preserve">
     <value>Upload</value>
   </data>
+  <data name="Menu_File_InstallQr" xml:space="preserve">
+    <value>Install on 3DS (QR Code)...</value>
+  </data>
+  <data name="Remote_Title" xml:space="preserve">
+    <value>Install on 3DS</value>
+  </data>
+  <data name="Remote_Hint" xml:space="preserve">
+    <value>On your 3DS, open the QR code scanner in Anemone3DS and scan this code. The theme is only kept on Themezer for a short while; it is not published.</value>
+  </data>
+  <data name="Remote_Uploading" xml:space="preserve">
+    <value>Packing the theme and putting it on Themezer...</value>
+  </data>
+  <data name="Remote_Ready" xml:space="preserve">
+    <value>Ready to scan.</value>
+  </data>
+  <data name="Remote_Code" xml:space="preserve">
+    <value>Code: {0}</value>
+  </data>
+  <data name="Check_Intro" xml:space="preserve">
+    <value>This theme won't work right on a 3DS:</value>
+  </data>
+  <data name="Check_BgmTooLarge" xml:space="preserve">
+    <value>The music is {0} KB, over the {1} KB a theme may have, so the 3DS won't play it.</value>
+  </data>
+  <data name="Check_BgmMono" xml:space="preserve">
+    <value>The music is mono; theme music has to be stereo.</value>
+  </data>
+  <data name="Check_BgmNotLooped" xml:space="preserve">
+    <value>The music doesn't loop, so it plays once and then the HOME Menu goes silent.</value>
+  </data>
+  <data name="Check_SfxTooLarge" xml:space="preserve">
+    <value>The sound effects take {0} KB, over the {1} KB a theme may have.</value>
+  </data>
+  <data name="Check_Continue" xml:space="preserve">
+    <value>Continue anyway</value>
+  </data>
   <data name="Themezer_Checking" xml:space="preserve">
     <value>Looking at your themes...</value>
   </data>

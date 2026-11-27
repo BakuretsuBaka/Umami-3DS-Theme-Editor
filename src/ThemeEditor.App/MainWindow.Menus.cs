@@ -84,6 +84,7 @@ namespace ThemeEditor.App
             file.Items.Add(Item(MainResources.Menu_File_UploadThemezer, UploadThemezerCommand));
             file.Items.Add(new Separator());
             file.Items.Add(Item(MainResources.Menu_File_ShowInFolder, ShowInFolderCommand));
+            file.Items.Add(Item(MainResources.Menu_File_InstallQr, InstallQrCommand));
             file.Items.Add(sendMenu);
             file.Items.Add(new Separator());
             if (OperatingSystem.IsMacOS())

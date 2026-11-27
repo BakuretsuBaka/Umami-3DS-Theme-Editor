@@ -88,9 +88,15 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{#AppFiles}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; The shortcuts carry the short name; the app, its folder and its uninstall entry keep the full one
+[InstallDelete]
+; Shortcuts from before they were renamed, so an update leaves no second one behind
+Type: files; Name: "{autoprograms}\Umami 3DS Theme Editor.lnk"
+Type: files; Name: "{autodesktop}\Umami 3DS Theme Editor.lnk"
+
 [Icons]
-Name: "{autoprograms}\Umami 3DS Theme Editor"; Filename: "{app}\UmamiThemeEditor.exe"
-Name: "{autodesktop}\Umami 3DS Theme Editor"; Filename: "{app}\UmamiThemeEditor.exe"; Tasks: desktopicon
+Name: "{autoprograms}\Umami 3DS"; Filename: "{app}\UmamiThemeEditor.exe"
+Name: "{autodesktop}\Umami 3DS"; Filename: "{app}\UmamiThemeEditor.exe"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\UmamiThemeEditor.exe"; Description: "{cm:LaunchProgram,Umami 3DS Theme Editor}"; Flags: nowait postinstall skipifsilent
