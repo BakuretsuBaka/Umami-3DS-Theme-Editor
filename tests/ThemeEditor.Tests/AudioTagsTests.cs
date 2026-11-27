@@ -30,9 +30,10 @@ namespace ThemeEditor.Tests
             {
                 var size = text.Length + 1;
                 body.AddRange(Encoding.ASCII.GetBytes(id));
+                // ID3v2.4 sizes are "synchsafe" (7 bits per byte), v2.3 sizes plain big-endian
                 body.AddRange(version == 4
                     ? new[] {(byte) ((size >> 21) & 0x7F), (byte) ((size >> 14) & 0x7F), (byte) ((size >> 7) & 0x7F), (byte) (size & 0x7F)}
-                    : BitConverter.GetBytes(size).Reverse());
+                    : new[] {(byte) (size >> 24), (byte) (size >> 16), (byte) (size >> 8), (byte) size});
                 body.AddRange(new byte[] {0, 0, encoding});
                 body.AddRange(text);
             }
