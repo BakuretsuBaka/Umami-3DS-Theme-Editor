@@ -1053,4 +1053,40 @@ Zal de editor hem passend maken?</value>
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>De download van dit thema bevat geen muziek.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>De kleur die verandert. Klik op een andere kleur in de afbeelding om die te veranderen.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>Geen duidelijke kleur gevonden: klik op een kleur in de afbeelding of gebruik de tintschuif.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>Rood</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>Oranje</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>Geel</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>Groen</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>Blauw</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>Paars</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>Roze</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>Draait alle kleuren</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>Stelt alleen de gekozen kleur bij</value>
+  </data>
 </root>

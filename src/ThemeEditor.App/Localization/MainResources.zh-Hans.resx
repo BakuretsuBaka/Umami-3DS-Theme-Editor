@@ -1053,4 +1053,40 @@
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>此主题的下载中没有音乐。</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>会被改变的颜色。点击图片中的其他颜色可改为改变那个颜色。</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>没有明显的颜色：请点击图片中的颜色，或使用色相滑块。</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>红</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>橙</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>黄</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>绿</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>青绿</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>蓝</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>紫</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>粉</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>旋转所有颜色</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>只微调所选颜色</value>
+  </data>
 </root>

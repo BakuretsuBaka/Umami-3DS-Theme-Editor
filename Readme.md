@@ -120,7 +120,9 @@ For the *screen* eyedropper, install one of `grim`, `gnome-screenshot`, `spectac
 <img src="docs/library.png" alt="The resource library with folder textures and colour variations">
 
 * Ready-made **folder textures, icon textures, sound effect sets and music**, applied to the open theme with one click, with search,
-  audio preview and **colour variations** (hue / saturation / brightness, plus 8 one-click hue presets) for textures.
+  audio preview and **colour variations** for textures: one click turns the texture's main colour into one of 8 real colours
+  (shading kept, other colours untouched; click the preview to pick another colour), plus clean hue / saturation / brightness
+  sliders.
 * The ready-made presets are an **optional download** (the resource pack, about 175 MB), so the editor itself stays small: the
   library window offers it with one click, checks it against its SHA-256 checksum, keeps it in your settings folder across updates,
   and tells you when a newer pack is out. *Import → Remove resource pack* deletes it again.

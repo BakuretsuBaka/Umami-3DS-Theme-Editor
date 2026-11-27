@@ -1053,4 +1053,40 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>이 테마의 다운로드에는 음악이 없습니다.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>바뀌는 색입니다. 그림에서 다른 색을 클릭하면 그 색을 바꿉니다.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>뚜렷한 색이 없습니다. 그림에서 색을 클릭하거나 색조 슬라이더를 사용하세요.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>빨강</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>주황</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>노랑</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>초록</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>청록</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>파랑</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>보라</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>분홍</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>모든 색 회전</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>선택한 색만 미세 조정</value>
+  </data>
 </root>

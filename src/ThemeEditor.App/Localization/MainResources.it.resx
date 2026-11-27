@@ -1053,4 +1053,40 @@ Vuoi che l'editor la adatti?</value>
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>Il download di questo tema non contiene musica.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>Il colore che cambia. Fai clic su un altro colore nell'immagine per cambiare quello.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>Nessun colore chiaro: fai clic su un colore nell'immagine o usa il cursore della tonalità.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>Rosso</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>Arancione</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>Giallo</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>Turchese</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>Blu</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>Viola</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>Rosa</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>Ruota tutti i colori</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>Regola solo il colore scelto</value>
+  </data>
 </root>

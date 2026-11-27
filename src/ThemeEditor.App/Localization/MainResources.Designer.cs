@@ -2426,5 +2426,89 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_ChangesHint".</summary>
+        public static string Library_ChangesHint {
+            get {
+                return ResourceManager.GetString("Library_ChangesHint", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_NoMainColor".</summary>
+        public static string Library_NoMainColor {
+            get {
+                return ResourceManager.GetString("Library_NoMainColor", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Red".</summary>
+        public static string Library_Color_Red {
+            get {
+                return ResourceManager.GetString("Library_Color_Red", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Orange".</summary>
+        public static string Library_Color_Orange {
+            get {
+                return ResourceManager.GetString("Library_Color_Orange", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Yellow".</summary>
+        public static string Library_Color_Yellow {
+            get {
+                return ResourceManager.GetString("Library_Color_Yellow", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Green".</summary>
+        public static string Library_Color_Green {
+            get {
+                return ResourceManager.GetString("Library_Color_Green", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Turquoise".</summary>
+        public static string Library_Color_Turquoise {
+            get {
+                return ResourceManager.GetString("Library_Color_Turquoise", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Blue".</summary>
+        public static string Library_Color_Blue {
+            get {
+                return ResourceManager.GetString("Library_Color_Blue", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Purple".</summary>
+        public static string Library_Color_Purple {
+            get {
+                return ResourceManager.GetString("Library_Color_Purple", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_Color_Pink".</summary>
+        public static string Library_Color_Pink {
+            get {
+                return ResourceManager.GetString("Library_Color_Pink", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_HueAll".</summary>
+        public static string Library_HueAll {
+            get {
+                return ResourceManager.GetString("Library_HueAll", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_HueTarget".</summary>
+        public static string Library_HueTarget {
+            get {
+                return ResourceManager.GetString("Library_HueTarget", resourceCulture);
+            }
+        }
+
     }
 }

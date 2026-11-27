@@ -27,7 +27,7 @@ namespace ThemeEditor.App.Library
     internal interface ILibraryTarget
     {
         bool HasTheme { get; }
-        void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness);
+        void ApplyTextures(LibraryItem item, TextureColors colors);
         void ApplySoundEffects(LibraryItem item);
         void ApplySound(LibraryItem item, CwavKind kind);
         void ApplyMusic(LibraryItem item);
@@ -65,6 +65,12 @@ namespace ThemeEditor.App.Library
         private LibraryKind _kind = LibraryKind.FolderTexture;
         private LibraryItem _selected;
         private Slider _hue, _sat, _bright;
+        // The colour range a target colour replaces (found in the texture, or clicked in its preview), and that colour
+        private float? _sourceHue, _targetHue;
+        private WrapPanel _presets;
+        private Border _swatch;
+        private TextBlock _swatchText;
+        private TextBlock _hueMode;
         private Image _imgA, _imgB;
         private SKBitmap _srcA, _srcB;
         private bool _updatingSliders;
@@ -493,6 +499,7 @@ namespace ThemeEditor.App.Library
             _srcA?.Dispose();
             _srcB?.Dispose();
             _srcA = _srcB = null;
+            _sourceHue = _targetHue = null;
             if (item == null)
                 return;
 
@@ -525,7 +532,7 @@ namespace ThemeEditor.App.Library
                 {
                     case LibraryKind.FolderTexture:
                     case LibraryKind.IconTexture:
-                        _target.ApplyTextures(item, (float) (_hue?.Value ?? 0), (float) (_sat?.Value ?? 1), (float) (_bright?.Value ?? 0));
+                        _target.ApplyTextures(item, CurrentColors());
                         break;
                     case LibraryKind.SoundEffects:
                         _target.ApplySoundEffects(item);
@@ -572,20 +579,33 @@ namespace ThemeEditor.App.Library
             }
             _detail.Children.Add(previews);
 
-            _detail.Children.Add(new TextBlock { Text = MainResources.Library_Variants, FontWeight = FontWeight.SemiBold });
-            var strip = new WrapPanel();
-            foreach (var h in TextureRecolor.PresetHues)
+            // Clicking a colour in a preview picks the colour range the target colours replace
+            foreach (var (img, second) in new[] { (_imgA, false), (_imgB, true) })
             {
-                var hue = h;
-                using (var variant = TextureRecolor.Apply(_srcA, hue))
-                using (var vis = TextureRecolor.Visible(variant, item.Kind, false))
+                var view = img;
+                var isSecond = second;
+                view.Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Cross);
+                view.PointerPressed += (_, e) =>
                 {
-                    var b = new Button { Padding = new Thickness(2), Margin = new Thickness(0, 0, 4, 4), Content = new Image { Source = ToBitmap(vis), Width = icon ? 44 : 58, Height = icon ? 44 : 50, Stretch = Stretch.Uniform } };
-                    b.Click += (_, __) => { _updatingSliders = true; _hue.Value = hue > 180 ? hue - 360 : hue; _sat.Value = 1; _bright.Value = 0; _updatingSliders = false; UpdateTexturePreview(); };
-                    strip.Children.Add(b);
-                }
+                    var at = e.GetPosition(view);
+                    using (var vis = TextureRecolor.Visible(isSecond ? _srcB : _srcA, item.Kind, isSecond))
+                    {
+                        var hue = TextureRecolor.HueAt(vis, (int) (at.X * vis.Width / view.Bounds.Width), (int) (at.Y * vis.Height / view.Bounds.Height));
+                        if (hue != null)
+                            PickSource(hue, item);
+                    }
+                };
             }
-            _detail.Children.Add(strip);
+
+            // One click turns the texture's main colour into a real colour; the sliders fine-tune on top
+            _detail.Children.Add(new TextBlock { Text = MainResources.Library_Variants, FontWeight = FontWeight.SemiBold });
+            _swatch = new Border { Width = 18, Height = 18, CornerRadius = new CornerRadius(3), BorderBrush = Brushes.Gray, BorderThickness = new Thickness(1), VerticalAlignment = VerticalAlignment.Center };
+            _swatchText = new TextBlock { VerticalAlignment = VerticalAlignment.Center, Opacity = 0.75, TextWrapping = TextWrapping.Wrap, MaxWidth = 420 };
+            _detail.Children.Add(new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Children = { _swatch, _swatchText } });
+            _presets = new WrapPanel();
+            _detail.Children.Add(_presets);
+            using (var vis = TextureRecolor.Visible(_srcA, item.Kind, false))
+                PickSource(TextureRecolor.MainHue(vis), item);
 
             _hue = new Slider { Minimum = -180, Maximum = 180, Value = 0, Width = 280 };
             _sat = new Slider { Minimum = 0, Maximum = 2, Value = 1, Width = 280 };
@@ -601,22 +621,95 @@ namespace ThemeEditor.App.Library
                 return g;
             }
             _detail.Children.Add(Row(MainResources.Library_Hue, _hue));
+            _hueMode = new TextBlock { FontSize = 11, Opacity = 0.6, Margin = new Thickness(110, -2, 0, 4) };
+            _detail.Children.Add(_hueMode);
             _detail.Children.Add(Row(MainResources.Library_Saturation, _sat));
             _detail.Children.Add(Row(MainResources.Library_Brightness, _bright));
             var reset = new Button { Content = MainResources.Library_Reset, HorizontalAlignment = HorizontalAlignment.Left };
-            reset.Click += (_, __) => { _updatingSliders = true; _hue.Value = 0; _sat.Value = 1; _bright.Value = 0; _updatingSliders = false; UpdateTexturePreview(); };
+            reset.Click += (_, __) =>
+            {
+                _updatingSliders = true; _hue.Value = 0; _sat.Value = 1; _bright.Value = 0; _updatingSliders = false;
+                SetTarget(null);
+            };
             _detail.Children.Add(reset);
+            SetTarget(null);
+        }
+
+        /// <summary>
+        ///     Everything the sliders and the chosen target colour do to the texture. With a target colour the hue slider
+        ///     fine-tunes that colour only; without one it turns all colours.
+        /// </summary>
+        internal TextureColors CurrentColors()
+        {
+            var hue = (float) (_hue?.Value ?? 0);
+            return new TextureColors
+            {
+                Hue = _targetHue == null ? hue : 0,
+                Saturation = (float) (_sat?.Value ?? 1),
+                Brightness = (float) (_bright?.Value ?? 0),
+                SourceHue = _sourceHue,
+                TargetHue = _targetHue == null ? (float?) null : _targetHue.Value + hue
+            };
+        }
+
+        /// <summary>Picks a target colour (null for none) and switches what the hue slider does accordingly.</summary>
+        internal void SetTarget(float? target)
+        {
+            _targetHue = target;
+            if (_hue != null)
+            {
+                _updatingSliders = true;
+                _hue.Value = 0;
+                _hue.Minimum = target == null ? -180 : -40;
+                _hue.Maximum = target == null ? 180 : 40;
+                _updatingSliders = false;
+                _hueMode.Text = target == null ? MainResources.Library_HueAll : MainResources.Library_HueTarget;
+            }
             UpdateTexturePreview();
+        }
+
+        /// <summary>Sets the colour range the target colours replace, and shows it with a preview of each target colour.</summary>
+        internal void PickSource(float? hue, LibraryItem item)
+        {
+            _sourceHue = hue;
+            if (hue != null)
+            {
+                TextureRecolor.FromHsv(hue.Value, 0.8f, 0.9f, out var r, out var g, out var b);
+                _swatch.Background = new SolidColorBrush(Color.FromRgb((byte) (r * 255), (byte) (g * 255), (byte) (b * 255)));
+                _swatch.IsVisible = true;
+                _swatchText.Text = MainResources.Library_ChangesHint;
+            }
+            else
+            {
+                _swatch.IsVisible = false;
+                _swatchText.Text = MainResources.Library_NoMainColor;
+            }
+
+            _presets.Children.Clear();
+            var icon = item.Kind == LibraryKind.IconTexture;
+            foreach (var (key, target) in TextureRecolor.TargetColors)
+            {
+                var to = target;
+                var b = new Button { Padding = new Thickness(2), Margin = new Thickness(0, 0, 4, 4), IsEnabled = hue != null };
+                ToolTip.SetTip(b, MainResources.ResourceManager.GetString("Library_Color_" + key) ?? key);
+                using (var variant = TextureRecolor.Apply(_srcA, new TextureColors { SourceHue = hue, TargetHue = to }))
+                using (var vis = TextureRecolor.Visible(variant, item.Kind, false))
+                    b.Content = new Image { Source = ToBitmap(vis), Width = icon ? 44 : 58, Height = icon ? 44 : 50, Stretch = Stretch.Uniform };
+                b.Click += (_, __) => SetTarget(to);
+                _presets.Children.Add(b);
+            }
+            if (_hue != null)
+                UpdateTexturePreview();
         }
 
         private void UpdateTexturePreview()
         {
             if (_srcA == null || _srcB == null || _hue == null)
                 return;
-            var h = (float) _hue.Value; var s = (float) _sat.Value; var b = (float) _bright.Value;
+            var colors = CurrentColors();
             var kind = _selected.Kind;
-            using (var a = TextureRecolor.Apply(_srcA, h, s, b))
-            using (var c = TextureRecolor.Apply(_srcB, h, s, b))
+            using (var a = TextureRecolor.Apply(_srcA, colors))
+            using (var c = TextureRecolor.Apply(_srcB, colors))
             using (var va = TextureRecolor.Visible(a, kind, false))
             using (var vb = TextureRecolor.Visible(c, kind, true))
             {

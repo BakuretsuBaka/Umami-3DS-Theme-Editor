@@ -45,7 +45,7 @@ namespace ThemeEditor.App
 
             public bool HasTheme => _w.ViewModel != null;
 
-            public void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness)
+            public void ApplyTextures(LibraryItem item, TextureColors colors)
             {
                 var vm = _w.ViewModel;
                 var lib = ResourceLibrary.Instance;
@@ -53,7 +53,7 @@ namespace ThemeEditor.App
                 Action<string, TextureViewModelSlot> put = (file, slot) =>
                 {
                     using (var src = SKBitmap.Decode(lib.PathOf(item, file)))
-                    using (var tinted = TextureRecolor.Apply(src, hue, saturation, brightness))
+                    using (var tinted = TextureRecolor.Apply(src, colors))
                     using (var img = SKImage.FromBitmap(tinted))
                     using (var data = img.Encode(SKEncodedImageFormat.Png, 100))
                     using (var ms = new MemoryStream(data.ToArray()))

@@ -1053,4 +1053,40 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>Bu temanın indirmesinde müzik yok.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>Değişen renk. Bunun yerine onu değiştirmek için resimde başka bir renge tıkla.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>Belirgin bir renk yok: resimde bir renge tıkla ya da ton kaydırıcısını kullan.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>Kırmızı</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>Turuncu</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>Sarı</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>Yeşil</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>Turkuaz</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>Mavi</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>Mor</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>Pembe</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>Tüm renkleri döndürür</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>Yalnızca seçilen rengi ince ayarlar</value>
+  </data>
 </root>

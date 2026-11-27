@@ -104,7 +104,7 @@ namespace ThemeEditor.Tests
         {
             public byte[] Music;
             public bool HasTheme => true;
-            public void ApplyTextures(LibraryItem item, float hue, float saturation, float brightness) {}
+            public void ApplyTextures(ThemeEditor.App.Library.LibraryItem item, ThemeEditor.App.Library.TextureColors colors) {}
             public void ApplySoundEffects(LibraryItem item) {}
             public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}
             public void ApplyMusic(LibraryItem item) {}

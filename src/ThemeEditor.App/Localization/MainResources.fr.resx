@@ -1053,4 +1053,40 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>Le téléchargement de ce thème ne contient pas de musique.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>La couleur qui change. Clique sur une autre couleur de l'image pour changer celle-là.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>Pas de couleur nette : clique sur une couleur de l'image ou utilise le curseur de teinte.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>Rouge</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>Jaune</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>Vert</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>Turquoise</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>Bleu</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>Rose</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>Fait tourner toutes les couleurs</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>Ajuste seulement la couleur choisie</value>
+  </data>
 </root>

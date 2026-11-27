@@ -1053,4 +1053,40 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Library_ThemezerNoMusic" xml:space="preserve">
     <value>La descarga de este tema no tiene música.</value>
   </data>
+  <data name="Library_ChangesHint" xml:space="preserve">
+    <value>El color que cambia. Haz clic en otro color de la imagen para cambiar ese.</value>
+  </data>
+  <data name="Library_NoMainColor" xml:space="preserve">
+    <value>No hay un color claro: haz clic en un color de la imagen o usa el control de tono.</value>
+  </data>
+  <data name="Library_Color_Red" xml:space="preserve">
+    <value>Rojo</value>
+  </data>
+  <data name="Library_Color_Orange" xml:space="preserve">
+    <value>Naranja</value>
+  </data>
+  <data name="Library_Color_Yellow" xml:space="preserve">
+    <value>Amarillo</value>
+  </data>
+  <data name="Library_Color_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="Library_Color_Turquoise" xml:space="preserve">
+    <value>Turquesa</value>
+  </data>
+  <data name="Library_Color_Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="Library_Color_Purple" xml:space="preserve">
+    <value>Morado</value>
+  </data>
+  <data name="Library_Color_Pink" xml:space="preserve">
+    <value>Rosa</value>
+  </data>
+  <data name="Library_HueAll" xml:space="preserve">
+    <value>Gira todos los colores</value>
+  </data>
+  <data name="Library_HueTarget" xml:space="preserve">
+    <value>Ajusta solo el color elegido</value>
+  </data>
 </root>
