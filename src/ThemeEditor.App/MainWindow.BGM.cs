@@ -28,11 +28,19 @@ namespace ThemeEditor.App
             private set
             {
                 _bgmBcstm = value;
+                // Other music, or none: what was known about the music no longer applies (the library sets it again)
+                BgmInfo = null;
                 UpdateTitleAndStatus();
             }
         }
 
         private byte[] _bgmBcstm;
+
+        /// <summary>
+        ///     What is known about the theme's music when it came from the resource library or Themezer (title, artist,
+        ///     source), to fill in Themezer's BGM info; null otherwise. Kept in memory only, never written into the theme.
+        /// </summary>
+        internal string BgmInfo { get; set; }
         private bool _bgmDirty;
 
         /// <summary>True when <see cref="BgmBcstm" /> was imported and still has to be written next to the theme.</summary>
@@ -174,6 +182,7 @@ namespace ThemeEditor.App
                 result.Bcstm = await Task.Run(() => BcstmConverter.Encode(audio, options));
                 result.Audio = BcstmConverter.ReadBcstm(result.Bcstm);
                 result.Info = BcstmConverter.GetInfo(result.Audio);
+                result.BgmInfo = await Task.Run(() => AudioTags.Describe(file));
                 result.Imported = true;
             }
             catch (Exception)
@@ -206,6 +215,7 @@ namespace ThemeEditor.App
             }
 
             BgmBcstm = result.Bcstm;
+            BgmInfo = result.BgmInfo;
             BgmDirty = true;
             AudioPlayer.Instance.SetAudio(result.Audio);
             ViewModel.Flags.BackgroundMusic = true;
@@ -278,6 +288,8 @@ namespace ThemeEditor.App
             public string Error;
             public BcstmInfo Info;
             public bool Imported;
+            /// <summary>The song's name from its tags or file name, to fill in Themezer's BGM info.</summary>
+            public string BgmInfo;
         }
     }
 }

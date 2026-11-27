@@ -47,8 +47,9 @@ namespace ThemeEditor.App
         /// <param name="hasBgm">Whether the theme has music (then the music info field is shown).</param>
         /// <param name="buildPackage">Compresses the theme and renders its preview and icon when the upload starts.</param>
         /// <param name="openBrowser">Opens Themezer's sign-in page (the default browser when null).</param>
+        /// <param name="bgmInfo">What is known about the music (from the resource library or Themezer), to fill in.</param>
         public ThemezerUploadWindow(ThemezerClient client, ICredentialStore vault, string name, string description, bool hasBgm,
-            Func<Task<MainWindow.ThemePackage>> buildPackage, Action<string> openBrowser = null)
+            Func<Task<MainWindow.ThemePackage>> buildPackage, Action<string> openBrowser = null, string bgmInfo = null)
         {
             _client = client;
             _vault = vault;
@@ -87,7 +88,7 @@ namespace ThemeEditor.App
             _name = new TextBox {Text = name ?? string.Empty};
             _description = new TextBox {Text = description ?? string.Empty, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 80};
             _tags = new TextBox {Watermark = MainResources.Themezer_TagsExample};
-            _bgmInfo = new TextBox();
+            _bgmInfo = new TextBox { Text = bgmInfo ?? string.Empty };
             _private = new CheckBox {Content = MainResources.Themezer_Private};
             _nsfw = new CheckBox {Content = MainResources.Themezer_Nsfw};
             _details = new StackPanel

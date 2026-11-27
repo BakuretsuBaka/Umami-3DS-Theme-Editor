@@ -37,7 +37,7 @@ namespace ThemeEditor.App
         }
 
         /// <summary>Applies library items to whatever theme is open.</summary>
-        private sealed class LibraryTarget : ILibraryTarget
+        internal sealed class LibraryTarget : ILibraryTarget
         {
             private readonly MainWindow _w;
 
@@ -93,15 +93,16 @@ namespace ThemeEditor.App
 
             public void ApplyMusic(LibraryItem item)
             {
-                ApplyMusicData(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile));
+                ApplyMusicData(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile), item.BgmInfo);
             }
 
-            public void ApplyMusicData(byte[] bcstm)
+            public void ApplyMusicData(byte[] bcstm, string bgmInfo)
             {
                 var bytes = BcstmCompat.Normalize(bcstm);
                 if (bytes.Length > BcstmConverter.MaxThemeBgmBytes)
                     throw new InvalidOperationException(string.Format(Localization.MainResources.Message_BgmTooLarge, bytes.Length / 1024, BcstmConverter.MaxThemeBgmBytes / 1024));
                 _w.BgmBcstm = bytes;
+                _w.BgmInfo = bgmInfo;
                 _w.BgmDirty = true;
                 AudioPlayer.Instance.SetAudio(BcstmConverter.ReadBcstm(bytes));
                 _w.ViewModel.Flags.BackgroundMusic = true;

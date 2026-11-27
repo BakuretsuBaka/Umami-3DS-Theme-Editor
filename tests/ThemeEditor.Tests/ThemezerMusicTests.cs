@@ -103,12 +103,50 @@ namespace ThemeEditor.Tests
         private sealed class Target : ILibraryTarget
         {
             public byte[] Music;
+            public string BgmInfo;
             public bool HasTheme => true;
             public void ApplyTextures(ThemeEditor.App.Library.LibraryItem item, ThemeEditor.App.Library.TextureColors colors) {}
             public void ApplySoundEffects(LibraryItem item) {}
             public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}
             public void ApplyMusic(LibraryItem item) {}
-            public void ApplyMusicData(byte[] bcstm) => Music = bcstm;
+            public void ApplyMusicData(byte[] bcstm, string bgmInfo) { Music = bcstm; BgmInfo = bgmInfo; }
+        }
+
+        [AvaloniaFact]
+        public void MusicFromTheLibraryBringsItsBgmInfoToTheUpload()
+        {
+            var win = new MainWindow();
+            win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            for (var i = 0; i < 100 && win.ViewModel == null; i++)
+            {
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+                Thread.Sleep(20);
+            }
+            var target = new MainWindow.LibraryTarget(win);
+            target.ApplyMusicData(Music(), "Gwyn, Lord of Cinder - Dark Souls OST");
+            Assert.Equal("Gwyn, Lord of Cinder - Dark Souls OST", win.BgmInfo);
+
+            // The upload dialog fills it in
+            var dialog = new ThemezerUploadWindow(new ThemezerClient(new FakeThemezer()), new NoVault(), "Theme", "", true,
+                () => Task.FromResult(new MainWindow.ThemePackage()), bgmInfo: win.BgmInfo);
+            dialog.Show();
+            Assert.Contains(dialog.GetLogicalDescendants().OfType<TextBox>(), t => t.Text == "Gwyn, Lord of Cinder - Dark Souls OST");
+            dialog.Close();
+
+            // Other music, or none, and the info goes
+            win.RemoveBgmCommand.Execute(null);
+            Assert.Null(win.BgmInfo);
+            target.ApplyMusicData(Music(), null);
+            Assert.Null(win.BgmInfo);
+        }
+
+        private sealed class NoVault : ICredentialStore
+        {
+            public bool IsAvailable => false;
+            public string Read(string account) => null;
+            public bool Write(string account, string secret) => false;
+            public void Delete(string account) {}
         }
 
         [AvaloniaFact]
@@ -152,9 +190,11 @@ namespace ThemeEditor.Tests
 
                 await win.TakeHit(hit, false, new Button(), new Button());
                 Assert.Equal(music, target.Music);
+                Assert.Equal(hit.BgmInfo, target.BgmInfo);
 
                 await win.TakeHit(hit, true, new Button(), new Button());
                 var kept = lib.Of(LibraryKind.Music).Single(i => i.Name == hit.BgmInfo);
+                Assert.Equal(hit.BgmInfo, kept.BgmInfo);
                 Assert.Equal(BcstmCompat.Normalize(music), lib.ReadAllBytes(kept, kept.DataFile));
                 Assert.Equal(2, lib.Count(LibraryKind.Music));
                 // Kept for good: a fresh look at the library folder finds it

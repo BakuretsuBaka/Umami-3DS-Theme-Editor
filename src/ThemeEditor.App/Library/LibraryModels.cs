@@ -39,6 +39,9 @@ namespace ThemeEditor.App.Library
         public string ZipEntry { get; set; }
         public string PreviewEntry { get; set; }
 
+        /// <summary>Music: what is known about it (e.g. Themezer's BGM info: title, artist, source), or null.</summary>
+        public string BgmInfo { get; set; }
+
         public double Seconds { get; set; }
         public long Bytes { get; set; }
 

@@ -31,8 +31,8 @@ namespace ThemeEditor.App.Library
         void ApplySoundEffects(LibraryItem item);
         void ApplySound(LibraryItem item, CwavKind kind);
         void ApplyMusic(LibraryItem item);
-        /// <summary>Music that is not in the library (e.g. found on Themezer), as a BCSTM.</summary>
-        void ApplyMusicData(byte[] bcstm);
+        /// <summary>Music that is not in the library (e.g. found on Themezer), as a BCSTM, with what is known about it.</summary>
+        void ApplyMusicData(byte[] bcstm, string bgmInfo);
     }
 
     /// <summary>Browse ready-made folder/icon textures, sound effects and music and apply them to the open theme.</summary>
@@ -460,14 +460,14 @@ namespace ThemeEditor.App.Library
                     throw new InvalidOperationException(MainResources.Library_ThemezerNoMusic);
                 if (keep)
                 {
-                    var item = await Task.Run(() => _lib.AddMusic(bcstm, hit.BgmInfo));
+                    var item = await Task.Run(() => _lib.AddMusic(bcstm, hit.BgmInfo, hit.BgmInfo));
                     Refresh();
                     _list.SelectedItem = item;
                     _status.Text = MainResources.Library_AddedToLibrary;
                 }
                 else
                 {
-                    _target.ApplyMusicData(bcstm);
+                    _target.ApplyMusicData(bcstm, hit.BgmInfo);
                     _status.Text = MainResources.Library_Applied;
                 }
             }

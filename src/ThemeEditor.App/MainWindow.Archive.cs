@@ -157,7 +157,7 @@ namespace ThemeEditor.App
             var hasBgm = vm.Flags.BackgroundMusic && (BgmBcstm != null || (ThemePath != null
                 && File.Exists(Path.Combine(Path.GetDirectoryName(ThemePath) ?? ".", BGM_FILE_NAME))));
             var window = new ThemezerUploadWindow(ThemezerClient.Shared, CredentialStore.System, vm.Info.ShortDescription, vm.Info.LongDescription,
-                hasBgm, () => BuildPackage(vm));
+                hasBgm, () => BuildPackage(vm), bgmInfo: BgmInfo);
             await window.ShowDialog(this);
         }
 
