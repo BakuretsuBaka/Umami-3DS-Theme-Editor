@@ -361,20 +361,20 @@ namespace ThemeEditor.App.Library
             Refresh();
         }
 
+        private static Bitmap _themezerLogo;
+
+        private static Bitmap ThemezerLogo => _themezerLogo ??
+            (_themezerLogo = new Bitmap(Avalonia.Platform.AssetLoader.Open(new Uri("avares://UmamiThemeEditor/Resources/themezer.png"))));
+
         private Control BuildHitRow(ThemezerMusic hit)
         {
             var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center, Spacing = 1 };
             text.Children.Add(new TextBlock { Text = hit.BgmInfo, TextTrimming = TextTrimming.CharacterEllipsis });
             text.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_FromTheme, hit.ThemeName, hit.Creator), FontSize = 11, Opacity = 0.6, TextTrimming = TextTrimming.CharacterEllipsis });
-            var tag = new Border
-            {
-                Background = new SolidColorBrush(Color.FromArgb(60, 70, 130, 180)),
-                CornerRadius = new CornerRadius(3),
-                Padding = new Thickness(4, 1),
-                VerticalAlignment = VerticalAlignment.Center,
-                Child = new TextBlock { Text = "Themezer", FontSize = 10 }
-            };
-            return new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Margin = new Thickness(2), Children = { tag, text } };
+            // Themezer's logo marks music found there
+            var logo = new Image { Source = ThemezerLogo, Width = 26, Height = 28, Stretch = Stretch.Uniform, VerticalAlignment = VerticalAlignment.Center };
+            ToolTip.SetTip(logo, "Themezer");
+            return new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Margin = new Thickness(2), Children = { logo, text } };
         }
 
         private void SelectHit(ThemezerMusic hit)
