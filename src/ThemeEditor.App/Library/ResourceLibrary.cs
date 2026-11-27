@@ -75,6 +75,8 @@ namespace ThemeEditor.App.Library
         {
             if (string.IsNullOrEmpty(file))
                 return null;
+            if (item.Root != null)
+                return Path.Combine(item.Root, file);
             string root;
             lock (_lock)
                 root = _rootOf.TryGetValue(item.Id, out var r) ? r : WritableRoot;
@@ -184,6 +186,36 @@ namespace ThemeEditor.App.Library
             Add(item);
             Save();
             return item;
+        }
+
+        /// <summary>
+        ///     Keeps an item that is not part of the library (see <see cref="LibraryItem.Root" />) in the user's library: its
+        ///     files are copied in. Returns the library's item (the one already there when it was kept before).
+        /// </summary>
+        public LibraryItem AddCopy(LibraryItem item)
+        {
+            lock (_lock)
+            {
+                var existing = Items.FirstOrDefault(i => i.Id == item.Id);
+                if (existing != null)
+                    return existing;
+            }
+            foreach (var file in new[] { item.FileA, item.FileB, item.DataFile })
+            {
+                if (file == null)
+                    continue;
+                var target = Path.Combine(WritableRoot, file);
+                Directory.CreateDirectory(Path.GetDirectoryName(target) ?? WritableRoot);
+                File.Copy(Path.Combine(item.Root ?? WritableRoot, file), target, true);
+            }
+            var copy = new LibraryItem
+            {
+                Id = item.Id, Kind = item.Kind, Name = item.Name, Collection = "Imported", FileA = item.FileA, FileB = item.FileB,
+                DataFile = item.DataFile, BgmInfo = item.BgmInfo, Seconds = item.Seconds, Bytes = item.Bytes
+            };
+            Add(copy);
+            Save();
+            return copy;
         }
 
         /// <summary>Adds an item (already written under <see cref="WritableRoot" />) unless it is a duplicate.</summary>

@@ -2510,5 +2510,19 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Library_ByCreator".</summary>
+        public static string Library_ByCreator {
+            get {
+                return ResourceManager.GetString("Library_ByCreator", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Library_ThemezerNoPart".</summary>
+        public static string Library_ThemezerNoPart {
+            get {
+                return ResourceManager.GetString("Library_ThemezerNoPart", resourceCulture);
+            }
+        }
+
     }
 }

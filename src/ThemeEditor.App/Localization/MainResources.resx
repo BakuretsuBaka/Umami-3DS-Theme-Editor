@@ -1202,4 +1202,10 @@ Should the editor fit it for you?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Fine-tunes the chosen colour only</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>by {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>This theme's download doesn't contain one after all.</value>
+  </data>
 </root>

@@ -1089,4 +1089,10 @@ O editor deve ajustá-la para você?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Ajusta só a cor escolhida</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>por {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>O download deste tema não contém isso, afinal.</value>
+  </data>
 </root>

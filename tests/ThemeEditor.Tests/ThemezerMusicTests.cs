@@ -112,6 +112,72 @@ namespace ThemeEditor.Tests
             public void ApplyMusicData(byte[] bcstm, string bgmInfo) { Music = bcstm; BgmInfo = bgmInfo; }
         }
 
+        /// <summary>Themezer's search for themes with custom parts; one hit matches by its description only.</summary>
+        private sealed class FakePartsSearch : HttpMessageHandler
+        {
+            public string Query;
+
+            protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+            {
+                Query = (string) JObject.Parse(await request.Content.ReadAsStringAsync())["query"];
+                var nodes = new JArray(
+                    new JObject {["hexId"] = "2029A", ["name"] = "Pokémon", ["pageUrl"] = "p", ["folderClosedUrl"] = "https://cdn/f.png", ["iconBorderLargeUrl"] = "https://cdn/i.png", ["creator"] = new JObject {["username"] = "Someone"}},
+                    new JObject {["hexId"] = "1A000", ["name"] = "Sunny Day", ["pageUrl"] = "p", ["creator"] = new JObject {["username"] = "Other"}},
+                    // Marked by Themezer, but without the textures themselves
+                    new JObject {["hexId"] = "1B000", ["name"] = "Pokemon Wonder", ["pageUrl"] = "p", ["creator"] = new JObject {["username"] = "Third"}});
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(new JObject {["data"] = new JObject {["threeDs"] = new JObject {["theme"] = new JObject {["themes"] = new JObject {["nodes"] = nodes}}}}}.ToString())
+                };
+            }
+        }
+
+        [Fact]
+        public async Task FoldersIconsAndSoundsAreFoundByThemeNameWithThemezersMarker()
+        {
+            var fake = new FakePartsSearch();
+            var client = new ThemezerClient(fake);
+            var folders = await client.SearchParts("pokemon", "hasCustomFolderModel");
+            Assert.Contains("hasCustomFolderModel:true", fake.Query);
+            var hit = Assert.Single(folders);
+            Assert.Equal("Pokémon", hit.ThemeName);
+            Assert.Equal("https://cdn/f.png", hit.PreviewUrl);
+            Assert.Equal("https://cdn/i.png", Assert.Single(await client.SearchParts("pokemon", "hasCustomGamecardIcon")).PreviewUrl);
+            // Sound effects have no picture, so the marker alone counts there
+            Assert.Equal(2, (await client.SearchParts("pokemon", "hasCustomSfx")).Count);
+            Assert.Contains("hasCustomSfx:true", fake.Query);
+        }
+
+        [Fact]
+        public void APartFromThemezerIsReadFromItsOwnFolderAndCanBeKept()
+        {
+            var dir = Path.Combine(Path.GetTempPath(), "umami-keep-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var unpacked = Path.Combine(dir, "unpacked");
+                Directory.CreateDirectory(Path.Combine(unpacked, "sfx"));
+                File.WriteAllBytes(Path.Combine(unpacked, "sfx", "s-1.bin"), new byte[] {1, 2, 3});
+                var item = new LibraryItem {Id = "s-1", Kind = LibraryKind.SoundEffects, Name = "Pokémon", DataFile = "sfx/s-1.bin", Bytes = 3, Root = unpacked};
+                var lib = new ResourceLibrary(Path.Combine(dir, "mine"));
+                lib.Load(false);
+                Assert.Equal(new byte[] {1, 2, 3}, lib.ReadAllBytes(item, item.DataFile));
+
+                var kept = lib.AddCopy(item);
+                Assert.Null(kept.Root);
+                Assert.Equal(new byte[] {1, 2, 3}, lib.ReadAllBytes(kept, kept.DataFile));
+                Assert.Same(kept, lib.AddCopy(item));
+                var reloaded = new ResourceLibrary(Path.Combine(dir, "mine"));
+                reloaded.Load(false);
+                Assert.Contains(reloaded.Of(LibraryKind.SoundEffects), i => i.Name == "Pokémon");
+                // Where an unpacked item lived is not saved
+                Assert.DoesNotContain("unpacked", File.ReadAllText(Path.Combine(dir, "mine", "index.json")));
+            }
+            finally
+            {
+                Directory.Delete(dir, true);
+            }
+        }
+
         [AvaloniaFact]
         public void MusicFromTheLibraryBringsItsBgmInfoToTheUpload()
         {
@@ -168,8 +234,8 @@ namespace ThemeEditor.Tests
                 var win = new ResourceLibraryWindow(lib, target, null, new ThemezerClient(fake));
                 win.Show();
                 var online = win.GetLogicalDescendants().OfType<CheckBox>().Single(c => (string) c.Content == MainResources.Library_SearchThemezer);
-                // Only the Music tab offers it
-                Assert.False(online.IsVisible);
+                // Every tab offers it
+                Assert.True(online.IsVisible);
                 win.GetLogicalDescendants().OfType<RadioButton>().ElementAt(3).RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                 Assert.True(online.IsVisible);
 

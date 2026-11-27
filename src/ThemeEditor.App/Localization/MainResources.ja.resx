@@ -1089,4 +1089,10 @@ DSP-ADPCMコーデック、モノラル、低いサンプリングレート、�
   <data name="Library_HueTarget" xml:space="preserve">
     <value>選んだ色だけを微調整</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>{0} 作</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>このテーマのダウンロードには含まれていませんでした。</value>
+  </data>
 </root>

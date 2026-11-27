@@ -1089,4 +1089,10 @@ Vuoi che l'editor la adatti?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Regola solo il colore scelto</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>di {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>Il download di questo tema non lo contiene, alla fine.</value>
+  </data>
 </root>

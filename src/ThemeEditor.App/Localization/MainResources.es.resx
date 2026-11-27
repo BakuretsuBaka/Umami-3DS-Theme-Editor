@@ -1089,4 +1089,10 @@ Verifica la Ventana "Acerca de" para mas información</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Ajusta solo el color elegido</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>por {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>La descarga de este tema no lo contiene al final.</value>
+  </data>
 </root>

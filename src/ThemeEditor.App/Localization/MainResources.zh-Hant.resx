@@ -1089,4 +1089,10 @@
   <data name="Library_HueTarget" xml:space="preserve">
     <value>只微調所選顏色</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>作者：{0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>此主題的下載中其實沒有該內容。</value>
+  </data>
 </root>

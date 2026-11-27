@@ -1089,4 +1089,10 @@ Zal de editor hem passend maken?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Stelt alleen de gekozen kleur bij</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>door {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>De download van dit thema bevat het toch niet.</value>
+  </data>
 </root>

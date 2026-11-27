@@ -1089,4 +1089,10 @@ Soll der Editor es anpassen?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Feinjustiert nur die gewählte Farbe</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>von {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>Der Download dieses Designs enthält doch keins.</value>
+  </data>
 </root>

@@ -1089,4 +1089,10 @@ L'éditeur doit-il l'ajuster ?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Ajuste seulement la couleur choisie</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>par {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>Le téléchargement de ce thème n'en contient finalement pas.</value>
+  </data>
 </root>

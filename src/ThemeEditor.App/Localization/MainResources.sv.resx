@@ -1089,4 +1089,10 @@ Ska redigeraren anpassa den?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Finjusterar bara den valda färgen</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>av {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>Det här temats nedladdning innehåller ändå inget sådant.</value>
+  </data>
 </root>

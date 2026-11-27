@@ -43,6 +43,13 @@ namespace ThemeEditor.App.Library
         public string BgmInfo { get; set; }
 
         public double Seconds { get; set; }
+
+        /// <summary>
+        ///     The folder this item's files are in when it is not part of a library (a part of a theme found on Themezer, unpacked
+        ///     for a look); never saved.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
+        public string Root { get; set; }
         public long Bytes { get; set; }
 
         public override string ToString() { return Name; }

@@ -87,7 +87,10 @@ namespace ThemeEditor.App.Library
         private readonly CheckBox _online = new CheckBox { Content = MainResources.Library_SearchThemezer, Margin = new Thickness(0, 6, 0, 0) };
         private readonly DispatcherTimer _searchDelay = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
         private CancellationTokenSource _searchCts;
-        private List<ThemezerMusic> _hits = new List<ThemezerMusic>();
+        private List<object> _hits = new List<object>();
+        // Themes from Themezer unpacked for a look at their folders, icons or sounds, by theme
+        private readonly Dictionary<string, List<LibraryItem>> _parts = new Dictionary<string, List<LibraryItem>>();
+        private readonly Dictionary<string, Bitmap> _thumbnails = new Dictionary<string, Bitmap>();
         private string _hitsFor;
         private bool _searching, _offline;
         private ThemezerMusic _previewHit;
@@ -167,10 +170,13 @@ namespace ThemeEditor.App.Library
             {
                 if (_list.SelectedItem is ThemezerMusic hit)
                     SelectHit(hit);
+                else if (_list.SelectedItem is ThemezerPart part)
+                    _ = SelectPart(part);
                 else
                     Select(_list.SelectedItem as LibraryItem);
             };
-            _list.ItemTemplate = new FuncDataTemplate<object>((item, _) => item is ThemezerMusic hit ? BuildHitRow(hit) : BuildRow(item as LibraryItem));
+            _list.ItemTemplate = new FuncDataTemplate<object>((item, _) =>
+                item is ThemezerMusic hit ? BuildHitRow(hit) : item is ThemezerPart part ? BuildPartRow(part) : BuildRow(item as LibraryItem));
 
             // Top: what kind of resource, and import/export. The filters sit right above the list they filter.
             var toolbar = new Grid { ColumnDefinitions = new ColumnDefinitions("Auto,*,Auto,Auto"), Margin = new Thickness(10, 8) };
@@ -296,7 +302,6 @@ namespace ThemeEditor.App.Library
             // Music found on Themezer comes after the user's own library
             var online = OnlineActive && _hitsFor == OnlineQuery;
             _list.ItemsSource = online ? items.Cast<object>().Concat(_hits).ToList() : items.Cast<object>().ToList();
-            _online.IsVisible = _kind == LibraryKind.Music;
             _status.Text = items.Count == 0 && !online ? MainResources.Library_Empty : string.Format(MainResources.Library_Count, items.Count);
             if (OnlineActive)
                 _status.Text = _searching ? MainResources.Library_ThemezerSearching
@@ -315,8 +320,12 @@ namespace ThemeEditor.App.Library
 
         private string OnlineQuery => (_search.Text ?? string.Empty).Trim();
 
-        /// <summary>Whether a Themezer search belongs to what is shown: the Music tab, the box ticked, three letters typed.</summary>
-        private bool OnlineActive => _kind == LibraryKind.Music && _online.IsChecked == true && OnlineQuery.Length >= 3;
+        /// <summary>Whether a Themezer search belongs to what is shown: the box ticked, three letters typed.</summary>
+        private bool OnlineActive => _online.IsChecked == true && OnlineQuery.Length >= 3;
+
+        /// <summary>The marker Themezer sets on themes that have the parts of a tab.</summary>
+        private static string FilterOf(LibraryKind kind) =>
+            kind == LibraryKind.FolderTexture ? "hasCustomFolderModel" : kind == LibraryKind.IconTexture ? "hasCustomGamecardIcon" : "hasCustomSfx";
 
         /// <summary>Searches Themezer half a second after the last change, so typing does not send a search per key.</summary>
         private void SearchOnline()
@@ -326,7 +335,7 @@ namespace ThemeEditor.App.Library
             _searching = _offline = false;
             if (!OnlineActive)
             {
-                _hits = new List<ThemezerMusic>();
+                _hits = new List<object>();
                 _hitsFor = null;
                 return;
             }
@@ -337,6 +346,7 @@ namespace ThemeEditor.App.Library
         internal async Task RunOnlineSearch()
         {
             var query = OnlineQuery;
+            var kind = _kind;
             if (!OnlineActive)
                 return;
             var cts = _searchCts = new CancellationTokenSource();
@@ -344,8 +354,11 @@ namespace ThemeEditor.App.Library
             Refresh();
             try
             {
-                var hits = await _themezer.SearchMusic(query, cts.Token);
-                if (cts.IsCancellationRequested || query != OnlineQuery)
+                // Music is found by what the uploader wrote about it, folders, icons and sounds by the theme's name
+                var hits = kind == LibraryKind.Music
+                    ? (await _themezer.SearchMusic(query, cts.Token)).Cast<object>().ToList()
+                    : (await _themezer.SearchParts(query, FilterOf(kind), cts.Token)).Cast<object>().ToList();
+                if (cts.IsCancellationRequested || query != OnlineQuery || kind != _kind)
                     return;
                 _hits = hits;
                 _hitsFor = query;
@@ -359,7 +372,7 @@ namespace ThemeEditor.App.Library
             {
                 if (cts.IsCancellationRequested)
                     return;
-                _hits = new List<ThemezerMusic>();
+                _hits = new List<object>();
                 _hitsFor = null;
                 _offline = true;
             }
@@ -381,6 +394,101 @@ namespace ThemeEditor.App.Library
             var logo = new Image { Source = ThemezerLogo, Width = 26, Height = 28, Stretch = Stretch.Uniform, VerticalAlignment = VerticalAlignment.Center };
             ToolTip.SetTip(logo, "Themezer");
             return new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Margin = new Thickness(2), Children = { logo, text } };
+        }
+
+        private Control BuildPartRow(ThemezerPart part)
+        {
+            var text = new StackPanel { VerticalAlignment = VerticalAlignment.Center, Spacing = 1 };
+            text.Children.Add(new TextBlock { Text = part.ThemeName, TextTrimming = TextTrimming.CharacterEllipsis });
+            text.Children.Add(new TextBlock { Text = string.Format(MainResources.Library_ByCreator, part.Creator), FontSize = 11, Opacity = 0.6, TextTrimming = TextTrimming.CharacterEllipsis });
+            var logo = new Image { Source = ThemezerLogo, Width = 26, Height = 28, Stretch = Stretch.Uniform, VerticalAlignment = VerticalAlignment.Center };
+            ToolTip.SetTip(logo, "Themezer");
+            var row = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, Margin = new Thickness(2), Children = { logo } };
+            if (part.PreviewUrl != null)
+            {
+                // Themezer's own picture of the folder or icon, loaded in the background
+                var icon = _kind == LibraryKind.IconTexture;
+                var thumb = new Image { Width = icon ? 48 : 72, Height = icon ? 48 : 62, Stretch = Stretch.Uniform };
+                row.Children.Add(thumb);
+                _ = LoadThumbnail(part.PreviewUrl, thumb);
+            }
+            row.Children.Add(text);
+            return row;
+        }
+
+        private async Task LoadThumbnail(string url, Image target)
+        {
+            if (!_thumbnails.TryGetValue(url, out var bmp))
+            {
+                try
+                {
+                    var png = await _themezer.DownloadBytes(url);
+                    bmp = new Bitmap(new MemoryStream(png));
+                    _thumbnails[url] = bmp;
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            target.Source = bmp;
+        }
+
+        /// <summary>The parts of a theme on Themezer (folders, icons, sound effects), downloaded and unpacked once.</summary>
+        internal async Task<List<LibraryItem>> PartsOf(ThemezerPart part)
+        {
+            if (_parts.TryGetValue(part.HexId, out var cached))
+                return cached;
+            var folder = Path.Combine(MainWindow.TemporaryRoot, "themezer-parts-" + part.HexId + "-" + Guid.NewGuid().ToString("N").Substring(0, 6));
+            var zip = await _themezer.DownloadTheme(part.HexId, folder);
+            var items = await Task.Run(() =>
+            {
+                var unpacked = new ResourceLibrary(Path.Combine(folder, "library"));
+                var importer = new ThemeImporter(unpacked, "Themezer", false);
+                foreach (var theme in ThemeImporter.ReadZip(zip))
+                {
+                    theme.Name = part.ThemeName;
+                    importer.ImportTheme(theme);
+                }
+                foreach (var item in unpacked.Items)
+                    item.Root = unpacked.WritableRoot;
+                return unpacked.Items.ToList();
+            });
+            _parts[part.HexId] = items;
+            return items;
+        }
+
+        /// <summary>Shows a theme's folder, icon or sound effects like the library's own, to recolour, listen, use or keep.</summary>
+        private async Task SelectPart(ThemezerPart part)
+        {
+            Select(null);
+            var kind = _kind;
+            _detail.Children.Add(new TextBlock { Text = part.ThemeName, FontSize = 18, FontWeight = FontWeight.SemiBold, TextWrapping = TextWrapping.Wrap });
+            _detail.Children.Add(new TextBlock { Text = MainResources.Library_ThemezerDownloading, Opacity = 0.7 });
+            LibraryItem item;
+            try
+            {
+                item = (await PartsOf(part)).FirstOrDefault(i => i.Kind == kind);
+            }
+            catch (Exception ex)
+            {
+                if (_list.SelectedItem == part)
+                {
+                    _detail.Children.RemoveAt(1);
+                    _detail.Children.Add(new TextBlock { Text = string.Format(MainResources.Themezer_Error, ex.Message), Foreground = Brushes.Firebrick, TextWrapping = TextWrapping.Wrap });
+                }
+                return;
+            }
+            // Another entry may have been picked while this one downloaded
+            if (_list.SelectedItem != part || kind != _kind)
+                return;
+            if (item == null)
+            {
+                _detail.Children.RemoveAt(1);
+                _detail.Children.Add(new TextBlock { Text = MainResources.Library_ThemezerNoPart, Opacity = 0.7, TextWrapping = TextWrapping.Wrap });
+                return;
+            }
+            Select(item, part);
         }
 
         private void SelectHit(ThemezerMusic hit)
@@ -485,7 +593,8 @@ namespace ThemeEditor.App.Library
 
         // ---------------------------------------------------------------- Detail
 
-        private void Select(LibraryItem item)
+        /// <param name="from">The theme on Themezer the item was unpacked from (it is not in the library then), or null.</param>
+        private void Select(LibraryItem item, ThemezerPart from = null)
         {
             _selected = item;
             _exportItemPack.IsEnabled = _exportItemFiles.IsEnabled = item != null;
@@ -514,6 +623,32 @@ namespace ThemeEditor.App.Library
             var apply = new Button { Content = item.Kind == LibraryKind.SoundEffects ? MainResources.Library_ApplyWholeSet : MainResources.Library_Apply, IsEnabled = _target.HasTheme, HorizontalAlignment = HorizontalAlignment.Left, Padding = new Thickness(18, 6), Margin = new Thickness(0, 10, 0, 0) };
             apply.Click += (_, __) => Apply(item);
             _detail.Children.Add(apply);
+            if (from != null)
+            {
+                // From Themezer: keep it in the library, or look at the theme, instead of removing it
+                var keep = new Button { Content = MainResources.Library_AddToLibrary, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
+                keep.Click += async (_, __) =>
+                {
+                    try
+                    {
+                        var kept = await Task.Run(() => _lib.AddCopy(item));
+                        Refresh();
+                        _list.SelectedItem = kept;
+                        _status.Text = MainResources.Library_AddedToLibrary;
+                    }
+                    catch (Exception ex)
+                    {
+                        _status.Text = ex.Message;
+                    }
+                };
+                var page = new Button { Content = MainResources.Library_OpenOnThemezer, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
+                page.Click += (_, __) => Update.OpenUrl(from.PageUrl);
+                _detail.Children.Add(keep);
+                _detail.Children.Add(page);
+                if (!_target.HasTheme)
+                    _detail.Children.Add(new TextBlock { Text = MainResources.Library_NoTheme, Opacity = 0.7 });
+                return;
+            }
             var removable = _lib.IsRemovable(item);
             var remove = new Button { Content = MainResources.Library_Remove, IsEnabled = removable, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 4, 0, 0) };
             if (!removable)

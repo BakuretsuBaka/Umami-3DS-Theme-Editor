@@ -57,6 +57,19 @@ namespace ThemeEditor.App
         public override string ToString() => BgmInfo;
     }
 
+    /// <summary>A 3DS theme on Themezer with custom folders, file icons or sound effects, as a source of those.</summary>
+    public sealed class ThemezerPart
+    {
+        public string HexId;
+        public string ThemeName;
+        public string Creator;
+        /// <summary>A picture of the part (the closed folder or the large file icon), or null.</summary>
+        public string PreviewUrl;
+        public string PageUrl;
+
+        public override string ToString() => ThemeName;
+    }
+
     /// <summary>An error Themezer reported (a field it rejected, the hourly upload limit...) or a connection problem.</summary>
     public sealed class ThemezerException : Exception
     {
@@ -445,6 +458,40 @@ namespace ThemeEditor.App
                     ThemeName = (string) n["name"],
                     Creator = (string) n.SelectToken("creator.username"),
                     PreviewUrl = (string) n["bgmPreviewUrl"],
+                    PageUrl = (string) n["pageUrl"]
+                });
+            }
+            return found;
+        }
+
+        /// <summary>
+        ///     Searches 3DS themes that have custom folders (<paramref name="filter" /> "hasCustomFolderModel"), file icons
+        ///     ("hasCustomGamecardIcon") or sound effects ("hasCustomSfx"), keeping those whose name matches.
+        /// </summary>
+        public async Task<List<ThemezerPart>> SearchParts(string query, string filter, CancellationToken cancel = default)
+        {
+            var data = await Send(Json(
+                "query($q:String){ threeDs { theme { themes(query:$q, " + filter + ":true, paginationArgs:{limit:50}) " +
+                "{ nodes { hexId name pageUrl folderClosedUrl iconBorderLargeUrl creator { username } } } } } }",
+                new JObject { ["q"] = query }), cancel);
+            var found = new List<ThemezerPart>();
+            foreach (var n in data.SelectToken("threeDs.theme.themes.nodes") ?? new JArray())
+            {
+                var name = (string) n["name"];
+                if (!MusicMatches(name, query))
+                    continue;
+                var preview = filter == "hasCustomFolderModel" ? (string) n["folderClosedUrl"]
+                    : filter == "hasCustomGamecardIcon" ? (string) n["iconBorderLargeUrl"] : null;
+                // Themezer's markers are broader than the textures themselves ("custom game card icon" is set without file
+                // icon textures too); its picture of the texture exists exactly when the theme has it
+                if (preview == null && filter != "hasCustomSfx")
+                    continue;
+                found.Add(new ThemezerPart
+                {
+                    HexId = (string) n["hexId"],
+                    ThemeName = name,
+                    Creator = (string) n.SelectToken("creator.username"),
+                    PreviewUrl = preview,
                     PageUrl = (string) n["pageUrl"]
                 });
             }

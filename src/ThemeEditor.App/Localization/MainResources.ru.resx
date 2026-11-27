@@ -1089,4 +1089,10 @@
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Подстраивает только выбранный цвет</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>автор: {0}</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>В файле этой темы этого всё-таки нет.</value>
+  </data>
 </root>

@@ -1089,4 +1089,10 @@ DSP-ADPCM 코덱, 모노, 낮은 샘플링 레이트 또는 더 짧은 곡을 �
   <data name="Library_HueTarget" xml:space="preserve">
     <value>선택한 색만 미세 조정</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>{0} 제작</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>이 테마의 다운로드에는 들어 있지 않습니다.</value>
+  </data>
 </root>

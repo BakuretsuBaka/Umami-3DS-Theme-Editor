@@ -1089,4 +1089,10 @@ Düzenleyici sizin için sığdırsın mı?</value>
   <data name="Library_HueTarget" xml:space="preserve">
     <value>Yalnızca seçilen rengi ince ayarlar</value>
   </data>
+  <data name="Library_ByCreator" xml:space="preserve">
+    <value>{0} tarafından</value>
+  </data>
+  <data name="Library_ThemezerNoPart" xml:space="preserve">
+    <value>Bu temanın indirmesinde aslında yok.</value>
+  </data>
 </root>
