@@ -90,6 +90,10 @@ namespace ThemeEditor.App.Library
         private List<object> _hits = new List<object>();
         // Themes from Themezer unpacked for a look at their folders, icons or sounds, by theme
         private readonly Dictionary<string, List<LibraryItem>> _parts = new Dictionary<string, List<LibraryItem>>();
+        private readonly List<string> _partFolders = new List<string>();
+
+        /// <summary>Where themes looked at on Themezer were unpacked (deleted when the window closes).</summary>
+        internal IReadOnlyList<string> PreviewFolders => _partFolders;
         private readonly Dictionary<string, Bitmap> _thumbnails = new Dictionary<string, Bitmap>();
         private string _hitsFor;
         private bool _searching, _offline;
@@ -242,6 +246,7 @@ namespace ThemeEditor.App.Library
             Opened += async (_, __) => await CheckPack();
             Closed += (_, __) =>
             {
+                DeletePreviews();
                 _searchDelay.Stop();
                 _searchCts?.Cancel();
                 _packCts?.Cancel();
@@ -434,12 +439,33 @@ namespace ThemeEditor.App.Library
             target.Source = bmp;
         }
 
+        /// <summary>
+        ///     Deletes the themes downloaded from Themezer for a look (what was kept went into the library, what was used went
+        ///     into the theme), so previewing leaves nothing behind.
+        /// </summary>
+        internal void DeletePreviews()
+        {
+            foreach (var folder in _partFolders)
+                try
+                {
+                    if (Directory.Exists(folder))
+                        Directory.Delete(folder, true);
+                }
+                catch (Exception)
+                {
+                    // Still in use: the clean-up at a later start takes it
+                }
+            _partFolders.Clear();
+            _parts.Clear();
+        }
+
         /// <summary>The parts of a theme on Themezer (folders, icons, sound effects), downloaded and unpacked once.</summary>
         internal async Task<List<LibraryItem>> PartsOf(ThemezerPart part)
         {
             if (_parts.TryGetValue(part.HexId, out var cached))
                 return cached;
             var folder = Path.Combine(MainWindow.TemporaryRoot, "themezer-parts-" + part.HexId + "-" + Guid.NewGuid().ToString("N").Substring(0, 6));
+            _partFolders.Add(folder);
             var zip = await _themezer.DownloadTheme(part.HexId, folder);
             var items = await Task.Run(() =>
             {

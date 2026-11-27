@@ -179,6 +179,32 @@ namespace ThemeEditor.Tests
         }
 
         [AvaloniaFact]
+        public async Task ThemesLookedAtOnThemezerAreDeletedWhenTheLibraryCloses()
+        {
+            var dir = Path.Combine(Path.GetTempPath(), "umami-preview-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var lib = new ResourceLibrary(dir);
+                lib.Load(false);
+                var win = new ResourceLibraryWindow(lib, new Target(), null, new ThemezerClient(new FakeThemezer {Theme = ThemeWith(Music())}));
+                win.Show();
+                await win.PartsOf(new ThemezerPart {HexId = "2029A", ThemeName = "Pokémon"});
+                await win.PartsOf(new ThemezerPart {HexId = "1A2D4", ThemeName = "Pokemon Battle Revolution"});
+                var folders = win.PreviewFolders.ToList();
+                Assert.Equal(2, folders.Count);
+                Assert.All(folders, f => Assert.True(Directory.Exists(f)));
+
+                win.Close();
+                Assert.All(folders, f => Assert.False(Directory.Exists(f)));
+            }
+            finally
+            {
+                if (Directory.Exists(dir))
+                    Directory.Delete(dir, true);
+            }
+        }
+
+        [AvaloniaFact]
         public void MusicFromTheLibraryBringsItsBgmInfoToTheUpload()
         {
             var win = new MainWindow();

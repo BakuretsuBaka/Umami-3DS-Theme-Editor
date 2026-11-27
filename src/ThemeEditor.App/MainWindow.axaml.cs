@@ -191,6 +191,8 @@ namespace ThemeEditor.App
             AudioPlayer.Instance.ClearAudioData();
             ViewModelBase.ViewModelChanged -= OnAnyViewModelChanged;
             DeleteTemporary(ThemePath);
+            // Themes looked at on Themezer from the resource library go too
+            _libraryWindow?.DeletePreviews();
         }
 
         // ---------------------------------------------------------------- Commands
