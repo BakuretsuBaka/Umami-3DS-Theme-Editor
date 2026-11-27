@@ -3,7 +3,10 @@
 // --------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Input;
 using SkiaSharp;
 using ThemeEditor.App.Library;
@@ -17,6 +20,76 @@ namespace ThemeEditor.App
         private ResourceLibraryWindow _libraryWindow;
 
         public ICommand OpenLibraryCommand { get; private set; }
+
+        /// <summary>Parts of the open theme taken from other people's themes, each with what it was like when taken.</summary>
+        private readonly List<ThemeCredit> _credits = new List<ThemeCredit>();
+
+        /// <summary>The credits for the parts that are still as they were taken (edited or replaced parts need none).</summary>
+        internal List<ThemeCredit> CurrentCredits() =>
+            ViewModel == null ? new List<ThemeCredit>() : _credits.Where(c => c.Fingerprint == Fingerprint(c.Part)).ToList();
+
+        /// <summary>A hash of what the theme's part of this kind is now (the folder or icon pictures, sound effects, music).</summary>
+        internal string Fingerprint(LibraryKind part)
+        {
+            var vm = ViewModel;
+            if (vm == null)
+                return null;
+            byte[][] data;
+            switch (part)
+            {
+                case LibraryKind.FolderTexture:
+                    data = new[] { vm.Textures.FolderClosed.Pixels?.Bgra, vm.Textures.FolderOpen.Pixels?.Bgra };
+                    break;
+                case LibraryKind.IconTexture:
+                    data = new[] { vm.Textures.FileLarge.Pixels?.Bgra, vm.Textures.FileSmall.Pixels?.Bgra };
+                    break;
+                case LibraryKind.SoundEffects:
+                    data = new[] { vm.CWavBytes };
+                    break;
+                default:
+                    data = new[] { BgmBcstm };
+                    break;
+            }
+            using (var sha = SHA256.Create())
+            {
+                foreach (var d in data)
+                {
+                    var bytes = d ?? Array.Empty<byte>();
+                    var length = BitConverter.GetBytes(bytes.Length);
+                    sha.TransformBlock(length, 0, length.Length, null, 0);
+                    sha.TransformBlock(bytes, 0, bytes.Length, null, 0);
+                }
+                sha.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+                return Convert.ToBase64String(sha.Hash);
+            }
+        }
+
+        /// <summary>
+        ///     Notes who to credit for a part just taken from a theme. <paramref name="whole" />: it replaced all of that part
+        ///     (otherwise, for a single sound effect, the earlier credits still apply to the rest).
+        /// </summary>
+        internal void Credit(LibraryKind part, ThemeCredit credit, bool whole = true)
+        {
+            var fingerprint = Fingerprint(part);
+            if (whole)
+                _credits.RemoveAll(c => c.Part == part);
+            else
+            {
+                // The others' fingerprints were of the sounds before this one came in
+                _credits.RemoveAll(c => c.Part == part && c.Fingerprint != _creditBefore);
+                foreach (var c in _credits.Where(c => c.Part == part))
+                    c.Fingerprint = fingerprint;
+            }
+            if (credit != null)
+            {
+                credit.Part = part;
+                credit.Fingerprint = fingerprint;
+                _credits.Add(credit);
+            }
+        }
+
+        /// <summary>The fingerprint of a part right before a single sound effect is swapped in (see <see cref="Credit" />).</summary>
+        private string _creditBefore;
 
         private void SetupLibrary()
         {
@@ -75,6 +148,8 @@ namespace ThemeEditor.App
                     put(item.FileB, new TextureViewModelSlot(vm.Textures.FolderOpen, 82, 64));
                     vm.Flags.FolderTexture = true;
                 }
+                // Recoloured, it is still their drawing
+                _w.Credit(item.Kind, ThemeCredit.Of(item));
             }
 
             public void ApplySoundEffects(LibraryItem item)
@@ -82,21 +157,24 @@ namespace ThemeEditor.App
                 var vm = _w.ViewModel;
                 vm.CWavBytes = ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile);
                 vm.Flags.SoundEffect = true;
+                _w.Credit(LibraryKind.SoundEffects, ThemeCredit.Of(item));
             }
 
             public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind)
             {
                 var vm = _w.ViewModel;
+                _w._creditBefore = _w.Fingerprint(LibraryKind.SoundEffects);
                 vm.CWavBytes = SoundMerge.Replace(vm.CWavBytes, ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile), kind);
                 vm.Flags.SoundEffect = true;
+                _w.Credit(LibraryKind.SoundEffects, ThemeCredit.Of(item), false);
             }
 
             public void ApplyMusic(LibraryItem item)
             {
-                ApplyMusicData(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile), item.BgmInfo);
+                ApplyMusicData(ResourceLibrary.Instance.ReadAllBytes(item, item.DataFile), item.BgmInfo, ThemeCredit.Of(item));
             }
 
-            public void ApplyMusicData(byte[] bcstm, string bgmInfo)
+            public void ApplyMusicData(byte[] bcstm, string bgmInfo, ThemeCredit credit = null)
             {
                 var bytes = BcstmCompat.Normalize(bcstm);
                 if (bytes.Length > BcstmConverter.MaxThemeBgmBytes)
@@ -104,6 +182,7 @@ namespace ThemeEditor.App
                 _w.BgmBcstm = bytes;
                 _w.BgmInfo = bgmInfo;
                 _w.BgmDirty = true;
+                _w.Credit(LibraryKind.Music, credit);
                 AudioPlayer.Instance.SetAudio(BcstmConverter.ReadBcstm(bytes));
                 _w.ViewModel.Flags.BackgroundMusic = true;
                 CommandManager.InvalidateRequerySuggested();

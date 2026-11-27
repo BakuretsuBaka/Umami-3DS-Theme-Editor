@@ -109,7 +109,8 @@ namespace ThemeEditor.Tests
             public void ApplySoundEffects(LibraryItem item) {}
             public void ApplySound(LibraryItem item, ThemeEditor.App.Experimental.CWAV.CwavKind kind) {}
             public void ApplyMusic(LibraryItem item) {}
-            public void ApplyMusicData(byte[] bcstm, string bgmInfo) { Music = bcstm; BgmInfo = bgmInfo; }
+            public void ApplyMusicData(byte[] bcstm, string bgmInfo, ThemeCredit credit = null) { Music = bcstm; BgmInfo = bgmInfo; Credit = credit; }
+            public ThemeCredit Credit;
         }
 
         /// <summary>Themezer's search for themes with custom parts; one hit matches by its description only.</summary>
@@ -231,6 +232,49 @@ namespace ThemeEditor.Tests
             Assert.Null(win.BgmInfo);
             target.ApplyMusicData(Music(), null);
             Assert.Null(win.BgmInfo);
+        }
+
+        [Fact]
+        public void CreditsListEveryoneElseOnce()
+        {
+            var credits = new[]
+            {
+                new ThemeCredit { Part = LibraryKind.SoundEffects, ThemeName = "Clicky", Creator = "Bob" },
+                new ThemeCredit { Part = LibraryKind.Music, ThemeName = "Eternal Solaris", Creator = "Alteration", Url = "https://themezer.net/3ds/themes/T1" },
+                new ThemeCredit { Part = LibraryKind.FolderTexture, ThemeName = "Mine", Creator = "me" },
+                new ThemeCredit { Part = LibraryKind.SoundEffects, ThemeName = "Clicky", Creator = "Bob" }
+            };
+            Assert.Equal("**Credits**\n- Music from [Eternal Solaris](https://themezer.net/3ds/themes/T1) by Alteration\n- Sound effects from \"Clicky\" by Bob",
+                ThemeCredit.Markdown(credits, "Me"));
+            Assert.Equal(string.Empty, ThemeCredit.Markdown(new[] { credits[2] }, "me"));
+        }
+
+        [AvaloniaFact]
+        public void ACreditLastsWhileThePartIsUnchanged()
+        {
+            var win = new MainWindow();
+            win.Show();
+            win.NewThemeCommandWrapper.Command.Execute(null);
+            for (var i = 0; i < 100 && win.ViewModel == null; i++)
+            {
+                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+                Thread.Sleep(20);
+            }
+            var target = new MainWindow.LibraryTarget(win);
+            target.ApplyMusicData(Music(), "Song", new ThemeCredit { ThemeName = "Eternal Solaris", Creator = "Alteration" });
+            var credit = Assert.Single(win.CurrentCredits());
+            Assert.Equal(LibraryKind.Music, credit.Part);
+
+            // Other music: the credit goes
+            win.RemoveBgmCommand.Execute(null);
+            Assert.Empty(win.CurrentCredits());
+
+            // Sound effects edited afterwards no longer count as taken
+            win.ViewModel.CWavBytes = new byte[] { 1, 2, 3 };
+            win.Credit(LibraryKind.SoundEffects, new ThemeCredit { ThemeName = "Clicky", Creator = "Bob" });
+            Assert.Single(win.CurrentCredits());
+            win.ViewModel.CWavBytes = new byte[] { 4, 5, 6 };
+            Assert.Empty(win.CurrentCredits());
         }
 
         private sealed class NoVault : ICredentialStore

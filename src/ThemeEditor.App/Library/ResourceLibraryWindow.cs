@@ -32,7 +32,7 @@ namespace ThemeEditor.App.Library
         void ApplySound(LibraryItem item, CwavKind kind);
         void ApplyMusic(LibraryItem item);
         /// <summary>Music that is not in the library (e.g. found on Themezer), as a BCSTM, with what is known about it.</summary>
-        void ApplyMusicData(byte[] bcstm, string bgmInfo);
+        void ApplyMusicData(byte[] bcstm, string bgmInfo, ThemeCredit credit = null);
     }
 
     /// <summary>Browse ready-made folder/icon textures, sound effects and music and apply them to the open theme.</summary>
@@ -477,7 +477,12 @@ namespace ThemeEditor.App.Library
                     importer.ImportTheme(theme);
                 }
                 foreach (var item in unpacked.Items)
+                {
                     item.Root = unpacked.WritableRoot;
+                    item.CreditTheme = part.ThemeName;
+                    item.CreditCreator = part.Creator;
+                    item.CreditUrl = part.PageUrl;
+                }
                 return unpacked.Items.ToList();
             });
             _parts[part.HexId] = items;
@@ -590,18 +595,19 @@ namespace ThemeEditor.App.Library
             try
             {
                 var bcstm = await _themezer.DownloadMusic(hit.HexId);
+                var credit = new ThemeCredit { Part = LibraryKind.Music, ThemeName = hit.ThemeName, Creator = hit.Creator, Url = hit.PageUrl };
                 if (bcstm == null)
                     throw new InvalidOperationException(MainResources.Library_ThemezerNoMusic);
                 if (keep)
                 {
-                    var item = await Task.Run(() => _lib.AddMusic(bcstm, hit.BgmInfo, hit.BgmInfo));
+                    var item = await Task.Run(() => _lib.AddMusic(bcstm, hit.BgmInfo, hit.BgmInfo, credit));
                     Refresh();
                     _list.SelectedItem = item;
                     _status.Text = MainResources.Library_AddedToLibrary;
                 }
                 else
                 {
-                    _target.ApplyMusicData(bcstm, hit.BgmInfo);
+                    _target.ApplyMusicData(bcstm, hit.BgmInfo, credit);
                     _status.Text = MainResources.Library_Applied;
                 }
             }

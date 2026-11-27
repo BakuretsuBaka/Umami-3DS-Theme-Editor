@@ -162,7 +162,7 @@ namespace ThemeEditor.App.Library
         ///     returns the item, or the one already there when the same music was added before. <paramref name="bgmInfo" />
         ///     (what is known about the music) is kept with it.
         /// </summary>
-        public LibraryItem AddMusic(byte[] bcstm, string name, string bgmInfo = null)
+        public LibraryItem AddMusic(byte[] bcstm, string name, string bgmInfo = null, ThemeCredit credit = null)
         {
             var bgm = ThemeEditor.Common.Audio.BcstmCompat.Normalize(bcstm);
             var id = "m-" + ThemeImporter.Hash(bgm);
@@ -171,9 +171,11 @@ namespace ThemeEditor.App.Library
                 existing = Items.FirstOrDefault(i => i.Id == id);
             if (existing != null)
             {
-                if (existing.BgmInfo == null && bgmInfo != null && IsRemovable(existing))
+                if (IsRemovable(existing) && (existing.BgmInfo == null && bgmInfo != null || existing.CreditCreator == null && credit != null))
                 {
-                    existing.BgmInfo = bgmInfo;
+                    existing.BgmInfo = existing.BgmInfo ?? bgmInfo;
+                    if (existing.CreditCreator == null && credit != null)
+                        SetCredit(existing, credit);
                     Save();
                 }
                 return existing;
@@ -183,6 +185,8 @@ namespace ThemeEditor.App.Library
             Directory.CreateDirectory(Path.Combine(WritableRoot, "bgm"));
             File.WriteAllBytes(Path.Combine(WritableRoot, "bgm", id + ".bcstm"), bgm);
             var item = new LibraryItem { Id = id, Kind = LibraryKind.Music, Name = name, BgmInfo = bgmInfo, Collection = "Imported", DataFile = "bgm/" + id + ".bcstm", Bytes = bgm.Length, Seconds = seconds };
+            if (credit != null)
+                SetCredit(item, credit);
             Add(item);
             Save();
             return item;
@@ -211,11 +215,19 @@ namespace ThemeEditor.App.Library
             var copy = new LibraryItem
             {
                 Id = item.Id, Kind = item.Kind, Name = item.Name, Collection = "Imported", FileA = item.FileA, FileB = item.FileB,
-                DataFile = item.DataFile, BgmInfo = item.BgmInfo, Seconds = item.Seconds, Bytes = item.Bytes
+                DataFile = item.DataFile, BgmInfo = item.BgmInfo, Seconds = item.Seconds, Bytes = item.Bytes,
+                CreditTheme = item.CreditTheme, CreditCreator = item.CreditCreator, CreditUrl = item.CreditUrl
             };
             Add(copy);
             Save();
             return copy;
+        }
+
+        private static void SetCredit(LibraryItem item, ThemeCredit credit)
+        {
+            item.CreditTheme = credit.ThemeName;
+            item.CreditCreator = credit.Creator;
+            item.CreditUrl = credit.Url;
         }
 
         /// <summary>Adds an item (already written under <see cref="WritableRoot" />) unless it is a duplicate.</summary>

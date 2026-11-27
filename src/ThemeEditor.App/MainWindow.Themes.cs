@@ -187,6 +187,7 @@ namespace ThemeEditor.App
             if (result.Loaded)
             {
                 ViewModel = new ThemeViewModel(result.Theme, result.Info);
+                _credits.Clear();
                 // A temporary download is gone after this session, so it is no recent file
                 if (!IsTemporary(result.Path))
                     UpdateRecentsList(result.Path);

@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
+using ThemeEditor.App.Library;
 using ThemeEditor.App.Localization;
 using ThemeEditor.App.Properties;
 
@@ -31,6 +33,8 @@ namespace ThemeEditor.App
 
         private readonly TextBox _name;
         private readonly TextBox _description;
+        private readonly IReadOnlyList<ThemeCredit> _credits;
+        private bool _credited;
         private readonly TextBox _tags;
         private readonly TextBox _bgmInfo;
         private readonly CheckBox _private;
@@ -49,8 +53,10 @@ namespace ThemeEditor.App
         /// <param name="openBrowser">Opens Themezer's sign-in page (the default browser when null).</param>
         /// <param name="bgmInfo">What is known about the music (from the resource library or Themezer), to fill in.</param>
         public ThemezerUploadWindow(ThemezerClient client, ICredentialStore vault, string name, string description, bool hasBgm,
-            Func<Task<MainWindow.ThemePackage>> buildPackage, Action<string> openBrowser = null, string bgmInfo = null)
+            Func<Task<MainWindow.ThemePackage>> buildPackage, Action<string> openBrowser = null, string bgmInfo = null,
+            IReadOnlyList<ThemeCredit> credits = null)
         {
+            _credits = credits;
             _client = client;
             _vault = vault;
             _buildPackage = buildPackage;
@@ -151,6 +157,24 @@ namespace ThemeEditor.App
             Closed += (s, e) => _signInCts?.Cancel();
         }
 
+        /// <summary>
+        ///     Ends the description with a credit to the creators of the parts taken from their themes (once, and not for the
+        ///     uploader's own themes, so it waits for the sign-in when there is one).
+        /// </summary>
+        internal void AddCredits()
+        {
+            if (_credited || _credits == null || _client.Username == null)
+                return;
+            var credits = ThemeCredit.Markdown(_credits, _client.Username);
+            if (credits.Length == 0)
+                return;
+            _credited = true;
+            var text = (_description.Text ?? string.Empty).TrimEnd();
+            if (text.Contains(credits))
+                return;
+            _description.Text = text.Length == 0 ? credits : text + "\n\n" + credits;
+        }
+
         private static TextBlock Label(string text)
         {
             return new TextBlock {Text = text, Margin = new Thickness(0, 4, 0, 0)};
@@ -159,6 +183,7 @@ namespace ThemeEditor.App
         private void Refresh()
         {
             var signedIn = _client.Username != null;
+            AddCredits();
             _signInPanel.IsVisible = !signedIn;
             _accountPanel.IsVisible = signedIn;
             _account.Text = signedIn ? string.Format(MainResources.Themezer_LoggedInAs, _client.Username) : string.Empty;

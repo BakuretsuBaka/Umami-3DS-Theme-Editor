@@ -45,6 +45,14 @@ namespace ThemeEditor.App.Library
         public double Seconds { get; set; }
 
         /// <summary>
+        ///     Taken from someone else's theme (on Themezer): its name, creator and page, so an upload can credit them; null
+        ///     otherwise.
+        /// </summary>
+        public string CreditTheme { get; set; }
+        public string CreditCreator { get; set; }
+        public string CreditUrl { get; set; }
+
+        /// <summary>
         ///     The folder this item's files are in when it is not part of a library (a part of a theme found on Themezer, unpacked
         ///     for a look); never saved.
         /// </summary>
