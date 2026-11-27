@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
@@ -57,6 +58,7 @@ namespace ThemeEditor.App
             IReadOnlyList<ThemeCredit> credits = null)
         {
             _credits = credits;
+            AskReplace = AskReplaceDialog;
             _client = client;
             _vault = vault;
             _buildPackage = buildPackage;
@@ -257,7 +259,9 @@ namespace ThemeEditor.App
                 case "USER_TEMPORARILY_BLOCKED":
                     return MainResources.Themezer_Blocked;
                 default:
-                    return string.Format(MainResources.Themezer_Error, ex.Message);
+                    // What failed, and where, so an unexpected refusal can be told apart (and reported)
+                    var detail = string.Join(" · ", new[] { ex.Code, ex.Path }.Where(d => !string.IsNullOrEmpty(d)));
+                    return string.Format(MainResources.Themezer_Error, detail.Length > 0 ? ex.Message + " (" + detail + ")" : ex.Message);
             }
         }
 
@@ -333,7 +337,24 @@ namespace ThemeEditor.App
                 return;
             }
             _pageUrl = null;
-            await Run(MainResources.Themezer_Uploading, async () =>
+            // Uploaded under this name before: replace that theme, or keep both
+            List<ThemezerTheme> earlier = null;
+            await Run(MainResources.Themezer_Checking, async () => earlier = await _client.FindOwnThemes(_name.Text));
+            if (earlier == null)
+                return;
+            ThemezerTheme replace = null;
+            if (earlier.Count > 0)
+            {
+                var choice = await AskReplace(earlier);
+                if (choice == ReplaceChoice.Cancel)
+                {
+                    ShowStatus(null, false);
+                    return;
+                }
+                if (choice == ReplaceChoice.Replace)
+                    replace = earlier[0];
+            }
+            await Run(replace != null ? MainResources.Themezer_Replacing : MainResources.Themezer_Uploading, async () =>
             {
                 var package = await _buildPackage();
                 var theme = await _client.UploadTheme(new ThemezerUpload
@@ -348,10 +369,34 @@ namespace ThemeEditor.App
                     Bgm = package.Bgm,
                     Preview = package.Preview,
                     Icon = package.Icon
-                });
-                _pageUrl = string.IsNullOrEmpty(theme.PageUrl) ? ThemezerClient.SiteUrl : theme.PageUrl;
-                ShowStatus(MainResources.Themezer_Uploaded, false);
+                }, replace?.HexId);
+                _pageUrl = !string.IsNullOrEmpty(theme.PageUrl) ? theme.PageUrl : replace?.PageUrl ?? ThemezerClient.SiteUrl;
+                ShowStatus(replace != null ? MainResources.Themezer_Replaced : MainResources.Themezer_Uploaded, false);
             });
+        }
+
+        internal enum ReplaceChoice
+        {
+            Replace,
+            KeepBoth,
+            Cancel
+        }
+
+        /// <summary>
+        ///     Asks what to do about the user's themes already named like this one (the most recently changed first); tests
+        ///     answer it themselves.
+        /// </summary>
+        internal Func<List<ThemezerTheme>, Task<ReplaceChoice>> AskReplace;
+
+        private async Task<ReplaceChoice> AskReplaceDialog(List<ThemezerTheme> earlier)
+        {
+            var name = earlier[0].Name;
+            var message = earlier.Count == 1
+                ? string.Format(MainResources.Themezer_AlreadyUploaded, name)
+                : string.Format(MainResources.Themezer_AlreadyUploadedMany, name, earlier.Count);
+            var choice = await Dialogs.Choose(this, message, MainResources.Themezer_Title, MessageKind.Information,
+                MainResources.Themezer_Replace, MainResources.Themezer_KeepBoth, MainResources.Dialog_Cancel);
+            return choice == 0 ? ReplaceChoice.Replace : choice == 1 ? ReplaceChoice.KeepBoth : ReplaceChoice.Cancel;
         }
     }
 

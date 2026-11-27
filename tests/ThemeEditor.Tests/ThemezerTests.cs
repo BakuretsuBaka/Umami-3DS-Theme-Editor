@@ -399,7 +399,7 @@ namespace ThemeEditor.Tests
             Assert.Equal(MainResources.Themezer_RateLimited, window.Explain(new ThemezerException("Too many", "RATE_LIMITED")));
             // Not permitted means the account's adult content setting only when the upload was marked as adult content
             var notPermitted = new ThemezerException("Not your item", "NOT_PERMITTED");
-            Assert.Equal(string.Format(MainResources.Themezer_Error, "Not your item"), window.Explain(notPermitted));
+            Assert.Equal(string.Format(MainResources.Themezer_Error, "Not your item (NOT_PERMITTED)"), window.Explain(notPermitted));
             window.GetLogicalDescendants().OfType<CheckBox>().Single(c => (string) c.Content == MainResources.Themezer_Nsfw).IsChecked = true;
             Assert.Equal(MainResources.Themezer_NsfwNotAllowed, window.Explain(notPermitted));
         }
@@ -422,6 +422,94 @@ namespace ThemeEditor.Tests
             Assert.False(upload.IsVisible);
             Assert.True(page.IsVisible);
             Assert.True(page.IsDefault);
+            Assert.Single(fake.Operations, op => ((string) op["query"]).Contains("createTheme"));
+            window.Close();
+        }
+
+        [AvaloniaTheory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        public async Task UploadingUnderANameUsedBeforeAsksToReplaceOrKeepBoth(int choice)
+        {
+            var answer = (ThemezerUploadWindow.ReplaceChoice) choice;
+            var fake = new FakeThemezer
+            {
+                Answer = op =>
+                {
+                    var q = (string) op["query"];
+                    if (q.Contains("auth"))
+                        return "{\"data\":{\"auth\":{\"me\":{\"username\":\"Tester\",\"uuid\":\"u-1\"}}}}";
+                    if (q.Contains("updateTheme"))
+                        return "{\"data\":{\"threeDs\":{\"theme\":{\"updateTheme\":{\"hexId\":\"2B\",\"name\":\"Pink Clouds\",\"pageUrl\":\"https://themezer.net/3ds/themes/pink-clouds-2B\"}}}}}";
+                    if (q.Contains("createTheme"))
+                        return Created;
+                    // Own themes: an older and a newer "Pink Clouds", and one named differently
+                    return "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[" +
+                           "{\"hexId\":\"1A\",\"name\":\"pink clouds\",\"updatedAt\":\"2026-01-01T00:00:00Z\"}," +
+                           "{\"hexId\":\"2B\",\"name\":\"Pink Clouds \",\"pageUrl\":\"https://themezer.net/3ds/themes/pink-clouds-2B\",\"updatedAt\":\"2026-06-01T00:00:00Z\"}," +
+                           "{\"hexId\":\"3C\",\"name\":\"Pink Clouds 2\"}]}}}}}";
+                }
+            };
+            var client = new ThemezerClient(fake);
+            await client.Use("tz_oat_test");
+            var window = Dialog(client, new MemoryVault());
+            List<ThemezerTheme> asked = null;
+            window.AskReplace = found =>
+            {
+                asked = found;
+                return Task.FromResult(answer);
+            };
+            window.Show();
+            window.GetLogicalDescendants().OfType<TextBox>().First(t => t.Watermark == MainResources.Themezer_TagsExample).Text = "pink";
+            await window.UploadTheme();
+
+            // Only the same name counts, the most recently changed first; the search was for the user's own themes
+            Assert.Equal(new[] { "2B", "1A" }, asked.Select(t => t.HexId));
+            var search = fake.Operations.Single(op => ((string) op["query"]).Contains("creatorUuids"));
+            Assert.Equal("u-1", (string) search["variables"]["u"][0]);
+            var update = fake.Operations.SingleOrDefault(op => ((string) op["query"]).Contains("updateTheme"));
+            var create = fake.Operations.SingleOrDefault(op => ((string) op["query"]).Contains("createTheme"));
+            switch (answer)
+            {
+                case ThemezerUploadWindow.ReplaceChoice.Replace:
+                    Assert.Null(create);
+                    Assert.Equal("2B", (string) update["variables"]["h"]);
+                    // This theme has no music: the replaced one's goes
+                    Assert.True(((JObject) update["variables"]["d"]).ContainsKey("bgm"));
+                    Assert.Equal(JTokenType.Null, update["variables"]["d"]["bgm"].Type);
+                    Assert.Equal(MainResources.Themezer_Replaced, window.GetLogicalDescendants().OfType<TextBlock>().First(t => t.Text == MainResources.Themezer_Replaced).Text);
+                    break;
+                case ThemezerUploadWindow.ReplaceChoice.KeepBoth:
+                    Assert.Null(update);
+                    Assert.NotNull(create);
+                    Assert.False(((JObject) create["variables"]["d"]).ContainsKey("bgm"));
+                    break;
+                default:
+                    Assert.Null(update);
+                    Assert.Null(create);
+                    break;
+            }
+            window.Close();
+        }
+
+        [AvaloniaFact]
+        public async Task ANewNameUploadsWithoutAsking()
+        {
+            var (client, fake) = await SignedIn();
+            fake.Answer = op => ((string) op["query"]).Contains("createTheme") ? Created
+                : "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[]}}}}}";
+            var window = Dialog(client, new MemoryVault());
+            var asked = false;
+            window.AskReplace = found =>
+            {
+                asked = true;
+                return Task.FromResult(ThemezerUploadWindow.ReplaceChoice.Cancel);
+            };
+            window.Show();
+            window.GetLogicalDescendants().OfType<TextBox>().First(t => t.Watermark == MainResources.Themezer_TagsExample).Text = "pink";
+            await window.UploadTheme();
+            Assert.False(asked);
             Assert.Single(fake.Operations, op => ((string) op["query"]).Contains("createTheme"));
             window.Close();
         }

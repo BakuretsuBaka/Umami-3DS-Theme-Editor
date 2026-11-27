@@ -40,6 +40,8 @@ namespace ThemeEditor.App
         public string HexId;
         public string Name;
         public string PageUrl;
+        public bool IsPrivate;
+        public DateTime? UpdatedAt;
     }
 
     /// <summary>A piece of music found on Themezer: the BGM of one of its 3DS themes.</summary>
@@ -78,6 +80,9 @@ namespace ThemeEditor.App
         /// <summary>The finer cause Themezer gives for some codes (extensions.reason), e.g. UNMARKED_NSFW.</summary>
         public string Reason { get; }
 
+        /// <summary>Which part of the request Themezer refused (the error's path, e.g. "threeDs.theme.createTheme"), or null.</summary>
+        public string Path { get; set; }
+
         public ThemezerException(string message, string code = null, Exception inner = null, string reason = null) : base(message, inner)
         {
             Code = code;
@@ -113,6 +118,9 @@ namespace ThemeEditor.App
 
         /// <summary>Who is signed in, or null.</summary>
         public string Username { get; private set; }
+
+        /// <summary>The signed-in user's ID (to find their own themes), or null.</summary>
+        public string UserUuid { get; private set; }
 
         /// <summary>The access token of the signed-in user (it does not expire), or null.</summary>
         public string Token { get; private set; }
@@ -294,10 +302,12 @@ namespace ThemeEditor.App
         {
             Token = token;
             Username = null;
+            UserUuid = null;
             try
             {
-                var data = await Send(Json("{ auth { me { username } } }", null));
+                var data = await Send(Json("{ auth { me { username uuid } } }", null));
                 Username = (string) data.SelectToken("auth.me.username");
+                UserUuid = (string) data.SelectToken("auth.me.uuid");
             }
             catch (ThemezerException ex) when (ex.Code == "NOT_AUTHENTICATED")
             {
@@ -313,6 +323,7 @@ namespace ThemeEditor.App
             var token = Token;
             Token = null;
             Username = null;
+            UserUuid = null;
             if (token == null)
                 return;
             try
@@ -327,7 +338,40 @@ namespace ThemeEditor.App
             }
         }
 
-        public async Task<ThemezerTheme> UploadTheme(ThemezerUpload upload)
+        /// <summary>
+        ///     The signed-in user's own 3DS themes named <paramref name="name" /> (ignoring case and surrounding spaces), private
+        ///     ones included when the sign-in may read them; the most recently changed first. Empty when signed out.
+        /// </summary>
+        public async Task<List<ThemezerTheme>> FindOwnThemes(string name, CancellationToken cancel = default)
+        {
+            var found = new List<ThemezerTheme>();
+            var wanted = (name ?? string.Empty).Trim();
+            if (UserUuid == null || wanted.Length == 0)
+                return found;
+            var data = await Read(() => Json(
+                "query($q:String,$u:[UUID!]){ threeDs { theme { themes(query:$q, creatorUuids:$u, paginationArgs:{limit:50}) " +
+                "{ nodes { hexId name pageUrl isPrivate updatedAt } } } } }",
+                new JObject { ["q"] = wanted, ["u"] = new JArray(UserUuid) }), cancel);
+            foreach (var n in data.SelectToken("threeDs.theme.themes.nodes") ?? new JArray())
+            {
+                if (!string.Equals(((string) n["name"] ?? string.Empty).Trim(), wanted, StringComparison.OrdinalIgnoreCase))
+                    continue;
+                found.Add(new ThemezerTheme
+                {
+                    HexId = (string) n["hexId"],
+                    Name = (string) n["name"],
+                    PageUrl = (string) n["pageUrl"],
+                    IsPrivate = (bool?) n["isPrivate"] ?? false,
+                    UpdatedAt = (DateTime?) n["updatedAt"]
+                });
+            }
+            return found.OrderByDescending(t => t.UpdatedAt ?? DateTime.MinValue).ToList();
+        }
+
+        /// <param name="replace">
+        ///     One of the user's own themes to replace (its page, link, downloads and likes stay); null uploads a new theme.
+        /// </param>
+        public async Task<ThemezerTheme> UploadTheme(ThemezerUpload upload, string replace = null)
         {
             if (Token == null)
                 throw new ThemezerException("Not signed in", "NOT_AUTHENTICATED");
@@ -356,12 +400,20 @@ namespace ThemeEditor.App
                 d["bgmInfo"] = upload.BgmInfo;
                 files.Add(("variables.d.bgm", "bgm.bcstm", upload.Bgm));
             }
+            else if (replace != null)
+            {
+                // The theme replaced may have had music: none now (a field left out would keep it)
+                d["bgm"] = null;
+                d["bgmInfo"] = null;
+            }
 
             var form = new MultipartFormDataContent();
             form.Add(new StringContent(new JObject
             {
-                ["query"] = "mutation($d:CreateThreeDsThemeDataInput!){ threeDs { theme { createTheme(data:$d) { hexId name pageUrl } } } }",
-                ["variables"] = new JObject { ["d"] = d }
+                ["query"] = replace == null
+                    ? "mutation($d:CreateThreeDsThemeDataInput!){ threeDs { theme { createTheme(data:$d) { hexId name pageUrl } } } }"
+                    : "mutation($h:Hexadecimal!,$d:UpdateThreeDsThemeDataInput!){ threeDs { theme { updateTheme(hexId:$h, data:$d) { hexId name pageUrl } } } }",
+                ["variables"] = replace == null ? new JObject { ["d"] = d } : new JObject { ["h"] = replace, ["d"] = d }
             }.ToString(Formatting.None), Encoding.UTF8), "operations");
             var map = new JObject();
             for (var i = 0; i < files.Count; i++)
@@ -374,7 +426,7 @@ namespace ThemeEditor.App
                 form.Add(part, i.ToString(), files[i].Name);
             }
 
-            var theme = (await Send(form)).SelectToken("threeDs.theme.createTheme");
+            var theme = (await Send(form)).SelectToken(replace == null ? "threeDs.theme.createTheme" : "threeDs.theme.updateTheme");
             if (theme == null)
                 throw new ThemezerException("Themezer did not return the new theme");
             return new ThemezerTheme
@@ -657,13 +709,17 @@ namespace ThemeEditor.App
             {
                 Token = null;
                 Username = null;
+                UserUuid = null;
                 throw new ThemezerException((string) error?["message"] ?? "Not signed in", "NOT_AUTHENTICATED");
             }
             if (json == null)
                 throw new ThemezerException("Themezer answered HTTP " + (int) status, "HTTP_" + (int) status);
             if (error != null)
                 throw new ThemezerException((string) error["message"] ?? "Themezer reported an error", code, null,
-                    (string) error.SelectToken("extensions.reason"));
+                    (string) error.SelectToken("extensions.reason"))
+                {
+                    Path = error["path"] is JArray path ? string.Join(".", path.Select(p => (string) p)) : null
+                };
             return json["data"] ?? new JObject();
         }
 

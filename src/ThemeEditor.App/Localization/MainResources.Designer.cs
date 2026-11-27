@@ -2180,6 +2180,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Themezer_AlreadyUploaded".</summary>
+        public static string Themezer_AlreadyUploaded {
+            get {
+                return ResourceManager.GetString("Themezer_AlreadyUploaded", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_AlreadyUploadedMany".</summary>
+        public static string Themezer_AlreadyUploadedMany {
+            get {
+                return ResourceManager.GetString("Themezer_AlreadyUploadedMany", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Themezer_BgmInfo".</summary>
         public static string Themezer_BgmInfo {
             get {
@@ -2208,6 +2222,13 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Themezer_Checking".</summary>
+        public static string Themezer_Checking {
+            get {
+                return ResourceManager.GetString("Themezer_Checking", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Themezer_Description".</summary>
         public static string Themezer_Description {
             get {
@@ -2219,6 +2240,13 @@ namespace ThemeEditor.App.Localization {
         public static string Themezer_Error {
             get {
                 return ResourceManager.GetString("Themezer_Error", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_KeepBoth".</summary>
+        public static string Themezer_KeepBoth {
+            get {
+                return ResourceManager.GetString("Themezer_KeepBoth", resourceCulture);
             }
         }
 
@@ -2310,6 +2338,27 @@ namespace ThemeEditor.App.Localization {
         public static string Themezer_RateLimited {
             get {
                 return ResourceManager.GetString("Themezer_RateLimited", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Replace".</summary>
+        public static string Themezer_Replace {
+            get {
+                return ResourceManager.GetString("Themezer_Replace", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Replaced".</summary>
+        public static string Themezer_Replaced {
+            get {
+                return ResourceManager.GetString("Themezer_Replaced", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_Replacing".</summary>
+        public static string Themezer_Replacing {
+            get {
+                return ResourceManager.GetString("Themezer_Replacing", resourceCulture);
             }
         }
 

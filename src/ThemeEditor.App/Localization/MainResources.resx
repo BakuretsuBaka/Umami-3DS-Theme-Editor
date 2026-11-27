@@ -977,6 +977,27 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Upload" xml:space="preserve">
     <value>Upload</value>
   </data>
+  <data name="Themezer_Checking" xml:space="preserve">
+    <value>Looking at your themes...</value>
+  </data>
+  <data name="Themezer_AlreadyUploaded" xml:space="preserve">
+    <value>You already uploaded a theme named "{0}". Replace it with this one (its page, link, downloads and likes stay), or upload this as a new theme and keep both?</value>
+  </data>
+  <data name="Themezer_AlreadyUploadedMany" xml:space="preserve">
+    <value>You already uploaded {1} themes named "{0}". Replace the one changed most recently with this one (its page, link, downloads and likes stay), or upload this as a new theme and keep them all?</value>
+  </data>
+  <data name="Themezer_Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="Themezer_KeepBoth" xml:space="preserve">
+    <value>Keep both</value>
+  </data>
+  <data name="Themezer_Replacing" xml:space="preserve">
+    <value>Replacing...</value>
+  </data>
+  <data name="Themezer_Replaced" xml:space="preserve">
+    <value>Replaced! Themezer may take a moment to process the theme.</value>
+  </data>
   <data name="Themezer_Uploading" xml:space="preserve">
     <value>Uploading...</value>
   </data>
