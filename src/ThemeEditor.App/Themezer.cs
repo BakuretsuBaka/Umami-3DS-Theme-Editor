@@ -98,8 +98,11 @@ namespace ThemeEditor.App
         public const string TokenUrl = "https://api.themezer.net/oauth/token";
         public const string RevokeUrl = "https://api.themezer.net/oauth/revoke";
         public const string ClientId = "umami-theme-editor";
-        /// <summary>Who is signed in, and uploading; reading other content is not needed.</summary>
-        public const string Scopes = "profile:read content:write";
+        /// <summary>
+        ///     Who is signed in, reading as them (searches then include what the account may see, such as NSFW themes when it
+        ///     allows them) and uploading.
+        /// </summary>
+        public const string Scopes = "profile:read content:read content:write";
 
         private static ThemezerClient _shared;
 
@@ -403,15 +406,22 @@ namespace ThemeEditor.App
         public async Task<string> DownloadTheme(string id, string folder, CancellationToken cancel = default)
         {
             var url = "https://api.themezer.net/3ds/themes/" + id + "/download";
+            var signedIn = Token != null && Token != _cannotRead;
             try
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Get, url))
                 {
                     // HttpClient drops the token when the download is redirected to the file storage
-                    if (Token != null)
+                    if (signedIn)
                         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                     using (var response = await _http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancel))
                     {
+                        // A sign-in that may not read: what everyone may download still downloads
+                        if (signedIn && (response.StatusCode == HttpStatusCode.Unauthorized || response.StatusCode == HttpStatusCode.Forbidden))
+                        {
+                            _cannotRead = Token;
+                            return await DownloadTheme(id, folder, cancel);
+                        }
                         if (response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.Forbidden)
                             throw new ThemezerException(Localization.MainResources.Themezer_OpenNotFound, "NOT_FOUND");
                         response.EnsureSuccessStatusCode();
@@ -441,7 +451,7 @@ namespace ThemeEditor.App
         /// </summary>
         public async Task<List<ThemezerMusic>> SearchMusic(string query, CancellationToken cancel = default)
         {
-            var data = await Send(Json(
+            var data = await Read(() => Json(
                 "query($q:String){ threeDs { theme { themes(query:$q, hasBgm:true, paginationArgs:{limit:50}) " +
                 "{ nodes { hexId name bgmInfo bgmPreviewUrl pageUrl creator { username } } } } } }",
                 new JObject { ["q"] = query }), cancel);
@@ -470,7 +480,7 @@ namespace ThemeEditor.App
         /// </summary>
         public async Task<List<ThemezerPart>> SearchParts(string query, string filter, CancellationToken cancel = default)
         {
-            var data = await Send(Json(
+            var data = await Read(() => Json(
                 "query($q:String){ threeDs { theme { themes(query:$q, " + filter + ":true, paginationArgs:{limit:50}) " +
                 "{ nodes { hexId name pageUrl folderClosedUrl iconBorderLargeUrl creator { username } } } } } }",
                 new JObject { ["q"] = query }), cancel);
@@ -501,7 +511,7 @@ namespace ThemeEditor.App
         /// <summary>Searches 3DS themes by name (keeping those whose name matches, see <see cref="MusicMatches" />).</summary>
         public async Task<List<WebThemeId>> SearchThemes(string query, CancellationToken cancel = default)
         {
-            var data = await Send(Json(
+            var data = await Read(() => Json(
                 "query($q:String){ threeDs { theme { themes(query:$q, paginationArgs:{limit:50}) { nodes { hexId name creator { username } } } } } }",
                 new JObject { ["q"] = query }), cancel);
             var found = new List<WebThemeId>();
@@ -582,7 +592,35 @@ namespace ThemeEditor.App
         }
 
         /// <summary>Posts to the API and returns its "data", or throws the first error it reports.</summary>
-        private async Task<JToken> Send(HttpContent content, CancellationToken cancel = default)
+        /// <summary>
+        ///     Reads from the API as the signed-in user when the sign-in allows it, otherwise as a visitor: a sign-in from
+        ///     before Umami asked to read (or one Themezer no longer accepts) still searches what everyone may see.
+        /// </summary>
+        private async Task<JToken> Read(Func<HttpContent> content, CancellationToken cancel = default)
+        {
+            var token = Token;
+            if (token != null && token != _cannotRead)
+            {
+                try
+                {
+                    return await Send(content(), cancel);
+                }
+                catch (ThemezerException ex) when (!cancel.IsCancellationRequested && (ex.Code == "NOT_AUTHENTICATED" || LacksReadScope(ex)))
+                {
+                    _cannotRead = token;
+                }
+            }
+            return await Send(content(), cancel, true);
+        }
+
+        /// <summary>A sign-in that may not read (no content:read): reads go out as a visitor.</summary>
+        private string _cannotRead;
+
+        private static bool LacksReadScope(ThemezerException ex) =>
+            ex.Code == "FORBIDDEN" || ex.Code == "INSUFFICIENT_SCOPE" || (ex.Message ?? string.Empty).IndexOf("scope", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        /// <param name="anonymous">Send it as a visitor, without the sign-in.</param>
+        private async Task<JToken> Send(HttpContent content, CancellationToken cancel = default, bool anonymous = false)
         {
             string text;
             HttpStatusCode status;
@@ -590,7 +628,7 @@ namespace ThemeEditor.App
             {
                 using (var request = new HttpRequestMessage(HttpMethod.Post, ApiUrl) { Content = content })
                 {
-                    if (Token != null)
+                    if (Token != null && !anonymous)
                         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                     using (var response = await _http.SendAsync(request, cancel))
                     {
@@ -615,7 +653,7 @@ namespace ThemeEditor.App
             var error = (json?["errors"] as JArray)?.FirstOrDefault();
             var code = (string) error?.SelectToken("extensions.code");
             // The token is wrong, was revoked, or the app was disabled: sign in again
-            if (status == HttpStatusCode.Unauthorized || code == "NOT_AUTHENTICATED" || code == "UNAUTHENTICATED")
+            if (!anonymous && (status == HttpStatusCode.Unauthorized || code == "NOT_AUTHENTICATED" || code == "UNAUTHENTICATED"))
             {
                 Token = null;
                 Username = null;

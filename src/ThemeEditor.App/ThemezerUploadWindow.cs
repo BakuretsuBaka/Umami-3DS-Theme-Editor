@@ -377,6 +377,40 @@ namespace ThemeEditor.App
             return _token;
         }
 
+        private static Task _resumed;
+        private static ThemezerClient _resumedClient;
+
+        /// <summary>
+        ///     Signs <paramref name="client" /> in with the token kept from an earlier start, once per run, so searches show
+        ///     what the account may see (Themezer only returns NSFW themes to accounts that allow them). Never asks anything:
+        ///     without a saved sign-in, or when it fails, the client stays signed out.
+        /// </summary>
+        public static Task ResumeQuietly(ThemezerClient client, ICredentialStore vault)
+        {
+            if (client.Username != null || vault == null)
+                return Task.CompletedTask;
+            if (_resumedClient != client)
+            {
+                _resumedClient = client;
+                _resumed = ResumeNow(client, vault);
+            }
+            return _resumed;
+        }
+
+        private static async Task ResumeNow(ThemezerClient client, ICredentialStore vault)
+        {
+            try
+            {
+                var token = Read(vault);
+                if (token != null && await client.Use(token) == null)
+                    Delete(vault);
+            }
+            catch (Exception)
+            {
+                // Offline or Themezer down: the search says so itself
+            }
+        }
+
         public static void Write(ICredentialStore vault, string token)
         {
             if (!vault.IsAvailable || token == null)

@@ -31,6 +31,7 @@ namespace ThemeEditor.App
         };
 
         private readonly ThemezerClient _themezer;
+        private readonly ICredentialStore _vault;
         private readonly TextBox _input;
         private readonly ComboBox _numbers;
         private readonly TextBlock _recognised;
@@ -50,9 +51,11 @@ namespace ThemeEditor.App
         internal Task OnlineSearch { get; private set; } = Task.CompletedTask;
 
         /// <param name="themezer">Where to search Themezer (the shared client when null).</param>
-        public WebThemeWindow(ThemezerClient themezer = null)
+        /// <param name="vault">Where the Themezer sign-in is kept (the system's vault for the shared client, none for another).</param>
+        public WebThemeWindow(ThemezerClient themezer = null, ICredentialStore vault = null)
         {
             _themezer = themezer ?? ThemezerClient.Shared;
+            _vault = vault ?? (themezer == null ? CredentialStore.System : null);
             Title = MainResources.Web_Title;
             Width = 520;
             SizeToContent = SizeToContent.Height;
@@ -200,6 +203,8 @@ namespace ThemeEditor.App
             {
                 await Task.Delay(500, cancel);
                 _searchStatus.Text = MainResources.Web_SearchingThemezer;
+                // Signed in, the results include what the account may see (NSFW themes when it allows them)
+                await SavedToken.ResumeQuietly(_themezer, _vault);
                 var hits = await _themezer.SearchThemes(query, cancel);
                 if (cancel.IsCancellationRequested)
                     return;

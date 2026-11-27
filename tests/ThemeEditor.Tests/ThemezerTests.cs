@@ -82,6 +82,57 @@ namespace ThemeEditor.Tests
         private const string Created = "{\"data\":{\"threeDs\":{\"theme\":{\"createTheme\":" +
                                        "{\"hexId\":\"1A2B3\",\"name\":\"Pink Clouds\",\"pageUrl\":\"https://themezer.net/3ds/themes/pink-clouds-1A2B3\"}}}}}";
 
+        [Fact]
+        public async Task SearchesUseTheSavedSignInSoTheAccountSeesItsThemes()
+        {
+            // Themezer only shows NSFW themes to accounts that allow them, so searches go out signed in when they can
+            var fake = new FakeThemezer
+            {
+                Answer = op => ((string) op["query"]).Contains("auth")
+                    ? Me
+                    : "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[]}}}}}"
+            };
+            var client = new ThemezerClient(fake);
+            var vault = new MemoryVault();
+            vault.Secrets["themezer-token"] = "tz_oat_saved";
+            await SavedToken.ResumeQuietly(client, vault);
+            await SavedToken.ResumeQuietly(client, vault);
+            Assert.Equal("Tester", client.Username);
+            await client.SearchThemes("pokemon");
+            Assert.Equal("Bearer tz_oat_saved", fake.Requests.Last().Headers.Authorization?.ToString());
+            Assert.Equal(1, vault.Reads);
+
+            // Nothing saved: it stays signed out and asks nothing
+            var other = new ThemezerClient(new FakeThemezer());
+            await SavedToken.ResumeQuietly(other, new MemoryVault());
+            Assert.Null(other.Username);
+            Assert.Null(other.Token);
+        }
+
+        [Fact]
+        public async Task ASignInThatMayNotReadStillSearchesAsAVisitor()
+        {
+            // Tokens from before Umami asked for content:read: Themezer refuses to search with them
+            var fake = new FakeThemezer
+            {
+                Answer = op => ((string) op["query"]).Contains("auth")
+                    ? Me
+                    : "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[{\"hexId\":\"1A20D\",\"name\":\"Pokemon Sky\"}]}}}}}"
+            };
+            var client = new ThemezerClient(fake);
+            await client.Use("tz_oat_old");
+            fake.Answer = op => fake.Requests.Last().Headers.Authorization != null
+                ? "{\"errors\":[{\"message\":\"This access token lacks the content:read scope.\",\"extensions\":{\"code\":\"FORBIDDEN\"}}]}"
+                : "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[{\"hexId\":\"1A20D\",\"name\":\"Pokemon Sky\"}]}}}}}";
+            Assert.Single(await client.SearchThemes("pokemon"));
+            // Still signed in for uploading; later searches go straight out as a visitor
+            Assert.Equal("Tester", client.Username);
+            var before = fake.Requests.Count;
+            Assert.Single(await client.SearchThemes("pokemon"));
+            Assert.Equal(before + 1, fake.Requests.Count);
+            Assert.Null(fake.Requests.Last().Headers.Authorization);
+        }
+
         private static Dictionary<string, string> Query(string url) =>
             new Uri(url).Query.TrimStart('?').Split('&').Select(p => p.Split('='))
                 .ToDictionary(p => p[0], p => Uri.UnescapeDataString(p[1]));
@@ -128,7 +179,7 @@ namespace ThemeEditor.Tests
             var q = Query(url);
             Assert.Equal("code", q["response_type"]);
             Assert.Equal("umami-theme-editor", q["client_id"]);
-            Assert.Equal("profile:read content:write", q["scope"]);
+            Assert.Equal("profile:read content:read content:write", q["scope"]);
             Assert.Equal("S256", q["code_challenge_method"]);
             Assert.Matches(@"^http://127\.0\.0\.1:\d+/callback$", q["redirect_uri"]);
 

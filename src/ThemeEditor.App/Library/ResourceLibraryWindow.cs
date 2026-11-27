@@ -98,12 +98,18 @@ namespace ThemeEditor.App.Library
         private string _hitsFor;
         private bool _searching, _offline;
         private ThemezerMusic _previewHit;
+        private readonly ICredentialStore _vault;
 
         /// <param name="themezer">Searches music on Themezer (the editor's shared client when null).</param>
-        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target, LibraryPack pack = null, ThemezerClient themezer = null)
+        /// <param name="vault">
+        ///     Where the Themezer sign-in is kept, to search signed in (the system's vault for the shared client, none for
+        ///     another).
+        /// </param>
+        public ResourceLibraryWindow(ResourceLibrary lib, ILibraryTarget target, LibraryPack pack = null, ThemezerClient themezer = null, ICredentialStore vault = null)
         {
             _pack = pack ?? LibraryPack.Default;
             _themezer = themezer ?? ThemezerClient.Shared;
+            _vault = vault ?? (themezer == null ? CredentialStore.System : null);
             _lib = lib;
             _target = target;
             Title = MainResources.Library_Title;
@@ -359,6 +365,8 @@ namespace ThemeEditor.App.Library
             Refresh();
             try
             {
+                // Signed in, the results include what the account may see
+                await SavedToken.ResumeQuietly(_themezer, _vault);
                 // Music is found by what the uploader wrote about it, folders, icons and sounds by the theme's name
                 var hits = kind == LibraryKind.Music
                     ? (await _themezer.SearchMusic(query, cts.Token)).Cast<object>().ToList()
