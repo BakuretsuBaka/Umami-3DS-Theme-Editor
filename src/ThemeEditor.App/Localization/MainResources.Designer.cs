@@ -2264,6 +2264,20 @@ namespace ThemeEditor.App.Localization {
             }
         }
 
+        /// <summary>Looks up the localized string "Themezer_AiImages".</summary>
+        public static string Themezer_AiImages {
+            get {
+                return ResourceManager.GetString("Themezer_AiImages", resourceCulture);
+            }
+        }
+
+        /// <summary>Looks up the localized string "Themezer_AiImagesHint".</summary>
+        public static string Themezer_AiImagesHint {
+            get {
+                return ResourceManager.GetString("Themezer_AiImagesHint", resourceCulture);
+            }
+        }
+
         /// <summary>Looks up the localized string "Themezer_AlreadyUploaded".</summary>
         public static string Themezer_AlreadyUploaded {
             get {

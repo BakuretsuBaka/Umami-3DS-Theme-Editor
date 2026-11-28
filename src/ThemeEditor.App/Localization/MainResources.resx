@@ -974,6 +974,12 @@ Should the editor fit it for you?</value>
   <data name="Themezer_Nsfw" xml:space="preserve">
     <value>Contains adult content</value>
   </data>
+  <data name="Themezer_AiImages" xml:space="preserve">
+    <value>Uses AI-generated images</value>
+  </data>
+  <data name="Themezer_AiImagesHint" xml:space="preserve">
+    <value>Tick this when the main images, such as the background, were made with generative AI.</value>
+  </data>
   <data name="Themezer_Upload" xml:space="preserve">
     <value>Upload</value>
   </data>

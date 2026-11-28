@@ -40,6 +40,7 @@ namespace ThemeEditor.App
         private readonly TextBox _bgmInfo;
         private readonly CheckBox _private;
         private readonly CheckBox _nsfw;
+        private readonly CheckBox _aiImages;
         private readonly StackPanel _details;
 
         private readonly TextBlock _status;
@@ -93,12 +94,18 @@ namespace ThemeEditor.App
             _accountPanel = new StackPanel {Children = {accountRow}};
 
             // ---- Theme details
-            _name = new TextBox {Text = name ?? string.Empty};
+            // Themezer takes names of up to 32 characters; the theme's own name may be longer (the 3DS allows 64)
+            var shortName = (name ?? string.Empty).Trim();
+            if (shortName.Length > ThemezerClient.MaxNameLength)
+                shortName = shortName.Substring(0, ThemezerClient.MaxNameLength).TrimEnd();
+            _name = new TextBox {Text = shortName, MaxLength = ThemezerClient.MaxNameLength};
             _description = new TextBox {Text = description ?? string.Empty, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap, Height = 80};
             _tags = new TextBox {Watermark = MainResources.Themezer_TagsExample};
             _bgmInfo = new TextBox { Text = bgmInfo ?? string.Empty };
             _private = new CheckBox {Content = MainResources.Themezer_Private};
             _nsfw = new CheckBox {Content = MainResources.Themezer_Nsfw};
+            _aiImages = new CheckBox {Content = MainResources.Themezer_AiImages};
+            ToolTip.SetTip(_aiImages, MainResources.Themezer_AiImagesHint);
             _details = new StackPanel
             {
                 Spacing = 4,
@@ -116,6 +123,7 @@ namespace ThemeEditor.App
             }
             _details.Children.Add(_private);
             _details.Children.Add(_nsfw);
+            _details.Children.Add(_aiImages);
 
             // ---- Result and buttons
             _status = new TextBlock {TextWrapping = TextWrapping.Wrap, IsVisible = false};
@@ -365,6 +373,7 @@ namespace ThemeEditor.App
                     BgmInfo = string.IsNullOrWhiteSpace(_bgmInfo.Text) ? null : _bgmInfo.Text.Trim(),
                     IsPrivate = _private.IsChecked == true,
                     IsNsfw = _nsfw.IsChecked == true,
+                    HasAiImages = _aiImages.IsChecked == true,
                     Body = package.Body,
                     Bgm = package.Bgm,
                     Preview = package.Preview,

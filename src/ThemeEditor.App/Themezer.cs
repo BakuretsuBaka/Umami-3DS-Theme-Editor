@@ -28,6 +28,8 @@ namespace ThemeEditor.App
         public string BgmInfo;
         public bool IsPrivate;
         public bool IsNsfw;
+        /// <summary>The main images (such as the background) were made with generative AI.</summary>
+        public bool HasAiImages;
         public byte[] Body;
         public byte[] Bgm;
         public byte[] Preview;
@@ -119,6 +121,9 @@ namespace ThemeEditor.App
         public const string Scopes = "profile:read content:read content:write";
 
         private static ThemezerClient _shared;
+
+        /// <summary>The longest theme name Themezer takes.</summary>
+        public const int MaxNameLength = 32;
 
         /// <summary>The client the editor uses, so the sign-in holds until the editor is closed.</summary>
         public static ThemezerClient Shared => _shared ?? (_shared = new ThemezerClient());
@@ -392,6 +397,7 @@ namespace ThemeEditor.App
                 ["tags"] = new JArray(upload.Tags),
                 ["isPrivate"] = upload.IsPrivate,
                 ["isNSFW"] = upload.IsNsfw,
+                ["hasAIGeneratedImages"] = upload.HasAiImages,
                 ["externalEditor"] = true,
                 ["body"] = null,
                 ["preview"] = null,

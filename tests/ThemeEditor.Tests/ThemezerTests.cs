@@ -245,6 +245,7 @@ namespace ThemeEditor.Tests
             Assert.True((bool) d["externalEditor"]);
             Assert.True((bool) d["isPrivate"]);
             Assert.False((bool) d["isNSFW"]);
+            Assert.False((bool) d["hasAIGeneratedImages"]);
             Assert.Equal("Some Artist - Some Song", (string) d["bgmInfo"]);
             Assert.Null(((JObject) d).Property("uploadGrant"));
 
@@ -490,6 +491,28 @@ namespace ThemeEditor.Tests
                     Assert.Null(create);
                     break;
             }
+            window.Close();
+        }
+
+        [AvaloniaFact]
+        public async Task TheNameFitsThemezerAndTheAiFlagIsSent()
+        {
+            var (client, fake) = await SignedIn();
+            fake.Answer = op => ((string) op["query"]).Contains("createTheme") ? Created
+                : "{\"data\":{\"threeDs\":{\"theme\":{\"themes\":{\"nodes\":[]}}}}}";
+            // The 3DS allows longer names than Themezer
+            var window = new ThemezerUploadWindow(client, new MemoryVault(), "A Very Long Theme Name That Goes On And On", "", false,
+                () => Task.FromResult(new MainWindow.ThemePackage()));
+            window.Show();
+            var name = window.GetLogicalDescendants().OfType<TextBox>().First();
+            Assert.Equal(ThemezerClient.MaxNameLength, name.MaxLength);
+            Assert.Equal("A Very Long Theme Name That Goes", name.Text);
+            window.GetLogicalDescendants().OfType<TextBox>().First(t => t.Watermark == MainResources.Themezer_TagsExample).Text = "long";
+            window.GetLogicalDescendants().OfType<CheckBox>().Single(c => (string) c.Content == MainResources.Themezer_AiImages).IsChecked = true;
+            await window.UploadTheme();
+            var create = fake.Operations.Single(op => ((string) op["query"]).Contains("createTheme"));
+            Assert.True((bool) create["variables"]["d"]["hasAIGeneratedImages"]);
+            Assert.Equal("A Very Long Theme Name That Goes", (string) create["variables"]["d"]["name"]);
             window.Close();
         }
 
